@@ -2054,7 +2054,7 @@
     });
 
     // ── Sticky CTA: show only when hero Buy is out of view AND final Buy not yet in view ──
-    (function () {
+    window.addEventListener('DOMContentLoaded', function () {
       const sticky = document.querySelector('.sticky-cta');
       const heroBuy = document.getElementById('heroBuy');
       const finalBuy = document.getElementById('finalBuy');
@@ -2071,7 +2071,7 @@
       obs.observe(heroBuy);
       obs.observe(finalBuy);
       update();
-    })();
+    });
 
   </script>
 
