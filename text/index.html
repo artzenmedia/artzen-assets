@@ -537,10 +537,11 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 4px;
+      gap: 16px;
       transition: border-color 0.2s, transform 0.2s;
     }
     .included-card:hover { border-color: #333; transform: translateY(-3px); }
+    .included-card__text { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; }
     .included-card__title {
       font-size: 14px;
       font-weight: 600;
@@ -1534,43 +1535,37 @@
       <p class="features__includes-title">What's Included</p>
       <div class="included-grid">
         <div class="included-card">
-          <div class="included-card__title">29 Animations</div>
-          <div class="included-card__sub">Drag &amp; drop .MOGRT</div>
+          <div class="included-card__text"><div class="included-card__title">29 Animations</div><div class="included-card__sub">Drag &amp; drop .MOGRT</div></div>
           <div class="included-card__icon">
             <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
           </div>
         </div>
         <div class="included-card">
-          <div class="included-card__title">All Premiere Versions</div>
-          <div class="included-card__sub">Fully compatible</div>
+          <div class="included-card__text"><div class="included-card__title">All Premiere Versions</div><div class="included-card__sub">Fully compatible</div></div>
           <div class="included-card__icon">
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
         </div>
         <div class="included-card">
-          <div class="included-card__title">Instant Download</div>
-          <div class="included-card__sub">Yours immediately</div>
+          <div class="included-card__text"><div class="included-card__title">Instant Download</div><div class="included-card__sub">Yours immediately</div></div>
           <div class="included-card__icon">
             <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           </div>
         </div>
         <div class="included-card">
-          <div class="included-card__title">Commercial Use</div>
-          <div class="included-card__sub">Use on client work</div>
+          <div class="included-card__text"><div class="included-card__title">Commercial Use</div><div class="included-card__sub">Use on client work</div></div>
           <div class="included-card__icon">
             <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
           </div>
         </div>
         <div class="included-card">
-          <div class="included-card__title">Lifetime Access</div>
-          <div class="included-card__sub">Free updates forever</div>
+          <div class="included-card__text"><div class="included-card__title">Lifetime Access</div><div class="included-card__sub">Free updates forever</div></div>
           <div class="included-card__icon">
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
         </div>
         <div class="included-card included-card--bonus">
-          <div class="included-card__title">Free Bonuses</div>
-          <div class="included-card__sub">Presets + call-outs</div>
+          <div class="included-card__text"><div class="included-card__title">Free Bonuses</div><div class="included-card__sub">Presets + call-outs</div></div>
           <div class="included-card__icon">
             <svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
           </div>
