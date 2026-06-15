@@ -1,0 +1,2018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Text Animations — Artzen Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter+Display:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Caveat:wght@400..700&family=Indie+Flower&family=Nothing+You+Could+Do&family=Reenie+Beanie&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0C0C0C;
+      --container: #161616;
+      --container-hover: #1e1e1e;
+      --primary: #FFFFFF;
+      --secondary: #8C8C8C;
+      --tertiary: #555;
+      --border: #242424;
+      --accent: #5BD3FE;
+      --yellow: #FFEA00;
+      --ig-blue: #0095F6;
+      --max-w: 800px;
+    }
+
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      background: transparent;
+      color: var(--primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    /* very soft grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.008) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.008) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      padding: 22px 24px;
+    }
+    .nav-profile {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-profile__glow {
+      position: absolute;
+      inset: -28px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,100,255,0.22) 0%, rgba(91,211,254,0.08) 48%, transparent 70%);
+      pointer-events: none;
+      filter: blur(12px);
+    }
+    .nav-profile__circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a0a20, #101030);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter Display', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .nav-profile__circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .nav-profile__badge {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .nav-profile__badge img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+    .nav-handle {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--secondary);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── SHARED ── */
+    .section {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+      overflow: hidden;
+    }
+    .hero__text {
+      position: relative;
+      z-index: 2;
+      max-width: 460px;
+      margin: 0 auto 0 max(20px, calc(50% - 540px));
+      padding: 0 20px;
+    }
+    .hero__eyebrow {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .hero__title {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 3.8rem;
+      font-weight: 700;
+      line-height: 0.82;
+      letter-spacing: -0.05em;
+      color: var(--primary);
+      margin-bottom: 12px;
+      overflow: visible;
+    }
+    .hero__line { display: block; }
+    .hero__line--top { white-space: nowrap; overflow: visible; }
+
+    /* ── Glowing shimmer sweep (Creator / Animations) ── */
+    .shimmer-text {
+      display: inline-block;
+      color: rgba(255,255,255,0.86);
+      -webkit-text-fill-color: transparent;
+      background-color: rgba(255,255,255,0.86);
+      background-image: linear-gradient(110deg,
+        transparent 30%,
+        #ffffff 48%,
+        #ffffff 52%,
+        transparent 70%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      background-repeat: no-repeat;
+      background-size: 220% 100%;
+      filter: drop-shadow(0 0 16px rgba(255,255,255,0.15));
+      animation: shimmerSweep 3.8s linear infinite;
+    }
+    @keyframes shimmerSweep {
+      0%   { background-position: 160% 0; }
+      60%  { background-position: -60% 0; }
+      100% { background-position: -60% 0; }
+    }
+
+    /* ── Animated effect word (Text) — real per-char motion ── */
+    .hero__text-fx {
+      display: inline-block;
+      font-family: 'Caveat', cursive;
+      font-weight: 700;
+      font-size: 2.3em;
+      line-height: 0.5;
+      vertical-align: middle;
+      letter-spacing: normal;
+      color: var(--accent);
+      white-space: nowrap;
+      text-align: center;
+      overflow: visible;
+      margin: 0 -0.03em;
+      text-shadow: 0 0 22px rgba(91,211,254,0.3);
+    }
+    .fx-char {
+      display: inline-block;
+      white-space: pre;
+      will-change: transform, filter, opacity;
+    }
+    /* inner ink layer: static tilt + constant subtle wiggle (hand-drawn feel) */
+    .fx-ink {
+      display: inline-block;
+      rotate: var(--rot, 0deg);
+      animation: inkWiggle 2.6s ease-in-out infinite;
+      animation-delay: var(--wd, 0s);
+      will-change: transform;
+    }
+    @keyframes inkWiggle {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(0.4px, -0.7px) rotate(1.1deg); }
+      50% { transform: translate(-0.6px, 0.5px) rotate(-1.1deg); }
+      75% { transform: translate(0.5px, 0.6px) rotate(0.7deg); }
+    }
+    @keyframes charBlur { from { opacity: 0; filter: blur(12px); } to { opacity: 1; filter: blur(0); } }
+    .fx-char.blur { animation: charBlur 0.5s ease forwards; }
+    @keyframes charSlide { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .fx-char.slide { animation: charSlide 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+    @keyframes charScale { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+    .fx-char.scale { animation: charScale 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+    @keyframes charDrop { from { opacity: 0; transform: translateY(-28px) rotate(-8deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
+    .fx-char.drop { animation: charDrop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+    @keyframes charShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
+    .fx-char.shake { animation: charShake 0.55s ease forwards; }
+
+    .hero__title .accent-yellow { color: var(--yellow); }
+    .hero__subtitle {
+      font-size: 14px;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 24px;
+      line-height: 1.5;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+    .hero__cta { display: inline-flex; flex-direction: column; align-items: center; }
+    .hero__pp { margin-top: 10px; display: flex; justify-content: center; }
+    .pp-icon.pp-icon--lg {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      box-shadow: none;
+    }
+    .hero__price {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    /* ── BUTTONS (premium glow) ── */
+    @keyframes btnSpin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 18px 44px;
+      border-radius: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    /* large spinning conic-gradient square, clipped to the rounded button */
+    .btn::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 250%;
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+      background: conic-gradient(from 0deg, transparent 0%, var(--accent) 20%, transparent 50%);
+      z-index: -2;
+      animation: btnSpin 3s linear infinite;
+    }
+    /* core that masks the centre, leaving a glowing ring */
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 1.5px;
+      border-radius: 13px;
+      z-index: -1;
+    }
+    .btn:hover {
+      transform: scale(1.02);
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+    .btn-center {
+      display: flex;
+      width: max-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @keyframes btnPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 14px 32px 0 rgba(91,211,254,0.22); }
+      50% { transform: scale(1.035); box-shadow: 0 20px 46px 0 rgba(91,211,254,0.42); }
+    }
+    .btn-primary {
+      color: #fff;
+      box-shadow: 0 15px 35px 0 rgba(91,211,254,0.25);
+      animation: btnPulse 2.6s ease-in-out infinite;
+    }
+    .btn-primary::after {
+      background: #0D0D0D;
+    }
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      box-shadow: 0 18px 42px 0 rgba(91,211,254,0.35);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .btn-primary { animation: none; }
+    }
+    .btn-outline {
+      color: #fff;
+      box-shadow: 0 12px 30px 0 rgba(91,211,254,0.15);
+    }
+    .btn-outline::after {
+      background: rgba(13,13,13,0.55);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+    .btn-outline:hover {
+      box-shadow: 0 16px 38px 0 rgba(91,211,254,0.25);
+    }
+
+    /* ── HERO VIDEO (full-bleed background layer) ── */
+    .hero__media {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 62%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .hero__media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero__media .hero__video--mobile { display: none; }
+    /* left fade so video blends into the bg behind the text */
+    .hero__media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(to right, var(--bg) 0%, rgba(12,12,12,0.55) 28%, transparent 65%),
+        linear-gradient(to bottom, transparent 50%, var(--bg) 95%);
+    }
+    .media-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    .media-placeholder__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .media-placeholder__icon svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--secondary);
+      margin-left: 3px;
+    }
+    .media-placeholder__label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      color: var(--tertiary);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      max-width: var(--max-w);
+      margin: 0 auto 48px;
+      padding: 0 20px;
+    }
+    .trust-bar__inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .trust-bar__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 22px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      transition: background 0.2s, border-color 0.2s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: pointer;
+    }
+    .trust-bar__item:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.1);
+      transform: scale(1.06);
+    }
+    .trust-bar__item:active { transform: scale(1.02); }
+    .trust-bar__item::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 6px rgba(255,234,0,0.6);
+      flex-shrink: 0;
+    }
+    .trust-bar__number {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      opacity: 0.85;
+      letter-spacing: -0.01em;
+    }
+    .trust-bar__label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      max-width: 760px;
+      margin: 0 auto 44px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .features__content { text-align: center; width: 100%; }
+    .features__h2 {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .features__subh {
+      font-size: 15px;
+      color: var(--secondary);
+      margin-bottom: 18px;
+    }
+    .features__desc {
+      font-size: 14px;
+      color: var(--secondary);
+      line-height: 23px;
+      margin-bottom: 8px;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .features__tagline {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      color: var(--tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+    }
+    .features__includes-title {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    /* icon cards grid */
+    .included-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .included-card {
+      background: var(--container);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .included-card:hover { border-color: #333; transform: translateY(-3px); }
+    .included-card__title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.3;
+      width: 100%;
+    }
+    .included-card__icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin: auto auto 0;
+    }
+    .included-card__icon svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: var(--secondary);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .included-card--bonus .included-card__icon svg { stroke: var(--yellow); }
+    .included-card__sub {
+      font-size: 12px;
+      color: var(--tertiary);
+      line-height: 1.4;
+      width: 100%;
+    }
+
+    /* ── IMPACT (IG embeds) ── */
+    .impact {
+      max-width: 100%;
+      margin: 0 auto 56px;
+      overflow: hidden;
+    }
+    .impact-wrapper {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .impact-viewport {
+      position: relative;
+      overflow: hidden;
+    }
+    /* side fades */
+    .impact-viewport::before,
+    .impact-viewport::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 230px;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .impact-viewport::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+    .impact-viewport::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+    .impact-track {
+      display: flex;
+      gap: 16px;
+      justify-content: safe center;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-behavior: auto;
+      padding: 8px 0;
+    }
+    .impact-track::-webkit-scrollbar { display: none; }
+    .impact-item {
+      flex-shrink: 0;
+      width: 300px;
+      aspect-ratio: 9 / 16;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--container);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .impact-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    /* legibility gradient at the bottom */
+    .impact-item__grad {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 90px;
+      background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .impact-views {
+      position: absolute;
+      left: 14px;
+      bottom: 13px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .impact-views .impact-stat { display: inline-flex; align-items: center; gap: 6px; }
+    .impact-views svg { width: 16px; height: 16px; fill: #fff; opacity: 0.92; }
+    /* tap-to-unmute speaker */
+    .impact-sound {
+      position: absolute;
+      bottom: 11px;
+      right: 14px;
+      z-index: 3;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .impact-sound:hover { background: rgba(0,0,0,0.7); transform: scale(1.08); }
+    .impact-sound svg { width: 15px; height: 15px; fill: #fff; }
+    .impact-sound .ico-on { display: none; }
+    .impact-sound[data-muted="false"] .ico-on { display: block; }
+    .impact-sound[data-muted="false"] .ico-muted { display: none; }
+    /* placeholder look (until WebM files are added) */
+    .impact-item__placeholder {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .impact-item__placeholder svg { width: 30px; height: 30px; fill: var(--tertiary); }
+    .impact-item__placeholder span {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--tertiary);
+      text-align: center;
+    }
+    .impact-label {
+      text-align: center;
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      max-width: 100%;
+      margin: 0 auto 56px;
+      overflow: hidden;
+    }
+    .testimonials__header {
+      max-width: var(--max-w);
+      margin: 0 auto 28px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .section-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .section-sub {
+      font-size: 13px;
+      color: var(--secondary);
+      text-align: center;
+      margin-bottom: 0;
+    }
+    /* marquee keyframes */
+    @keyframes marqueeLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes marqueeRight {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* marquee wrapper */
+    .reviews-marquee {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 4px 0;
+    }
+    .reviews-marquee::before,
+    .reviews-marquee::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .reviews-marquee::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+    .reviews-marquee::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+
+    .reviews-row {
+      display: flex;
+      gap: 10px;
+      width: max-content;
+      animation: marqueeLeft 35s linear infinite;
+    }
+    .reviews-row--reverse {
+      animation: marqueeRight 35s linear infinite;
+    }
+    .reviews-marquee:hover .reviews-row { animation-play-state: paused; }
+
+    /* individual card */
+    .review-card {
+      flex-shrink: 0;
+      width: 260px;
+      background: var(--container);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .review-card:hover { border-color: #333; transform: translateY(-3px); }
+
+    .review-card__top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .review-card__avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--secondary);
+      overflow: hidden;
+    }
+    .review-card__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .review-card__info { flex: 1; }
+    .review-card__name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .review-card__handle {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--tertiary);
+    }
+    img.review-card__badge {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .stars {
+      display: flex;
+      gap: 2px;
+    }
+    .stars svg {
+      width: 13px;
+      height: 13px;
+      fill: var(--yellow);
+    }
+    .review-card__quote {
+      font-size: 13px;
+      color: var(--secondary);
+      line-height: 21px;
+      flex: 1;
+    }
+    .t-meta {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: auto;
+    }
+    .t-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #222;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--secondary);
+      flex-shrink: 0;
+    }
+    .t-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+    }
+    .t-handle {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--tertiary);
+    }
+
+    /* ── BUNDLE ── */
+    .bundle {
+      max-width: 600px;
+      margin: 0 auto 56px;
+      padding: 0 20px;
+    }
+    .bundle__card {
+      background: var(--container);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0;
+      transition: border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    /* subtle top glow */
+    .bundle__card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 140px;
+      background: radial-gradient(ellipse, rgba(255,234,0,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .bundle__card:hover { border-color: #333; }
+    .bundle__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: rgba(255,234,0,0.1);
+      border: 1px solid rgba(255,234,0,0.25);
+      border-radius: 999px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--yellow);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .bundle__badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 6px var(--yellow);
+    }
+    .bundle__big-number {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--yellow);
+      opacity: 0.1;
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      pointer-events: none;
+      user-select: none;
+    }
+    .bundle__title {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .bundle__desc {
+      font-size: 13px;
+      color: var(--secondary);
+      line-height: 20px;
+      max-width: 380px;
+      margin-bottom: 28px;
+    }
+    .bundle__products {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .bundle__product-tag {
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--secondary);
+      letter-spacing: 0.04em;
+    }
+    .bundle__product-sep {
+      font-size: 11px;
+      color: var(--tertiary);
+    }
+    .bundle__btn { align-self: center; }
+
+    /* ── CAROUSEL ── */
+    .carousel-section {
+      max-width: 100%;
+      margin: 0 auto 56px;
+      overflow: hidden;
+    }
+    .carousel-label {
+      text-align: center;
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+      padding: 0 20px;
+    }
+    .carousel-wrapper {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .carousel-viewport {
+      position: relative;
+      overflow: hidden;
+    }
+    /* side fades */
+    .carousel-viewport::before,
+    .carousel-viewport::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 110px;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .carousel-viewport::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+    .carousel-viewport::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-behavior: auto;
+      padding: 8px 0;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-item {
+      flex-shrink: 0;
+      width: 300px;
+      aspect-ratio: 4/5;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--container);
+      border: 1px solid var(--border);
+      scroll-snap-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .carousel-item__placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+    }
+    .carousel-item__placeholder svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--tertiary);
+    }
+    .carousel-item__placeholder span {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--tertiary);
+      text-align: center;
+    }
+    /* side arrows */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 4;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(20,20,20,0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .carousel-arrow--left { left: 14px; }
+    .carousel-arrow--right { right: 14px; }
+    .carousel-arrow:hover {
+      background: rgba(40,40,40,0.85);
+      border-color: #333;
+    }
+    .carousel-arrow svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--primary);
+    }
+    /* dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 22px;
+    }
+    .carousel-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: width 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
+    }
+    .carousel-dot.active {
+      width: 12px;
+      border-radius: 4px;
+      background: var(--accent);
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      max-width: var(--max-w);
+      margin: 0 auto 56px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .final-cta__title {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .final-cta__sub {
+      font-size: 13px;
+      color: var(--secondary);
+      margin-bottom: 24px;
+    }
+    .final-cta__platform {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .pp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .pp-icon {
+      position: relative;
+      overflow: hidden;
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      background: #0d0d0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: #cfcfcf;
+      font-family: 'Inter', sans-serif;
+      flex-shrink: 0;
+      box-shadow: 0 0 7px rgba(255,255,255,0.18);
+    }
+    .pp-icon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, transparent 44%, rgba(255,255,255,0.32) 50%, transparent 56%);
+      background-size: 250% 100%;
+      background-repeat: no-repeat;
+      animation: ppShine 3.2s linear infinite;
+    }
+    @keyframes ppShine {
+      0% { background-position: 160% 0; }
+      55%, 100% { background-position: -60% 0; }
+    }
+    .pp-badge span {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--secondary);
+    }
+
+    /* ── FAQ ── */
+    .faq {
+      max-width: var(--max-w);
+      margin: 0 auto 56px;
+      padding: 0 20px;
+    }
+    .faq__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .faq__item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq__item:last-child { border-bottom: none; }
+    .faq__question {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      color: var(--primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      transition: background 0.15s, color 0.25s ease;
+    }
+    .faq__question:hover { background: rgba(255,255,255,0.02); }
+    .faq__item.open .faq__question { color: var(--accent); }
+    .faq__icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s, border-color 0.25s;
+    }
+    .faq__icon svg {
+      width: 11px;
+      height: 11px;
+      stroke: var(--secondary);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      display: block;
+      transition: stroke 0.25s ease;
+    }
+    .faq__item.open .faq__icon {
+      transform: rotate(45deg);
+      background: rgba(91,211,254,0.08);
+      border-color: rgba(91,211,254,0.4);
+    }
+    .faq__item.open .faq__icon svg { stroke: var(--accent); }
+    .faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      padding: 0 18px;
+      font-size: 13px;
+      color: var(--secondary);
+      line-height: 21px;
+      transition: max-height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  padding 0.3s ease,
+                  opacity 0.3s ease,
+                  transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .faq__item.open .faq__answer {
+      max-height: 220px;
+      opacity: 1;
+      transform: translateY(0);
+      padding: 0 18px 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px 36px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      color: var(--tertiary);
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--primary); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      max-width: var(--max-w);
+      margin: 0 auto 48px;
+      padding: 0 20px;
+    }
+    .divider hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .hero {
+        min-height: 82vh;
+        justify-content: center;
+        text-align: center;
+        padding: 90px 0;
+      }
+      .hero__text {
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .hero__media {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+      }
+      .hero__media::after {
+        background: linear-gradient(to bottom, rgba(12,12,12,0.65) 0%, rgba(12,12,12,0.45) 45%, rgba(12,12,12,0.9) 100%);
+      }
+      .hero__media .hero__video--desktop { display: none; }
+      .hero__media .hero__video--mobile { display: block; }
+      .hero__title { font-size: 2.7rem; }
+      .hero__line--top { white-space: normal; }
+      .hero__text-fx { font-size: 1.85em; line-height: 0.6; }
+      .hero__subtitle { font-size: 15px; }
+
+      .trust-bar__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .trust-bar__item { padding: 11px 14px; justify-content: center; }
+
+      .features {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0;
+        overflow: visible;
+      }
+      .features__content {
+        order: 1;
+        position: relative;
+        z-index: 2;
+        padding: 0 20px 64px;
+        background: linear-gradient(to bottom, var(--bg) 70%, transparent 100%);
+      }
+      .features__media {
+        order: 2;
+        aspect-ratio: 9/16;
+        max-height: 500px;
+        max-width: 260px;
+        width: 70%;
+        margin: -52px auto 0;
+        position: relative;
+        z-index: 1;
+        border-radius: 20px;
+        box-shadow: 0 -20px 60px rgba(0,0,0,0.6);
+      }
+
+      .bundle__card { padding: 28px 20px 24px; }
+      .bundle__big-number { font-size: 4rem; top: 14px; right: 16px; }
+
+      .section-title { font-size: 1.4rem; }
+      .final-cta__title { font-size: 1.6rem; }
+      .impact-viewport::before, .impact-viewport::after { width: 40px; }
+      .impact-item { width: 66vw; }
+
+      .carousel-track { gap: 12px; padding: 8px 11vw; }
+      .carousel-item { width: 78vw; }
+      .carousel-viewport::before, .carousel-viewport::after { width: 13vw; }
+      .carousel-arrow { width: 38px; height: 38px; }
+      .carousel-arrow--left { left: 6px; }
+      .carousel-arrow--right { right: 6px; }
+      nav { padding-top: 28px; }
+    }
+
+    /* sticky mobile CTA bar */
+    .sticky-cta { display: none; }
+    @media (max-width: 680px) {
+      .sticky-cta {
+        display: flex;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 90;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(12,12,12,0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border);
+      }
+      .sticky-cta .btn { width: 100%; margin: 0; box-shadow: 0 0 24px rgba(91,211,254,0.25); }
+      body { padding-bottom: 76px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__text">
+      <h1 class="hero__title"><span class="hero__line hero__line--top"><span class="shimmer-text">Creator</span> <span class="hero__text-fx" id="heroFx">Text</span></span><span class="shimmer-text hero__line">Animations</span></h1>
+      <p class="hero__subtitle">Pro-level text. One pack.</p>
+      <div class="hero__cta">
+        <a class="btn btn-primary" href="https://store.artzenmedia.com/checkout/buy/d70d463c-123d-4c9d-99ed-b56274a151f0?embed=1&logo=0&desc=0">Buy Now — $47</a>
+        <div class="hero__pp">
+          <div class="pp-icon pp-icon--lg" title="Premiere Pro only">Pr</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__media">
+      <video class="hero__video hero__video--desktop" autoplay muted loop playsinline>
+        <source src="/assets/hero-cover.webm" type="video/webm">
+      </video>
+      <video class="hero__video hero__video--mobile" autoplay muted loop playsinline preload="none">
+        <source src="/assets/hero-cover-mobile.webm" type="video/webm">
+      </video>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar__inner">
+      <div class="trust-bar__item">
+        <div class="trust-bar__number">29</div>
+        <div class="trust-bar__label">Animations</div>
+      </div>
+      <div class="trust-bar__item">
+        <div class="trust-bar__number">500+</div>
+        <div class="trust-bar__label">Creators</div>
+      </div>
+      <div class="trust-bar__item">
+        <div class="trust-bar__number">Instant</div>
+        <div class="trust-bar__label">Download</div>
+      </div>
+      <div class="trust-bar__item">
+        <div class="trust-bar__number">Lifetime</div>
+        <div class="trust-bar__label">Access</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:16px"></div>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features__content">
+      <h2 class="features__h2">Pro text animations in seconds</h2>
+      <p class="features__subh">Drag, drop, done. Right inside Premiere Pro.</p>
+      <p class="features__desc">29 hand-crafted, fully customizable text animations built to make your edits stop the scroll. No keyframing, no plugins, no After Effects. Drop one on your timeline and it just works, so you spend your time creating, not animating.</p>
+      <p class="features__tagline">Made by an editor who got sick of wasting hours on text.</p>
+      <p class="features__includes-title">What's Included</p>
+      <div class="included-grid">
+        <div class="included-card">
+          <div class="included-card__title">29 Animations</div>
+          <div class="included-card__sub">Drag &amp; drop .MOGRT</div>
+          <div class="included-card__icon">
+            <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+          </div>
+        </div>
+        <div class="included-card">
+          <div class="included-card__title">All Premiere Versions</div>
+          <div class="included-card__sub">Fully compatible</div>
+          <div class="included-card__icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        </div>
+        <div class="included-card">
+          <div class="included-card__title">Instant Download</div>
+          <div class="included-card__sub">Yours immediately</div>
+          <div class="included-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+        </div>
+        <div class="included-card">
+          <div class="included-card__title">Commercial Use</div>
+          <div class="included-card__sub">Use on client work</div>
+          <div class="included-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+        </div>
+        <div class="included-card">
+          <div class="included-card__title">Lifetime Access</div>
+          <div class="included-card__sub">Free updates forever</div>
+          <div class="included-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+        </div>
+        <div class="included-card included-card--bonus">
+          <div class="included-card__title">Free Bonuses</div>
+          <div class="included-card__sub">Presets + call-outs</div>
+          <div class="included-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-primary btn-center" href="https://store.artzenmedia.com/checkout/buy/d70d463c-123d-4c9d-99ed-b56274a151f0?embed=1&logo=0&desc=0">Buy Now</a>
+    </div>
+  </section>
+
+  <!-- IMPACT (real IG reel embeds) -->
+  <section class="impact">
+    <div class="impact-wrapper">
+      <p class="impact-label">Watch the impact</p>
+      <div class="impact-viewport">
+        <div class="impact-track" id="impactTrack">
+          <!-- Swap each <source> for your exported WebM, update the views + likes numbers -->
+          <div class="impact-item">
+            <video autoplay muted loop playsinline preload="none">
+              <source src="/assets/reel-1.webm" type="video/webm">
+            </video>
+            <div class="impact-item__placeholder"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>WebM<br>9:16</span></div>
+            <div class="impact-item__grad"></div>
+            <div class="impact-views">
+              <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>442K</span>
+              <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>10,989</span>
+            </div>
+            <button class="impact-sound" data-muted="true" aria-label="Toggle sound">
+              <svg class="ico-muted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 2.53-1.27 4.76-3.2 6.09l1.45 1.45C19.6 17.85 21 15.09 21 12s-1.4-5.85-3.75-7.54L15.8 5.91C17.73 7.24 19 9.47 19 12z" opacity="0.55"/><path d="M4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.21v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3z"/></svg>
+              <svg class="ico-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            </button>
+          </div>
+          <div class="impact-item">
+            <video autoplay muted loop playsinline preload="none">
+              <source src="/assets/reel-2.webm" type="video/webm">
+            </video>
+            <div class="impact-item__placeholder"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>WebM<br>9:16</span></div>
+            <div class="impact-item__grad"></div>
+            <div class="impact-views">
+              <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>255K</span>
+              <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>4,991</span>
+            </div>
+            <button class="impact-sound" data-muted="true" aria-label="Toggle sound">
+              <svg class="ico-muted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 2.53-1.27 4.76-3.2 6.09l1.45 1.45C19.6 17.85 21 15.09 21 12s-1.4-5.85-3.75-7.54L15.8 5.91C17.73 7.24 19 9.47 19 12z" opacity="0.55"/><path d="M4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.21v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3z"/></svg>
+              <svg class="ico-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="carousel-arrow carousel-arrow--left" onclick="scrollImpact(-1)" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="carousel-arrow carousel-arrow--right" onclick="scrollImpact(1)" aria-label="Next">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials__header">
+      <p class="section-label">What creators say</p>
+      <h2 class="section-title">Trusted by 700+ editors worldwide</h2>
+      <p class="section-sub">Real reviews from real creators.</p>
+    </div>
+    <div class="reviews-marquee">
+
+      <!-- ROW 1 (scrolls left) — 7 unique + 7 duplicate = seamless on any screen -->
+      <div class="reviews-row" id="row1">
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/mickey.jpg" alt="itchyeyephotos"></div><div class="review-card__info"><div class="review-card__name">Mickey<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@itchyeyephotos</div></div></div><p class="review-card__quote">"Can't believe I found this while doomscrolling on IG. All of my favorite text effects in 1 pack, easy to follow, and free updates for life."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/3kingkeen.jpg" alt="3kingkeen"></div><div class="review-card__info"><div class="review-card__name">3KINGKEEN<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@3kingkeen</div></div></div><p class="review-card__quote">"Super easy to use and really helps add that extra touch to make my videos that much better. 10/10 recommend to any creative."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/christopher.jpg" alt="chrissjeske"></div><div class="review-card__info"><div class="review-card__name">Christopher<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@chrissjeske</div></div></div><p class="review-card__quote">"The variety and ease of use is top tier. You get so much from this pack - it's 10x'd my workflow and made editing fun again."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/swtos.jpg" alt="soter.pap"></div><div class="review-card__info"><div class="review-card__name">Swtos<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@soter.pap</div></div></div><p class="review-card__quote">"Easy to use, full of text animations, and it definitely elevated my captions game. Highly recommend for anyone who wants a better workflow."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/hugo.jpg" alt="hugolminetti"></div><div class="review-card__info"><div class="review-card__name">Hugo<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@hugolminetti</div></div></div><p class="review-card__quote">"Makes editing so much quicker and elevates my video quality by a ton. Highly recommend, 10/10 product."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/blake.jpg" alt="blakejstaff"></div><div class="review-card__info"><div class="review-card__name">Blake<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@blakejstaff</div></div></div><p class="review-card__quote">"Having all the text effects inside Premiere Pro makes editing so much less stressful. Love it."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/patrik.jpg" alt="patriksoldan"></div><div class="review-card__info"><div class="review-card__name">Patrik<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@patriksoldan</div></div></div><p class="review-card__quote">"Love having everything in one place. Hard to find tools that actually work, but this pack delivers."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/coachdon.jpg" alt="coachdonmrremote"></div><div class="review-card__info"><div class="review-card__name">Coach Don<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@coachdonmrremote</div></div></div><p class="review-card__quote">"This pack has been my go-to lately. Been using it for over 50% of my text edits."</p></div>
+        <!-- duplicate set for seamless loop -->
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/mickey.jpg" alt="itchyeyephotos"></div><div class="review-card__info"><div class="review-card__name">Mickey<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@itchyeyephotos</div></div></div><p class="review-card__quote">"Can't believe I found this while doomscrolling on IG. All of my favorite text effects in 1 pack, easy to follow, and free updates for life."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/3kingkeen.jpg" alt="3kingkeen"></div><div class="review-card__info"><div class="review-card__name">3KINGKEEN<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@3kingkeen</div></div></div><p class="review-card__quote">"Super easy to use and really helps add that extra touch to make my videos that much better. 10/10 recommend to any creative."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/christopher.jpg" alt="chrissjeske"></div><div class="review-card__info"><div class="review-card__name">Christopher<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@chrissjeske</div></div></div><p class="review-card__quote">"The variety and ease of use is top tier. You get so much from this pack - it's 10x'd my workflow and made editing fun again."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/swtos.jpg" alt="soter.pap"></div><div class="review-card__info"><div class="review-card__name">Swtos<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@soter.pap</div></div></div><p class="review-card__quote">"Easy to use, full of text animations, and it definitely elevated my captions game. Highly recommend for anyone who wants a better workflow."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/hugo.jpg" alt="hugolminetti"></div><div class="review-card__info"><div class="review-card__name">Hugo<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@hugolminetti</div></div></div><p class="review-card__quote">"Makes editing so much quicker and elevates my video quality by a ton. Highly recommend, 10/10 product."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/blake.jpg" alt="blakejstaff"></div><div class="review-card__info"><div class="review-card__name">Blake<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@blakejstaff</div></div></div><p class="review-card__quote">"Having all the text effects inside Premiere Pro makes editing so much less stressful. Love it."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/patrik.jpg" alt="patriksoldan"></div><div class="review-card__info"><div class="review-card__name">Patrik<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@patriksoldan</div></div></div><p class="review-card__quote">"Love having everything in one place. Hard to find tools that actually work, but this pack delivers."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/coachdon.jpg" alt="coachdonmrremote"></div><div class="review-card__info"><div class="review-card__name">Coach Don<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@coachdonmrremote</div></div></div><p class="review-card__quote">"This pack has been my go-to lately. Been using it for over 50% of my text edits."</p></div>
+      </div>
+
+      <!-- ROW 2 (scrolls right) — 7 unique + 7 duplicate -->
+      <div class="reviews-row reviews-row--reverse" id="row2">
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/randall.jpg" alt="iamrandallyutatco"></div><div class="review-card__info"><div class="review-card__name">Randall<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@iamrandallyutatco</div></div></div><p class="review-card__quote">"Been wanting this for so long - finally got it and it's amazing. Well done on creating this."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/steproc.jpg" alt="steprocplus"></div><div class="review-card__info"><div class="review-card__name">StepRoc PLUS<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@steprocplus</div></div></div><p class="review-card__quote">"The animation pack is SOLID. Already using it across my content."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/alexei.jpg" alt="alexeidelacuesta"></div><div class="review-card__info"><div class="review-card__name">Alexei<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@alexeidelacuesta</div></div></div><p class="review-card__quote">"Been using it and it's killer. Does exactly what it says."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/kalo.jpg" alt="kalokachar"></div><div class="review-card__info"><div class="review-card__name">Kalo<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@kalokachar</div></div></div><p class="review-card__quote">"Amazing text animation pack. Appreciate you putting this together."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/garden.jpg" alt="directedbygarden"></div><div class="review-card__info"><div class="review-card__name">From the Garden<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@directedbygarden</div></div></div><p class="review-card__quote">"Bought literally everything. Absolutely worth it."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/josiah.jpg" alt="josiah_lebante"></div><div class="review-card__info"><div class="review-card__name">Josiah<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@josiah_lebante</div></div></div><p class="review-card__quote">"Just got it and love it. Exactly what I was looking for."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/lourdes.jpg" alt="iapulse"></div><div class="review-card__info"><div class="review-card__name">Lourdes<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@iapulse</div></div></div><p class="review-card__quote">"The text animation pack has been very helpful. Really glad I picked it up."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar">F</div><div class="review-card__info"><div class="review-card__name">fljay23<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@fljay23</div></div></div><p class="review-card__quote">"Dude, these are awesome. Thank you so much."</p></div>
+        <!-- duplicate set -->
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/randall.jpg" alt="iamrandallyutatco"></div><div class="review-card__info"><div class="review-card__name">Randall<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@iamrandallyutatco</div></div></div><p class="review-card__quote">"Been wanting this for so long - finally got it and it's amazing. Well done on creating this."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/steproc.jpg" alt="steprocplus"></div><div class="review-card__info"><div class="review-card__name">StepRoc PLUS<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@steprocplus</div></div></div><p class="review-card__quote">"The animation pack is SOLID. Already using it across my content."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/alexei.jpg" alt="alexeidelacuesta"></div><div class="review-card__info"><div class="review-card__name">Alexei<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@alexeidelacuesta</div></div></div><p class="review-card__quote">"Been using it and it's killer. Does exactly what it says."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/kalo.jpg" alt="kalokachar"></div><div class="review-card__info"><div class="review-card__name">Kalo<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@kalokachar</div></div></div><p class="review-card__quote">"Amazing text animation pack. Appreciate you putting this together."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/garden.jpg" alt="directedbygarden"></div><div class="review-card__info"><div class="review-card__name">From the Garden<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@directedbygarden</div></div></div><p class="review-card__quote">"Bought literally everything. Absolutely worth it."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/josiah.jpg" alt="josiah_lebante"></div><div class="review-card__info"><div class="review-card__name">Josiah<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@josiah_lebante</div></div></div><p class="review-card__quote">"Just got it and love it. Exactly what I was looking for."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/lourdes.jpg" alt="iapulse"></div><div class="review-card__info"><div class="review-card__name">Lourdes<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@iapulse</div></div></div><p class="review-card__quote">"The text animation pack has been very helpful. Really glad I picked it up."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar">F</div><div class="review-card__info"><div class="review-card__name">fljay23<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@fljay23</div></div></div><p class="review-card__quote">"Dude, these are awesome. Thank you so much."</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BUNDLE (temporarily hidden — restore when SFX Collection is live) -->
+  <!--
+  <div class="divider"><hr></div>
+
+  <section class="bundle">
+    <div class="bundle__card">
+      <div class="bundle__badge">Save 25%</div>
+      <h3 class="bundle__title">Bundle &amp; Save</h3>
+      <p class="bundle__desc">Stack any products from the store and automatically save 25%. More tools, one price.</p>
+      <div class="bundle__products">
+        <div class="bundle__product-tag">Text Animations</div>
+        <div class="bundle__product-sep">+</div>
+        <div class="bundle__product-tag">SFX Collection</div>
+      </div>
+      <a class="btn btn-outline bundle__btn" href="https://store.artzenmedia.com/checkout/buy/2e71f649-0bc6-417c-bccb-6758058bbe32?embed=1&logo=0">Browse Bundles</a>
+    </div>
+  </section>
+  -->
+
+  <!-- VIDEO CAROUSEL -->
+  <section class="carousel-section">
+    <p class="carousel-label">watch how it works</p>
+    <div class="carousel-wrapper">
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carousel">
+          <div class="carousel-item">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="/assets/hiw-1.webm" type="video/webm">
+            </video>
+          </div>
+          <div class="carousel-item">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="/assets/hiw-2.webm" type="video/webm">
+            </video>
+          </div>
+          <div class="carousel-item">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="/assets/hiw-3.webm" type="video/webm">
+            </video>
+          </div>
+          <div class="carousel-item">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="/assets/hiw-4.webm" type="video/webm">
+            </video>
+          </div>
+          <div class="carousel-item">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="/assets/hiw-5.webm" type="video/webm">
+            </video>
+          </div>
+          <div class="carousel-item">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="/assets/hiw-6.webm" type="video/webm">
+            </video>
+          </div>
+        </div>
+        <button class="carousel-arrow carousel-arrow--left" onclick="scrollCarousel(-1)" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="carousel-arrow carousel-arrow--right" onclick="scrollCarousel(1)" aria-label="Next">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="final-cta__platform" style="margin-top:0;margin-bottom:18px">
+      <div class="pp-badge">
+        <div class="pp-icon">Pr</div>
+        <span>PREMIERE PRO ONLY</span>
+      </div>
+    </div>
+    <h2 class="final-cta__title">Buy now. <span style="color:var(--accent)">Level up.</span></h2>
+    <p class="final-cta__sub">Instant Download, Lifetime Access &amp; Updates.</p>
+    <a class="btn btn-primary" style="margin-top:8px" href="https://store.artzenmedia.com/checkout/buy/d70d463c-123d-4c9d-99ed-b56274a151f0?embed=1&logo=0&desc=0">Buy Now — $47</a>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title" style="margin-bottom:24px">Frequently Asked Questions</h2>
+    <div class="faq__list">
+      <div class="faq__item open">
+        <button class="faq__question" onclick="toggleFaq(this)">
+          How do I receive future updates?
+          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq__answer">After purchase, every future update is delivered free to your purchase email. No extra cost.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">
+          How do I access the Pack after purchase?
+          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq__answer">Once purchased, you'll get an instant download link in your email, no waiting required.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">
+          Can I use these in monetized videos?
+          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq__answer">Yes, all animations can be used in personal or commercial projects.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">
+          Will this work with my editing software?
+          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq__answer">This pack is designed specifically for Premiere Pro. No plugins or After Effects required.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">
+          What can I customize?
+          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq__answer">Everything — font, size, color, timing, and position. Each animation is fully adjustable inside Premiere Pro's Essential Graphics panel.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">
+          Do I need any extra plugins?
+          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq__answer">No — just Premiere Pro. Drag, drop, type. That's it.</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ── IMPACT carousel (IG embeds, infinite loop) ──
+    const impTrack = document.getElementById('impactTrack');
+    if (impTrack) {
+      // Finite carousel: centered when the cards fit, scrolls when they overflow.
+      const impItems = Array.from(impTrack.children);
+      function impItemW() {
+        return impItems.length > 1
+          ? impItems[1].offsetLeft - impItems[0].offsetLeft
+          : impItems[0].offsetWidth + 16;
+      }
+      // hide the arrows when everything already fits (no scrolling needed)
+      function impSyncArrows() {
+        const fits = impTrack.scrollWidth <= impTrack.clientWidth + 2;
+        impTrack.parentElement.querySelectorAll('.carousel-arrow')
+          .forEach(a => a.style.display = fits ? 'none' : '');
+      }
+      impSyncArrows();
+      window.addEventListener('load', impSyncArrows);
+      window.addEventListener('resize', impSyncArrows);
+
+      window.scrollImpact = function (dir) {
+        impTrack.scrollBy({ left: dir * impItemW(), behavior: 'smooth' });
+      };
+
+      // tap-to-unmute (unmuting one mutes the others)
+      const impSoundBtns = Array.from(impTrack.querySelectorAll('.impact-sound'));
+      impSoundBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.impact-item');
+          const vid = item.querySelector('video');
+          if (!vid) return;
+          const willUnmute = vid.muted;
+          if (willUnmute) {
+            // mute every other reel first
+            impSoundBtns.forEach(b => {
+              if (b === btn) return;
+              const v = b.closest('.impact-item').querySelector('video');
+              if (v) v.muted = true;
+              b.setAttribute('data-muted', 'true');
+            });
+          }
+          vid.muted = !vid.muted;
+          if (!vid.muted) vid.play().catch(() => {});
+          btn.setAttribute('data-muted', vid.muted ? 'true' : 'false');
+        });
+      });
+
+      // auto-mute a reel once it scrolls out of view (sound only while visible)
+      if ('IntersectionObserver' in window) {
+        const impMuteObs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.intersectionRatio < 0.5) {
+              const vid = e.target.querySelector('video');
+              const btn = e.target.querySelector('.impact-sound');
+              if (vid && !vid.muted) {
+                vid.muted = true;
+                if (btn) btn.setAttribute('data-muted', 'true');
+              }
+            }
+          });
+        }, { threshold: [0, 0.5, 1] });
+        impTrack.querySelectorAll('.impact-item').forEach(it => impMuteObs.observe(it));
+      }
+    } else {
+      window.scrollImpact = function () {};
+    }
+
+    // ── HERO "Text" — real animated text effects (cycles) ──
+    (function () {
+      const fxWord = document.getElementById('heroFx');
+      if (!fxWord) return;
+      const TEXT = 'Text';
+      const SCRAMBLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
+
+      // Bad-handwriting effect: each letter gets a different handwriting font
+      const HAND_FONTS = ['Caveat', 'Indie Flower', 'Nothing You Could Do', 'Reenie Beanie', 'Shadows Into Light'];
+      function seededRandom(s) { const x = Math.sin(s) * 10000; return x - Math.floor(x); }
+      const SEED = 1 + Math.floor(Math.random() * 9999);
+      const assigned = [];
+      (function assignFonts() {
+        let prev = null;
+        for (let i = 0; i < TEXT.length; i++) {
+          let avail = HAND_FONTS.filter(f => f !== prev);
+          const f = avail[Math.floor(seededRandom(SEED + i) * avail.length)] || HAND_FONTS[0];
+          assigned.push(f);
+          prev = f;
+        }
+      })();
+
+      function buildSpans() {
+        fxWord.innerHTML = '';
+        return TEXT.split('').map((ch, i) => {
+          const outer = document.createElement('span');
+          outer.className = 'fx-char';
+          outer.style.animationDelay = (i * 0.07) + 's';
+          const ink = document.createElement('span');
+          ink.className = 'fx-ink';
+          ink.style.fontFamily = '"' + assigned[i] + '", cursive';
+          // per-letter imperfection: random tilt + desynced wiggle
+          const rot = (seededRandom(SEED + i * 3) * 11 - 5.5).toFixed(2);
+          ink.style.setProperty('--rot', rot + 'deg');
+          ink.style.setProperty('--wd', (seededRandom(SEED + i * 7) * -2.6).toFixed(2) + 's');
+          ink.textContent = ch;
+          outer.appendChild(ink);
+          fxWord.appendChild(outer);
+          return { outer, ink };
+        });
+      }
+
+      // Lock the word width (in its handwriting fonts) so scramble glyphs never reflow the line
+      function lockWidth() {
+        fxWord.style.width = 'auto';
+        buildSpans();
+        const w = Math.ceil(fxWord.getBoundingClientRect().width) + 6;
+        fxWord.style.width = w + 'px';
+      }
+      lockWidth();
+      window.addEventListener('resize', lockWidth);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(lockWidth);
+
+      function runPreset(name, done) {
+        const spans = buildSpans();
+        void fxWord.offsetWidth; // force reflow so animation restarts
+        spans.forEach(s => s.outer.classList.add(name));
+        setTimeout(done, (TEXT.length * 0.07 * 1000) + 700);
+      }
+
+      function runScramble(done) {
+        const spans = buildSpans();
+        const steps = 20;
+        let step = 0;
+        const iv = setInterval(() => {
+          const progress = step / steps;
+          spans.forEach((s, i) => {
+            s.ink.textContent = (progress * TEXT.length > i)
+              ? TEXT[i]
+              : SCRAMBLE[Math.floor(Math.random() * SCRAMBLE.length)];
+          });
+          step++;
+          if (step > steps) {
+            clearInterval(iv);
+            spans.forEach((s, i) => s.ink.textContent = TEXT[i]);
+            done();
+          }
+        }, 45);
+      }
+
+      const cycle = [
+        d => runScramble(d),
+        d => runPreset('blur', d),
+        d => runPreset('slide', d),
+        d => runPreset('scale', d),
+        d => runPreset('drop', d),
+        d => runPreset('shake', d),
+      ];
+      let ci = 0;
+      function loop() {
+        const fn = cycle[ci];
+        ci = (ci + 1) % cycle.length;
+        fn(() => setTimeout(loop, 1500)); // hold word, then next effect
+      }
+      loop();
+    })();
+
+    // ── FAQ ──
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq__item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq__item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // ── CAROUSEL (infinite loop) ──
+    const carTrack = document.getElementById('carousel');
+    const carDots = document.getElementById('carouselDots');
+    const carOriginals = Array.from(carTrack.children);
+    const carRealCount = carOriginals.length;
+
+    // clone a full set before and after for seamless wrap
+    carOriginals.slice().reverse().forEach(n => carTrack.insertBefore(n.cloneNode(true), carTrack.firstChild));
+    carOriginals.forEach(n => carTrack.appendChild(n.cloneNode(true)));
+    const carAll = Array.from(carTrack.children);
+
+    let carOneSet = 0, carCenterPad = 0;
+    function carItemW() { return carAll[1].offsetLeft - carAll[0].offsetLeft; }
+    function carMeasure() {
+      carOneSet = carAll[carRealCount].offsetLeft - carAll[0].offsetLeft;
+      carCenterPad = (carTrack.clientWidth - carAll[0].offsetWidth) / 2;
+    }
+    function carBase() { return carOneSet - carCenterPad; } // scroll pos that centers the first real item
+    function carRecenter() {
+      carMeasure();
+      carTrack.scrollLeft = carBase(); // start with item 1 centered
+    }
+    carRecenter();
+    window.addEventListener('load', carRecenter);
+    window.addEventListener('resize', carRecenter);
+
+    function scrollCarousel(dir) {
+      carTrack.scrollBy({ left: dir * carItemW(), behavior: 'smooth' });
+    }
+
+    // dots (one per real item)
+    for (let i = 0; i < carRealCount; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.addEventListener('click', () => {
+        carTrack.scrollTo({ left: carBase() + i * carItemW(), behavior: 'smooth' });
+      });
+      carDots.appendChild(dot);
+    }
+    const carDotEls = carDots.querySelectorAll('.carousel-dot');
+
+    function updateCarDots() {
+      const rel = carTrack.scrollLeft - carBase();
+      let idx = Math.round(rel / carItemW());
+      idx = ((idx % carRealCount) + carRealCount) % carRealCount;
+      carDotEls.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    let carTick = false;
+    carTrack.addEventListener('scroll', () => {
+      // seamless infinite wrap (keep within the middle set)
+      const wrapRel = carTrack.scrollLeft - carBase();
+      if (wrapRel < -carOneSet * 0.5) {
+        carTrack.scrollLeft += carOneSet;
+      } else if (wrapRel >= carOneSet * 0.5) {
+        carTrack.scrollLeft -= carOneSet;
+      }
+      if (!carTick) {
+        requestAnimationFrame(() => { updateCarDots(); carTick = false; });
+        carTick = true;
+      }
+    });
+
+  </script>
+
+  <!-- Sticky mobile CTA -->
+  <div class="sticky-cta">
+    <a class="btn btn-primary" href="https://store.artzenmedia.com/checkout/buy/d70d463c-123d-4c9d-99ed-b56274a151f0?embed=1&logo=0&desc=0">Buy Now — $47</a>
+  </div>
+
+</body>
+</html>
