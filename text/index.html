@@ -2060,24 +2060,28 @@
       }
     });
 
-    // ── Sticky CTA: show only when hero Buy is out of view AND final Buy not yet in view ──
+    // ── Sticky CTA: visible once the hero Buy leaves view, until the final Buy comes into view ──
     window.addEventListener('DOMContentLoaded', function () {
       const sticky = document.querySelector('.sticky-cta');
       const heroBuy = document.getElementById('heroBuy');
       const finalBuy = document.getElementById('finalBuy');
-      if (!sticky || !heroBuy || !finalBuy || !('IntersectionObserver' in window)) return;
-      let heroVisible = true, finalVisible = false;
-      function update() { sticky.classList.toggle('show', !heroVisible && !finalVisible); }
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.target === heroBuy) heroVisible = e.isIntersecting;
-          if (e.target === finalBuy) finalVisible = e.isIntersecting;
-        });
-        update();
-      }, { threshold: 0 });
-      obs.observe(heroBuy);
-      obs.observe(finalBuy);
-      update();
+      if (!sticky || !heroBuy || !finalBuy) return;
+      let ticking = false;
+      function evaluate() {
+        ticking = false;
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const heroBottom = heroBuy.getBoundingClientRect().bottom;
+        const finalTop = finalBuy.getBoundingClientRect().top;
+        const heroOut = heroBottom < 8;            // hero button has scrolled above the top
+        const finalIn = finalTop < vh - 40;        // final button entering view from the bottom
+        sticky.classList.toggle('show', heroOut && !finalIn);
+      }
+      function onScroll() {
+        if (!ticking) { ticking = true; requestAnimationFrame(evaluate); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      evaluate();
     });
 
   </script>
