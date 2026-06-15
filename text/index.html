@@ -1411,23 +1411,25 @@
       nav { padding-top: 28px; }
     }
 
-    /* sticky mobile CTA bar */
-    .sticky-cta { display: none; }
-    @media (max-width: 680px) {
-      .sticky-cta {
-        display: flex;
-        position: fixed;
-        left: 0; right: 0; bottom: 0;
-        z-index: 90;
-        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-        background: rgba(12,12,12,0.92);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-top: 1px solid var(--border);
-      }
-      .sticky-cta .btn { width: 100%; margin: 0; box-shadow: 0 0 24px rgba(91,211,254,0.25); }
-      body { padding-bottom: 76px; }
+    /* sticky CTA bar — mobile + web */
+    .sticky-cta {
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 90;
+      padding: 14px 16px calc(16px + env(safe-area-inset-bottom));
+      background: linear-gradient(to top, rgba(12,12,12,0.96) 55%, rgba(12,12,12,0));
+      pointer-events: none;
     }
+    .sticky-cta .btn {
+      pointer-events: auto;
+      width: 100%;
+      max-width: 440px;
+      margin: 0;
+      box-shadow: 0 8px 34px rgba(91,211,254,0.32);
+    }
+    body { padding-bottom: 96px; }
 
     /* ── shared site header (profile) + footer ── */
     .site-header { display: flex; justify-content: center; padding: 40px 20px 4px; }
