@@ -151,7 +151,7 @@
     }
     .hero__title {
       font-family: 'Inter Display', sans-serif;
-      font-size: 2.5rem; font-weight: 700; line-height: 1.04;
+      font-size: 2.8rem; font-weight: 700; line-height: 1.04;
       letter-spacing: -0.035em; color: var(--primary); margin-bottom: 14px;
     }
     .hero__sub { font-size: 15px; color: var(--secondary); line-height: 1.6; max-width: 460px; margin: 0 auto; }
@@ -192,7 +192,7 @@
     }
     .offer__desc { position: relative; font-size: 14px; color: var(--secondary); line-height: 1.6; max-width: 400px; margin: 0 auto 22px; }
     .offer__price { position: relative; display: flex; align-items: baseline; justify-content: center; gap: 12px; margin-bottom: 6px; }
-    .offer__price .now { font-family: 'Inter Display', sans-serif; font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; color: var(--primary); }
+    .offer__price .now { font-family: 'Inter Display', sans-serif; font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; color: var(--accent); }
     .offer__price .was { font-size: 1.3rem; font-weight: 500; color: var(--tertiary); text-decoration: line-through; }
     .offer__save { position: relative; font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500; color: var(--green); margin-bottom: 24px; }
     .offer__cta { position: relative; }
@@ -262,7 +262,7 @@
       .pills { margin-top: -20px; }
     }
     /* URGENCY TIMER */
-    .offer__timer { position: relative; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; text-align: center; line-height: 1.5; margin: 0 auto 18px; padding: 9px 16px; border-radius: 30px; background: rgba(255,92,92,0.08); border: 1px solid rgba(255,92,92,0.3); font-family: 'Geist Mono', monospace; font-size: 11px; color: #ff8a8a; letter-spacing: 0.02em; }
+    .offer__timer { position: relative; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; text-align: center; line-height: 1.5; margin: 0 auto 18px; padding: 9px 16px; border-radius: 30px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--secondary); letter-spacing: 0.02em; }
     .offer__timer strong { color: #ff5c5c; font-weight: 600; font-variant-numeric: tabular-nums; }
     .offer__timer .nb { white-space: nowrap; }
     .offer__timer-pulse { width: 7px; height: 7px; border-radius: 50%; background: #ff5c5c; box-shadow: 0 0 8px #ff5c5c; animation: offerPulse 1.2s ease-in-out infinite; }
@@ -297,7 +297,6 @@
         <span class="now">$35</span>
         <span class="was">$47</span>
       </div>
-      <p class="offer__save">You save $12. Buyers-only price, just for grabbing it here.</p>
       <div class="offer__timer" id="offerTimer">
         <span class="offer__timer-pulse"></span>
         Buyers-only · 25% off · <span class="nb">ends in <strong id="offerClock">10:00</strong></span>
@@ -329,10 +328,6 @@
       <div class="faq__item">
         <button class="faq__question" onclick="toggleFaq(this)">Will it work in Premiere Pro?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
         <div class="faq__answer">Yes. It's a .MOGRT file built for Premiere Pro. Drop it into your Essential Graphics panel and you're animating in seconds. No plugins needed.</div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question" onclick="toggleFaq(this)">Can I get a refund?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
-        <div class="faq__answer">No. These are digital products, so all sales are final. It's in the terms and conditions. If something's wrong with your download, email me and I'll sort it.</div>
       </div>
       <div class="faq__item">
         <button class="faq__question" onclick="toggleFaq(this)">Do I get future updates?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
