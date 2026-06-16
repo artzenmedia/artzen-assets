@@ -2086,6 +2086,24 @@
     <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_wjtF15SFVPrISS3pPTKZu44Hs8tQWimNZ2zwu3M5pmI">Buy Now — $47</a>
   </div>
 
+  <!-- Best-effort autoplay kickstart for muted inline videos -->
+  <script>
+  (function(){
+    function kick(){
+      document.querySelectorAll('video[autoplay]').forEach(function(v){
+        v.muted = true; v.playsInline = true;
+        var p = v.play();
+        if (p && p.catch) p.catch(function(){});
+      });
+    }
+    document.addEventListener('DOMContentLoaded', kick);
+    window.addEventListener('load', kick);
+    ['touchstart','click','scroll'].forEach(function(ev){
+      window.addEventListener(ev, kick, { once: true, passive: true });
+    });
+  })();
+  </script>
+
   <!-- Polar checkout modal -->
   <script>
   (function() {
