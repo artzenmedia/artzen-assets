@@ -272,15 +272,18 @@
       .pills { margin-top: -20px; }
     }
     /* URGENCY TIMER */
-    .offer__timer { position: relative; display: inline-flex; align-items: center; gap: 8px; margin: 0 auto 18px; padding: 9px 16px; border-radius: 30px; background: rgba(255,92,92,0.08); border: 1px solid rgba(255,92,92,0.3); font-family: 'Geist Mono', monospace; font-size: 11px; color: #ff8a8a; letter-spacing: 0.02em; }
+    .offer__timer { position: relative; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; text-align: center; line-height: 1.5; margin: 0 auto 18px; padding: 9px 16px; border-radius: 30px; background: rgba(255,92,92,0.08); border: 1px solid rgba(255,92,92,0.3); font-family: 'Geist Mono', monospace; font-size: 11px; color: #ff8a8a; letter-spacing: 0.02em; }
     .offer__timer strong { color: #ff5c5c; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .offer__timer .nb { white-space: nowrap; }
     .offer__timer-pulse { width: 7px; height: 7px; border-radius: 50%; background: #ff5c5c; box-shadow: 0 0 8px #ff5c5c; animation: offerPulse 1.2s ease-in-out infinite; }
     @keyframes offerPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
-    /* customer portal access link */
-    .hero__portal { display: inline-flex; align-items: center; gap: 7px; margin-top: 20px; font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--secondary); text-decoration: none; border: 1px solid var(--border); border-radius: 30px; padding: 10px 18px; transition: color 0.18s, border-color 0.18s, background 0.18s, transform 0.18s; }
-    .hero__portal:hover { color: var(--primary); border-color: rgba(91,211,254,0.4); background: rgba(91,211,254,0.06); transform: translateY(-1px); }
-    .hero__portal svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    /* help line */
+    .help-line { max-width: var(--max-w); margin: -28px auto 0; padding: 0 20px 8px; text-align: center; }
+    .help-line p { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); letter-spacing: 0.02em; }
+    .help-line a { color: var(--secondary); text-decoration: none; }
+    .help-line a:hover { color: var(--accent); }
   </style>
+
 
 
 </head>
@@ -290,9 +293,8 @@
   <section class="hero fu on">
     <div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
     <p class="hero__eyebrow">Order confirmed</p>
-    <h1 class="hero__title">Nice. Your Text Animations are <em>on the way.</em></h1>
+    <h1 class="hero__title">Your Text Animations are <em>on the way.</em></h1>
     <p class="hero__sub">Check your inbox for the download link. <strong>One thing before you go.</strong></p>
-    <div><a class="hero__portal" href="https://polar.sh/artzen-media/portal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Access your downloads</a></div>
   </section>
 
   <!-- ══ OFFER ══ -->
@@ -308,7 +310,7 @@
       <p class="offer__save">You save $11. Buyers-only price, just for grabbing it here.</p>
       <div class="offer__timer" id="offerTimer">
         <span class="offer__timer-pulse"></span>
-        Buyers-only · 24% off · expires in <strong id="offerClock">10:00</strong>
+        Buyers-only · 24% off · <span class="nb">ends in <strong id="offerClock">10:00</strong></span>
       </div>
       <div class="offer__cta">
         <a href="https://buy.polar.sh/polar_cl_DDHC2uaWOwLF5TiqidzkPCRgHZlQwBJiy8y6E1iBy7W" class="btn btn-primary">Add the SFX Collection — $34</a>
@@ -345,6 +347,10 @@
     </div>
   </section>
 
+
+  <div class="help-line fu">
+    <p>Need help? Email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></p>
+  </div>
 
   <script>
     // Fade-up on scroll
