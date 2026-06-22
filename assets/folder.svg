@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100">
+  <defs>
+    <linearGradient id="fbBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4f5156"/><stop offset="1" stop-color="#46484d"/>
+    </linearGradient>
+    <linearGradient id="fbFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c6e73"/><stop offset="1" stop-color="#5b5d62"/>
+    </linearGradient>
+  </defs>
+  <!-- back panel + tab -->
+  <path d="M4 20 a8 8 0 0 1 8-8 H40 a6 6 0 0 1 4.5 2 l3.8 4.3 a6 6 0 0 0 4.5 2 H108 a8 8 0 0 1 8 8 V40 H4 Z" fill="url(#fbBack)"/>
+  <!-- white paper inside -->
+  <rect x="19" y="25" width="82" height="56" rx="5" fill="#e6e6e6"/>
+  <rect x="19" y="25" width="82" height="9" rx="5" fill="#f4f4f4"/>
+  <!-- front panel -->
+  <path d="M4 34 h112 V86 a8 8 0 0 1-8 8 H12 a8 8 0 0 1-8-8 Z" fill="url(#fbFront)"/>
+  <rect x="4" y="34" width="112" height="1.4" fill="#ffffff" opacity="0.12"/>
+</svg>

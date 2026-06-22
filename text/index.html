@@ -260,7 +260,7 @@
       line-height: 1.5;
       text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
-    .hero__cta { display: inline-flex; flex-direction: column; align-items: center; }
+    .hero__cta { display: inline-flex; flex-direction: column; align-items: center; margin-top: 22px; }
     .hero__pp { margin-top: 10px; display: flex; justify-content: center; }
     .pp-icon.pp-icon--lg {
       width: 32px;
@@ -916,14 +916,31 @@
     /* ── BUNDLE ── */
     .bundle {
       max-width: 600px;
-      margin: 0 auto 56px;
+      margin: 0 auto 90px;
       padding: 0 20px;
+      position: relative;
     }
+    @keyframes bundleHue { to { filter: blur(26px) hue-rotate(360deg); } }
+    .bundle__glow {
+      position: absolute; inset: 16px; border-radius: 24px; z-index: 0; pointer-events: none;
+      background: conic-gradient(from 0deg, #5BD3FE, #a78bfa, #ff8fab, #ffd36e, #46d369, #5BD3FE);
+      filter: blur(26px); opacity: 0.45;
+      animation: bundleHue 8s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) { .bundle__glow { animation: none; } }
+    .bundle__vid {
+      position: absolute; bottom: -30px; width: 47%; aspect-ratio: 16 / 10;
+      border-radius: 12px; overflow: hidden; z-index: 1;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .bundle__vid video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .bundle__vid--left { left: -26px; transform: rotate(-6deg); }
+    .bundle__vid--right { right: -26px; transform: rotate(6deg); }
     .bundle__card {
       background: var(--container);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,0.14);
       border-radius: 20px;
-      padding: 36px 32px 32px;
+      padding: 34px 32px 118px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -932,7 +949,17 @@
       transition: border-color 0.2s;
       position: relative;
       overflow: hidden;
+      z-index: 2;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
     }
+    @keyframes bundleShine { 0% { background-position: 170% 0; } 65% { background-position: -70% 0; } 100% { background-position: -70% 0; } }
+    .bundle__card::after {
+      content: ''; position: absolute; inset: 0; border-radius: 20px; pointer-events: none; z-index: 4;
+      background: linear-gradient(115deg, transparent 34%, rgba(255,255,255,0.09) 48%, rgba(255,255,255,0.09) 52%, transparent 66%);
+      background-size: 250% 100%; background-repeat: no-repeat;
+      animation: bundleShine 6.5s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) { .bundle__card::after { animation: none; } }
     /* subtle top glow */
     .bundle__card::before {
       content: '';
@@ -1022,7 +1049,7 @@
       font-size: 11px;
       color: var(--tertiary);
     }
-    .bundle__btn { align-self: center; }
+    .bundle__btn { align-self: center; position: relative; z-index: 3; }
 
     /* ── CAROUSEL ── */
     .carousel-section {
@@ -1414,8 +1441,12 @@
         box-shadow: 0 -20px 60px rgba(0,0,0,0.6);
       }
 
-      .bundle__card { padding: 28px 20px 24px; }
+      .bundle { margin-bottom: 80px; }
+      .bundle__card { padding: 28px 20px 110px; }
       .bundle__big-number { font-size: 4rem; top: 14px; right: 16px; }
+      .bundle__vid { width: 50%; bottom: -22px; }
+      .bundle__vid--left { left: -16px; }
+      .bundle__vid--right { right: -16px; }
 
       .section-title { font-size: 1.4rem; }
       .final-cta__title { font-size: 1.6rem; }
@@ -1476,6 +1507,7 @@
     }
     .site-footer__link { color: var(--secondary); font-size: 14px; text-decoration: none; transition: color 0.2s ease; }
     .site-footer__link:hover { color: var(--primary); }
+    .site-footer__links { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
     .site-footer__copy { color: var(--secondary); font-size: 14px; }
     .site-footer__copy a { color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.2s ease; }
     .site-footer__copy a:hover { color: var(--accent); }
@@ -1696,6 +1728,7 @@
   <div class="divider"><hr></div>
 
   <section class="bundle">
+    <div class="bundle__glow"></div>
     <div class="bundle__card">
       <div class="bundle__badge">Save 20%</div>
       <h3 class="bundle__title">Get the full kit</h3>
@@ -1706,6 +1739,12 @@
         <div class="bundle__product-tag">SFX Collection</div>
       </div>
       <a class="btn btn-outline bundle__btn" href="https://buy.polar.sh/polar_cl_IWvWIh8v9KDS2X7kDZ9jXLsoz6eKeC9OtAtKn1YYrY6">Get the Bundle — $74</a>
+      <div class="bundle__vid bundle__vid--left">
+        <video autoplay muted loop playsinline preload="auto" poster="/assets/posters/bundle-text.jpg"><source src="/assets/bundle-text.webm" type="video/webm"></video>
+      </div>
+      <div class="bundle__vid bundle__vid--right">
+        <video autoplay muted loop playsinline preload="auto" poster="/assets/posters/hero-sfx.jpg"><source src="/assets/hero-sfx.webm" type="video/webm"></video>
+      </div>
     </div>
   </section>
 
@@ -1824,7 +1863,7 @@
 
   <!-- SITE FOOTER -->
   <footer class="site-footer">
-    <a class="site-footer__link" href="/tac">Terms and Conditions</a>
+    <div class="site-footer__links"><a class="site-footer__link" href="/tac">Terms and Conditions</a><a class="site-footer__link" href="/privacy">Privacy Policy</a></div>
     <p class="site-footer__copy">©2026 <a href="https://artzenmedia.com">Artzen Media</a></p>
   </footer>
 
@@ -2183,6 +2222,7 @@
       }, true)
   })()
   </script>
+
 
 </body>
 </html>
