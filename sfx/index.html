@@ -568,24 +568,25 @@
       touch-action: pan-y;
     }
     .ba-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-    .ba-video--mobile { display: none; }
     .ba-after { clip-path: inset(0 0 0 var(--pos, 50%)); }
     .ba-line { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; background: #fff; transform: translateX(-1px); z-index: 5; box-shadow: 0 0 14px rgba(0,0,0,0.6); pointer-events: none; }
     .ba-knob {
       position: absolute; top: 50%; left: var(--pos, 50%);
       transform: translate(-50%, -50%);
-      width: 42px; height: 42px; border-radius: 50%;
-      background: #fff; z-index: 6; pointer-events: none;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(255,255,255,0.14); z-index: 6; pointer-events: auto; cursor: ew-resize; touch-action: none;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px) saturate(1.2); -webkit-backdrop-filter: blur(8px) saturate(1.2);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.4);
     }
-    .ba-knob svg { width: 20px; height: 20px; fill: none; stroke: #0C0C0C; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .ba-knob svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
     .ba-head { display: flex; align-items: center; justify-content: center; gap: 7px; }
     .ba-vol { width: 12px; height: 12px; fill: var(--accent); }
     .ba-label {
       position: absolute; top: 14px; z-index: 4;
-      font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 500;
-      color: #fff; letter-spacing: 0.04em;
+      font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 600;
+      color: #fff; letter-spacing: 0.06em; text-transform: uppercase;
       padding: 6px 12px; border-radius: 30px;
       background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
       pointer-events: none;
@@ -642,7 +643,7 @@
     .about-copy .section-title { margin-bottom: 14px; }
     .about-copy p { font-size: 14px; color: var(--secondary); line-height: 1.7; margin-bottom: 14px; }
     .about-copy p strong { color: var(--primary); }
-    .about-label { font-size: 7px; margin-bottom: 2px; }
+    .about-copy .about-label { font-size: 9px; margin-bottom: 2px; }
     /* vertical side photo */
     .about-photo { position: relative; }
     .about-photo img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 18px; display: block; border: 1px solid rgba(255,255,255,0.28); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 0 24px rgba(255,255,255,0.06); }
@@ -692,7 +693,7 @@
     .final-cta { max-width: var(--max-w); margin: 0 auto 64px; padding: 0 20px; text-align: center; }
     .final-cta__title { font-family: 'Inter Display', sans-serif; font-size: 2.2rem; font-weight: 600; color: var(--primary); letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 10px; }
     .final-cta__sub { font-size: 14px; color: var(--secondary); line-height: 1.6; margin-bottom: 18px; }
-    .final-cta__price { font-family: 'Inter Display', sans-serif; font-size: 1.3rem; font-weight: 500; color: var(--primary); margin-bottom: 4px; }
+    .final-cta__price { font-family: 'Inter Display', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
     .final-cta__price .price-num { color: var(--accent); font-weight: 600; }
     .final-cta__anchor { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--secondary); margin-bottom: 22px; }
     .final-cta__no-sub a { color: var(--secondary); text-decoration: none; border-bottom: 1px solid var(--border); }
@@ -818,10 +819,10 @@
       .for-grid { grid-template-columns: 1fr; }
       .audio-row { flex-wrap: wrap; }
       .a-bar { order: 5; flex-basis: 100%; }
-      .ba-stage { aspect-ratio: 4 / 5; }
-      .ba-video--desktop { display: none; }
-      .ba-video--mobile { display: block; }
       .ba-knob { width: 38px; height: 38px; }
+      .ba-label { font-size: 10px; padding: 5px 9px; top: 10px; }
+      .ba-label--before { left: 10px; }
+      .ba-label--after { right: 10px; }
       .about-grid { grid-template-columns: 1fr; gap: 0; text-align: left; position: relative; }
       .about-photo { position: absolute; top: 30px; bottom: 30px; right: -16px; width: 52%; z-index: 0; pointer-events: none; }
       .about-photo img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 14px; box-shadow: none; -webkit-mask-image: linear-gradient(to left, #000 45%, transparent 96%); mask-image: linear-gradient(to left, #000 45%, transparent 96%); }
@@ -997,22 +998,16 @@
     <p class="section-label ba-head"><svg class="ba-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>Hear The Difference</p>
     <h2 class="section-title">Before the pack / <em>after the pack.</em></h2>
     <div class="ba-stage" id="baStage" style="--pos:50%;">
-      <video class="ba-video ba-before ba-video--desktop" autoplay muted loop playsinline preload="auto" poster="/assets/posters/before-pack.jpg">
+      <video class="ba-video ba-before" autoplay muted loop playsinline preload="auto" poster="/assets/posters/before-pack.jpg">
         <source src="/assets/before-pack.webm" type="video/webm">
       </video>
-      <video class="ba-video ba-after ba-video--desktop" autoplay muted loop playsinline preload="auto" poster="/assets/posters/after-pack.jpg">
+      <video class="ba-video ba-after" autoplay muted loop playsinline preload="auto" poster="/assets/posters/after-pack.jpg">
         <source src="/assets/after-pack.webm" type="video/webm">
-      </video>
-      <video class="ba-video ba-before ba-video--mobile" autoplay muted loop playsinline preload="auto" poster="/assets/posters/before-pack-mobile.jpg">
-        <source src="/assets/before-pack-mobile.webm" type="video/webm">
-      </video>
-      <video class="ba-video ba-after ba-video--mobile" autoplay muted loop playsinline preload="auto" poster="/assets/posters/after-pack-mobile.jpg">
-        <source src="/assets/after-pack-mobile.webm" type="video/webm">
       </video>
       <span class="ba-label ba-label--before">Before</span>
       <span class="ba-label ba-label--after">After</span>
       <div class="ba-line"></div>
-      <div class="ba-knob"><svg viewBox="0 0 24 24"><path d="M3 12h18M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div>
+      <div class="ba-knob"><svg viewBox="0 0 24 24"><path d="M10 12H4M7 9l-3 3 3 3M14 12h6M17 9l3 3-3 3"/></svg></div>
     </div>
     <p class="ba-caption">Same edit, same 5 seconds, huge difference.</p>
   </section>
@@ -1136,7 +1131,7 @@
         <h2 class="section-title">Built by a creator <em>who edits.</em></h2>
         <p>I'm Ben, a filmmaker, content creator, and the person behind @artzenmedia. I started editing 15 years ago, and turned that into a career with 170K people who follow my journey across all platforms.</p>
         <p>I built this pack and tested every sound against real footage, cutting anything that didn't earn its place. Redesigning and keeping only what I actually reach for.</p>
-        <p><strong>This is what's left.</strong> Hope this will help you as much as it helped me. 🤝🏼</p>
+        <p><strong>This is what's left.</strong> Hope this will help you as much as it helped me 🤝🏼</p>
       </div>
     </div>
   </section>
@@ -1395,15 +1390,50 @@
         const r = stage.getBoundingClientRect();
         setPos(((e.clientX - r.left) / r.width) * 100);
       }
+      function syncBoth() {
+        const { before, after } = visiblePair();
+        if (!before || !after) return;
+        const t = (lastSide === 'after' ? after : before).currentTime;
+        before.currentTime = t; after.currentTime = t;
+        before.play().catch(() => {}); after.play().catch(() => {});
+      }
+      var knob = stage.querySelector('.ba-knob');
+      // grabbing the handle unlocks audio
+      if (knob) {
+        knob.addEventListener('pointerdown', e => {
+          e.stopPropagation();
+          dragging = true;
+          if (!audioOn) { audioOn = true; stage.classList.add('is-live'); }
+          try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+          syncBoth();
+          fromEvent(e);
+        });
+      }
+      // dragging the video body still scrubs, but stays muted until the handle is used
       stage.addEventListener('pointerdown', e => {
         dragging = true;
-        if (!audioOn) { audioOn = true; stage.classList.add('is-live'); }
         try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+        if (audioOn) syncBoth();
         fromEvent(e);
       });
       stage.addEventListener('pointermove', e => { if (dragging) fromEvent(e); });
       stage.addEventListener('pointerup', () => { dragging = false; });
       stage.addEventListener('pointercancel', () => { dragging = false; });
+
+      // mute when the section scrolls out of view, restore audio when it's back
+      var wasInView = true;
+      function checkVis() {
+        var r = stage.getBoundingClientRect();
+        var inView = r.bottom > 60 && r.top < window.innerHeight - 60;
+        if (inView === wasInView) return;
+        wasInView = inView;
+        var pair = visiblePair();
+        if (!pair.before || !pair.after) return;
+        if (!inView) { pair.before.muted = true; pair.after.muted = true; }
+        else if (audioOn) { lastSide = null; updateAudio(); }
+      }
+      window.addEventListener('scroll', checkVis, { passive: true });
+      window.addEventListener('resize', checkVis);
     })();
 
     // ── Floating buy bar: appears after hero, hides once the bundle/final CTA is in view ──
