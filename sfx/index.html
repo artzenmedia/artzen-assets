@@ -276,6 +276,13 @@
       color: var(--secondary);
       letter-spacing: 0.02em;
     }
+    .launch-price {
+      font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 400;
+      display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+      color: var(--tertiary); letter-spacing: 0.01em;
+    }
+    .launch-price .lp-was { text-decoration: line-through; }
+    .launch-price--center { justify-content: center; }
     .hero__trust {
       display: flex;
       flex-wrap: wrap;
@@ -582,6 +589,32 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.4);
     }
     .ba-knob svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+    .ba-knob::before {
+      content: ''; position: absolute; inset: -6px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.5); pointer-events: none;
+      animation: baPulse 1.8s ease-out infinite;
+    }
+    @keyframes baPulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      70% { transform: scale(1.5); opacity: 0; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .ba-stage.is-playing .ba-knob::before { animation: none; opacity: 0; }
+    .folder-wiggle { animation: folderWiggle 0.9s ease-in-out; }
+    @keyframes folderWiggle {
+      0%, 100% { transform: rotate(0) translateY(0); }
+      15% { transform: rotate(-3.5deg) translateY(-2px); }
+      35% { transform: rotate(2.5deg) translateY(-1px); }
+      55% { transform: rotate(-2deg) translateY(-1px); }
+      75% { transform: rotate(1deg); }
+    }
+    .folder-wiggle--soft { animation: folderWiggleSoft 0.9s ease-in-out; }
+    @keyframes folderWiggleSoft {
+      0%, 100% { transform: rotate(0) translateY(0); }
+      20% { transform: rotate(-1.2deg) translateY(-2px); }
+      45% { transform: rotate(0.9deg) translateY(-1px); }
+      70% { transform: rotate(-0.6deg); }
+    }
     .ba-head { display: flex; align-items: center; justify-content: center; gap: 7px; }
     .ba-vol { width: 12px; height: 12px; fill: var(--accent); }
     .ba-label {
@@ -943,6 +976,7 @@
       <p class="hero__desc">155 hand-crafted sound effects for editors who care how their work feels. <span class="hero__drag-inline">Drag, Drop, Done.</span></p>
       <div class="hero__cta">
         <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_UxK6g5gBIvvKKwq0rT0IrrUqb3Q9YL5LlYMrl39O8n7">Buy Now · $45 USD</a>
+        <p class="launch-price"><span class="lp-was">$55</span><span>Launch price · first 200 only</span></p>
       </div>
     </div>
     <div class="hero__media">
@@ -999,10 +1033,10 @@
     <p class="section-label ba-head"><svg class="ba-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>Hear The Difference</p>
     <h2 class="section-title">Before the pack / <em>after the pack.</em></h2>
     <div class="ba-stage" id="baStage" style="--pos:50%;">
-      <video class="ba-video ba-before" autoplay muted loop playsinline preload="auto" poster="/assets/posters/before-pack.jpg">
+      <video class="ba-video ba-before" muted loop playsinline preload="auto" poster="/assets/posters/before-pack.jpg">
         <source src="/assets/before-pack.webm" type="video/webm">
       </video>
-      <video class="ba-video ba-after" autoplay muted loop playsinline preload="auto" poster="/assets/posters/after-pack.jpg">
+      <video class="ba-video ba-after" muted loop playsinline preload="auto" poster="/assets/posters/after-pack.jpg">
         <source src="/assets/after-pack.webm" type="video/webm">
       </video>
       <span class="ba-label ba-label--before">Before</span>
@@ -1089,6 +1123,7 @@
       </div>
     </div>
     <a class="btn btn-primary btn-center" style="margin-top:34px;" href="https://buy.polar.sh/polar_cl_UxK6g5gBIvvKKwq0rT0IrrUqb3Q9YL5LlYMrl39O8n7">Buy Now · $45 USD</a>
+    <p class="launch-price launch-price--center" style="margin-top:14px;"><span class="lp-was">$55</span><span>Launch price · first 200 only</span></p>
   </section>
 
   <div class="divider"><hr></div>
@@ -1177,7 +1212,7 @@
         <div class="bundle__product-sep">+</div>
         <div class="bundle__product-tag">Text Animations</div>
       </div>
-      <a class="btn btn-outline bundle__btn" href="https://buy.polar.sh/polar_cl_IWvWIh8v9KDS2X7kDZ9jXLsoz6eKeC9OtAtKn1YYrY6">Get the Bundle · $74 <span class="bundle__strike">$92</span></a>
+      <a class="btn btn-outline bundle__btn" href="https://buy.polar.sh/polar_cl_IWvWIh8v9KDS2X7kDZ9jXLsoz6eKeC9OtAtKn1YYrY6">Get the Bundle · $74 <span class="bundle__strike">$102</span></a>
       <div class="bundle__vid bundle__vid--left">
         <video autoplay muted loop playsinline preload="auto" poster="/assets/posters/hero-sfx.jpg"><source src="/assets/hero-sfx.webm" type="video/webm"></video>
       </div>
@@ -1195,6 +1230,7 @@
     <h2 class="final-cta__title">Your edits deserve <em>better sound.</em></h2>
     <p class="final-cta__sub">You've put the work into the cut. The motion. The colour.<br>Don't let the sound be what holds it back.</p>
     <a class="btn btn-primary final-cta__btn" href="https://buy.polar.sh/polar_cl_UxK6g5gBIvvKKwq0rT0IrrUqb3Q9YL5LlYMrl39O8n7">$45 · One time, yours forever</a>
+    <p class="launch-price launch-price--center" style="margin-top:16px;"><span class="lp-was">$55</span><span>Launch price · first 200 only</span></p>
     <p class="final-cta__anchor">That's 155 sounds for about 29¢ each.</p>
     <p class="final-cta__no-sub">Any issue with your download, email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></p>
   </section>
@@ -1301,6 +1337,39 @@
       if (!isOpen) item.classList.add('open');
     }
 
+    // ── Idle folder wiggle: one at a time, random order, to signal they're interactive ──
+    (function () {
+      const folders = [...document.querySelectorAll('.included-grid .folder')];
+      const bonus = document.querySelector('.included-card--bonus');
+      if (!folders.length) return;
+      const grid = document.querySelector('.included-grid');
+      let raf;
+      function wiggleOne() {
+        // skip while the section is off-screen
+        const gr = grid.getBoundingClientRect();
+        const visible = gr.bottom > 0 && gr.top < window.innerHeight;
+        if (visible && !document.hidden) {
+          // ~1 in 5 chance the bonus card jiggles instead of a folder
+          if (bonus && Math.random() < 0.18) {
+            bonus.classList.remove('folder-wiggle--soft');
+            void bonus.offsetWidth;
+            bonus.classList.add('folder-wiggle--soft');
+            setTimeout(() => bonus.classList.remove('folder-wiggle--soft'), 950);
+          } else {
+            const el = folders[Math.floor(Math.random() * folders.length)];
+            el.classList.remove('folder-wiggle');
+            void el.offsetWidth;
+            el.classList.add('folder-wiggle');
+            setTimeout(() => el.classList.remove('folder-wiggle'), 950);
+          }
+        }
+        // random gap so it never feels mechanical
+        const next = 1600 + Math.random() * 2200;
+        raf = setTimeout(wiggleOne, next);
+      }
+      raf = setTimeout(wiggleOne, 1800);
+    })();
+
     // ── Folder contents popup (hover desktop / tap mobile) ──
     (function () {
       const folders = [...document.querySelectorAll('[data-inside]')];
@@ -1372,7 +1441,16 @@
     (function () {
       const stage = document.getElementById('baStage');
       if (!stage) return;
-      let pos = 50, dragging = false, audioOn = false, lastSide = null;
+      let pos = 50, dragging = false, audioOn = false, lastSide = null, started = false;
+
+      function startPlayback() {
+        if (started) return;
+        started = true;
+        stage.classList.add('is-playing');
+        const { before, after } = visiblePair();
+        if (before) before.play().catch(() => {});
+        if (after) after.play().catch(() => {});
+      }
 
       function visiblePair() {
         const vids = [...stage.querySelectorAll('.ba-video')];
@@ -1414,6 +1492,7 @@
         knob.addEventListener('pointerdown', e => {
           e.stopPropagation();
           dragging = true;
+          startPlayback();
           if (!audioOn) { audioOn = true; stage.classList.add('is-live'); }
           try { stage.setPointerCapture(e.pointerId); } catch (_) {}
           syncBoth();
@@ -1423,6 +1502,7 @@
       // dragging the video body still scrubs, but stays muted until the handle is used
       stage.addEventListener('pointerdown', e => {
         dragging = true;
+        startPlayback();
         try { stage.setPointerCapture(e.pointerId); } catch (_) {}
         if (audioOn) syncBoth();
         fromEvent(e);
@@ -1431,17 +1511,22 @@
       stage.addEventListener('pointerup', () => { dragging = false; });
       stage.addEventListener('pointercancel', () => { dragging = false; });
 
-      // mute when the section scrolls out of view, restore audio when it's back
+      // reset to the untouched start state when the section scrolls out of view
       var wasInView = true;
+      function resetStage() {
+        var pair = visiblePair();
+        dragging = false; audioOn = false; started = false; lastSide = null;
+        stage.classList.remove('is-playing', 'is-live');
+        if (pair.before) { pair.before.muted = true; try { pair.before.pause(); pair.before.currentTime = 0; } catch (_) {} }
+        if (pair.after) { pair.after.muted = true; try { pair.after.pause(); pair.after.currentTime = 0; } catch (_) {} }
+        setPos(50);
+      }
       function checkVis() {
         var r = stage.getBoundingClientRect();
         var inView = r.bottom > 60 && r.top < window.innerHeight - 60;
         if (inView === wasInView) return;
         wasInView = inView;
-        var pair = visiblePair();
-        if (!pair.before || !pair.after) return;
-        if (!inView) { pair.before.muted = true; pair.after.muted = true; }
-        else if (audioOn) { lastSide = null; updateAudio(); }
+        if (!inView) resetStage();
       }
       window.addEventListener('scroll', checkVis, { passive: true });
       window.addEventListener('resize', checkVis);
