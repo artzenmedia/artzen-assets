@@ -221,6 +221,21 @@
     }
     .pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px rgba(91,211,254,0.6); }
 
+    /* ── LEARN MORE (video cards → landing pages) ── */
+    .learn { max-width: 540px; margin: 0 auto 56px; padding: 0 20px; }
+    .learn__head { text-align: center; font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--tertiary); margin-bottom: 16px; }
+    .learn__grid { display: flex; flex-direction: column; gap: 12px; }
+    .learn-card { display: flex; align-items: stretch; text-decoration: none; background: linear-gradient(160deg, rgba(91,211,254,0.04), var(--container) 60%); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .learn-card:hover { border-color: rgba(91,211,254,0.4); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+    .learn-card__media { position: relative; width: 132px; flex-shrink: 0; background: #000; overflow: hidden; }
+    .learn-card__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .learn-card__body { flex: 1; padding: 15px 18px; display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
+    .learn-card__label { font-size: 14px; font-weight: 600; color: var(--primary); }
+    .learn-card__desc { font-size: 12px; color: var(--secondary); line-height: 1.5; }
+    .learn-card__link { margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; font-family: 'Geist Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+    .learn-card__link svg { width: 12px; height: 12px; stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; }
+    .learn-card:hover .learn-card__link svg { transform: translateX(3px); }
+     (max-width: 680px) { .learn-card__media { width: 108px; } }
     /* ── DIVIDER ── */
     .divider { max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
     .divider hr { border: none; border-top: 1px solid var(--border); }
@@ -325,6 +340,26 @@
     <span class="pill">Lifetime access</span>
     <span class="pill">Commercial use</span>
   </div>
+
+  <!-- ══ LEARN MORE ══ -->
+  <section class="learn fu">
+    <p class="learn__head">Want to hear the SFX first?</p>
+    <div class="learn__grid">
+      <a class="learn-card" href="https://shop.artzenmedia.com/sfx" target="_blank" rel="noopener">
+        <div class="learn-card__media">
+          <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="/assets/posters/hero-sfx.jpg">
+            <source src="/assets/hero-sfx.mp4" type="video/mp4">
+            <source src="/assets/hero-sfx.webm" type="video/webm">
+          </video>
+        </div>
+        <div class="learn-card__body">
+          <div class="learn-card__label">Creator SFX Collection</div>
+          <div class="learn-card__desc">155 hand-crafted sounds. Hear the samples before you add it.</div>
+          <span class="learn-card__link">See the full page <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </section>
 
   <div class="divider"><hr></div>
 
