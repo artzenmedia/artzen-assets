@@ -489,7 +489,7 @@
       transition: opacity 0.16s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
     }
     .folder-pop.show { opacity: 1; transform: scale(1); }
-    .folder-pop img { width: 100%; height: auto; display: block; }
+    .folder-pop img { width: 100%; height: auto; display: block; opacity: 1; transition: opacity 0.1s ease; }
     .folder--png { cursor: pointer; }
     .included-card--bonus[data-inside] { cursor: pointer; }
     .included-card__count { font-family: 'Geist Mono', monospace; font-size: 10px; color: var(--tertiary); margin-top: -5px; }
@@ -1387,7 +1387,10 @@
       const img = document.createElement('img');
       pop.appendChild(img);
       document.body.appendChild(pop);
-      let cur = null, px = 0, py = 0;
+      let cur = null, px = 0, py = 0, loadedSrc = null;
+
+      // preload every popup image so switching never flashes the previous one
+      [...new Set(folders.map(f => f.dataset.inside))].forEach(s => { const i = new Image(); i.src = s; });
 
       function place() {
         if (!cur) return;
@@ -1421,12 +1424,27 @@
       function show(folder) {
         cur = folder;
         const src = folder.dataset.inside;
-        if (img.getAttribute('src') !== src) img.src = src;
+        if (loadedSrc === src) {
+          // already the right image, show instantly
+          img.style.opacity = '1';
+          pop.classList.add('show');
+          place();
+          return;
+        }
+        // new image: keep it hidden until it's actually loaded, so the
+        // previously-shown folder never flashes for a frame
+        img.style.opacity = '0';
         pop.classList.add('show');
+        img.onload = () => {
+          if (cur !== folder) return;
+          loadedSrc = src;
+          img.style.opacity = '1';
+          place();
+        };
+        img.src = src;
         place();
       }
       function hide() { cur = null; pop.classList.remove('show'); }
-      img.addEventListener('load', place);
 
       folders.forEach(folder => {
         if (canHover) {
