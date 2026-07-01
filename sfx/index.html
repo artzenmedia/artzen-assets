@@ -524,6 +524,15 @@
       padding: 5px 12px;
       white-space: nowrap;
     }
+    .bonus-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .mb-only { display: none; }
 
     /* ── QUALITIES (light list, no boxes) ── */
     .qualities-list { max-width: 620px; margin: 40px auto 0; display: flex; flex-direction: column; }
@@ -864,10 +873,15 @@
       .ba-label--after { right: 10px; }
       .about-grid { grid-template-columns: 1fr; gap: 0; text-align: left; position: relative; }
       .about-photo { position: absolute; top: 30px; bottom: 30px; right: -16px; width: 52%; z-index: 0; pointer-events: none; }
-      .about-photo img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 14px; box-shadow: none; opacity: 0.5; -webkit-mask-image: linear-gradient(to left, #000 22%, transparent 80%); mask-image: linear-gradient(to left, #000 22%, transparent 80%); }
+      .about-photo img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 14px; box-shadow: none; opacity: 1; -webkit-mask-image: linear-gradient(to left, #000 16%, transparent 98%); mask-image: linear-gradient(to left, #000 16%, transparent 98%); }
+      .about-copy p, .about-copy .section-title { text-shadow: 0 1px 10px rgba(12,12,12,0.85), 0 0 4px rgba(12,12,12,0.7); }
       .about-copy { position: relative; z-index: 1; padding-right: 125px; }
       .about-copy .section-label, .about-copy .section-title, .about-copy .section-sub { text-align: left; }
       .final-cta__title { font-size: 1.7rem; }
+      .mb-only { display: block; }
+      .section { margin-bottom: 32px; }
+      .divider { margin-bottom: 32px; }
+      .final-cta__no-sub { font-size: 10px; margin-top: 10px; }
       .buy-bar { left: 16px; right: 16px; bottom: 14px; transform: translateY(140%); max-width: none; width: auto; justify-content: space-between; gap: 10px; padding: 9px 9px 9px 16px; }
       .buy-bar.show { transform: translateY(0); }
       .buy-bar__text span { display: none; }
@@ -1124,10 +1138,10 @@
       <div class="included-card included-card--bonus fu" data-inside="/assets/folders-inside/bonus.png">
         <div class="included-card__icon"><svg viewBox="0 0 24 24"><path d="M4 4h7a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4z"/><path d="M20 4h-7a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h7z"/></svg></div>
         <div class="bonus-text">
-          <div class="included-card__title">Bonus · Sound Design Guide + Tutorial</div>
+          <div class="bonus-label">Bonus Included</div>
+          <div class="included-card__title">Sound Design + Tutorial</div>
           <div class="included-card__sub">Not just sounds. A full sound design guide and video tutorial showing where to place each category, when to use it, and how to make your edits hit harder from day one. No guessing. No wasted time.</div>
         </div>
-        <span class="bonus-tag">Bonus Included</span>
       </div>
     </div>
     <a class="btn btn-primary btn-center" style="margin-top:34px;" href="https://buy.polar.sh/polar_cl_UxK6g5gBIvvKKwq0rT0IrrUqb3Q9YL5LlYMrl39O8n7">Buy Now · $45 USD</a>
@@ -1175,7 +1189,7 @@
         <h2 class="section-title">Built by a creator <em>who edits.</em></h2>
         <p>I'm Ben, a filmmaker, content creator, and the person behind @artzenmedia. I started editing 15 years ago, and turned that into a career with 170K people who follow my journey across all platforms.</p>
         <p>I built this pack and tested every sound against real footage, cutting anything that didn't earn its place. Redesigning and keeping only what I actually reach for.</p>
-        <p><strong>This is what's left.</strong> Hope this will help you as much as it helped me 🤝🏼</p>
+        <p><strong>This is what's left.</strong> Hope this will help you as much as it helped me.</p>
       </div>
     </div>
   </section>
@@ -1235,7 +1249,7 @@
   <!-- ══ FINAL CTA ══ -->
   <section class="final-cta fu">
     <p class="section-label">Get The Pack</p>
-    <h2 class="final-cta__title">Your edits deserve <em>better sound.</em></h2>
+    <h2 class="final-cta__title">Your edits deserve <br class="mb-only"><em>better sound.</em></h2>
     <p class="final-cta__sub">You've put the work into the cut. The motion. The colour.<br>Don't let the sound be what holds it back.</p>
     <a class="btn btn-primary final-cta__btn" href="https://buy.polar.sh/polar_cl_UxK6g5gBIvvKKwq0rT0IrrUqb3Q9YL5LlYMrl39O8n7">$45 · One time, yours forever</a>
     <p class="final-cta__anchor">That's 155 sounds for about 29¢ each.</p>
