@@ -726,7 +726,7 @@
     /* ── FINAL CTA ── */
     .final-cta { max-width: var(--max-w); margin: 0 auto 64px; padding: 0 20px; text-align: center; }
     .final-cta__title { font-family: 'Inter Display', sans-serif; font-size: 2.2rem; font-weight: 600; color: var(--primary); letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 10px; }
-    .final-cta__sub { font-size: 14px; color: var(--secondary); line-height: 1.6; margin-bottom: 30px; }
+    .final-cta__sub { font-size: 14px; color: var(--secondary); line-height: 1.6; margin-bottom: 30px; text-wrap: balance; }
     .final-cta__btn { margin-top: 4px; padding: 20px 50px; }
     .final-cta__anchor { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--secondary); margin-top: 18px; }
     .final-cta__no-sub a { color: var(--secondary); text-decoration: none; border-bottom: 1px solid var(--border); }
@@ -847,9 +847,14 @@
       .bundle__vid--right { right: -16px; }
       .included-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 14px; padding: 6px 40px; }
       .included-card { flex: 0 0 calc((100% - 42px) / 4); }
-      .included-card--bonus { flex-basis: 100%; }
-      .included-card--bonus { flex-direction: column; align-items: flex-start; }
+      .included-card--bonus { flex-basis: 100%; flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 12px; padding: 16px; }
+      .included-card--bonus .included-card__icon { width: 36px; height: 36px; flex-shrink: 0; }
+      .included-card--bonus .bonus-text { flex: 1 1 0; min-width: 0; }
+      .included-card--bonus .bonus-tag { flex-basis: 100%; order: 3; margin: 0; }
+      .included-card--bonus .included-card__sub { font-size: 11px; line-height: 1.45; }
       .for-grid { grid-template-columns: 1fr; }
+      .for-col { padding: 18px 16px; }
+      .for-list li { font-size: 12px; line-height: 1.4; gap: 9px; }
       .audio-row { flex-wrap: wrap; }
       .a-bar { order: 5; flex-basis: 100%; }
       .ba-knob { width: 38px; height: 38px; }
@@ -858,7 +863,7 @@
       .ba-label--after { right: 10px; }
       .about-grid { grid-template-columns: 1fr; gap: 0; text-align: left; position: relative; }
       .about-photo { position: absolute; top: 30px; bottom: 30px; right: -16px; width: 52%; z-index: 0; pointer-events: none; }
-      .about-photo img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 14px; box-shadow: none; -webkit-mask-image: linear-gradient(to left, #000 45%, transparent 96%); mask-image: linear-gradient(to left, #000 45%, transparent 96%); }
+      .about-photo img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 14px; box-shadow: none; opacity: 0.5; -webkit-mask-image: linear-gradient(to left, #000 22%, transparent 80%); mask-image: linear-gradient(to left, #000 22%, transparent 80%); }
       .about-copy { position: relative; z-index: 1; padding-right: 125px; }
       .about-copy .section-label, .about-copy .section-title, .about-copy .section-sub { text-align: left; }
       .final-cta__title { font-size: 1.7rem; }
@@ -1034,9 +1039,11 @@
     <h2 class="section-title">Before the pack / <em>after the pack.</em></h2>
     <div class="ba-stage" id="baStage" style="--pos:50%;">
       <video class="ba-video ba-before" muted loop playsinline preload="auto" poster="/assets/posters/before-pack.jpg">
+        <source src="/assets/before-pack.mp4" type="video/mp4">
         <source src="/assets/before-pack.webm" type="video/webm">
       </video>
       <video class="ba-video ba-after" muted loop playsinline preload="auto" poster="/assets/posters/after-pack.jpg">
+        <source src="/assets/after-pack.mp4" type="video/mp4">
         <source src="/assets/after-pack.webm" type="video/webm">
       </video>
       <span class="ba-label ba-label--before">Before</span>
