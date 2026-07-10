@@ -894,6 +894,32 @@
       .buy-bar .btn { padding: 11px 16px; font-size: 12px; }
     }
 
+    /* ── TESTIMONIALS (reviews marquee) ── */
+    .testimonials { max-width: 100%; margin: 0 auto 56px; overflow: hidden; }
+    .testimonials__header { max-width: var(--max-w); margin: 0 auto 28px; padding: 0 20px; text-align: center; }
+    .testimonials .section-label { font-family: 'Geist Mono', monospace; font-size: 10px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; margin-bottom: 6px; }
+    .testimonials .section-title { font-family: 'Inter Display', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--primary); text-align: center; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 6px; }
+    .testimonials .section-sub { font-size: 13px; color: var(--secondary); text-align: center; margin-bottom: 0; }
+    @keyframes marqueeLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes marqueeRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+    .reviews-marquee { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 10px; padding: 4px 0; }
+    .reviews-marquee::before, .reviews-marquee::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none; }
+    .reviews-marquee::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+    .reviews-marquee::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+    .reviews-row { display: flex; gap: 10px; width: max-content; animation: marqueeLeft 35s linear infinite; }
+    .reviews-row--reverse { animation: marqueeRight 35s linear infinite; }
+    .reviews-marquee:hover .reviews-row { animation-play-state: paused; }
+    .review-card { flex-shrink: 0; width: 260px; background: var(--container); border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; transition: border-color 0.2s, transform 0.2s; }
+    .review-card:hover { border-color: #333; transform: translateY(-3px); }
+    .review-card__top { display: flex; align-items: center; gap: 10px; }
+    .review-card__avatar { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; background: #1a1a1a; border: 1px solid var(--border); overflow: hidden; }
+    .review-card__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .review-card__info { flex: 1; }
+    .review-card__name { font-size: 13px; font-weight: 600; color: var(--primary); line-height: 1.3; display: flex; align-items: center; gap: 4px; }
+    .review-card__handle { font-family: 'Geist Mono', monospace; font-size: 10px; color: var(--tertiary); }
+    img.review-card__badge { width: 14px; height: 14px; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+    .review-card__quote { font-size: 13px; color: var(--secondary); line-height: 21px; flex: 1; }
+
     /* ── BUNDLE ── */
     .bundle { max-width: 600px; margin: 0 auto 96px; padding: 0 20px; position: relative; }
     /* rainbow glow behind the card */
@@ -1226,6 +1252,49 @@
   </section>
 
   <div class="divider"><hr></div>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section class="testimonials fu">
+    <div class="testimonials__header">
+      <p class="section-label">What creators say</p>
+      <h2 class="section-title">What editors are saying</h2>
+      <p class="section-sub">Real reviews from real creators.</p>
+    </div>
+    <div class="reviews-marquee">
+
+      <!-- ROW 1 (scrolls left) — 6 unique + 6 duplicate -->
+      <div class="reviews-row" id="row1">
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/seazstudio.edit.jpg" alt="seazstudio.edit"></div><div class="review-card__info"><div class="review-card__name">Tristan<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@seazstudio.edit</div></div></div><p class="review-card__quote">"Complete yet concise, you never get lost in it. I don't source sound effects from anywhere else anymore, and they sound crisp and clean."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/djbdarren.jpg" alt="djbdarren"></div><div class="review-card__info"><div class="review-card__name">Darren<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@djbdarren</div></div></div><p class="review-card__quote">"An easy purchase. I already knew your quality, so I knew how much these SFX would help my editing."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/perfectworld.global.jpg" alt="perfectworld.global"></div><div class="review-card__info"><div class="review-card__name">Nicholas<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@perfectworld.global</div></div></div><p class="review-card__quote">"It genuinely leveled up my content. The textures and transitions add a depth I couldn't get anywhere else. A fixed part of my workflow now."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/elite.media.pro.jpg" alt="elite.media.pro"></div><div class="review-card__info"><div class="review-card__name">Elijah<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@elite.media.pro</div></div></div><p class="review-card__quote">"The exact SFX you see on every YouTube and IG video but can never find. Used it a ton already in just a couple days."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/haggplus.jpg" alt="haggplus"></div><div class="review-card__info"><div class="review-card__name">Simon<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@haggplus</div></div></div><p class="review-card__quote">"Clean and sorted with every category laid out. With this kit you're set for every kind of content. I really love it."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/will.ronholm.jpg" alt="will.ronholm"></div><div class="review-card__info"><div class="review-card__name">Will Ronholm<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@will.ronholm</div></div></div><p class="review-card__quote">"This SFX pack is a life saver. Everything I need in one place, no more hunting down sounds. Great quality too, love it!"</p></div>
+        <!-- duplicate -->
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/seazstudio.edit.jpg" alt="seazstudio.edit"></div><div class="review-card__info"><div class="review-card__name">Tristan<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@seazstudio.edit</div></div></div><p class="review-card__quote">"Complete yet concise, you never get lost in it. I don't source sound effects from anywhere else anymore, and they sound crisp and clean."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/djbdarren.jpg" alt="djbdarren"></div><div class="review-card__info"><div class="review-card__name">Darren<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@djbdarren</div></div></div><p class="review-card__quote">"An easy purchase. I already knew your quality, so I knew how much these SFX would help my editing."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/perfectworld.global.jpg" alt="perfectworld.global"></div><div class="review-card__info"><div class="review-card__name">Nicholas<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@perfectworld.global</div></div></div><p class="review-card__quote">"It genuinely leveled up my content. The textures and transitions add a depth I couldn't get anywhere else. A fixed part of my workflow now."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/elite.media.pro.jpg" alt="elite.media.pro"></div><div class="review-card__info"><div class="review-card__name">Elijah<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@elite.media.pro</div></div></div><p class="review-card__quote">"The exact SFX you see on every YouTube and IG video but can never find. Used it a ton already in just a couple days."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/haggplus.jpg" alt="haggplus"></div><div class="review-card__info"><div class="review-card__name">Simon<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@haggplus</div></div></div><p class="review-card__quote">"Clean and sorted with every category laid out. With this kit you're set for every kind of content. I really love it."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/will.ronholm.jpg" alt="will.ronholm"></div><div class="review-card__info"><div class="review-card__name">Will Ronholm<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@will.ronholm</div></div></div><p class="review-card__quote">"This SFX pack is a life saver. Everything I need in one place, no more hunting down sounds. Great quality too, love it!"</p></div>
+      </div>
+
+      <!-- ROW 2 (scrolls right) — 5 unique + 5 duplicate -->
+      <div class="reviews-row reviews-row--reverse" id="row2">
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/willfrombcene.jpg" alt="willfrombcene"></div><div class="review-card__info"><div class="review-card__name">Will Colthup<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@willfrombcene</div></div></div><p class="review-card__quote">"SFX pack is fantastic. Enough variation that it never sounds the same, high quality stuff!"</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/_jojolifts.jpg" alt="_jojolifts"></div><div class="review-card__info"><div class="review-card__name">JoJoLifts<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@_jojolifts</div></div></div><p class="review-card__quote">"Had to buy it the second I saw it drop. Love the variety of sounds, definitely using it on my videos."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/michal.sobos.jpg" alt="michal.sobos"></div><div class="review-card__info"><div class="review-card__name">Michal<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@michal.sobos</div></div></div><p class="review-card__quote">"This pack took my reels to the next level. High quality and so unique, I've never heard SFX like these before. Great job, Ben!"</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/directedby.jpg" alt="directedby"></div><div class="review-card__info"><div class="review-card__name">From The Garden<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@directedby</div></div></div><p class="review-card__quote">"Perfect bro. I have a lot of sound packs and this one is good asf, the quality is great."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/jankelle_.jpg" alt="jankelle_"></div><div class="review-card__info"><div class="review-card__name">Jan<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@jankelle_</div></div></div><p class="review-card__quote">"Excellent, so many sounds I can actually use. Very thankful for it!"</p></div>
+        <!-- duplicate -->
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/willfrombcene.jpg" alt="willfrombcene"></div><div class="review-card__info"><div class="review-card__name">Will Colthup<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@willfrombcene</div></div></div><p class="review-card__quote">"SFX pack is fantastic. Enough variation that it never sounds the same, high quality stuff!"</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/_jojolifts.jpg" alt="_jojolifts"></div><div class="review-card__info"><div class="review-card__name">JoJoLifts<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@_jojolifts</div></div></div><p class="review-card__quote">"Had to buy it the second I saw it drop. Love the variety of sounds, definitely using it on my videos."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/michal.sobos.jpg" alt="michal.sobos"></div><div class="review-card__info"><div class="review-card__name">Michal<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@michal.sobos</div></div></div><p class="review-card__quote">"This pack took my reels to the next level. High quality and so unique, I've never heard SFX like these before. Great job, Ben!"</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/directedby.jpg" alt="directedby"></div><div class="review-card__info"><div class="review-card__name">From The Garden<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@directedby</div></div></div><p class="review-card__quote">"Perfect bro. I have a lot of sound packs and this one is good asf, the quality is great."</p></div>
+        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/jankelle_.jpg" alt="jankelle_"></div><div class="review-card__info"><div class="review-card__name">Jan<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@jankelle_</div></div></div><p class="review-card__quote">"Excellent, so many sounds I can actually use. Very thankful for it!"</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ══ BUNDLE ══ -->
   <section class="bundle fu">
