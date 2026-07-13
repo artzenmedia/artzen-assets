@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/assets/profile-circle.png">
+  <link rel="apple-touch-icon" href="/assets/profile-circle.png">
+  <title>You're in — get the full Text Animations Pack | Artzen Media</title>
+  <meta name="description" content="Your free title animation is on the way. Get the full Text Animations Pack, 20% off for a limited time.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter+Display:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0C0C0C;
+      --container: #161616;
+      --container-hover: #1e1e1e;
+      --primary: #FFFFFF;
+      --secondary: #8C8C8C;
+      --tertiary: #555;
+      --border: #242424;
+      --accent: #5BD3FE;
+      --green: #46d369;
+      --red: #ff5c5c;
+      --max-w: 640px;
+    }
+
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      background: transparent;
+      color: var(--primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding: 0 0 80px;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.008) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.008) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    .section { width: 100%; max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
+    em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.12em;
+      letter-spacing: 0;
+      color: var(--accent);
+      text-shadow: 0 0 24px rgba(91,211,254,0.28);
+    }
+
+    .section-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-align: center;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+      margin-bottom: 8px;
+    }
+
+    /* ── BUTTON (premium glow) ── */
+    @keyframes btnSpin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 18px 44px;
+      border-radius: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      -webkit-appearance: none;
+      appearance: none;
+      white-space: nowrap;
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 250%;
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+      background: conic-gradient(from 0deg, transparent 0%, var(--accent) 20%, transparent 50%);
+      z-index: -2;
+      animation: btnSpin 3s linear infinite;
+    }
+    .btn::after { content: ''; position: absolute; inset: 1.5px; border-radius: 13px; z-index: -1; }
+    .btn:hover { transform: scale(1.02); }
+    .btn:active { transform: scale(0.98); }
+    @keyframes btnPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 14px 32px 0 rgba(91,211,254,0.22); }
+      50% { transform: scale(1.035); box-shadow: 0 20px 46px 0 rgba(91,211,254,0.42); }
+    }
+    .btn-primary {
+      color: #fff;
+      box-shadow: 0 15px 35px 0 rgba(91,211,254,0.25);
+      animation: btnPulse 2.6s ease-in-out infinite;
+    }
+    .btn-primary::after { background: #0D0D0D; }
+    .btn-primary:hover { filter: brightness(1.08); box-shadow: 0 18px 42px 0 rgba(91,211,254,0.35); }
+    @media (prefers-reduced-motion: reduce) { .btn-primary { animation: none; } }
+
+    /* ── HERO (confirmation) ── */
+    .hero { max-width: var(--max-w); margin: 0 auto; padding: 92px 20px 36px; text-align: center; }
+    .check {
+      width: 58px; height: 58px; margin: 0 auto 22px;
+      border-radius: 50%;
+      background: rgba(70,211,105,0.1);
+      border: 1px solid rgba(70,211,105,0.4);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 30px rgba(70,211,105,0.25);
+    }
+    .check svg { width: 26px; height: 26px; stroke: var(--green); stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hero__eyebrow {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px; font-weight: 500; color: var(--green);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .hero__title {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 2.8rem; font-weight: 700; line-height: 1.04;
+      letter-spacing: -0.035em; color: var(--primary); margin-bottom: 14px;
+    }
+    .hero__sub { font-size: 15px; color: var(--secondary); line-height: 1.6; max-width: 460px; margin: 0 auto; }
+    .hero__sub strong { color: var(--primary); font-weight: 600; }
+
+    /* ── OFFER CARD ── */
+    .offer { max-width: 540px; margin: 0 auto 56px; padding: 0 20px; }
+    .offer__card {
+      position: relative;
+      background: linear-gradient(160deg, rgba(91,211,254,0.06), var(--container) 55%);
+      border: 1px solid rgba(91,211,254,0.22);
+      border-radius: 20px;
+      padding: 34px 30px 30px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .offer__card::before {
+      content: '';
+      position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+      width: 240px; height: 120px;
+      background: radial-gradient(circle, rgba(91,211,254,0.28), transparent 70%);
+      filter: blur(26px); pointer-events: none;
+    }
+    .offer__tag {
+      position: relative;
+      display: inline-block;
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent);
+      border: 1px solid rgba(91,211,254,0.3);
+      border-radius: 30px; padding: 6px 14px; margin-bottom: 18px;
+    }
+    .offer__name {
+      position: relative;
+      font-family: 'Inter Display', sans-serif;
+      font-size: 1.5rem; font-weight: 600; color: var(--primary);
+      letter-spacing: -0.02em; margin-bottom: 6px;
+    }
+    .offer__desc { position: relative; font-size: 14px; color: var(--secondary); line-height: 1.6; max-width: 400px; margin: 0 auto 22px; }
+    .offer__price { position: relative; display: flex; align-items: baseline; justify-content: center; gap: 12px; margin-bottom: 6px; }
+    .offer__price .now { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 3.5rem; letter-spacing: 0; color: var(--green); text-shadow: 0 0 24px rgba(70,211,105,0.3); }
+    .offer__price .was { font-size: 1.3rem; font-weight: 500; color: var(--tertiary); text-decoration: line-through; }
+    .offer__save { position: relative; font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500; color: var(--green); margin-bottom: 24px; }
+    .offer__cta { position: relative; }
+    .offer__cta .btn { width: 100%; max-width: 360px; }
+    .offer__urgency { position: relative; font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); margin-top: 14px; }
+
+    /* ── TRUST PILLS ── */
+    .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 540px; margin: -28px auto 56px; padding: 0 20px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--secondary);
+      padding: 9px 14px; border: 1px solid var(--border); border-radius: 30px;
+      background: rgba(255,255,255,0.02);
+    }
+    .pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px rgba(91,211,254,0.6); }
+
+    /* ── LEARN MORE (video cards → landing pages) ── */
+    .learn { max-width: 540px; margin: 0 auto 56px; padding: 0 20px; }
+    .learn__head { text-align: center; font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--tertiary); margin-bottom: 16px; }
+    .learn__grid { display: flex; flex-direction: column; gap: 12px; }
+    .learn-card { display: flex; align-items: stretch; text-decoration: none; background: linear-gradient(160deg, rgba(91,211,254,0.04), var(--container) 60%); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .learn-card:hover { border-color: rgba(91,211,254,0.4); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+    .learn-card__media { position: relative; width: 132px; flex-shrink: 0; background: #000; overflow: hidden; }
+    .learn-card__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .learn-card__body { flex: 1; padding: 15px 18px; display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
+    .learn-card__label { font-size: 14px; font-weight: 600; color: var(--primary); }
+    .learn-card__desc { font-size: 12px; color: var(--secondary); line-height: 1.5; }
+    .learn-card__link { margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; font-family: 'Geist Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+    .learn-card__link svg { width: 12px; height: 12px; stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; }
+    .learn-card:hover .learn-card__link svg { transform: translateX(3px); }
+     (max-width: 680px) { .learn-card__media { width: 108px; } }
+    /* ── DIVIDER ── */
+    .divider { max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
+    .divider hr { border: none; border-top: 1px solid var(--border); }
+
+    /* ── FAQ ── */
+    .faq { max-width: 560px; margin: 0 auto 56px; padding: 0 20px; }
+    .faq .section-title { margin-bottom: 24px; }
+    .faq__list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .faq__item { border-bottom: 1px solid var(--border); }
+    .faq__item:last-child { border-bottom: none; }
+    .faq__question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      text-align: left; color: var(--primary);
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; line-height: 1.4;
+      transition: background 0.15s, color 0.25s ease;
+    }
+    .faq__question:hover { background: rgba(255,255,255,0.02); }
+    .faq__item.open .faq__question { color: var(--accent); }
+    .faq__icon {
+      width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.15s, border-color 0.25s;
+    }
+    .faq__icon svg { width: 11px; height: 11px; stroke: var(--secondary); stroke-width: 2; fill: none; stroke-linecap: round; display: block; transition: stroke 0.25s ease; }
+    .faq__item.open .faq__icon { transform: rotate(45deg); background: rgba(91,211,254,0.08); border-color: rgba(91,211,254,0.4); }
+    .faq__item.open .faq__icon svg { stroke: var(--accent); }
+    .faq__answer {
+      max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-6px);
+      padding: 0 20px; font-size: 13px; color: var(--secondary); line-height: 1.6;
+      transition: max-height 0.45s cubic-bezier(0.34,1.56,0.64,1), padding 0.3s ease, opacity 0.3s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .faq__item.open .faq__answer { max-height: 240px; opacity: 1; transform: translateY(0); padding: 0 20px 18px; }
+
+    /* ── FOOTER ── */
+    .footer { max-width: var(--max-w); margin: 0 auto; padding: 8px 20px; text-align: center; }
+    .footer p { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); }
+    .footer a { color: var(--secondary); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+
+    /* ── FADE-UP ── */
+    .fu { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fu.on { opacity: 1; transform: none; }
+
+    @media (max-width: 680px) {
+      .hero { padding: 72px 20px 28px; }
+      .hero__title { font-size: 2rem; }
+      .offer__card { padding: 28px 20px 26px; }
+      .offer__price .now { font-size: 2.9rem; }
+      .section-title { font-size: 1.55rem; }
+      .pills { margin-top: -20px; }
+    }
+    /* URGENCY TIMER */
+    .offer__timer { position: relative; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; text-align: center; line-height: 1.5; margin: 0 auto 18px; font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--secondary); letter-spacing: 0.02em; }
+    .offer__timer strong { color: #ff5c5c; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .offer__timer .nb { white-space: nowrap; }
+    .offer__timer-pulse { width: 7px; height: 7px; border-radius: 50%; background: #ff5c5c; box-shadow: 0 0 8px #ff5c5c; animation: offerPulse 1.2s ease-in-out infinite; }
+    @keyframes offerPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+    /* help line */
+    .help-line { max-width: var(--max-w); margin: -28px auto 0; padding: 0 20px 8px; text-align: center; }
+    .help-line p { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); letter-spacing: 0.02em; }
+    .help-line a { color: var(--secondary); text-decoration: none; }
+    .help-line a:hover { color: var(--accent); }
+  </style>
+
+
+
+</head>
+<body>
+
+  <!-- ══ HERO (confirmation) ══ -->
+  <section class="hero fu on">
+    <div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <p class="hero__eyebrow">You're in</p>
+    <h1 class="hero__title">Your free title's <em>on the way.</em></h1>
+    <p class="hero__sub">The download's in your email. <strong>Quick thing first.</strong></p>
+  </section>
+
+  <!-- ══ OFFER ══ -->
+  <section class="offer fu">
+    <div class="offer__card">
+      <span class="offer__tag">One-time offer</span>
+      <h2 class="offer__name">Get the full Text Animations Pack</h2>
+      <p class="offer__desc">Love that free title? The full pack has 29 drag-and-drop animations that drop straight into your timeline. No keyframing, no plugins.</p>
+      <div class="offer__price">
+        <span class="now">$37.60</span>
+        <span class="was">$47</span>
+      </div>
+      <div class="offer__timer" id="offerTimer">
+        <span class="offer__timer-pulse"></span>
+        Freebie exclusive · 20% off · <span class="nb">ends in <strong id="offerClock">10:00</strong></span>
+      </div>
+      <div class="offer__cta">
+        <a href="https://buy.polar.sh/polar_cl_mGXRAX0iOkPT1NDWCD0vZE6GeRt8A5e3Fcxow00BZst" class="btn btn-primary">Get the Pack — $37.60</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TRUST PILLS ══ -->
+  <div class="pills fu">
+    <span class="pill">Instant download</span>
+    <span class="pill">Lifetime access</span>
+    <span class="pill">Commercial use</span>
+  </div>
+
+  <!-- ══ LEARN MORE ══ -->
+  <section class="learn fu">
+    <p class="learn__head">Want to see the text pack first?</p>
+    <div class="learn__grid">
+      <a class="learn-card" href="https://shop.artzenmedia.com/text" target="_blank" rel="noopener">
+        <div class="learn-card__media">
+          <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="/assets/posters/bundle-text.jpg">
+            <source src="/assets/bundle-text.mp4" type="video/mp4">
+            <source src="/assets/bundle-text.webm" type="video/webm">
+          </video>
+        </div>
+        <div class="learn-card__body">
+          <div class="learn-card__label">Creator Text Animations</div>
+          <div class="learn-card__desc">29 drag-and-drop animations for Premiere Pro. See them in action before you add it.</div>
+          <span class="learn-card__link">See the full page <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- ══ FAQ ══ -->
+  <section class="faq fu">
+    <p class="section-label">Quick Answers</p>
+    <h2 class="section-title">Good to <em>know.</em></h2>
+    <div class="faq__list">
+      <div class="faq__item open">
+        <button class="faq__question" onclick="toggleFaq(this)">How do I get the Text pack?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq__answer">Instantly. The download link hits your email the moment you buy, same as your free title.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">Will it work in Premiere Pro?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq__answer">Yes. It's a .MOGRT file built for Premiere Pro. Drop it into your Essential Graphics panel and you're animating in seconds. No plugins needed.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">Do I get future updates?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq__answer">Yes. Pay once, yours forever. Every future update is included free, delivered straight to your purchase email.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="help-line fu">
+    <p>Need help? Email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></p>
+  </div>
+
+  <script>
+    const fus = document.querySelectorAll('.fu:not(.on)');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    fus.forEach(el => obs.observe(el));
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq__item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq__item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+
+  <!-- Urgency timer -->
+  <script>
+  (function () {
+    var el = document.getElementById('offerClock'); if (!el) return;
+    var KEY = 'azn_deadline_' + location.pathname;
+    var dl = parseInt(localStorage.getItem(KEY) || '0', 10), now = Date.now();
+    if (!dl || dl < now) { dl = now + 600000; localStorage.setItem(KEY, String(dl)); }
+    function tick() {
+      var s = Math.max(0, Math.floor((dl - Date.now()) / 1000));
+      var m = Math.floor(s / 60), ss = s % 60;
+      el.textContent = m + ':' + (ss < 10 ? '0' : '') + ss;
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+  </script>
+
+  <!-- Polar checkout modal -->
+  <script>
+  (function() {
+      var modal = document.createElement('div')
+      modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.25s ease;'
+      var box = document.createElement('div')
+      box.style.cssText = 'position:relative;width:92%;max-width:480px;height:85vh;background:#111;border-radius:16px;overflow:hidden;'
+      var close = document.createElement('button')
+      close.innerHTML = '✕'
+      close.style.cssText = 'position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;z-index:10;'
+      var spinner = document.createElement('div')
+      spinner.style.cssText = 'position:absolute;top:50%;left:50%;width:36px;height:36px;margin:-18px 0 0 -18px;border:3px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:polarspin 0.7s linear infinite;z-index:5;'
+      var style = document.createElement('style')
+      style.textContent = '@keyframes polarspin{to{transform:rotate(360deg)}}@keyframes polarin{0%{transform:scale(0.85);opacity:0}60%{transform:scale(1.03);opacity:1}100%{transform:scale(1)}}'
+      document.head.appendChild(style)
+      var frame = document.createElement('iframe')
+      frame.allow = 'payment *'
+      frame.style.cssText = 'width:100%;height:100%;border:none;position:relative;z-index:6;'
+      frame.onload = function() { if (frame.src) spinner.style.display = 'none' }
+      box.appendChild(spinner); box.appendChild(close); box.appendChild(frame); modal.appendChild(box); document.body.appendChild(modal)
+      function open(url) {
+          spinner.style.display = 'block'; frame.src = url; modal.style.display = 'flex'
+          box.style.animation = 'polarin 0.45s cubic-bezier(0.34,1.56,0.64,1) both'
+          requestAnimationFrame(function() { modal.style.opacity = '1' })
+      }
+      function hide() {
+          modal.style.opacity = '0'; box.style.transition = 'transform 0.25s ease, opacity 0.25s ease'
+          box.style.transform = 'scale(0.92)'; box.style.opacity = '0'
+          setTimeout(function() { modal.style.display = 'none'; frame.src = ''; box.style.animation = ''; box.style.transition = ''; box.style.transform = ''; box.style.opacity = '' }, 250)
+      }
+      close.onclick = hide
+      modal.addEventListener('click', function(e) { if (e.target === modal) hide() })
+      document.addEventListener('click', function(e) {
+          var link = e.target.closest('a')
+          if (link && link.href && link.href.includes('buy.polar.sh')) { e.preventDefault(); open(link.href) }
+      }, true)
+  })()
+  </script>
+</body>
+
+</html>
