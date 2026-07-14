@@ -86,6 +86,9 @@
     .cta svg { width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; }
     .cta:hover { background: rgba(91,211,254,0.08); border-color: rgba(91,211,254,0.4); transform: translateY(-2px); }
     .cta:hover svg { transform: translateX(3px); }
+    .cta-row { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .cta--home { color: var(--secondary); }
+    .cta--home:hover svg { transform: translateX(-3px); }
     .follow {
       margin-top: 22px; font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--tertiary);
     }
@@ -101,7 +104,10 @@
     <p class="eyebrow">Coming back soon</p>
     <h1>An exciting new version is <em>on the way.</em></h1>
     <p class="sub">The Creator Text Animations Pack is getting a big upgrade. It's offline for a little while as I rebuild it. Stay tuned, it'll be back better than ever.</p>
-    <a class="cta" href="/sfx">In the meantime, explore the SFX Collection <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="cta-row">
+      <a class="cta" href="/sfx">In the meantime, explore the SFX Collection <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="cta cta--home" href="https://artzenmedia.com"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to home</a>
+    </div>
     <p class="follow">Follow <a href="https://www.instagram.com/artzenmedia" target="_blank" rel="noopener">@artzenmedia</a> to hear when it drops.</p>
   </div>
 </body>
