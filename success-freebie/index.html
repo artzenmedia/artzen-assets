@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/assets/profile-circle.png">
   <link rel="apple-touch-icon" href="/assets/profile-circle.png">
-  <title>You're in — get the full kit | Artzen Media</title>
+  <title>Your freebie is on the way.</title>
   <meta name="description" content="Your freebie is on the way. Grab the Creator SFX Collection, 155 hand-crafted sounds for your edits.">
   <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -317,6 +317,53 @@
     .help-line p { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); letter-spacing: 0.02em; }
     .help-line a { color: var(--secondary); text-decoration: none; }
     .help-line a:hover { color: var(--accent); }
+
+    /* ── Offer subhead ── */
+    .offer__sub { position: relative; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.05rem; color: var(--primary); opacity: 0.9; margin: -4px auto 12px; }
+
+    /* ── Before / after (ported from /sfx) ── */
+    .ba { max-width: 540px; margin: 0 auto 56px; padding: 0 20px; }
+    .ba-head { display: flex; align-items: center; justify-content: center; gap: 7px; }
+    .ba-vol { width: 12px; height: 12px; fill: var(--accent); }
+    .ba-stage {
+      position: relative; width: 100%; aspect-ratio: 16 / 9; margin-top: 18px;
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      background: #000; cursor: ew-resize; user-select: none; -webkit-user-select: none;
+      touch-action: pan-y;
+    }
+    .ba-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ba-after { clip-path: inset(0 0 0 var(--pos, 50%)); }
+    .ba-line { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; background: #fff; transform: translateX(-1px); z-index: 5; box-shadow: 0 0 14px rgba(0,0,0,0.6); pointer-events: none; }
+    .ba-knob {
+      position: absolute; top: 50%; left: var(--pos, 50%); transform: translate(-50%, -50%);
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(255,255,255,0.14); z-index: 6; pointer-events: auto; cursor: ew-resize; touch-action: none;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px) saturate(1.2); -webkit-backdrop-filter: blur(8px) saturate(1.2);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+    .ba-knob svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+    .ba-knob::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.5); pointer-events: none; animation: baPulse 1.8s ease-out infinite; }
+    @keyframes baPulse { 0% { transform: scale(1); opacity: 0.7; } 70% { transform: scale(1.5); opacity: 0; } 100% { transform: scale(1.5); opacity: 0; } }
+    .ba-stage.is-playing .ba-knob::before { animation: none; opacity: 0; }
+    .ba-label {
+      position: absolute; top: 14px; z-index: 4;
+      font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 600;
+      color: #fff; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 6px 12px; border-radius: 30px;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      pointer-events: none;
+    }
+    .ba-label--before { left: 14px; }
+    .ba-label--after { right: 14px; }
+    .ba-caption { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); text-align: center; margin-top: 14px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .ba__cta { display: flex; justify-content: center; margin-top: 20px; }
+    .ba__cta .btn { width: 100%; max-width: 380px; }
+    @media (max-width: 680px) {
+      .ba-label { font-size: 10px; padding: 5px 10px; }
+      .ba-knob { width: 40px; height: 40px; }
+    }
   </style>
 
 
@@ -347,9 +394,11 @@
 
   <!-- ══ OFFER (bundle hero) ══ -->
   <section class="offer fu">
+    <p class="section-label" style="text-align:center;margin-bottom:14px;">Before you go</p>
     <div class="offer__card">
       <span class="offer__tag">Freebie exclusive · Save $16</span>
       <h2 class="offer__name">The Creator SFX Collection</h2>
+      <p class="offer__sub">The sounds behind every edit you admire.</p>
       <p class="offer__desc">155 hand-crafted sound effects, sorted and ready to drop into your edits. The exact sounds you hear on every viral video, in one clean pack.</p>
       <div class="offer__price">
         <span class="now">$39</span>
@@ -365,7 +414,31 @@
       <div class="offer__includes">
         <span class="inc-pill">155 sounds</span>
         <span class="inc-pill">Commercial use</span>
+        <span class="inc-pill">Free updates forever</span>
       </div>
+    </div>
+  </section>
+
+  <!-- ══ HEAR THE DIFFERENCE ══ -->
+  <section class="ba fu">
+    <p class="section-label ba-head"><svg class="ba-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>Hear The Difference</p>
+    <div class="ba-stage" id="baStage" style="--pos:50%;">
+      <video class="ba-video ba-before" muted loop playsinline webkit-playsinline preload="none" poster="/assets/posters/before-pack.jpg">
+        <source src="/assets/before-pack.mp4" type="video/mp4">
+        <source src="/assets/before-pack.webm" type="video/webm">
+      </video>
+      <video class="ba-video ba-after" muted loop playsinline webkit-playsinline preload="none" poster="/assets/posters/after-pack.jpg">
+        <source src="/assets/after-pack.mp4" type="video/mp4">
+        <source src="/assets/after-pack.webm" type="video/webm">
+      </video>
+      <span class="ba-label ba-label--before">Before</span>
+      <span class="ba-label ba-label--after">After</span>
+      <div class="ba-line"></div>
+      <div class="ba-knob"><svg viewBox="0 0 24 24"><path d="M10 12H4M7 9l-3 3 3 3M14 12h6M17 9l3 3-3 3"/></svg></div>
+    </div>
+    <p class="ba-caption">Drag the handle. Same edit, same 5 seconds.</p>
+    <div class="ba__cta">
+      <a href="https://buy.polar.sh/polar_cl_FlTVIcD6iAWKyiVq4AZh0sG4367Q2n7YB0y8T3bkm5G" class="btn btn-primary">Get the SFX Collection — $39</a>
     </div>
   </section>
 
@@ -484,6 +557,98 @@
           if (link && link.href && link.href.includes('buy.polar.sh')) { e.preventDefault(); open(link.href) }
       }, true)
   })()
+  </script>
+
+  <script>
+    // ── Before / After slider (ported from /sfx) ──
+    (function () {
+      const stage = document.getElementById('baStage');
+      if (!stage) return;
+      let pos = 50, dragging = false, audioOn = false, lastSide = null, started = false;
+
+      function visiblePair() {
+        const vids = [...stage.querySelectorAll('.ba-video')];
+        return {
+          before: vids.find(v => v.classList.contains('ba-before') && v.offsetParent !== null),
+          after: vids.find(v => v.classList.contains('ba-after') && v.offsetParent !== null)
+        };
+      }
+      function startPlayback() {
+        if (started) return;
+        started = true;
+        stage.classList.add('is-playing');
+        const { before, after } = visiblePair();
+        if (before) before.play().catch(() => {});
+        if (after) after.play().catch(() => {});
+      }
+      function updateAudio() {
+        const { before, after } = visiblePair();
+        if (!before || !after) return;
+        if (!audioOn) { before.muted = true; after.muted = true; return; }
+        const side = pos < 50 ? 'after' : 'before';
+        if (side === lastSide) return;
+        lastSide = side;
+        if (side === 'after') { after.currentTime = before.currentTime; before.muted = true; after.muted = false; }
+        else { before.currentTime = after.currentTime; after.muted = true; before.muted = false; }
+      }
+      function setPos(p) {
+        pos = Math.max(0, Math.min(100, p));
+        stage.style.setProperty('--pos', pos + '%');
+        updateAudio();
+      }
+      function fromEvent(e) {
+        const r = stage.getBoundingClientRect();
+        setPos(((e.clientX - r.left) / r.width) * 100);
+      }
+      function syncBoth() {
+        const { before, after } = visiblePair();
+        if (!before || !after) return;
+        const t = (lastSide === 'after' ? after : before).currentTime;
+        before.currentTime = t; after.currentTime = t;
+        before.play().catch(() => {}); after.play().catch(() => {});
+      }
+      var knob = stage.querySelector('.ba-knob');
+      if (knob) {
+        knob.addEventListener('pointerdown', e => {
+          e.stopPropagation();
+          dragging = true;
+          startPlayback();
+          if (!audioOn) { audioOn = true; stage.classList.add('is-live'); }
+          try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+          syncBoth();
+          fromEvent(e);
+        });
+      }
+      stage.addEventListener('pointerdown', e => {
+        dragging = true;
+        startPlayback();
+        try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+        if (audioOn) syncBoth();
+        fromEvent(e);
+      });
+      stage.addEventListener('pointermove', e => { if (dragging) fromEvent(e); });
+      stage.addEventListener('pointerup', () => { dragging = false; });
+      stage.addEventListener('pointercancel', () => { dragging = false; });
+
+      var wasInView = true;
+      function resetStage() {
+        var pair = visiblePair();
+        dragging = false; audioOn = false; started = false; lastSide = null;
+        stage.classList.remove('is-playing', 'is-live');
+        if (pair.before) { pair.before.muted = true; try { pair.before.pause(); pair.before.currentTime = 0; } catch (_) {} }
+        if (pair.after) { pair.after.muted = true; try { pair.after.pause(); pair.after.currentTime = 0; } catch (_) {} }
+        setPos(50);
+      }
+      function checkVis() {
+        var r = stage.getBoundingClientRect();
+        var inView = r.bottom > 60 && r.top < window.innerHeight - 60;
+        if (inView === wasInView) return;
+        wasInView = inView;
+        if (!inView) resetStage();
+      }
+      window.addEventListener('scroll', checkVis, { passive: true });
+      window.addEventListener('resize', checkVis);
+    })();
   </script>
 </body>
 
