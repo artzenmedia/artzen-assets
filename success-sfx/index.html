@@ -302,6 +302,14 @@
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','912683378281121');
     fbq('track','PageView');
+    // Purchase fires browser-side so it carries _fbc/_fbp and Meta can attribute it
+    // to an ad click. Value comes from ?v= on Polar's success URL (45 main link,
+    // 39 freebie-exclusive link); falls back to 45 if the param is ever missing.
+    (function(){
+      var v = parseFloat(new URLSearchParams(location.search).get('v'));
+      if (!(v > 0)) v = 45;
+      fbq('track','Purchase',{value:v,currency:'USD',content_name:'Creator SFX Collection',content_ids:['sfx-collection'],content_type:'product'});
+    })();
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=912683378281121&ev=PageView&noscript=1"/></noscript>

@@ -377,6 +377,10 @@
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','912683378281121');
     fbq('track','PageView');
+    // Lead = a completed freebie opt-in. High volume, so this is the event to
+    // optimise lead-gen campaigns on (Purchase alone never clears Meta's
+    // ~50 conversions/week learning threshold at our order rate).
+    fbq('track','Lead',{content_name:'Freebie opt-in'});
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=912683378281121&ev=PageView&noscript=1"/></noscript>
