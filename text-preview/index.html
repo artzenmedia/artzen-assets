@@ -859,7 +859,8 @@
       background: linear-gradient(150deg, #17242b, var(--container) 62%);
       cursor: pointer;
     }
-    .vsl__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vsl__poster { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vsl__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .vsl__play {
       position: absolute; inset: 0; margin: auto;
       width: 68px; height: 68px; border-radius: 50%;
@@ -1758,6 +1759,27 @@
     </div>
   </section>
 
+  <!-- ══ VSL (YouTube) ══
+       TODO before launch: put the real video id in data-yt below. Optionally
+       drop a poster at /assets/posters/text-vsl.jpg; without one the block
+       shows the gradient and the play button, which looks fine.
+
+       This is a facade, not a raw iframe. A bare YouTube embed pulls roughly a
+       megabyte of their JS into every single page load even for people who
+       never press play. Here nothing YouTube-related loads until the click,
+       then the iframe is injected with autoplay. Uses youtube-nocookie.com so
+       no tracking cookie is set before the visitor asks for the video. -->
+  <section class="vsl">
+    <p class="section-label">Watch it work</p>
+    <h2 class="section-title" style="margin-bottom:20px">See all 41 in two minutes</h2>
+    <div class="vsl__frame" id="vslFrame" data-yt="VIDEO_ID_TODO" role="button" tabindex="0" aria-label="Play the video">
+      <img class="vsl__poster" id="vslPoster" src="/assets/posters/text-vsl.jpg" alt="" aria-hidden="true">
+      <button class="vsl__play" id="vslPlay" aria-label="Play the video">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+  </section>
+
   <div class="divider"><hr></div>
 
   <!-- CONTROLS: the 52-control panel -->
@@ -1827,23 +1849,6 @@
     </div>
   </section>
 
-  <!-- ══ VSL (horizontal sales video) ══
-       TODO before launch: drop text-vsl.mp4 + text-vsl.webm into /assets/
-       and text-vsl.jpg into /assets/posters/. Until those land the poster
-       404s and the block shows the gradient + play button, which is fine. -->
-  <section class="vsl">
-    <p class="section-label">Watch it work</p>
-    <h2 class="section-title" style="margin-bottom:20px">See all 41 in two minutes</h2>
-    <div class="vsl__frame" id="vslFrame">
-      <video class="vsl__video" id="vslVideo" playsinline preload="none" poster="/assets/posters/text-vsl.jpg">
-        <source src="/assets/text-vsl.mp4" type="video/mp4">
-        <source src="/assets/text-vsl.webm" type="video/webm">
-      </video>
-      <button class="vsl__play" id="vslPlay" aria-label="Play the video">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-    </div>
-  </section>
 
   <!-- Reel layout, parked. Bring it back lower down the page once there is
        fresh footage of the new pack. Nothing here is deleted. -->
@@ -1896,7 +1901,6 @@
       </div>
     </section>
   </template>
-
 
 
   <div class="divider"><hr></div>
@@ -2031,7 +2035,6 @@
       </div>
     </section>
   </template>
-
 
 
   <div class="divider"><hr></div>
@@ -2365,19 +2368,33 @@
       window.scrollCarousel = scrollCarousel;
     })();
 
-    // ── VSL: click to play with sound, hide the button once it starts ──
+    // ── VSL: swap the poster for the YouTube iframe on click ──
     (function () {
       const frame = document.getElementById('vslFrame');
-      const video = document.getElementById('vslVideo');
-      if (!frame || !video) return;
-      function start() {
+      if (!frame) return;
+      const poster = document.getElementById('vslPoster');
+      // a missing poster file would otherwise show a broken-image icon over the gradient
+      if (poster) poster.addEventListener('error', function () { poster.style.display = 'none'; });
+
+      let loaded = false;
+      function play() {
+        const id = frame.getAttribute('data-yt');
+        if (loaded || !id || id === 'VIDEO_ID_TODO') return;
+        loaded = true;
         frame.classList.add('playing');
-        video.controls = true;
-        video.play().catch(function () {});
+        const f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+                '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+        f.title = 'Creator Text Animations';
+        f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+        f.allowFullscreen = true;
+        frame.appendChild(f);
+        if (poster) poster.style.display = 'none';
       }
-      frame.addEventListener('click', function () { if (video.paused) start(); });
-      video.addEventListener('pause', function () { frame.classList.remove('playing'); });
-      video.addEventListener('play',  function () { frame.classList.add('playing'); });
+      frame.addEventListener('click', play);
+      frame.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+      });
     })();
 
     // ── Sticky CTA: visible once the hero Buy leaves view, until the final Buy comes into view ──
