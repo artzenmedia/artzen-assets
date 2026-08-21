@@ -2296,7 +2296,7 @@
 
     // ── CAROUSEL (infinite loop) ──
     // Guarded: the how-it-works carousel is currently parked inside
-    // <template data-paused-hiw>, so #carousel is not in the document.
+    // the parked how-it-works block, so #carousel is not in the document.
     (function () {
       const carTrackProbe = document.getElementById('carousel');
       if (!carTrackProbe) { window.scrollCarousel = function () {}; return; }

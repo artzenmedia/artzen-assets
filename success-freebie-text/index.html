@@ -320,28 +320,34 @@
     <p class="hero__sub">The download's in your email. <strong>Quick thing first.</strong></p>
   </section>
 
-  <!-- ══ OFFER ══ -->
-  <section class="offer fu">
-    <div class="offer__card">
-      <span class="offer__tag">One-time offer</span>
-      <h2 class="offer__name">Get the full Text Animations Pack</h2>
-      <p class="offer__desc">Love that free title? The full pack has 41 drag-and-drop animations, each one working as an entrance and an exit. 1,681 combinations, straight into your timeline. No keyframing, no plugins.</p>
-      <div class="offer__price">
-        <span class="now">$39</span>
-        <span class="was">$60</span>
+  <!-- PARKED: freebie-exclusive Text pack at $39. Needs a new Polar link with its own -$21 discount.
+       Unhide this block the moment the checkout link exists. Shipping it
+       live with a placeholder href would put a dead button in front of real
+       buyers, so it stays parked until the link is real. -->
+  <template data-pending-checkout>
+    <!-- ══ OFFER ══ -->
+    <section class="offer fu">
+      <div class="offer__card">
+        <span class="offer__tag">One-time offer</span>
+        <h2 class="offer__name">Get the full Text Animations Pack</h2>
+        <p class="offer__desc">Love that free title? The full pack has 41 drag-and-drop animations, each one working as an entrance and an exit. 1,681 combinations, straight into your timeline. No keyframing, no plugins.</p>
+        <div class="offer__price">
+          <span class="now">$39</span>
+          <span class="was">$60</span>
+        </div>
+        <div class="offer__timer" id="offerTimer">
+          <span class="offer__timer-pulse"></span>
+          Freebie exclusive · Save $21 · <span class="nb">ends in <strong id="offerClock">10:00</strong></span>
+        </div>
+        <div class="offer__cta">
+          <!-- TODO before launch: create a Polar checkout link for the Text pack at $39
+               with its OWN -$21 discount attached. Without its own discount the
+               product-level default (-$13) applies instead and this collapses to $47. -->
+          <a href="TEXT_FREEBIE_39_CHECKOUT_LINK_TODO" class="btn btn-primary">Get the Pack — $39</a>
+        </div>
       </div>
-      <div class="offer__timer" id="offerTimer">
-        <span class="offer__timer-pulse"></span>
-        Freebie exclusive · Save $21 · <span class="nb">ends in <strong id="offerClock">10:00</strong></span>
-      </div>
-      <div class="offer__cta">
-        <!-- TODO before launch: create a Polar checkout link for the Text pack at $39
-             with its OWN -$21 discount attached. Without its own discount the
-             product-level default (-$13) applies instead and this collapses to $47. -->
-        <a href="TEXT_FREEBIE_39_CHECKOUT_LINK_TODO" class="btn btn-primary">Get the Pack — $39</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </template>
 
   <!-- ══ TRUST PILLS ══ -->
   <div class="pills fu">
