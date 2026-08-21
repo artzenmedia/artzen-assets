@@ -261,6 +261,19 @@
       line-height: 1.5;
       text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
+    /* struck-through anchor under the buy buttons, same treatment as /sfx */
+    .launch-price {
+      font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 400;
+      display: flex; align-items: center; justify-content: center; gap: 7px; flex-wrap: wrap;
+      color: var(--tertiary); letter-spacing: 0.01em;
+      margin-top: 10px;
+    }
+    .launch-price .lp-was { text-decoration: line-through; }
+    /* one-line licence, sits under the final CTA */
+    .licence-line {
+      max-width: 420px; margin: 16px auto 0;
+      font-size: 12px; line-height: 1.6; color: var(--tertiary); text-align: center;
+    }
     .hero__cta { display: inline-flex; flex-direction: column; align-items: center; margin-top: 22px; }
     .hero__pp { margin-top: 10px; display: flex; justify-content: center; }
     .pp-icon.pp-icon--lg {
@@ -518,6 +531,21 @@
       margin-left: auto;
       margin-right: auto;
     }
+    /* the in + out pitch, the single strongest reason to buy */
+    .features__combos {
+      font-size: 14px;
+      line-height: 23px;
+      color: var(--primary);
+      max-width: 540px;
+      margin: 14px auto 18px;
+      padding: 14px 18px;
+      background: rgba(91,211,254,0.04);
+      border: 1px solid rgba(91,211,254,0.16);
+      border-left: 2px solid var(--accent);
+      border-radius: 12px;
+      text-align: left;
+    }
+    .features__combos strong { font-weight: 600; color: var(--accent); }
     .features__tagline {
       font-family: 'Geist Mono', monospace;
       font-size: 11px;
@@ -766,6 +794,89 @@
       color: var(--secondary);
       text-align: center;
       margin-bottom: 0;
+    }
+    /* ══ CONTROLS: every look is built in ══ */
+    .controls {
+      max-width: var(--max-w);
+      margin: 0 auto 56px;
+      padding: 0 20px;
+    }
+    .controls__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .control-card {
+      background: var(--container);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 16px 15px;
+      text-align: left;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .control-card:hover { border-color: #333; transform: translateY(-3px); }
+    .control-card--new { border-color: rgba(91,211,254,0.28); }
+    .control-card__name {
+      font-size: 13px; font-weight: 600; color: var(--primary);
+      margin-bottom: 7px; display: flex; align-items: center; gap: 7px;
+    }
+    .control-card__new {
+      font-family: 'Geist Mono', monospace; font-size: 9px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent); background: rgba(91,211,254,0.1);
+      border: 1px solid rgba(91,211,254,0.22);
+      border-radius: 5px; padding: 2px 5px; line-height: 1.4;
+    }
+    .control-card__list { font-size: 12px; line-height: 1.75; color: var(--secondary); }
+    /* the two short proof lines under the grid */
+    .controls__notes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .controls__note {
+      background: linear-gradient(160deg, rgba(91,211,254,0.05), var(--container) 65%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: left;
+    }
+    .controls__note-title { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 5px; }
+    .controls__note-body { font-size: 12.5px; line-height: 1.65; color: var(--secondary); }
+    @media (max-width: 780px) {
+      .controls__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .controls__grid { grid-template-columns: 1fr; }
+      .controls__notes { grid-template-columns: 1fr; }
+    }
+    /* ══ VSL: horizontal sales video ══ */
+    .vsl { max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
+    .vsl__frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(150deg, #17242b, var(--container) 62%);
+      cursor: pointer;
+    }
+    .vsl__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vsl__play {
+      position: absolute; inset: 0; margin: auto;
+      width: 68px; height: 68px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(12,12,12,0.55);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s, opacity 0.25s;
+    }
+    .vsl__play svg { width: 28px; height: 28px; fill: #fff; margin-left: 3px; }
+    .vsl__play:hover { transform: scale(1.07); background: rgba(91,211,254,0.32); }
+    .vsl__frame.playing .vsl__play { opacity: 0; pointer-events: none; }
+    @media (max-width: 520px) {
+      .vsl__frame { border-radius: 12px; }
+      .vsl__play { width: 56px; height: 56px; }
+      .vsl__play svg { width: 23px; height: 23px; }
     }
     /* marquee keyframes */
     @keyframes marqueeLeft {
@@ -1557,6 +1668,7 @@
       <p class="hero__subtitle">Pro-level text. One pack.</p>
       <div class="hero__cta">
         <a id="heroBuy" class="btn btn-primary" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now — $47</a>
+        <p class="launch-price"><span class="lp-was">$60</span> Save $13</p>
         <div class="hero__pp">
           <div class="pp-icon pp-icon--lg" title="Premiere Pro only">Pr</div>
         </div>
@@ -1576,7 +1688,7 @@
   <div class="trust-bar">
     <div class="trust-bar__inner">
       <div class="trust-bar__item">
-        <div class="trust-bar__number">29</div>
+        <div class="trust-bar__number">41</div>
         <div class="trust-bar__label">Animations</div>
       </div>
       <div class="trust-bar__item">
@@ -1584,8 +1696,8 @@
         <div class="trust-bar__label">Editors</div>
       </div>
       <div class="trust-bar__item">
-        <div class="trust-bar__number">Instant</div>
-        <div class="trust-bar__label">Download</div>
+        <div class="trust-bar__number">1,681</div>
+        <div class="trust-bar__label">Combinations</div>
       </div>
       <div class="trust-bar__item">
         <div class="trust-bar__number">Lifetime</div>
@@ -1601,18 +1713,19 @@
     <div class="features__content">
       <h2 class="features__h2">Pro text animations in seconds</h2>
       <p class="features__subh">Drag, drop, done. Right inside Premiere Pro.</p>
-      <p class="features__desc">29 hand-crafted, fully customizable text animations built to make your edits stop the scroll. No keyframing, no plugins, no After Effects. Drop one on your timeline and it just works, so you spend your time creating, not animating.</p>
+      <p class="features__desc">41 hand-crafted, fully customizable text animations built to make your edits stop the scroll. No keyframing, no plugins, no After Effects. Drop one on your timeline and it just works, so you spend your time creating, not animating.</p>
+      <p class="features__combos">Pick how the text comes in and how it leaves, independently. 41 entrances, 41 exits, <strong>1,681 combinations</strong> before you touch a single slider.</p>
       <p class="features__tagline">Made by an editor who got sick of wasting hours on text.</p>
       <p class="features__includes-title">What's Included</p>
       <div class="included-grid">
         <div class="included-card">
-          <div class="included-card__text"><div class="included-card__title">29 Animations</div><div class="included-card__sub">Drag &amp; drop .MOGRT</div></div>
+          <div class="included-card__text"><div class="included-card__title">41 Animations</div><div class="included-card__sub">Drag &amp; drop .MOGRT</div></div>
           <div class="included-card__icon">
             <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
           </div>
         </div>
         <div class="included-card">
-          <div class="included-card__text"><div class="included-card__title">All Premiere Versions</div><div class="included-card__sub">Fully compatible</div></div>
+          <div class="included-card__text"><div class="included-card__title">Premiere Pro 2019+</div><div class="included-card__sub">Fully compatible</div></div>
           <div class="included-card__icon">
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
@@ -1636,7 +1749,7 @@
           </div>
         </div>
         <div class="included-card included-card--bonus">
-          <div class="included-card__text"><div class="included-card__title">Free Bonuses</div><div class="included-card__sub">Presets + call-outs</div></div>
+          <div class="included-card__text"><div class="included-card__title">Free Bonuses</div><div class="included-card__sub">Call-outs</div></div>
           <div class="included-card__icon">
             <svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
           </div>
@@ -1647,53 +1760,144 @@
 
   <div class="divider"><hr></div>
 
-  <!-- IMPACT (real IG reel embeds) -->
-  <section class="impact">
-    <div class="impact-wrapper">
-      <p class="impact-label">Watch the impact</p>
-      <div class="impact-viewport">
-        <div class="impact-track" id="impactTrack">
-          <!-- Swap each <source> for your exported WebM, update the views + likes numbers -->
-          <div class="impact-item">
-            <video autoplay muted loop playsinline preload="none" poster="/assets/posters/reel-1.jpg">
-              <source src="/assets/reel-1.webm" type="video/webm">
-            </video>
-            <div class="impact-item__placeholder"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>WebM<br>9:16</span></div>
-            <div class="impact-item__grad"></div>
-            <div class="impact-views">
-              <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>442K</span>
-              <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>10,989</span>
-            </div>
-            <button class="impact-sound" data-muted="true" aria-label="Toggle sound">
-              <svg class="ico-muted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 2.53-1.27 4.76-3.2 6.09l1.45 1.45C19.6 17.85 21 15.09 21 12s-1.4-5.85-3.75-7.54L15.8 5.91C17.73 7.24 19 9.47 19 12z" opacity="0.55"/><path d="M4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.21v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3z"/></svg>
-              <svg class="ico-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-            </button>
-          </div>
-          <div class="impact-item">
-            <video autoplay muted loop playsinline preload="none" poster="/assets/posters/reel-2.jpg">
-              <source src="/assets/reel-2.webm" type="video/webm">
-            </video>
-            <div class="impact-item__placeholder"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>WebM<br>9:16</span></div>
-            <div class="impact-item__grad"></div>
-            <div class="impact-views">
-              <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>255K</span>
-              <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>4,991</span>
-            </div>
-            <button class="impact-sound" data-muted="true" aria-label="Toggle sound">
-              <svg class="ico-muted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 2.53-1.27 4.76-3.2 6.09l1.45 1.45C19.6 17.85 21 15.09 21 12s-1.4-5.85-3.75-7.54L15.8 5.91C17.73 7.24 19 9.47 19 12z" opacity="0.55"/><path d="M4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.21v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3z"/></svg>
-              <svg class="ico-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-            </button>
-          </div>
+  <!-- CONTROLS: the 52-control panel -->
+  <section class="controls">
+    <p class="section-label">Under the hood</p>
+    <h2 class="section-title">Every look is built in</h2>
+    <p class="section-sub">52 controls, every one of them a slider or a dropdown in Premiere's Essential Graphics panel.</p>
+    <div class="controls__grid">
+        <div class="control-card">
+          <div class="control-card__name">Text</div>
+          <div class="control-card__list">Your text, scale, position, colour</div>
         </div>
-        <button class="carousel-arrow carousel-arrow--left" onclick="scrollImpact(-1)" aria-label="Previous">
-          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-        </button>
-        <button class="carousel-arrow carousel-arrow--right" onclick="scrollImpact(1)" aria-label="Next">
-          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-        </button>
+        <div class="control-card">
+          <div class="control-card__name">Animation</div>
+          <div class="control-card__list">Start animation, end animation, start speed, end speed, animate by line / word / character / random, enter from any direction, reveal order, frame rate look</div>
+        </div>
+        <div class="control-card">
+          <div class="control-card__name">Finetune</div>
+          <div class="control-card__list">Travel distance, stagger</div>
+        </div>
+        <div class="control-card">
+          <div class="control-card__name">Spacing</div>
+          <div class="control-card__list">Letter tracking, word spacing, line leading, alignment</div>
+        </div>
+        <div class="control-card">
+          <div class="control-card__name">Wiggle</div>
+          <div class="control-card__list">Character wiggle on / amount / speed, whole-text wiggle on / amount / speed</div>
+        </div>
+        <div class="control-card">
+          <div class="control-card__name">Drop shadow</div>
+          <div class="control-card__list">Colour, opacity, softness, distance, angle</div>
+        </div>
+        <div class="control-card">
+          <div class="control-card__name">Curve</div>
+          <div class="control-card__list">Arc, bulge or arch, amount, vertical offset</div>
+        </div>
+        <div class="control-card">
+          <div class="control-card__name">Stroke</div>
+          <div class="control-card__list">Width, text opacity, colour</div>
+        </div>
+        <div class="control-card">
+          <div class="control-card__name">Blur &amp; glow</div>
+          <div class="control-card__list">Blur, glow radius, glow intensity</div>
+        </div>
+        <div class="control-card control-card--new">
+          <div class="control-card__name">Light sweep<span class="control-card__new">New</span></div>
+          <div class="control-card__list">Speed, amount, softness, angle, width</div>
+        </div>
+        <div class="control-card control-card--new">
+          <div class="control-card__name">Gradient<span class="control-card__new">New</span></div>
+          <div class="control-card__list">On / off, two colours, angle, motion rate</div>
+        </div>
+        <div class="control-card control-card--new">
+          <div class="control-card__name">Texture<span class="control-card__new">New</span></div>
+          <div class="control-card__list">Film grain, edge roughness, roughness speed, roughness scale</div>
+        </div>
+    </div>
+    <div class="controls__notes">
+      <div class="controls__note">
+        <div class="controls__note-title">Any length</div>
+        <div class="controls__note-body">Drag it to any length. The in and out hold their timing, the middle stretches to fit.</div>
+      </div>
+      <div class="controls__note">
+        <div class="controls__note-title">Font included</div>
+        <div class="controls__note-body">Inter, free and open source, right in the download. Or swap in your own, it applies to all 41 animations at once.</div>
       </div>
     </div>
   </section>
+
+  <!-- ══ VSL (horizontal sales video) ══
+       TODO before launch: drop text-vsl.mp4 + text-vsl.webm into /assets/
+       and text-vsl.jpg into /assets/posters/. Until those land the poster
+       404s and the block shows the gradient + play button, which is fine. -->
+  <section class="vsl">
+    <p class="section-label">Watch it work</p>
+    <h2 class="section-title" style="margin-bottom:20px">See all 41 in two minutes</h2>
+    <div class="vsl__frame" id="vslFrame">
+      <video class="vsl__video" id="vslVideo" playsinline preload="none" poster="/assets/posters/text-vsl.jpg">
+        <source src="/assets/text-vsl.mp4" type="video/mp4">
+        <source src="/assets/text-vsl.webm" type="video/webm">
+      </video>
+      <button class="vsl__play" id="vslPlay" aria-label="Play the video">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Reel layout, parked. Bring it back lower down the page once there is
+       fresh footage of the new pack. Nothing here is deleted. -->
+  <template data-paused-reels>
+    <!-- IMPACT (real IG reel embeds) -->
+    <section class="impact">
+      <div class="impact-wrapper">
+        <p class="impact-label">Watch the impact</p>
+        <div class="impact-viewport">
+          <div class="impact-track" id="impactTrack">
+            <!-- Swap each <source> for your exported WebM, update the views + likes numbers -->
+            <div class="impact-item">
+              <video autoplay muted loop playsinline preload="none" poster="/assets/posters/reel-1.jpg">
+                <source src="/assets/reel-1.webm" type="video/webm">
+              </video>
+              <div class="impact-item__placeholder"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>WebM<br>9:16</span></div>
+              <div class="impact-item__grad"></div>
+              <div class="impact-views">
+                <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>442K</span>
+                <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>10,989</span>
+              </div>
+              <button class="impact-sound" data-muted="true" aria-label="Toggle sound">
+                <svg class="ico-muted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 2.53-1.27 4.76-3.2 6.09l1.45 1.45C19.6 17.85 21 15.09 21 12s-1.4-5.85-3.75-7.54L15.8 5.91C17.73 7.24 19 9.47 19 12z" opacity="0.55"/><path d="M4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.21v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3z"/></svg>
+                <svg class="ico-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+              </button>
+            </div>
+            <div class="impact-item">
+              <video autoplay muted loop playsinline preload="none" poster="/assets/posters/reel-2.jpg">
+                <source src="/assets/reel-2.webm" type="video/webm">
+              </video>
+              <div class="impact-item__placeholder"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>WebM<br>9:16</span></div>
+              <div class="impact-item__grad"></div>
+              <div class="impact-views">
+                <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>255K</span>
+                <span class="impact-stat"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>4,991</span>
+              </div>
+              <button class="impact-sound" data-muted="true" aria-label="Toggle sound">
+                <svg class="ico-muted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 2.53-1.27 4.76-3.2 6.09l1.45 1.45C19.6 17.85 21 15.09 21 12s-1.4-5.85-3.75-7.54L15.8 5.91C17.73 7.24 19 9.47 19 12z" opacity="0.55"/><path d="M4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.21v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3z"/></svg>
+                <svg class="ico-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+              </button>
+            </div>
+          </div>
+          <button class="carousel-arrow carousel-arrow--left" onclick="scrollImpact(-1)" aria-label="Previous">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          </button>
+          <button class="carousel-arrow carousel-arrow--right" onclick="scrollImpact(1)" aria-label="Next">
+            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </template>
+
+
 
   <div class="divider"><hr></div>
 
@@ -1757,7 +1961,7 @@
   <section class="bundle">
     <div class="bundle__glow"></div>
     <div class="bundle__card">
-      <div class="bundle__badge">Save 20%</div>
+      <div class="bundle__badge">Save 36%</div>
       <h3 class="bundle__title">Get the full kit</h3>
       <p class="bundle__desc">Grab the Text Animations and the SFX Collection together and save 20%. Everything you need to make your edits look and sound better.</p>
       <div class="bundle__products">
@@ -1765,7 +1969,7 @@
         <div class="bundle__product-sep">+</div>
         <div class="bundle__product-tag">SFX Collection</div>
       </div>
-      <a class="btn btn-outline bundle__btn" href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk">Get the Bundle — $73.60 <span class="bundle__strike">$102</span></a>
+      <a class="btn btn-outline bundle__btn" href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk">Get the Bundle — $73.60 <span class="bundle__strike">$115</span></a>
       <div class="bundle__vid bundle__vid--left">
         <video autoplay muted loop playsinline preload="auto" poster="/assets/posters/bundle-text.jpg"><source src="/assets/bundle-text.webm" type="video/webm"></video>
       </div>
@@ -1775,53 +1979,60 @@
     </div>
   </section>
 
-  <!-- VIDEO CAROUSEL -->
-  <section class="carousel-section">
-    <p class="carousel-label">watch how it works</p>
-    <div class="carousel-wrapper">
-      <div class="carousel-viewport">
-        <div class="carousel-track" id="carousel">
-          <div class="carousel-item">
-            <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-1.jpg">
-              <source src="/assets/hiw-1.webm" type="video/webm">
-            </video>
+  <!-- How-it-works carousel, parked: hiw-1..6 show the old Essential Graphics
+       panel, which no longer resembles the 52-control panel. The VSL covers
+       this ground until new screen recordings exist. -->
+  <template data-paused-hiw>
+    <!-- VIDEO CAROUSEL -->
+    <section class="carousel-section">
+      <p class="carousel-label">watch how it works</p>
+      <div class="carousel-wrapper">
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="carousel">
+            <div class="carousel-item">
+              <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-1.jpg">
+                <source src="/assets/hiw-1.webm" type="video/webm">
+              </video>
+            </div>
+            <div class="carousel-item">
+              <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-2.jpg">
+                <source src="/assets/hiw-2.webm" type="video/webm">
+              </video>
+            </div>
+            <div class="carousel-item">
+              <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-3.jpg">
+                <source src="/assets/hiw-3.webm" type="video/webm">
+              </video>
+            </div>
+            <div class="carousel-item">
+              <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-4.jpg">
+                <source src="/assets/hiw-4.webm" type="video/webm">
+              </video>
+            </div>
+            <div class="carousel-item">
+              <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-5.jpg">
+                <source src="/assets/hiw-5.webm" type="video/webm">
+              </video>
+            </div>
+            <div class="carousel-item">
+              <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-6.jpg">
+                <source src="/assets/hiw-6.webm" type="video/webm">
+              </video>
+            </div>
           </div>
-          <div class="carousel-item">
-            <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-2.jpg">
-              <source src="/assets/hiw-2.webm" type="video/webm">
-            </video>
-          </div>
-          <div class="carousel-item">
-            <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-3.jpg">
-              <source src="/assets/hiw-3.webm" type="video/webm">
-            </video>
-          </div>
-          <div class="carousel-item">
-            <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-4.jpg">
-              <source src="/assets/hiw-4.webm" type="video/webm">
-            </video>
-          </div>
-          <div class="carousel-item">
-            <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-5.jpg">
-              <source src="/assets/hiw-5.webm" type="video/webm">
-            </video>
-          </div>
-          <div class="carousel-item">
-            <video autoplay muted loop playsinline preload="metadata" poster="/assets/posters/hiw-6.jpg">
-              <source src="/assets/hiw-6.webm" type="video/webm">
-            </video>
-          </div>
+          <button class="carousel-arrow carousel-arrow--left" onclick="scrollCarousel(-1)" aria-label="Previous">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          </button>
+          <button class="carousel-arrow carousel-arrow--right" onclick="scrollCarousel(1)" aria-label="Next">
+            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </button>
         </div>
-        <button class="carousel-arrow carousel-arrow--left" onclick="scrollCarousel(-1)" aria-label="Previous">
-          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-        </button>
-        <button class="carousel-arrow carousel-arrow--right" onclick="scrollCarousel(1)" aria-label="Next">
-          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-        </button>
+        <div class="carousel-dots" id="carouselDots"></div>
       </div>
-      <div class="carousel-dots" id="carouselDots"></div>
-    </div>
-  </section>
+    </section>
+  </template>
+
+
 
   <div class="divider"><hr></div>
 
@@ -1836,6 +2047,8 @@
     <h2 class="final-cta__title">Buy now. <span style="color:var(--accent)">Level up.</span></h2>
     <p class="final-cta__sub">Instant Download, Lifetime Access &amp; Updates.</p>
     <a id="finalBuy" class="btn btn-primary" style="margin-top:8px" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now — $47</a>
+    <p class="launch-price"><span class="lp-was">$60</span> Save $13</p>
+    <p class="licence-line">Yours to use in unlimited personal and client projects, forever. Just don't resell or share the files.</p>
   </section>
 
   <!-- FAQ -->
@@ -1869,14 +2082,14 @@
           Will this work with my editing software?
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
-        <div class="faq__answer">This pack is designed specifically for Premiere Pro. No plugins or After Effects required.</div>
+        <div class="faq__answer">Built specifically for Premiere Pro 2019 or newer. No plugins, no After Effects.</div>
       </div>
       <div class="faq__item">
         <button class="faq__question" onclick="toggleFaq(this)">
           What can I customize?
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
-        <div class="faq__answer">Everything — font, size, color, timing, and position. Each animation is fully adjustable inside Premiere Pro's Essential Graphics panel.</div>
+        <div class="faq__answer">Everything. 52 controls across 11 sections, all inside Premiere's Essential Graphics panel. Font, size, colour, position, spacing, speed, direction, drop shadow, stroke, gradient, glow, blur, curve, light sweep, film grain and rough edges. No keyframing.</div>
       </div>
       <div class="faq__item">
         <button class="faq__question" onclick="toggleFaq(this)">
@@ -1884,6 +2097,20 @@
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq__answer">No — just Premiere Pro. Drag, drop, type. That's it.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">
+          Can I share it with my team?
+          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq__answer">One licence covers one person. If three people use it, that's three licences. Client work is completely fine, you just deliver the finished video rather than the template files.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">
+          Do I need a special font?
+          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq__answer">No. The font is included in the download, free and open source. Or swap in any font you like, it applies to all 41 animations at once.</div>
       </div>
     </div>
   </section>
@@ -2068,68 +2295,90 @@
     }
 
     // ── CAROUSEL (infinite loop) ──
-    const carTrack = document.getElementById('carousel');
-    const carDots = document.getElementById('carouselDots');
-    const carOriginals = Array.from(carTrack.children);
-    const carRealCount = carOriginals.length;
+    // Guarded: the how-it-works carousel is currently parked inside
+    // <template data-paused-hiw>, so #carousel is not in the document.
+    (function () {
+      const carTrackProbe = document.getElementById('carousel');
+      if (!carTrackProbe) { window.scrollCarousel = function () {}; return; }
+        const carTrack = document.getElementById('carousel');
+      const carDots = document.getElementById('carouselDots');
+      const carOriginals = Array.from(carTrack.children);
+      const carRealCount = carOriginals.length;
 
-    // clone a full set before and after for seamless wrap
-    carOriginals.slice().reverse().forEach(n => carTrack.insertBefore(n.cloneNode(true), carTrack.firstChild));
-    carOriginals.forEach(n => carTrack.appendChild(n.cloneNode(true)));
-    const carAll = Array.from(carTrack.children);
+      // clone a full set before and after for seamless wrap
+      carOriginals.slice().reverse().forEach(n => carTrack.insertBefore(n.cloneNode(true), carTrack.firstChild));
+      carOriginals.forEach(n => carTrack.appendChild(n.cloneNode(true)));
+      const carAll = Array.from(carTrack.children);
 
-    let carOneSet = 0, carCenterPad = 0;
-    function carItemW() { return carAll[1].offsetLeft - carAll[0].offsetLeft; }
-    function carMeasure() {
-      carOneSet = carAll[carRealCount].offsetLeft - carAll[0].offsetLeft;
-      carCenterPad = (carTrack.clientWidth - carAll[0].offsetWidth) / 2;
-    }
-    function carBase() { return carOneSet - carCenterPad; } // scroll pos that centers the first real item
-    function carRecenter() {
-      carMeasure();
-      carTrack.scrollLeft = carBase(); // start with item 1 centered
-    }
-    carRecenter();
-    window.addEventListener('load', carRecenter);
-    window.addEventListener('resize', carRecenter);
+      let carOneSet = 0, carCenterPad = 0;
+      function carItemW() { return carAll[1].offsetLeft - carAll[0].offsetLeft; }
+      function carMeasure() {
+        carOneSet = carAll[carRealCount].offsetLeft - carAll[0].offsetLeft;
+        carCenterPad = (carTrack.clientWidth - carAll[0].offsetWidth) / 2;
+      }
+      function carBase() { return carOneSet - carCenterPad; } // scroll pos that centers the first real item
+      function carRecenter() {
+        carMeasure();
+        carTrack.scrollLeft = carBase(); // start with item 1 centered
+      }
+      carRecenter();
+      window.addEventListener('load', carRecenter);
+      window.addEventListener('resize', carRecenter);
 
-    function scrollCarousel(dir) {
-      carTrack.scrollBy({ left: dir * carItemW(), behavior: 'smooth' });
-    }
+      function scrollCarousel(dir) {
+        carTrack.scrollBy({ left: dir * carItemW(), behavior: 'smooth' });
+      }
 
-    // dots (one per real item)
-    for (let i = 0; i < carRealCount; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-      dot.addEventListener('click', () => {
-        carTrack.scrollTo({ left: carBase() + i * carItemW(), behavior: 'smooth' });
+      // dots (one per real item)
+      for (let i = 0; i < carRealCount; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', () => {
+          carTrack.scrollTo({ left: carBase() + i * carItemW(), behavior: 'smooth' });
+        });
+        carDots.appendChild(dot);
+      }
+      const carDotEls = carDots.querySelectorAll('.carousel-dot');
+
+      function updateCarDots() {
+        const rel = carTrack.scrollLeft - carBase();
+        let idx = Math.round(rel / carItemW());
+        idx = ((idx % carRealCount) + carRealCount) % carRealCount;
+        carDotEls.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+
+      let carTick = false;
+      carTrack.addEventListener('scroll', () => {
+        // seamless infinite wrap (keep within the middle set)
+        const wrapRel = carTrack.scrollLeft - carBase();
+        if (wrapRel < -carOneSet * 0.5) {
+          carTrack.scrollLeft += carOneSet;
+        } else if (wrapRel >= carOneSet * 0.5) {
+          carTrack.scrollLeft -= carOneSet;
+        }
+        if (!carTick) {
+          requestAnimationFrame(() => { updateCarDots(); carTick = false; });
+          carTick = true;
+        }
       });
-      carDots.appendChild(dot);
-    }
-    const carDotEls = carDots.querySelectorAll('.carousel-dot');
+      window.scrollCarousel = scrollCarousel;
+    })();
 
-    function updateCarDots() {
-      const rel = carTrack.scrollLeft - carBase();
-      let idx = Math.round(rel / carItemW());
-      idx = ((idx % carRealCount) + carRealCount) % carRealCount;
-      carDotEls.forEach((d, i) => d.classList.toggle('active', i === idx));
-    }
-
-    let carTick = false;
-    carTrack.addEventListener('scroll', () => {
-      // seamless infinite wrap (keep within the middle set)
-      const wrapRel = carTrack.scrollLeft - carBase();
-      if (wrapRel < -carOneSet * 0.5) {
-        carTrack.scrollLeft += carOneSet;
-      } else if (wrapRel >= carOneSet * 0.5) {
-        carTrack.scrollLeft -= carOneSet;
+    // ── VSL: click to play with sound, hide the button once it starts ──
+    (function () {
+      const frame = document.getElementById('vslFrame');
+      const video = document.getElementById('vslVideo');
+      if (!frame || !video) return;
+      function start() {
+        frame.classList.add('playing');
+        video.controls = true;
+        video.play().catch(function () {});
       }
-      if (!carTick) {
-        requestAnimationFrame(() => { updateCarDots(); carTick = false; });
-        carTick = true;
-      }
-    });
+      frame.addEventListener('click', function () { if (video.paused) start(); });
+      video.addEventListener('pause', function () { frame.classList.remove('playing'); });
+      video.addEventListener('play',  function () { frame.classList.add('playing'); });
+    })();
 
     // ── Sticky CTA: visible once the hero Buy leaves view, until the final Buy comes into view ──
     window.addEventListener('DOMContentLoaded', function () {
