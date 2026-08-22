@@ -269,11 +269,6 @@
       margin-top: 10px;
     }
     .launch-price .lp-was { text-decoration: line-through; }
-    /* one-line licence, sits under the final CTA */
-    .licence-line {
-      max-width: 420px; margin: 16px auto 0;
-      font-size: 12px; line-height: 1.6; color: var(--tertiary); text-align: center;
-    }
     .hero__cta { display: inline-flex; flex-direction: column; align-items: center; margin-top: 22px; }
     .hero__pp { margin-top: 10px; display: flex; justify-content: center; }
     .pp-icon.pp-icon--lg {
@@ -795,57 +790,114 @@
       text-align: center;
       margin-bottom: 0;
     }
-    /* ══ CONTROLS: every look is built in ══ */
-    .controls {
-      max-width: var(--max-w);
-      margin: 0 auto 56px;
-      padding: 0 20px;
+    /* ══ CONTROLS: a replica of the Essential Graphics panel ══
+       Every label and count below is read from definition.json in the .mogrt,
+       so what a buyer sees here is what they get after installing. */
+    .controls { max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
+    .controls__intro {
+      font-size: 14px; line-height: 23px; color: var(--secondary);
+      max-width: 560px; margin: 12px auto 30px; text-align: center;
     }
-    .controls__grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 26px;
+    .controls__intro strong { color: var(--primary); font-weight: 600; }
+    .egp {
+      max-width: 520px; margin: 0 auto;
+      background: var(--container); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
     }
-    .control-card {
-      background: var(--container);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px 16px 15px;
-      text-align: left;
-      transition: border-color 0.2s, transform 0.2s;
+    .egp-bar {
+      display: flex; align-items: center; gap: 9px;
+      padding: 11px 14px; border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
     }
-    .control-card:hover { border-color: #333; transform: translateY(-3px); }
-    .control-card--new { border-color: rgba(91,211,254,0.28); }
-    .control-card__name {
-      font-size: 13px; font-weight: 600; color: var(--primary);
-      margin-bottom: 7px; display: flex; align-items: center; gap: 7px;
+    .egp-bar__t {
+      font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--secondary);
     }
-    .control-card__new {
-      font-family: 'Geist Mono', monospace; font-size: 9px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--accent); background: rgba(91,211,254,0.1);
-      border: 1px solid rgba(91,211,254,0.22);
-      border-radius: 5px; padding: 2px 5px; line-height: 1.4;
+    .egp-bar__pr {
+      margin-left: auto; font-size: 9.5px; font-weight: 700; letter-spacing: 0.04em;
+      color: #9a7bff; border: 1px solid rgba(154,123,255,0.4);
+      border-radius: 4px; padding: 2px 5px; line-height: 1.3;
     }
-    .control-card__list { font-size: 12px; line-height: 1.75; color: var(--secondary); }
-    /* the two short proof lines under the grid */
-    .controls__notes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .egp-body { padding: 6px 0; }
+    .egp-body--fold { display: none; background: rgba(255,255,255,0.012); }
+    .egp-sec.open .egp-body--fold { display: block; }
+    .egp-sec { border-top: 1px solid var(--border); }
+    .egp-head {
+      width: 100%; display: flex; align-items: center; gap: 8px;
+      padding: 10px 14px; background: none; border: 0; cursor: pointer;
+      font-family: inherit; text-align: left; color: var(--primary);
+      transition: background 0.15s;
+    }
+    .egp-head:hover { background: rgba(255,255,255,0.03); }
+    .egp-chev {
+      width: 13px; height: 13px; flex-shrink: 0; fill: none;
+      stroke: var(--tertiary); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
+      transition: transform 0.18s;
+    }
+    .egp-sec.open .egp-chev { transform: rotate(90deg); stroke: var(--accent); }
+    .egp-name { font-size: 12.5px; font-weight: 600; }
+    .egp-new {
+      font-family: 'Geist Mono', monospace; font-size: 8.5px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent);
+      background: rgba(91,211,254,0.1); border: 1px solid rgba(91,211,254,0.25);
+      border-radius: 4px; padding: 2px 4px; line-height: 1.3;
+    }
+    .egp-count {
+      margin-left: auto; font-family: 'Geist Mono', monospace;
+      font-size: 10.5px; color: var(--tertiary);
+    }
+    .egp-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 5px 14px 5px 35px; min-height: 27px;
+    }
+    .egp-lab {
+      font-size: 11.5px; color: var(--secondary);
+      flex: 0 0 44%; min-width: 0;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .egp-field {
+      flex: 1; display: flex; align-items: center; gap: 6px;
+      font-family: 'Geist Mono', monospace; font-size: 10.5px; color: var(--primary);
+      background: rgba(0,0,0,0.35); border: 1px solid var(--border);
+      border-radius: 5px; padding: 3px 7px; min-width: 0;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .egp-field svg { margin-left: auto; width: 11px; height: 11px; flex-shrink: 0;
+      fill: none; stroke: var(--tertiary); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .egp-field--text { color: var(--accent); }
+    .egp-field--col i { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.22); }
+    .egp-slider { flex: 1; display: flex; align-items: center; gap: 9px; min-width: 0; }
+    .egp-track { position: relative; flex: 1; height: 3px; border-radius: 2px;
+      background: rgba(255,255,255,0.1); min-width: 0; }
+    .egp-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: var(--accent); }
+    .egp-knob { position: absolute; top: 50%; width: 9px; height: 9px; border-radius: 50%;
+      background: #fff; transform: translate(-50%,-50%); box-shadow: 0 1px 4px rgba(0,0,0,0.6); }
+    .egp-val { font-family: 'Geist Mono', monospace; font-size: 10.5px; color: var(--tertiary);
+      flex: 0 0 auto; min-width: 30px; text-align: right; }
+    .egp-check { width: 13px; height: 13px; border-radius: 3px; border: 1px solid var(--border);
+      background: rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center; }
+    .egp-check svg { width: 9px; height: 9px; fill: none; stroke: var(--bg); stroke-width: 3.4;
+      stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+    .egp-check.is-on { background: var(--accent); border-color: var(--accent); }
+    .egp-check.is-on svg { opacity: 1; }
+    .egp-hint {
+      text-align: center; font-family: 'Geist Mono', monospace; font-size: 10.5px;
+      color: var(--tertiary); margin-top: 14px; letter-spacing: 0.03em;
+    }
+    /* the two proof notes under the panel */
+    .controls__notes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 30px; }
     .controls__note {
       background: linear-gradient(160deg, rgba(91,211,254,0.05), var(--container) 65%);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
-      text-align: left;
+      border: 1px solid var(--border); border-radius: 14px; padding: 18px; text-align: left;
     }
     .controls__note-title { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 5px; }
     .controls__note-body { font-size: 12.5px; line-height: 1.65; color: var(--secondary); }
-    @media (max-width: 780px) {
-      .controls__grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 520px) {
-      .controls__grid { grid-template-columns: 1fr; }
+    @media (max-width: 560px) {
       .controls__notes { grid-template-columns: 1fr; }
+      .egp-row { padding-left: 26px; }
+      .egp-lab { flex-basis: 50%; font-size: 11px; }
     }
     /* ══ VSL: horizontal sales video ══ */
     .vsl { max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
@@ -1710,6 +1762,29 @@
 
   <div style="height:16px"></div>
 
+  <!-- ══ VSL (YouTube) ══
+       TODO before launch: put the real video id in data-yt below. Optionally
+       drop a poster at /assets/posters/text-vsl.jpg; without one the block
+       shows the gradient and the play button, which looks fine.
+
+       This is a facade, not a raw iframe. A bare YouTube embed pulls roughly a
+       megabyte of their JS into every single page load even for people who
+       never press play. Here nothing YouTube-related loads until the click,
+       then the iframe is injected with autoplay. Uses youtube-nocookie.com so
+       no tracking cookie is set before the visitor asks for the video. -->
+  <section class="vsl">
+    <p class="section-label">Watch it work</p>
+    <h2 class="section-title" style="margin-bottom:20px">See it in action.</h2>
+    <div class="vsl__frame" id="vslFrame" data-yt="VIDEO_ID_TODO" role="button" tabindex="0" aria-label="Play the video">
+      <img class="vsl__poster" id="vslPoster" src="/assets/posters/text-vsl.jpg" alt="" aria-hidden="true">
+      <button class="vsl__play" id="vslPlay" aria-label="Play the video">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
   <!-- FEATURES -->
   <section class="features">
     <div class="features__content">
@@ -1760,92 +1835,138 @@
     </div>
   </section>
 
-  <!-- ══ VSL (YouTube) ══
-       TODO before launch: put the real video id in data-yt below. Optionally
-       drop a poster at /assets/posters/text-vsl.jpg; without one the block
-       shows the gradient and the play button, which looks fine.
-
-       This is a facade, not a raw iframe. A bare YouTube embed pulls roughly a
-       megabyte of their JS into every single page load even for people who
-       never press play. Here nothing YouTube-related loads until the click,
-       then the iframe is injected with autoplay. Uses youtube-nocookie.com so
-       no tracking cookie is set before the visitor asks for the video. -->
-  <section class="vsl">
-    <p class="section-label">Watch it work</p>
-    <h2 class="section-title" style="margin-bottom:20px">See all 41 in two minutes</h2>
-    <div class="vsl__frame" id="vslFrame" data-yt="VIDEO_ID_TODO" role="button" tabindex="0" aria-label="Play the video">
-      <img class="vsl__poster" id="vslPoster" src="/assets/posters/text-vsl.jpg" alt="" aria-hidden="true">
-      <button class="vsl__play" id="vslPlay" aria-label="Play the video">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-    </div>
-  </section>
 
   <div class="divider"><hr></div>
 
-  <!-- CONTROLS: the 52-control panel -->
+  <!-- CONTROLS: replica of the Essential Graphics panel -->
   <section class="controls">
-    <p class="section-label">Under the hood</p>
-    <h2 class="section-title">Every look is built in</h2>
-    <p class="section-sub">52 controls, every one of them a slider or a dropdown in Premiere's Essential Graphics panel.</p>
-    <div class="controls__grid">
-        <div class="control-card">
-          <div class="control-card__name">Text</div>
-          <div class="control-card__list">Your text, scale, position, colour</div>
+    <p class="section-label">Inside the panel</p>
+    <h2 class="section-title">One panel. 52 controls. <em>No keyframes.</em></h2>
+    <p class="controls__intro">Every look is built into the same template. <strong>52 controls across 11 sections</strong>, and every one of them is a slider or a dropdown. Gradients, animated light sweep, film grain and rough edges are all in there, so there is nothing to stack and nothing third-party to buy.</p>
+    <div class="egp">
+      <div class="egp-bar">
+        <span class="egp-bar__t">Essential Graphics</span>
+        <span class="egp-bar__pr">Pr</span>
+      </div>
+        <div class="egp-body">
+          <div class="egp-row"><span class="egp-lab">Your Text</span><span class="egp-field egp-field--text">Artzen Media</span></div>
+          <div class="egp-row"><span class="egp-lab">Text Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:62%"></span><span class="egp-knob" style="left:62%"></span></span><span class="egp-val">100</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Text Position</span><span class="egp-field">960 · 540</span></div>
+          <div class="egp-row"><span class="egp-lab">Color</span><span class="egp-field egp-field--col"><i style="background:#FFFFFF"></i>#FFFFFF</span></div>
+          <div class="egp-row"><span class="egp-lab">Start Animation</span><span class="egp-field egp-field--drop">Fade<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+          <div class="egp-row"><span class="egp-lab">End Animation</span><span class="egp-field egp-field--drop">Glitch<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
         </div>
-        <div class="control-card">
-          <div class="control-card__name">Animation</div>
-          <div class="control-card__list">Start animation, end animation, start speed, end speed, animate by line / word / character / random, enter from any direction, reveal order, frame rate look</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Animation Controls</span><span class="egp-count">6</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Start Speed</span><span class="egp-field egp-field--drop">Normal<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">End Speed</span><span class="egp-field egp-field--drop">Normal<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Animate By</span><span class="egp-field egp-field--drop">Character<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Enter From</span><span class="egp-field egp-field--drop">Up<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Reveal Order</span><span class="egp-field egp-field--drop">Forward<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Frame Rate Look</span><span class="egp-field egp-field--drop">60fps smooth<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+          </div>
         </div>
-        <div class="control-card">
-          <div class="control-card__name">Finetune</div>
-          <div class="control-card__list">Travel distance, stagger</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Finetune Animation</span><span class="egp-count">2</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Travel Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">240</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Stagger</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:22%"></span><span class="egp-knob" style="left:22%"></span></span><span class="egp-val">0.04</span></span></div>
+          </div>
         </div>
-        <div class="control-card">
-          <div class="control-card__name">Spacing</div>
-          <div class="control-card__list">Letter tracking, word spacing, line leading, alignment</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Text Spacing</span><span class="egp-count">4</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Letter Tracking</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Word Spacing</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Line Leading</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Text Alignment</span><span class="egp-field egp-field--drop">Center<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+          </div>
         </div>
-        <div class="control-card">
-          <div class="control-card__name">Wiggle</div>
-          <div class="control-card__list">Character wiggle on / amount / speed, whole-text wiggle on / amount / speed</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Wiggle</span><span class="egp-count">6</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Character Wiggle On</span><span class="egp-check is-on"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Character Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">12</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Character Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:40%"></span><span class="egp-knob" style="left:40%"></span></span><span class="egp-val">2.0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Text Wiggle On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Text Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Text Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
+          </div>
         </div>
-        <div class="control-card">
-          <div class="control-card__name">Drop shadow</div>
-          <div class="control-card__list">Colour, opacity, softness, distance, angle</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Drop Shadow</span><span class="egp-count">5</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Shadow Color</span><span class="egp-field egp-field--col"><i style="background:#000000"></i>#000000</span></div>
+            <div class="egp-row"><span class="egp-lab">Shadow Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">55</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Shadow Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:28%"></span><span class="egp-knob" style="left:28%"></span></span><span class="egp-val">14</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Shadow Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:16%"></span><span class="egp-knob" style="left:16%"></span></span><span class="egp-val">8</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Shadow Angle</span><span class="egp-field">135°</span></div>
+          </div>
         </div>
-        <div class="control-card">
-          <div class="control-card__name">Curve</div>
-          <div class="control-card__list">Arc, bulge or arch, amount, vertical offset</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Curve</span><span class="egp-count">3</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Curve Style</span><span class="egp-field egp-field--drop">Arc<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Text Curve</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Curve Offset Y</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+          </div>
         </div>
-        <div class="control-card">
-          <div class="control-card__name">Stroke</div>
-          <div class="control-card__list">Width, text opacity, colour</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Stroke</span><span class="egp-count">3</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Stroke Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Text Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:100%"></span><span class="egp-knob" style="left:100%"></span></span><span class="egp-val">100</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Stroke Color</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
+          </div>
         </div>
-        <div class="control-card">
-          <div class="control-card__name">Blur &amp; glow</div>
-          <div class="control-card__list">Blur, glow radius, glow intensity</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Blur &amp; Glow</span><span class="egp-count">3</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Blur</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Glow Radius</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Glow Intensity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          </div>
         </div>
-        <div class="control-card control-card--new">
-          <div class="control-card__name">Light sweep<span class="control-card__new">New</span></div>
-          <div class="control-card__list">Speed, amount, softness, angle, width</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Light Sweep</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Shine Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">1.0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Shine</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Shine Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:20%"></span><span class="egp-knob" style="left:20%"></span></span><span class="egp-val">20</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Shine Angle</span><span class="egp-field">45°</span></div>
+            <div class="egp-row"><span class="egp-lab">Shine Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">30</span></span></div>
+          </div>
         </div>
-        <div class="control-card control-card--new">
-          <div class="control-card__name">Gradient<span class="control-card__new">New</span></div>
-          <div class="control-card__list">On / off, two colours, angle, motion rate</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Gradient</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Gradient On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Gradient Color 1</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
+            <div class="egp-row"><span class="egp-lab">Gradient Color 2</span><span class="egp-field egp-field--col"><i style="background:#FFEA00"></i>#FFEA00</span></div>
+            <div class="egp-row"><span class="egp-lab">Gradient Angle</span><span class="egp-field">90°</span></div>
+            <div class="egp-row"><span class="egp-lab">Gradient Motion Rate</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          </div>
         </div>
-        <div class="control-card control-card--new">
-          <div class="control-card__name">Texture<span class="control-card__new">New</span></div>
-          <div class="control-card__list">Film grain, edge roughness, roughness speed, roughness scale</div>
+        <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Texture</span><span class="egp-new">New</span><span class="egp-count">4</span></button>
+          <div class="egp-body egp-body--fold">
+            <div class="egp-row"><span class="egp-lab">Grain</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Edge Roughness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Roughness Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
+            <div class="egp-row"><span class="egp-lab">Roughness Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">100</span></span></div>
+          </div>
         </div>
     </div>
+    <p class="egp-hint">Tap a section to open it</p>
     <div class="controls__notes">
       <div class="controls__note">
         <div class="controls__note-title">Any length</div>
         <div class="controls__note-body">Drag it to any length. The in and out hold their timing, the middle stretches to fit.</div>
       </div>
       <div class="controls__note">
-        <div class="controls__note-title">Font included</div>
-        <div class="controls__note-body">Inter, free and open source, right in the download. Or swap in your own, it applies to all 41 animations at once.</div>
+        <div class="controls__note-title">Free font list</div>
+        <div class="controls__note-body">A list of free fonts that pair well with the pack, with links to grab them. Whichever one you pick applies to all 41 animations at once.</div>
       </div>
     </div>
   </section>
@@ -2052,7 +2173,6 @@
     <p class="final-cta__sub">Instant Download, Lifetime Access &amp; Updates.</p>
     <a id="finalBuy" class="btn btn-primary" style="margin-top:8px" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now — $47</a>
     <p class="launch-price"><span class="lp-was">$60</span> Save $13</p>
-    <p class="licence-line">Yours to use in unlimited personal and client projects, forever. Just don't resell or share the files.</p>
   </section>
 
   <!-- FAQ -->
@@ -2086,14 +2206,14 @@
           Will this work with my editing software?
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
-        <div class="faq__answer">Built specifically for Premiere Pro 2019 or newer. No plugins, no After Effects.</div>
+        <div class="faq__answer">This pack is designed specifically for Premiere Pro. No plugins or After Effects required.</div>
       </div>
       <div class="faq__item">
         <button class="faq__question" onclick="toggleFaq(this)">
           What can I customize?
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
-        <div class="faq__answer">Everything. 52 controls across 11 sections, all inside Premiere's Essential Graphics panel. Font, size, colour, position, spacing, speed, direction, drop shadow, stroke, gradient, glow, blur, curve, light sweep, film grain and rough edges. No keyframing.</div>
+        <div class="faq__answer">Everything — font, size, color, timing, and position. Each animation is fully adjustable inside Premiere Pro's Essential Graphics panel.</div>
       </div>
       <div class="faq__item">
         <button class="faq__question" onclick="toggleFaq(this)">
@@ -2101,20 +2221,6 @@
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq__answer">No — just Premiere Pro. Drag, drop, type. That's it.</div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question" onclick="toggleFaq(this)">
-          Can I share it with my team?
-          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq__answer">One licence covers one person. If three people use it, that's three licences. Client work is completely fine, you just deliver the finished video rather than the template files.</div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question" onclick="toggleFaq(this)">
-          Do I need a special font?
-          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq__answer">No. The font is included in the download, free and open source. Or swap in any font you like, it applies to all 41 animations at once.</div>
       </div>
     </div>
   </section>
@@ -2367,6 +2473,19 @@
         }
       });
       window.scrollCarousel = scrollCarousel;
+    })();
+
+    // ── Essential Graphics replica: open a section on click ──
+    (function () {
+      const heads = document.querySelectorAll('.egp-head');
+      if (!heads.length) return;
+      heads.forEach(function (h) {
+        h.addEventListener('click', function () {
+          const sec = h.closest('.egp-sec');
+          const open = sec.classList.toggle('open');
+          h.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      });
     })();
 
     // ── VSL: swap the poster for the YouTube iframe on click ──
