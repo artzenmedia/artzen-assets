@@ -37,6 +37,16 @@
       --max-w: 800px;
     }
 
+    /* accent word treatment, matching /sfx */
+    em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.12em;
+      letter-spacing: 0;
+      color: var(--accent);
+      text-shadow: 0 0 24px rgba(91,211,254,0.28);
+    }
     html { scroll-behavior: smooth; background: var(--bg); }
     body {
       background: transparent;
@@ -269,6 +279,9 @@
       margin-top: 10px;
     }
     .launch-price .lp-was { text-decoration: line-through; }
+    .final-cta__no-sub { font-size: 12px; color: var(--tertiary); line-height: 1.6; margin-top: 12px; }
+    .final-cta__no-sub a { color: var(--secondary); text-decoration: none; border-bottom: 1px solid var(--border); }
+    .final-cta__no-sub a:hover { color: var(--accent); }
     .hero__cta { display: inline-flex; flex-direction: column; align-items: center; margin-top: 22px; }
     .hero__pp { margin-top: 10px; display: flex; justify-content: center; }
     .pp-icon.pp-icon--lg {
@@ -814,11 +827,7 @@
       font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: 0.07em;
       text-transform: uppercase; color: var(--secondary);
     }
-    .egp-bar__pr {
-      margin-left: auto; font-size: 9.5px; font-weight: 700; letter-spacing: 0.04em;
-      color: #9a7bff; border: 1px solid rgba(154,123,255,0.4);
-      border-radius: 4px; padding: 2px 5px; line-height: 1.3;
-    }
+    .egp-bar .pp-icon { margin-left: auto; }
     .egp-body { padding: 6px 0; }
     .egp-body--fold { display: none; background: rgba(255,255,255,0.012); }
     .egp-sec.open .egp-body--fold { display: block; }
@@ -868,6 +877,26 @@
     .egp-field--text { color: var(--accent); }
     .egp-field--col i { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0;
       border: 1px solid rgba(255,255,255,0.22); }
+    .egp-drop { position: relative; flex: 1; min-width: 0; display: flex; }
+    .egp-drop .egp-field { width: 100%; cursor: pointer; text-align: left; font-family: 'Geist Mono', monospace; }
+    .egp-drop .egp-field:hover { border-color: rgba(91,211,254,0.4); }
+    .egp-cur { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .egp-drop.open .egp-field svg { transform: rotate(180deg); }
+    .egp-field svg { transition: transform 0.16s; }
+    .egp-menu {
+      display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 5;
+      max-height: 178px; overflow-y: auto; margin: 0; padding: 4px; list-style: none;
+      background: #0c0c0c; border: 1px solid rgba(91,211,254,0.3); border-radius: 7px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+      font-family: 'Geist Mono', monospace; font-size: 10.5px;
+      scrollbar-width: thin; scrollbar-color: #333 transparent;
+    }
+    .egp-drop.open .egp-menu { display: block; }
+    .egp-menu::-webkit-scrollbar { width: 6px; }
+    .egp-menu::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    .egp-menu li { padding: 5px 8px; border-radius: 4px; color: var(--secondary); cursor: pointer; }
+    .egp-menu li:hover { background: rgba(91,211,254,0.1); color: var(--primary); }
+    .egp-menu li.is-sel { color: var(--accent); background: rgba(91,211,254,0.07); }
     .egp-slider { flex: 1; display: flex; align-items: center; gap: 9px; min-width: 0; }
     .egp-track { position: relative; flex: 1; height: 3px; border-radius: 2px;
       background: rgba(255,255,255,0.1); min-width: 0; }
@@ -891,6 +920,18 @@
     .controls__note {
       background: linear-gradient(160deg, rgba(91,211,254,0.05), var(--container) 65%);
       border: 1px solid var(--border); border-radius: 14px; padding: 18px; text-align: left;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .controls__note:hover { border-color: rgba(91,211,254,0.32); transform: translateY(-3px); }
+    .controls__note-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: rgba(91,211,254,0.08); border: 1px solid rgba(91,211,254,0.18);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    }
+    .controls__note-icon svg {
+      width: 18px; height: 18px; fill: none; stroke: var(--accent);
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
     }
     .controls__note-title { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 5px; }
     .controls__note-body { font-size: 12.5px; line-height: 1.65; color: var(--secondary); }
@@ -1774,7 +1815,7 @@
        no tracking cookie is set before the visitor asks for the video. -->
   <section class="vsl">
     <p class="section-label">Watch it work</p>
-    <h2 class="section-title" style="margin-bottom:20px">See it in action.</h2>
+    <h2 class="section-title" style="margin-bottom:20px">See it <em>in action.</em></h2>
     <div class="vsl__frame" id="vslFrame" data-yt="VIDEO_ID_TODO" role="button" tabindex="0" aria-label="Play the video">
       <img class="vsl__poster" id="vslPoster" src="/assets/posters/text-vsl.jpg" alt="" aria-hidden="true">
       <button class="vsl__play" id="vslPlay" aria-label="Play the video">
@@ -1788,7 +1829,7 @@
   <!-- FEATURES -->
   <section class="features">
     <div class="features__content">
-      <h2 class="features__h2">People read your videos before they watch them.</h2>
+      <h2 class="features__h2">People <em>read</em> your videos before they watch them.</h2>
       <p class="features__subh">So make the text count.</p>
       <p class="features__desc">I know you're tired of Premiere's built-in text animations. They're limited, overused, and after a while every edit starts to look the same. So I built 41 hand-crafted, fully customizable animations that drop straight onto your timeline. No keyframing, no plugins, no After Effects.</p>
       <p class="features__combos">Pick how the text comes in and how it leaves, independently. 41 entrances, 41 exits, <strong>1,681 combinations</strong> before you touch a single slider.</p>
@@ -1846,25 +1887,25 @@
     <div class="egp">
       <div class="egp-bar">
         <span class="egp-bar__t">Essential Graphics</span>
-        <span class="egp-bar__pr">Pr</span>
+        <div class="pp-icon" title="Premiere Pro">Pr</div>
       </div>
         <div class="egp-body">
           <div class="egp-row"><span class="egp-lab">Your Text</span><span class="egp-field egp-field--text">Artzen Media</span></div>
           <div class="egp-row"><span class="egp-lab">Text Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:62%"></span><span class="egp-knob" style="left:62%"></span></span><span class="egp-val">100</span></span></div>
           <div class="egp-row"><span class="egp-lab">Text Position</span><span class="egp-field">960 · 540</span></div>
           <div class="egp-row"><span class="egp-lab">Color</span><span class="egp-field egp-field--col"><i style="background:#FFFFFF"></i>#FFFFFF</span></div>
-          <div class="egp-row"><span class="egp-lab">Start Animation</span><span class="egp-field egp-field--drop">Fade<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
-          <div class="egp-row"><span class="egp-lab">End Animation</span><span class="egp-field egp-field--drop">Glitch<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+          <div class="egp-row"><span class="egp-lab">Start Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Fade</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li class="is-sel">Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li>Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
+          <div class="egp-row"><span class="egp-lab">End Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Glitch</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li>Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li class="is-sel">Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
         </div>
         <div class="egp-sec">
           <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Animation Controls</span><span class="egp-count">6</span></button>
           <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Start Speed</span><span class="egp-field egp-field--drop">Normal<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
-            <div class="egp-row"><span class="egp-lab">End Speed</span><span class="egp-field egp-field--drop">Normal<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
-            <div class="egp-row"><span class="egp-lab">Animate By</span><span class="egp-field egp-field--drop">Character<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
-            <div class="egp-row"><span class="egp-lab">Enter From</span><span class="egp-field egp-field--drop">Up<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
-            <div class="egp-row"><span class="egp-lab">Reveal Order</span><span class="egp-field egp-field--drop">Forward<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
-            <div class="egp-row"><span class="egp-lab">Frame Rate Look</span><span class="egp-field egp-field--drop">60fps smooth<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Start Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
+            <div class="egp-row"><span class="egp-lab">End Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
+            <div class="egp-row"><span class="egp-lab">Animate By</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Character</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Line</li><li>Word</li><li>Characters</li><li>Random</li></ul></span></div>
+            <div class="egp-row"><span class="egp-lab">Enter From</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Up</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Up</li><li>Down</li><li>Left</li><li>Right</li></ul></span></div>
+            <div class="egp-row"><span class="egp-lab">Reveal Order</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Forward</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Forward</li><li>Reverse</li></ul></span></div>
+            <div class="egp-row"><span class="egp-lab">Frame Rate Look</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">60fps smooth</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Smooth (60FPS)</li><li>Middle (24FPS)</li><li>Laggy (12FPS)</li></ul></span></div>
           </div>
         </div>
         <div class="egp-sec">
@@ -1880,7 +1921,7 @@
             <div class="egp-row"><span class="egp-lab">Letter Tracking</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
             <div class="egp-row"><span class="egp-lab">Word Spacing</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
             <div class="egp-row"><span class="egp-lab">Line Leading</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Text Alignment</span><span class="egp-field egp-field--drop">Center<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Text Alignment</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Center</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Left</li><li class="is-sel">Center</li><li>Right</li></ul></span></div>
           </div>
         </div>
         <div class="egp-sec">
@@ -1907,7 +1948,7 @@
         <div class="egp-sec">
           <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Curve</span><span class="egp-count">3</span></button>
           <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Curve Style</span><span class="egp-field egp-field--drop">Arc<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+            <div class="egp-row"><span class="egp-lab">Curve Style</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Arc</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Arc</li><li>Bulge</li><li>Arch</li></ul></span></div>
             <div class="egp-row"><span class="egp-lab">Text Curve</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
             <div class="egp-row"><span class="egp-lab">Curve Offset Y</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
           </div>
@@ -1958,15 +1999,25 @@
           </div>
         </div>
     </div>
-    <p class="egp-hint">Tap a section to open it</p>
+    <p class="egp-hint">Open a section, then open a dropdown. All 41 are in there.</p>
     <div class="controls__notes">
       <div class="controls__note">
-        <div class="controls__note-title">Any length</div>
-        <div class="controls__note-body">Drag it to any length. The in and out hold their timing, the middle stretches to fit.</div>
+        <div class="controls__note-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M6 9l-3 3 3 3"/><path d="M18 9l3 3-3 3"/><path d="M9 5v14"/><path d="M15 5v14"/></svg>
+        </div>
+        <div>
+          <div class="controls__note-title">Any length</div>
+          <div class="controls__note-body">Drag it to any length. The in and out hold their timing, the middle stretches to fit.</div>
+        </div>
       </div>
       <div class="controls__note">
-        <div class="controls__note-title">Free font list</div>
-        <div class="controls__note-body">A list of free fonts that pair well with the pack, with links to grab them. Whichever one you pick applies to all 41 animations at once.</div>
+        <div class="controls__note-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 7V5h16v2"/><path d="M9 19h6"/><path d="M12 5v14"/></svg>
+        </div>
+        <div>
+          <div class="controls__note-title">Free font list</div>
+          <div class="controls__note-body">A list of free fonts that pair well with the pack, with links to grab them. Whichever one you pick applies to all 41 animations at once.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -2031,7 +2082,7 @@
   <section class="testimonials">
     <div class="testimonials__header">
       <p class="section-label">What creators say</p>
-      <h2 class="section-title">Trusted by 700+ editors worldwide</h2>
+      <h2 class="section-title">Trusted by 700+ editors <em>worldwide.</em></h2>
       <p class="section-sub">Real reviews from real creators.</p>
     </div>
     <div class="reviews-marquee">
@@ -2088,7 +2139,7 @@
     <div class="bundle__glow"></div>
     <div class="bundle__card">
       <div class="bundle__badge">Save 36%</div>
-      <h3 class="bundle__title">Get the full kit</h3>
+      <h3 class="bundle__title">Get the <em>full kit.</em></h3>
       <p class="bundle__desc">Grab the Text Animations and the SFX Collection together and save $41.40. Everything you need to make your edits look and sound better.</p>
       <div class="bundle__products">
         <div class="bundle__product-tag">Text Animations</div>
@@ -2169,16 +2220,17 @@
         <span>PREMIERE PRO ONLY</span>
       </div>
     </div>
-    <h2 class="final-cta__title">Buy now. <span style="color:var(--accent)">Level up.</span></h2>
+    <h2 class="final-cta__title">Buy now. <em>Level up.</em></h2>
     <p class="final-cta__sub">Instant Download, Lifetime Access &amp; Updates.</p>
     <a id="finalBuy" class="btn btn-primary" style="margin-top:8px" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now — $47</a>
     <p class="launch-price"><span class="lp-was">$60</span> Save $13</p>
+    <p class="final-cta__no-sub">Any issue with your download, email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></p>
   </section>
 
   <!-- FAQ -->
   <section class="faq">
     <p class="section-label">FAQ</p>
-    <h2 class="section-title" style="margin-bottom:24px">Frequently Asked Questions</h2>
+    <h2 class="section-title" style="margin-bottom:24px">Good to <em>know.</em></h2>
     <div class="faq__list">
       <div class="faq__item open">
         <button class="faq__question" onclick="toggleFaq(this)">
@@ -2206,21 +2258,21 @@
           Will this work with my editing software?
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
-        <div class="faq__answer">This pack is designed specifically for Premiere Pro. No plugins or After Effects required.</div>
+        <div class="faq__answer">Built specifically for Premiere Pro 2019 or newer. No plugins, no After Effects. Everything runs on stock Adobe effects.</div>
       </div>
       <div class="faq__item">
         <button class="faq__question" onclick="toggleFaq(this)">
           What can I customize?
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
-        <div class="faq__answer">Everything — font, size, color, timing, and position. Each animation is fully adjustable inside Premiere Pro's Essential Graphics panel.</div>
+        <div class="faq__answer">Everything. 52 controls across 11 sections, all inside Premiere's Essential Graphics panel. Font, size, colour, position, spacing, speed, direction, drop shadow, stroke, gradient, glow, blur, curve, light sweep, film grain and rough edges. No keyframing.</div>
       </div>
       <div class="faq__item">
         <button class="faq__question" onclick="toggleFaq(this)">
           Do I need any extra plugins?
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
-        <div class="faq__answer">No — just Premiere Pro. Drag, drop, type. That's it.</div>
+        <div class="faq__answer">No — just Premiere Pro. Drag, drop, type. That's it. If you want to save your own looks as reusable presets you can do that with the Clip Deck plugin, and the tutorial at the top of this page walks through it. Completely optional, the pack works without it.</div>
       </div>
     </div>
   </section>
@@ -2484,6 +2536,42 @@
           const sec = h.closest('.egp-sec');
           const open = sec.classList.toggle('open');
           h.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      });
+
+      // dropdowns open to show the real option lists, 41 animations included
+      document.querySelectorAll('.egp-drop').forEach(function (d) {
+        const btn = d.querySelector('.egp-field');
+        const cur = d.querySelector('.egp-cur');
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const wasOpen = d.classList.contains('open');
+          document.querySelectorAll('.egp-drop.open').forEach(function (o) {
+            o.classList.remove('open');
+            o.querySelector('.egp-field').setAttribute('aria-expanded', 'false');
+          });
+          if (!wasOpen) {
+            d.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+            const sel = d.querySelector('.egp-menu .is-sel');
+            if (sel) d.querySelector('.egp-menu').scrollTop = sel.offsetTop - 60;
+          }
+        });
+        d.querySelectorAll('.egp-menu li').forEach(function (li) {
+          li.addEventListener('click', function (e) {
+            e.stopPropagation();
+            d.querySelectorAll('.egp-menu li').forEach(function (x) { x.classList.remove('is-sel'); });
+            li.classList.add('is-sel');
+            cur.textContent = li.textContent;
+            d.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      });
+      document.addEventListener('click', function () {
+        document.querySelectorAll('.egp-drop.open').forEach(function (o) {
+          o.classList.remove('open');
+          o.querySelector('.egp-field').setAttribute('aria-expanded', 'false');
         });
       });
     })();
