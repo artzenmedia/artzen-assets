@@ -803,7 +803,7 @@
       text-align: center;
       margin-bottom: 0;
     }
-    /* ══ CONTROLS: a replica of the Essential Graphics panel ══
+    /* ══ CONTROLS: a replica of the Properties panel ══
        Every label and count below is read from definition.json in the .mogrt,
        so what a buyer sees here is what they get after installing. */
     .controls { max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
@@ -1879,14 +1879,14 @@
 
   <div class="divider"><hr></div>
 
-  <!-- CONTROLS: replica of the Essential Graphics panel -->
+  <!-- CONTROLS: replica of the Properties panel -->
   <section class="controls">
     <p class="section-label">Inside the panel</p>
     <h2 class="section-title">One panel. 52 controls. <em>No keyframes.</em></h2>
     <p class="controls__intro">Every look is built into the same template. <strong>52 controls across 11 sections</strong>, and every one of them is a slider or a dropdown. Gradients, animated light sweep, film grain and rough edges are all in there, so there is nothing to stack and nothing third-party to buy.</p>
     <div class="egp">
       <div class="egp-bar">
-        <span class="egp-bar__t">Essential Graphics</span>
+        <span class="egp-bar__t">Properties</span>
         <div class="pp-icon" title="Premiere Pro">Pr</div>
       </div>
         <div class="egp-body">
@@ -2156,7 +2156,7 @@
     </div>
   </section>
 
-  <!-- How-it-works carousel, parked: hiw-1..6 show the old Essential Graphics
+  <!-- How-it-works carousel, parked: hiw-1..6 show the old Properties
        panel, which no longer resembles the 52-control panel. The VSL covers
        this ground until new screen recordings exist. -->
   <template data-paused-hiw>
@@ -2265,7 +2265,7 @@
           What can I customize?
           <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
-        <div class="faq__answer">Everything. 52 controls across 11 sections, all inside Premiere's Essential Graphics panel. Font, size, colour, position, spacing, speed, direction, drop shadow, stroke, gradient, glow, blur, curve, light sweep, film grain and rough edges. No keyframing.</div>
+        <div class="faq__answer">Everything. 52 controls across 11 sections, all inside Premiere's Properties panel. Font, size, colour, position, spacing, speed, direction, drop shadow, stroke, gradient, glow, blur, curve, light sweep, film grain and rough edges. No keyframing.</div>
       </div>
       <div class="faq__item">
         <button class="faq__question" onclick="toggleFaq(this)">
@@ -2527,7 +2527,7 @@
       window.scrollCarousel = scrollCarousel;
     })();
 
-    // ── Essential Graphics replica: open a section on click ──
+    // ── Properties panel replica: open a section on click ──
     (function () {
       const heads = document.querySelectorAll('.egp-head');
       if (!heads.length) return;
