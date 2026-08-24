@@ -1316,7 +1316,7 @@
     </div>
     <div class="reviews-marquee">
 
-      <!-- ROW 1 (scrolls left) — 6 unique + 6 duplicate -->
+      <!-- ROW 1 (scrolls left) - 6 unique + 6 duplicate -->
       <div class="reviews-row" id="row1">
         <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/seazstudio.edit.jpg" alt="seazstudio.edit"></div><div class="review-card__info"><div class="review-card__name">Tristan<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@seazstudio.edit</div></div></div><p class="review-card__quote">"Complete yet concise, you never get lost in it. I don't source sound effects from anywhere else anymore, and they sound crisp and clean."</p></div>
         <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/djbdarren.jpg" alt="djbdarren"></div><div class="review-card__info"><div class="review-card__name">Darren<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@djbdarren</div></div></div><p class="review-card__quote">"An easy purchase. I already knew your quality, so I knew how much these SFX would help my editing."</p></div>
@@ -1333,7 +1333,7 @@
         <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/will.ronholm.jpg" alt="will.ronholm"></div><div class="review-card__info"><div class="review-card__name">Will Ronholm<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@will.ronholm</div></div></div><p class="review-card__quote">"This SFX pack is a life saver. Everything I need in one place, no more hunting down sounds. Great quality too, love it!"</p></div>
       </div>
 
-      <!-- ROW 2 (scrolls right) — 5 unique + 5 duplicate -->
+      <!-- ROW 2 (scrolls right) - 5 unique + 5 duplicate -->
       <div class="reviews-row reviews-row--reverse" id="row2">
         <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/willfrombcene.jpg" alt="willfrombcene"></div><div class="review-card__info"><div class="review-card__name">Will Colthup<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@willfrombcene</div></div></div><p class="review-card__quote">"SFX pack is fantastic. Enough variation that it never sounds the same, high quality stuff!"</p></div>
         <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/_jojolifts.jpg" alt="_jojolifts"></div><div class="review-card__info"><div class="review-card__name">JoJoLifts<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@_jojolifts</div></div></div><p class="review-card__quote">"Had to buy it the second I saw it drop. Love the variety of sounds, definitely using it on my videos."</p></div>
@@ -1446,7 +1446,7 @@
       const BARS = 34;
       for (let i = 0; i < BARS; i++) {
         const b = document.createElement('span');
-        const peak = 45 + ((i * 53) % 56);            // deterministic 45–100%
+        const peak = 45 + ((i * 53) % 56);            // deterministic 45-100%
         b.style.setProperty('--peak', peak + '%');
         b.style.animationDuration = (0.85 + (i % 6) * 0.13).toFixed(2) + 's';
         b.style.animationDelay = (-((i * 0.11) % 1.2)).toFixed(2) + 's';
