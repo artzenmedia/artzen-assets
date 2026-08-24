@@ -515,12 +515,16 @@
     .features__content { text-align: center; width: 100%; }
     .features__h2 {
       font-family: 'Inter Display', sans-serif;
-      font-size: 2.1rem;
+      font-size: 1.95rem;
       font-weight: 600;
       line-height: 1.08;
       letter-spacing: -0.03em;
       color: var(--primary);
       margin-bottom: 6px;
+    }
+    /* one line from the width where the column is wide enough to hold it */
+    @media (min-width: 760px) {
+      .features__h2 { white-space: nowrap; }
     }
     .features__subh {
       font-family: 'Geist Mono', monospace;
@@ -1760,7 +1764,7 @@
   <section class="hero">
     <div class="hero__text">
       <h1 class="hero__title"><span class="hero__line hero__line--top"><span class="shimmer-text">Creator</span> <span class="hero__text-fx" id="heroFx">Text</span></span><span class="shimmer-text hero__line">Animations</span></h1>
-      <p class="hero__subtitle">41 animations. 1,681 combinations.</p>
+      <p class="hero__subtitle">41 animations. ♾️ creative combinations.</p>
       <div class="hero__cta">
         <a id="heroBuy" class="btn btn-primary" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now — $47</a>
         <p class="launch-price"><span class="lp-was">$60</span> Save $13</p>
