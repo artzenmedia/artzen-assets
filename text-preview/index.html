@@ -1808,9 +1808,8 @@
   <div style="height:16px"></div>
 
   <!-- ══ VSL (YouTube) ══
-       TODO before launch: put the real video id in data-yt below. Optionally
-       drop a poster at /assets/posters/text-vsl.jpg; without one the block
-       shows the gradient and the play button, which looks fine.
+       Poster is the video's own maxres thumbnail, served from our own assets
+       rather than hotlinked off img.youtube.com.
 
        This is a facade, not a raw iframe. A bare YouTube embed pulls roughly a
        megabyte of their JS into every single page load even for people who
@@ -1820,7 +1819,7 @@
   <section class="vsl">
     <p class="section-label">Watch it work</p>
     <h2 class="section-title" style="margin-bottom:20px">See it <em>in action.</em></h2>
-    <div class="vsl__frame" id="vslFrame" data-yt="VIDEO_ID_TODO" role="button" tabindex="0" aria-label="Play the video">
+    <div class="vsl__frame" id="vslFrame" data-yt="vFC6-0ikGV0" role="button" tabindex="0" aria-label="Play the video">
       <img class="vsl__poster" id="vslPoster" src="/assets/posters/text-vsl.jpg" alt="" aria-hidden="true">
       <button class="vsl__play" id="vslPlay" aria-label="Play the video">
         <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -2591,7 +2590,7 @@
       let loaded = false;
       function play() {
         const id = frame.getAttribute('data-yt');
-        if (loaded || !id || id === 'VIDEO_ID_TODO') return;
+        if (loaded || !id) return;
         loaded = true;
         frame.classList.add('playing');
         const f = document.createElement('iframe');
