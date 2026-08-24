@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/assets/profile-circle.png">
+  <link rel="apple-touch-icon" href="/assets/profile-circle.png">
+  <title>You got the full kit.</title>
+  <meta name="description" content="Your Text Animations and SFX Collection are on the way.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter+Display:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0C0C0C;
+      --container: #161616;
+      --container-hover: #1e1e1e;
+      --primary: #FFFFFF;
+      --secondary: #8C8C8C;
+      --tertiary: #555;
+      --border: #242424;
+      --accent: #5BD3FE;
+      --green: #46d369;
+      --red: #ff5c5c;
+      --max-w: 640px;
+    }
+
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      background: transparent;
+      color: var(--primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding: 0 0 80px;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.008) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.008) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    .section { width: 100%; max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
+    em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.12em;
+      letter-spacing: 0;
+      color: var(--accent);
+      text-shadow: 0 0 24px rgba(91,211,254,0.28);
+    }
+
+    .section-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-align: center;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+      margin-bottom: 8px;
+    }
+
+    /* ── BUTTON (premium glow) ── */
+    @keyframes btnSpin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 18px 44px;
+      border-radius: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      -webkit-appearance: none;
+      appearance: none;
+      white-space: nowrap;
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 250%;
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+      background: conic-gradient(from 0deg, transparent 0%, var(--accent) 20%, transparent 50%);
+      z-index: -2;
+      animation: btnSpin 3s linear infinite;
+    }
+    .btn::after { content: ''; position: absolute; inset: 1.5px; border-radius: 13px; z-index: -1; }
+    .btn:hover { transform: scale(1.02); }
+    .btn:active { transform: scale(0.98); }
+    @keyframes btnPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 14px 32px 0 rgba(91,211,254,0.22); }
+      50% { transform: scale(1.035); box-shadow: 0 20px 46px 0 rgba(91,211,254,0.42); }
+    }
+    .btn-primary {
+      color: #fff;
+      box-shadow: 0 15px 35px 0 rgba(91,211,254,0.25);
+      animation: btnPulse 2.6s ease-in-out infinite;
+    }
+    .btn-primary::after { background: #0D0D0D; }
+    .btn-primary:hover { filter: brightness(1.08); box-shadow: 0 18px 42px 0 rgba(91,211,254,0.35); }
+    @media (prefers-reduced-motion: reduce) { .btn-primary { animation: none; } }
+
+    /* ── HERO (confirmation) ── */
+    .hero { max-width: var(--max-w); margin: 0 auto; padding: 92px 20px 36px; text-align: center; }
+    .check {
+      width: 58px; height: 58px; margin: 0 auto 22px;
+      border-radius: 50%;
+      background: rgba(70,211,105,0.1);
+      border: 1px solid rgba(70,211,105,0.4);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 30px rgba(70,211,105,0.25);
+    }
+    .check svg { width: 26px; height: 26px; stroke: var(--green); stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hero__eyebrow {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px; font-weight: 500; color: var(--green);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .hero__title {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 2.8rem; font-weight: 700; line-height: 1.04;
+      letter-spacing: -0.035em; color: var(--primary); margin-bottom: 14px;
+    }
+    .hero__sub { font-size: 15px; color: var(--secondary); line-height: 1.6; max-width: 460px; margin: 0 auto; }
+    .hero__sub strong { color: var(--primary); font-weight: 600; }
+
+    /* ── OFFER CARD ── */
+    .offer { max-width: 540px; margin: 0 auto 56px; padding: 0 20px; }
+    .offer__card {
+      position: relative;
+      background: linear-gradient(160deg, rgba(91,211,254,0.06), var(--container) 55%);
+      border: 1px solid rgba(91,211,254,0.22);
+      border-radius: 20px;
+      padding: 34px 30px 30px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .offer__card::before {
+      content: '';
+      position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+      width: 240px; height: 120px;
+      background: radial-gradient(circle, rgba(91,211,254,0.28), transparent 70%);
+      filter: blur(26px); pointer-events: none;
+    }
+    .offer__tag {
+      position: relative;
+      display: inline-block;
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent);
+      border: 1px solid rgba(91,211,254,0.3);
+      border-radius: 30px; padding: 6px 14px; margin-bottom: 18px;
+    }
+    .offer__name {
+      position: relative;
+      font-family: 'Inter Display', sans-serif;
+      font-size: 1.5rem; font-weight: 600; color: var(--primary);
+      letter-spacing: -0.02em; margin-bottom: 6px;
+    }
+    .offer__desc { position: relative; font-size: 14px; color: var(--secondary); line-height: 1.6; max-width: 400px; margin: 0 auto 22px; }
+    .offer__price { position: relative; display: flex; align-items: baseline; justify-content: center; gap: 12px; margin-bottom: 6px; }
+    .offer__price .now { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 3.5rem; letter-spacing: 0; color: var(--green); text-shadow: 0 0 24px rgba(70,211,105,0.3); }
+    .offer__price .was { font-size: 1.3rem; font-weight: 500; color: var(--tertiary); text-decoration: line-through; }
+    .offer__save { position: relative; font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500; color: var(--green); margin-bottom: 24px; }
+    .offer__cta { position: relative; }
+    .offer__cta .btn { width: 100%; max-width: 360px; }
+    .offer__urgency { position: relative; font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); margin-top: 14px; }
+
+    /* ── TRUST PILLS ── */
+    .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 540px; margin: -28px auto 56px; padding: 0 20px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--secondary);
+      padding: 9px 14px; border: 1px solid var(--border); border-radius: 30px;
+      background: rgba(255,255,255,0.02);
+    }
+    .pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px rgba(91,211,254,0.6); }
+
+    /* ── LEARN MORE (video cards → landing pages) ── */
+    .learn { max-width: 540px; margin: 0 auto 56px; padding: 0 20px; }
+    .learn__head { text-align: center; font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--tertiary); margin-bottom: 16px; }
+    .learn__grid { display: flex; flex-direction: column; gap: 12px; }
+    .learn-card { display: flex; align-items: stretch; text-decoration: none; background: linear-gradient(160deg, rgba(91,211,254,0.04), var(--container) 60%); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .learn-card:hover { border-color: rgba(91,211,254,0.4); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+    .learn-card__media { position: relative; width: 132px; flex-shrink: 0; background: #000; overflow: hidden; }
+    .learn-card__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .learn-card__body { flex: 1; padding: 15px 18px; display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
+    .learn-card__label { font-size: 14px; font-weight: 600; color: var(--primary); }
+    .learn-card__desc { font-size: 12px; color: var(--secondary); line-height: 1.5; }
+    .learn-card__link { margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; font-family: 'Geist Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+    .learn-card__link svg { width: 12px; height: 12px; stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; }
+    .learn-card:hover .learn-card__link svg { transform: translateX(3px); }
+     (max-width: 680px) { .learn-card__media { width: 108px; } }
+    /* ── DIVIDER ── */
+    .divider { max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
+    .divider hr { border: none; border-top: 1px solid var(--border); }
+
+    /* ── FAQ ── */
+    .faq { max-width: 560px; margin: 0 auto 56px; padding: 0 20px; }
+    .faq .section-title { margin-bottom: 24px; }
+    .faq__list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .faq__item { border-bottom: 1px solid var(--border); }
+    .faq__item:last-child { border-bottom: none; }
+    .faq__question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      text-align: left; color: var(--primary);
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; line-height: 1.4;
+      transition: background 0.15s, color 0.25s ease;
+    }
+    .faq__question:hover { background: rgba(255,255,255,0.02); }
+    .faq__item.open .faq__question { color: var(--accent); }
+    .faq__icon {
+      width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.15s, border-color 0.25s;
+    }
+    .faq__icon svg { width: 11px; height: 11px; stroke: var(--secondary); stroke-width: 2; fill: none; stroke-linecap: round; display: block; transition: stroke 0.25s ease; }
+    .faq__item.open .faq__icon { transform: rotate(45deg); background: rgba(91,211,254,0.08); border-color: rgba(91,211,254,0.4); }
+    .faq__item.open .faq__icon svg { stroke: var(--accent); }
+    .faq__answer {
+      max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-6px);
+      padding: 0 20px; font-size: 13px; color: var(--secondary); line-height: 1.6;
+      transition: max-height 0.45s cubic-bezier(0.34,1.56,0.64,1), padding 0.3s ease, opacity 0.3s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .faq__item.open .faq__answer { max-height: 240px; opacity: 1; transform: translateY(0); padding: 0 20px 18px; }
+
+    /* ── FOOTER ── */
+    .footer { max-width: var(--max-w); margin: 0 auto; padding: 8px 20px; text-align: center; }
+    .footer p { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); }
+    .footer a { color: var(--secondary); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+
+    /* ── FADE-UP ── */
+    .fu { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fu.on { opacity: 1; transform: none; }
+
+    @media (max-width: 680px) {
+      .hero { padding: 72px 20px 28px; }
+      .hero__title { font-size: 2rem; }
+      .offer__card { padding: 28px 20px 26px; }
+      .offer__price .now { font-size: 2.9rem; }
+      .section-title { font-size: 1.55rem; }
+      .pills { margin-top: -20px; }
+    }
+    /* URGENCY TIMER */
+    .offer__timer { position: relative; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; text-align: center; line-height: 1.5; margin: 0 auto 18px; font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--secondary); letter-spacing: 0.02em; }
+    .offer__timer strong { color: #ff5c5c; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .offer__timer .nb { white-space: nowrap; }
+    .offer__timer-pulse { width: 7px; height: 7px; border-radius: 50%; background: #ff5c5c; box-shadow: 0 0 8px #ff5c5c; animation: offerPulse 1.2s ease-in-out infinite; }
+    @keyframes offerPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+    /* help line */
+    /* ══ START HERE: two install cards, one per product ══ */
+    .start { max-width: var(--max-w); margin: 0 auto 44px; padding: 0 20px; }
+    .start__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+    .start-card {
+      background: var(--container); border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px; text-align: left;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .start-card:hover { border-color: rgba(91,211,254,0.3); transform: translateY(-3px); }
+    .start-card__head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .start-card__ico {
+      width: 34px; height: 34px; flex-shrink: 0; border-radius: 9px;
+      background: rgba(91,211,254,0.08); border: 1px solid rgba(91,211,254,0.18);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .start-card__ico svg { width: 17px; height: 17px; fill: none; stroke: var(--accent);
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .start-card__name { font-size: 14px; font-weight: 600; color: var(--primary); }
+    .start-card ol { margin: 0; padding-left: 17px; }
+    .start-card li { font-size: 12.5px; line-height: 1.75; color: var(--secondary); margin-bottom: 3px; }
+    .start-card li strong { color: var(--primary); font-weight: 600; }
+
+    /* ══ PAIRINGS: the reason the bundle exists ══ */
+    .pair { max-width: var(--max-w); margin: 0 auto 44px; padding: 0 20px; }
+    .pair__list {
+      margin-top: 22px; border: 1px solid var(--border); border-radius: 16px;
+      overflow: hidden; background: var(--container);
+    }
+    .pair__row {
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+      padding: 13px 18px; border-bottom: 1px solid var(--border);
+    }
+    .pair__row:last-child { border-bottom: 0; }
+    .pair__a { font-size: 13px; font-weight: 600; color: var(--primary); text-align: right; }
+    .pair__b { font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--accent); }
+    .pair__plus { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); }
+    .pair__note { font-size: 12.5px; line-height: 1.7; color: var(--tertiary); text-align: center; margin-top: 14px; }
+
+    /* ══ SHARE ══ */
+    .share { max-width: var(--max-w); margin: 0 auto 40px; padding: 0 20px; }
+    .share__card {
+      background: linear-gradient(160deg, rgba(91,211,254,0.06), var(--container) 65%);
+      border: 1px solid rgba(91,211,254,0.2); border-radius: 16px;
+      padding: 26px 22px; text-align: center;
+    }
+    .share__title { font-family: 'Inter Display', sans-serif; font-size: 1.25rem; font-weight: 600;
+      color: var(--primary); letter-spacing: -0.02em; margin-bottom: 8px; }
+    .share__body { font-size: 13px; line-height: 1.7; color: var(--secondary); max-width: 420px; margin: 0 auto 16px; }
+    .share__handle {
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+      font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--primary);
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px 16px; transition: border-color 0.2s, background 0.2s;
+    }
+    .share__handle:hover { border-color: rgba(91,211,254,0.4); background: rgba(91,211,254,0.07); }
+    .share__handle svg { width: 15px; height: 15px; fill: currentColor; }
+
+    @media (max-width: 620px) {
+      .start__grid { grid-template-columns: 1fr; }
+      .pair__row { grid-template-columns: 1fr; gap: 3px; padding: 12px 16px; text-align: left; }
+      .pair__a { text-align: left; }
+      .pair__plus { display: none; }
+    }
+    .help-line { max-width: var(--max-w); margin: -28px auto 0; padding: 0 20px 8px; text-align: center; }
+    .help-line p { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); letter-spacing: 0.02em; }
+    .help-line a { color: var(--secondary); text-decoration: none; }
+    .help-line a:hover { color: var(--accent); }
+  </style>
+
+
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','912683378281121');
+    fbq('track','PageView');
+    // Purchase fires browser-side so it carries _fbc/_fbp and Meta can attribute it
+    // to an ad click. Value comes from ?v= on Polar's success URL; falls back to
+    // 73.60, the bundle price, if the param is ever missing.
+    (function(){
+      var v = parseFloat(new URLSearchParams(location.search).get('v'));
+      if (!(v > 0)) v = 73.60;
+      fbq('track','Purchase',{value:v,currency:'USD',content_name:'Creator Text Animations + SFX Bundle',content_ids:['text-sfx-bundle'],content_type:'product'});
+    })();
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=912683378281121&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+</head>
+<body>
+
+  <!-- ══ HERO (confirmation) ══ -->
+  <section class="hero fu on">
+    <div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <p class="hero__eyebrow">Order confirmed</p>
+    <h1 class="hero__title">You got the <em>full kit.</em></h1>
+    <p class="hero__sub">Both download links are in your email. <strong>Here's how to get them running.</strong></p>
+  </section>
+
+
+  <!-- ══ START HERE ══ -->
+  <section class="start fu">
+    <p class="section-label">Start here</p>
+    <h2 class="section-title">Two files, two <em>minutes.</em></h2>
+    <div class="start__grid">
+      <div class="start-card">
+        <div class="start-card__head">
+          <div class="start-card__ico">
+            <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+          </div>
+          <div class="start-card__name">Text Animations</div>
+        </div>
+        <ol>
+          <li>Unzip the download.</li>
+          <li>In Premiere, drag the <strong>.mogrt</strong> straight onto your timeline.</li>
+          <li>Select the clip. All 52 controls are in the <strong>Properties</strong> panel.</li>
+          <li>Type your text, pick a start and an end animation.</li>
+        </ol>
+      </div>
+      <div class="start-card">
+        <div class="start-card__head">
+          <div class="start-card__ico">
+            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16 8.5a4.5 4.5 0 0 1 0 7"/><path d="M19 5.5a8.5 8.5 0 0 1 0 13"/></svg>
+          </div>
+          <div class="start-card__name">SFX Collection</div>
+        </div>
+        <ol>
+          <li>Unzip the download.</li>
+          <li>Drag the whole folder into your project bin.</li>
+          <li>It stays sorted into <strong>14 named categories</strong>, so nothing gets lost.</li>
+          <li>Every file is 24-bit / 48kHz WAV. Drop and go.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- ══ PAIRINGS ══
+       Only bundle buyers own both packs, so this section can only live here.
+       It is also the argument for the bundle being one thing rather than two. -->
+  <section class="pair fu">
+    <p class="section-label">Now use them together</p>
+    <h2 class="section-title">Text lands harder <em>with sound.</em></h2>
+    <div class="pair__list">
+      <div class="pair__row"><span class="pair__a">Slide, Fly In</span><span class="pair__plus">+</span><span class="pair__b">Whooshes</span></div>
+      <div class="pair__row"><span class="pair__a">Typewriter</span><span class="pair__plus">+</span><span class="pair__b">Keyboards, Clicks</span></div>
+      <div class="pair__row"><span class="pair__a">Scale, Grow Rotate</span><span class="pair__plus">+</span><span class="pair__b">Risers into a Hit</span></div>
+      <div class="pair__row"><span class="pair__a">Glitch, Hacked</span><span class="pair__plus">+</span><span class="pair__b">Slices, UI</span></div>
+      <div class="pair__row"><span class="pair__a">Snap, Squash</span><span class="pair__plus">+</span><span class="pair__b">Hits</span></div>
+    </div>
+    <p class="pair__note">Put the sound one or two frames before the animation starts, not on it. The ear hears it first and the text feels like it caused the sound.</p>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- ══ SHARE ══ -->
+  <section class="share fu">
+    <div class="share__card">
+      <div class="share__title">Made something with it?</div>
+      <p class="share__body">Tag me when you post. I share the good ones, and honestly it's the best part of making these.</p>
+      <a class="share__handle" href="https://instagram.com/artzenmedia" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.41.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.1A6.7 6.7 0 1 0 18.7 12 6.7 6.7 0 0 0 12 5.3zm0 11A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3zm6.9-11.2a1.6 1.6 0 1 1-1.6-1.6 1.6 1.6 0 0 1 1.6 1.6z"/></svg>
+        @artzenmedia
+      </a>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- ══ TRUST PILLS ══ -->
+  <div class="pills fu">
+    <span class="pill">Instant download</span>
+    <span class="pill">Lifetime access</span>
+    <span class="pill">Commercial use</span>
+  </div>
+
+  <div class="divider"><hr></div>
+
+  <!-- ══ FAQ ══ -->
+  <section class="faq fu">
+    <p class="section-label">Quick Answers</p>
+    <h2 class="section-title">Good to <em>know.</em></h2>
+    <div class="faq__list">
+      <div class="faq__item open">
+        <button class="faq__question" onclick="toggleFaq(this)">Where are my two downloads?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq__answer">Both links are in your purchase email, sent the moment you paid. One for the Text Animations, one for the SFX Collection. If only one arrived, or neither did, email me and I'll send them straight over.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">What do I need to run them?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq__answer">Premiere Pro 2019 or newer for the animations, and any editor at all for the sounds. No plugins, no After Effects. Everything in the template runs on stock Adobe effects.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">Can I use these on client work?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq__answer">Yes. Personal and commercial projects, including paid client work and monetised videos. No credit needed. One licence covers one person, so if three people use it that's three licences.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__question" onclick="toggleFaq(this)">Do I get future updates?<span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq__answer">Yes, on both packs. Pay once, yours forever. Every future update is free and lands in your purchase email.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="help-line fu">
+    <p>Need help? Email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></p>
+  </div>
+
+  <script>
+    const fus = document.querySelectorAll('.fu:not(.on)');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    fus.forEach(el => obs.observe(el));
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq__item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq__item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+
+  <!-- Urgency timer -->
+  <script>
+  (function () {
+    var el = document.getElementById('offerClock'); if (!el) return;
+    var KEY = 'azn_deadline_' + location.pathname;
+    var dl = parseInt(localStorage.getItem(KEY) || '0', 10), now = Date.now();
+    if (!dl || dl < now) { dl = now + 600000; localStorage.setItem(KEY, String(dl)); }
+    function tick() {
+      var s = Math.max(0, Math.floor((dl - Date.now()) / 1000));
+      var m = Math.floor(s / 60), ss = s % 60;
+      el.textContent = m + ':' + (ss < 10 ? '0' : '') + ss;
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+  </script>
+
+  <!-- Polar checkout modal -->
+  <script>
+  (function() {
+      var modal = document.createElement('div')
+      modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.25s ease;'
+      var box = document.createElement('div')
+      box.style.cssText = 'position:relative;width:92%;max-width:480px;height:85vh;background:#111;border-radius:16px;overflow:hidden;'
+      var close = document.createElement('button')
+      close.innerHTML = '✕'
+      close.style.cssText = 'position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;z-index:10;'
+      var spinner = document.createElement('div')
+      spinner.style.cssText = 'position:absolute;top:50%;left:50%;width:36px;height:36px;margin:-18px 0 0 -18px;border:3px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:polarspin 0.7s linear infinite;z-index:5;'
+      var style = document.createElement('style')
+      style.textContent = '@keyframes polarspin{to{transform:rotate(360deg)}}@keyframes polarin{0%{transform:scale(0.85);opacity:0}60%{transform:scale(1.03);opacity:1}100%{transform:scale(1)}}'
+      document.head.appendChild(style)
+      var frame = document.createElement('iframe')
+      frame.allow = 'payment *'
+      frame.style.cssText = 'width:100%;height:100%;border:none;position:relative;z-index:6;'
+      frame.onload = function() { if (frame.src) spinner.style.display = 'none' }
+      box.appendChild(spinner); box.appendChild(close); box.appendChild(frame); modal.appendChild(box); document.body.appendChild(modal)
+      function open(url) {
+          spinner.style.display = 'block'; frame.src = url; modal.style.display = 'flex'
+          box.style.animation = 'polarin 0.45s cubic-bezier(0.34,1.56,0.64,1) both'
+          requestAnimationFrame(function() { modal.style.opacity = '1' })
+      }
+      function hide() {
+          modal.style.opacity = '0'; box.style.transition = 'transform 0.25s ease, opacity 0.25s ease'
+          box.style.transform = 'scale(0.92)'; box.style.opacity = '0'
+          setTimeout(function() { modal.style.display = 'none'; frame.src = ''; box.style.animation = ''; box.style.transition = ''; box.style.transform = ''; box.style.opacity = '' }, 250)
+      }
+      close.onclick = hide
+      modal.addEventListener('click', function(e) { if (e.target === modal) hide() })
+      document.addEventListener('click', function(e) {
+          var link = e.target.closest('a')
+          if (link && link.href && link.href.includes('buy.polar.sh')) { e.preventDefault(); open(link.href) }
+      }, true)
+  })()
+  </script>
+</body>
+
+</html>
