@@ -223,7 +223,9 @@
     /* ── SINGLES (fallback) ── */
     .singles { max-width: 540px; margin: 0 auto 56px; padding: 0 20px; }
     .singles__head { text-align: center; font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--tertiary); margin-bottom: 16px; }
-    .singles__grid { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 300px; margin: 0 auto; }
+    .singles__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .single-card__was { font-size: 0.95rem; font-weight: 500; color: var(--tertiary); text-decoration: line-through; margin-left: 7px; }
+    .offer__note { position: relative; font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--tertiary); margin: -2px auto 18px; }
     .single-card {
       position: relative; overflow: hidden;
       background: linear-gradient(160deg, rgba(91,211,254,0.04), var(--container) 60%);
@@ -409,39 +411,13 @@
         <span class="now">$73.60</span>
         <span class="was">$115</span>
       </div>
+      <p class="offer__note">Both packs separately would be $78</p>
       <div class="offer__cta">
         <a href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk" class="btn btn-primary">Get the Complete Kit - $73.60</a>
       </div>
       <div class="offer__includes">
         <span class="inc-pill">155 sounds</span>
         <span class="inc-pill">41 animations</span>
-        <span class="inc-pill">Commercial use</span>
-        <span class="inc-pill">Free updates forever</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ OFFER (SFX, cheaper single) ══ -->
-  <section class="offer fu">
-    <p class="section-label" style="text-align:center;margin-bottom:14px;">Or just the sounds</p>
-    <div class="offer__card">
-      <span class="offer__tag">Freebie exclusive · Save $16</span>
-      <h2 class="offer__name">The Creator SFX Collection</h2>
-      <p class="offer__sub">The sounds behind every edit you admire.</p>
-      <p class="offer__desc">155 hand-crafted sound effects, sorted and ready to drop into your edits. The exact sounds you hear on every viral video, in one clean pack.</p>
-      <div class="offer__price">
-        <span class="now">$39</span>
-        <span class="was">$55</span>
-      </div>
-      <div class="offer__timer" id="offerTimer">
-        <span class="offer__timer-pulse"></span>
-        Freebie exclusive · <span class="nb">ends in <strong id="offerClock">10:00</strong></span>
-      </div>
-      <div class="offer__cta">
-        <a href="https://buy.polar.sh/polar_cl_FlTVIcD6iAWKyiVq4AZh0sG4367Q2n7YB0y8T3bkm5G" class="btn btn-primary">Get the SFX Collection - $39</a>
-      </div>
-      <div class="offer__includes">
-        <span class="inc-pill">155 sounds</span>
         <span class="inc-pill">Commercial use</span>
         <span class="inc-pill">Free updates forever</span>
       </div>
@@ -472,18 +448,31 @@
   </section>
 
   <!-- ══ SINGLES ══
-       The SFX offer above stays the hero, it is the proven one and the
-       before/after is its proof. These sit underneath as the upgrade path
-       now that the Text pack is back. Both links are live: the bundle
-       charges $73.60 and the main text link charges $47. -->
+       The bundle above is the hero. These are the freebie-exclusive
+       single-pack prices so someone who only wants one pack still gets
+       it cheaper: SFX $39 (from $55) and Text $39 (from $60). Buying
+       both singles comes to $78, so the $73.60 bundle stays the better
+       deal on purpose. -->
   <section class="singles fu">
-    <p class="singles__head">Or just the text pack</p>
+    <p class="singles__head">Or just one pack</p>
+    <div style="text-align:center;">
+      <div class="offer__timer" id="offerTimer">
+        <span class="offer__timer-pulse"></span>
+        Freebie exclusive pricing · <span class="nb">ends in <strong id="offerClock">10:00</strong></span>
+      </div>
+    </div>
     <div class="singles__grid">
+      <div class="single-card">
+        <div class="single-card__name">Creator SFX Collection</div>
+        <div class="single-card__tag">155 sounds</div>
+        <div class="single-card__price">$39<span class="single-card__was">$55</span></div>
+        <a href="https://buy.polar.sh/polar_cl_FlTVIcD6iAWKyiVq4AZh0sG4367Q2n7YB0y8T3bkm5G" class="btn btn-ghost">Get the SFX Pack</a>
+      </div>
       <div class="single-card">
         <div class="single-card__name">Text Animations Pack</div>
         <div class="single-card__tag">41 animations</div>
-        <div class="single-card__price">$47</div>
-        <a href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp" class="btn btn-ghost">Get Text Pack</a>
+        <div class="single-card__price">$39<span class="single-card__was">$60</span></div>
+        <a href="https://buy.polar.sh/polar_cl_Yhx39RTiD63hzmTl0P3uFuJTZ93Hj0KsAzw4A22v4Lw" class="btn btn-ghost">Get the Text Pack</a>
       </div>
     </div>
   </section>
