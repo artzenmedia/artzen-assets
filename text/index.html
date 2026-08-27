@@ -1749,6 +1749,24 @@
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=912683378281121&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel -->
+  <!-- Checkout click tracking -->
+  <script>
+    window.amTrackCheckout = function (link) {
+      try {
+        if (typeof fbq !== 'function' || !link) return;
+        var v = parseFloat(link.getAttribute('data-value'));
+        fbq('track', 'InitiateCheckout', {
+          content_name: link.getAttribute('data-product') || 'unknown',
+          content_ids: [link.getAttribute('data-product-id') || 'unknown'],
+          content_type: 'product',
+          value: isNaN(v) ? 0 : v,
+          currency: 'USD',
+          cta: link.getAttribute('data-cta') || 'unknown'
+        });
+      } catch (e) {}
+    };
+  </script>
+  <!-- End checkout click tracking -->
 </head>
 <body>
 
@@ -1766,7 +1784,7 @@
       <h1 class="hero__title"><span class="hero__line hero__line--top"><span class="shimmer-text">Creator</span> <span class="hero__text-fx" id="heroFx">Text</span></span><span class="shimmer-text hero__line">Animations</span></h1>
       <p class="hero__subtitle">41 animations. ♾️ creative combinations.</p>
       <div class="hero__cta">
-        <a id="heroBuy" class="btn btn-primary" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now - $47</a>
+        <a data-cta="hero" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="heroBuy" class="btn btn-primary" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now - $47</a>
         <p class="launch-price"><span class="lp-was">$60</span> Save $13</p>
         <div class="hero__pp">
           <div class="pp-icon pp-icon--lg" title="Premiere Pro only">Pr</div>
@@ -2149,7 +2167,7 @@
         <div class="bundle__product-sep">+</div>
         <div class="bundle__product-tag">SFX Collection</div>
       </div>
-      <a class="btn btn-outline bundle__btn" href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk">Get the Bundle - $73.60 <span class="bundle__strike">$115</span></a>
+      <a data-cta="bundle" data-product="Text + SFX Bundle" data-product-id="text-sfx-bundle" data-value="73.60" class="btn btn-outline bundle__btn" href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk">Get the Bundle - $73.60 <span class="bundle__strike">$115</span></a>
       <div class="bundle__vid bundle__vid--left">
         <video autoplay muted loop playsinline preload="auto" poster="/assets/posters/bundle-text.jpg"><source src="/assets/bundle-text.webm" type="video/webm"></video>
       </div>
@@ -2225,7 +2243,7 @@
     </div>
     <h2 class="final-cta__title">Buy now. <em>Level up.</em></h2>
     <p class="final-cta__sub">Instant Download, Lifetime Access &amp; Updates.</p>
-    <a id="finalBuy" class="btn btn-primary" style="margin-top:8px" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now - $47</a>
+    <a data-cta="final" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="finalBuy" class="btn btn-primary" style="margin-top:8px" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now - $47</a>
     <p class="launch-price"><span class="lp-was">$60</span> Save $13</p>
     <p class="final-cta__no-sub">Any issue with your download, email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></p>
   </section>
@@ -2636,7 +2654,7 @@
 
   <!-- Sticky CTA (shown between hero & final buttons) -->
   <div class="sticky-cta">
-    <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now - $47</a>
+    <a data-cta="stickybar" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" class="btn btn-primary" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now - $47</a>
   </div>
 
   <!-- Best-effort autoplay kickstart for muted inline videos -->
@@ -2720,7 +2738,7 @@
       document.addEventListener('click', function(e) {
           var link = e.target.closest('a')
           if (link && link.href && link.href.includes('buy.polar.sh')) {
-              e.preventDefault()
+              window.amTrackCheckout(link); e.preventDefault()
               open(link.href)
           }
       }, true)
@@ -2728,5 +2746,8 @@
   </script>
 
 
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "177f251018f04c73b301940a5cd183dc"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>

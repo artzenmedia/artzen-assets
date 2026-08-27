@@ -315,6 +315,24 @@
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=912683378281121&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel -->
+  <!-- Checkout click tracking -->
+  <script>
+    window.amTrackCheckout = function (link) {
+      try {
+        if (typeof fbq !== 'function' || !link) return;
+        var v = parseFloat(link.getAttribute('data-value'));
+        fbq('track', 'InitiateCheckout', {
+          content_name: link.getAttribute('data-product') || 'unknown',
+          content_ids: [link.getAttribute('data-product-id') || 'unknown'],
+          content_type: 'product',
+          value: isNaN(v) ? 0 : v,
+          currency: 'USD',
+          cta: link.getAttribute('data-cta') || 'unknown'
+        });
+      } catch (e) {}
+    };
+  </script>
+  <!-- End checkout click tracking -->
 </head>
 <body>
 
@@ -344,7 +362,7 @@
           Buyers-only · Save $25 · <span class="nb">ends in <strong id="offerClock">10:00</strong></span>
         </div>
         <div class="offer__cta">
-          <a href="https://buy.polar.sh/polar_cl_IQGdKIsV8M5OyBfqoRwbuJ03glDv8yzgJg3Rs2Rs505" class="btn btn-primary">Add the Text Animations Pack - $35</a>
+          <a data-cta="upsell-text" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="35" href="https://buy.polar.sh/polar_cl_IQGdKIsV8M5OyBfqoRwbuJ03glDv8yzgJg3Rs2Rs505" class="btn btn-primary">Add the Text Animations Pack - $35</a>
         </div>
       </div>
     </section>
@@ -448,10 +466,13 @@
       modal.addEventListener('click', function(e) { if (e.target === modal) hide() })
       document.addEventListener('click', function(e) {
           var link = e.target.closest('a')
-          if (link && link.href && link.href.includes('buy.polar.sh')) { e.preventDefault(); open(link.href) }
+          if (link && link.href && link.href.includes('buy.polar.sh')) { window.amTrackCheckout(link); e.preventDefault(); open(link.href) }
       }, true)
   })()
   </script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "177f251018f04c73b301940a5cd183dc"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>

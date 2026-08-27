@@ -388,6 +388,24 @@
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=912683378281121&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel -->
+  <!-- Checkout click tracking -->
+  <script>
+    window.amTrackCheckout = function (link) {
+      try {
+        if (typeof fbq !== 'function' || !link) return;
+        var v = parseFloat(link.getAttribute('data-value'));
+        fbq('track', 'InitiateCheckout', {
+          content_name: link.getAttribute('data-product') || 'unknown',
+          content_ids: [link.getAttribute('data-product-id') || 'unknown'],
+          content_type: 'product',
+          value: isNaN(v) ? 0 : v,
+          currency: 'USD',
+          cta: link.getAttribute('data-cta') || 'unknown'
+        });
+      } catch (e) {}
+    };
+  </script>
+  <!-- End checkout click tracking -->
 </head>
 <body>
 
@@ -413,7 +431,7 @@
       </div>
       <p class="offer__note">Both packs separately would be $78</p>
       <div class="offer__cta">
-        <a href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk" class="btn btn-primary">Get the Complete Kit - $73.60</a>
+        <a data-cta="bundle-hero" data-product="Text + SFX Bundle" data-product-id="text-sfx-bundle" data-value="73.60" href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk" class="btn btn-primary">Get the Complete Kit - $73.60</a>
       </div>
       <div class="offer__includes">
         <span class="inc-pill">155 sounds</span>
@@ -443,7 +461,7 @@
     </div>
     <p class="ba-caption">Drag the handle. Same edit, same 5 seconds.</p>
     <div class="ba__cta">
-      <a href="https://buy.polar.sh/polar_cl_FlTVIcD6iAWKyiVq4AZh0sG4367Q2n7YB0y8T3bkm5G" class="btn btn-primary">Get the SFX Collection - $39</a>
+      <a data-cta="ba-sfx" data-product="Creator SFX Collection" data-product-id="sfx-collection" data-value="39" href="https://buy.polar.sh/polar_cl_FlTVIcD6iAWKyiVq4AZh0sG4367Q2n7YB0y8T3bkm5G" class="btn btn-primary">Get the SFX Collection - $39</a>
     </div>
   </section>
 
@@ -466,13 +484,13 @@
         <div class="single-card__name">Creator SFX Collection</div>
         <div class="single-card__tag">155 sounds</div>
         <div class="single-card__price">$39<span class="single-card__was">$55</span></div>
-        <a href="https://buy.polar.sh/polar_cl_FlTVIcD6iAWKyiVq4AZh0sG4367Q2n7YB0y8T3bkm5G" class="btn btn-ghost">Get the SFX Pack</a>
+        <a data-cta="single-sfx" data-product="Creator SFX Collection" data-product-id="sfx-collection" data-value="39" href="https://buy.polar.sh/polar_cl_FlTVIcD6iAWKyiVq4AZh0sG4367Q2n7YB0y8T3bkm5G" class="btn btn-ghost">Get the SFX Pack</a>
       </div>
       <div class="single-card">
         <div class="single-card__name">Text Animations Pack</div>
         <div class="single-card__tag">41 animations</div>
         <div class="single-card__price">$39<span class="single-card__was">$60</span></div>
-        <a href="https://buy.polar.sh/polar_cl_Yhx39RTiD63hzmTl0P3uFuJTZ93Hj0KsAzw4A22v4Lw" class="btn btn-ghost">Get the Text Pack</a>
+        <a data-cta="single-text" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="39" href="https://buy.polar.sh/polar_cl_Yhx39RTiD63hzmTl0P3uFuJTZ93Hj0KsAzw4A22v4Lw" class="btn btn-ghost">Get the Text Pack</a>
       </div>
     </div>
   </section>
@@ -589,7 +607,7 @@
       modal.addEventListener('click', function(e) { if (e.target === modal) hide() })
       document.addEventListener('click', function(e) {
           var link = e.target.closest('a')
-          if (link && link.href && link.href.includes('buy.polar.sh')) { e.preventDefault(); open(link.href) }
+          if (link && link.href && link.href.includes('buy.polar.sh')) { window.amTrackCheckout(link); e.preventDefault(); open(link.href) }
       }, true)
   })()
   </script>
@@ -685,6 +703,9 @@
       window.addEventListener('resize', checkVis);
     })();
   </script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "177f251018f04c73b301940a5cd183dc"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>
