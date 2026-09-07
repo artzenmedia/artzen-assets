@@ -1325,21 +1325,6 @@
   </div>
 
   <script>
-    // Channel tagging: /bundle defaults to the email-tagged Polar link.
-    // ?s=story and ?s=ads swap to their own links so the sale is attributed
-    // to the right stream in Polar. See the checkout-link metadata.
-    (function () {
-      var LINKS = {
-        story: 'https://buy.polar.sh/polar_cl_xt2AKiW4WDtjDIYlFOHtss9cIUQceVFqdei8540ijLL',
-        ads:   'https://buy.polar.sh/polar_cl_vKrjLcCn1VCRi0fZOT5uNoKEhQQih3byKWusN2wm8Cb'
-      };
-      try {
-        var s = new URLSearchParams(location.search).get('s');
-        if (s && LINKS[s]) {
-          document.querySelectorAll('a[href*="buy.polar.sh"]').forEach(function (a) { a.href = LINKS[s]; });
-        }
-      } catch (e) {}
-    })();
 
     // ── Fade-up on scroll ──
     const fus = document.querySelectorAll('.fu:not(.on)');
@@ -1541,5 +1526,37 @@
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "177f251018f04c73b301940a5cd183dc"}'></script>
   <!-- End Cloudflare Web Analytics -->
+  <!-- Channel tagging: ?s=story / ?s=ads / ?s=email swap each buy button to the
+       Polar checkout link tagged for that channel, matched per product so an
+       upsell never inherits another product's price. No param = site default. -->
+  <script>
+  (function () {
+    var LINKS = {
+      story: {
+        'sfx-collection':  'https://buy.polar.sh/polar_cl_EvTRzGNvWlZsVQvIh5w6lfqXsmY5SRFVB24oW4As7Cg',
+        'text-animations': 'https://buy.polar.sh/polar_cl_XGugAaoqfHYcabzIUGyyTFEaT1p9Jvj1pUG4j2OJlLj',
+        'text-sfx-bundle': 'https://buy.polar.sh/polar_cl_xt2AKiW4WDtjDIYlFOHtss9cIUQceVFqdei8540ijLL'
+      },
+      ads: {
+        'sfx-collection':  'https://buy.polar.sh/polar_cl_eb9Ys1fl191ews67dpVHdz0svKSHdHUU8ehZC0oWog4',
+        'text-animations': 'https://buy.polar.sh/polar_cl_5KdbIXLbRzUDVWUiAif1FdWRfg9uppDUoqrVH00y1Dt',
+        'text-sfx-bundle': 'https://buy.polar.sh/polar_cl_vKrjLcCn1VCRi0fZOT5uNoKEhQQih3byKWusN2wm8Cb'
+      },
+      email: {
+        'sfx-collection':  'https://buy.polar.sh/polar_cl_fJNOHKFjenbLuGV9uq60yPuThyrWx9vuq6AS93yvIzw',
+        'text-animations': 'https://buy.polar.sh/polar_cl_3UIa4rtE4c2LTW9isA2bWBmAPJiE40xSCUmDe1CIL5X',
+        'text-sfx-bundle': 'https://buy.polar.sh/polar_cl_1fknhbjKLHXIv2xXgjINwPtHBQ6COt2ozkmqk2Jrdh7'
+      }
+    };
+    try {
+      var map = LINKS[new URLSearchParams(location.search).get('s')];
+      if (!map) return;
+      document.querySelectorAll('a[href*="buy.polar.sh"][data-product-id]').forEach(function (a) {
+        var t = map[a.getAttribute('data-product-id')];
+        if (t) a.href = t;
+      });
+    } catch (e) {}
+  })();
+  </script>
 </body>
 </html>
