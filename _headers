@@ -1,0 +1,9 @@
+# Browser caching for static assets. HTML keeps Cloudflare's default (always revalidate),
+# so price and copy changes still show up immediately.
+/assets/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Font files never change in place; a different font gets a different filename.
+/assets/fonts/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
