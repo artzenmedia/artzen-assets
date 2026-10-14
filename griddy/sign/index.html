@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#C2C1C3">
+  <meta name="robots" content="noindex">
+  <title>Test Griddy on Windows</title>
+  <meta name="description" content="Sign up to test Griddy, a grid transition for Premiere Pro, on Windows before it launches.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icon-96.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="/assets/icon-192.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shop.artzenmedia.com/griddy/sign/">
+  <meta property="og:title" content="Test Griddy on Windows">
+  <meta property="og:description" content="I need a few Windows editors to try Griddy before launch. Testers get Griddy Pro free.">
+  <meta property="og:image" content="https://shop.artzenmedia.com/griddy/assets/og-griddy.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #C2C1C3;
+      --paper-hi: #CECDCF;
+      --rule: #D3D2D4;
+      --ink: #1E1E1E;
+      --ink-2: #444346;
+      --card: #EDECEE;
+      --dot: rgba(20, 20, 20, .5);
+      --signal: #E74A25;
+      --cell: 48px;
+      --radius: 8px;
+      --gutter: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image:
+        radial-gradient(circle, var(--dot) 1px, transparent 1.6px),
+        linear-gradient(var(--rule) 1px, transparent 1px),
+        linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+      background-size: var(--cell) var(--cell);
+      background-position: calc(50% - var(--cell) / 2 + .5px) calc(var(--cell) / -2 + .5px), 50% 0, 50% 0;
+      font-family: "Archivo", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+    .wrap { width: 100%; max-width: calc(640px + var(--gutter) * 2); margin: 0 auto; padding: 0 var(--gutter); }
+    @media (max-width: 480px) { :root { --gutter: 16px; } }
+
+    h1, h2 { margin: 0; font-weight: 800; letter-spacing: -.02em; text-wrap: balance; }
+    h1 { font-size: clamp(44px, 9vw, 72px); line-height: .92; font-stretch: 122%; }
+    h2 { font-size: clamp(30px, 6vw, 40px); line-height: 1; font-stretch: 116%; }
+    p { margin: 0; text-wrap: pretty; }
+
+    /* header (same as the Griddy page) */
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; height: calc(var(--cell) * 2); }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand svg { width: 30px; height: 30px; }
+    .brand b { font-size: 24px; font-weight: 800; font-stretch: 122%; letter-spacing: -.02em; }
+    .top__by { font-size: 15px; text-decoration: none; color: var(--ink-2); }
+    .top__by:hover { color: var(--ink); text-decoration: underline; }
+
+    .intro { display: grid; gap: 16px; padding: 24px 0 40px; }
+    .lede { font-size: 19px; line-height: 1.5; color: var(--ink-2); max-width: 32em; }
+    .lede b { color: var(--ink); font-weight: 700; }
+    .chip { justify-self: start; display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 6px; border-radius: 999px;
+            background: var(--ink); color: #F1F0F2; font-size: 14px; font-weight: 600; font-stretch: 108%; }
+
+    .card { background: var(--card); border-radius: 12px; padding: 8px 28px; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+    @media (max-width: 480px) { .card { padding: 4px 18px; } }
+
+    .q { border: 0; margin: 0; padding: 24px 0; min-width: 0; }
+    .q + .q { border-top: 1px solid #D9D8DA; }
+    .q[hidden] { display: none; }
+    /* float takes the legend out of the fieldset border, so the divider line doesn't run through it */
+    .q__label { float: left; width: 100%; display: flex; align-items: baseline; gap: 12px; padding: 0; margin: 0 0 14px; font-size: 20px; line-height: 1.2;
+                font-weight: 800; font-stretch: 112%; letter-spacing: -.01em; }
+    .q__label + * { clear: both; }
+    .q__n { flex: none; width: 26px; height: 26px; display: inline-grid; place-items: center; border-radius: 999px; transform: translateY(-2px);
+            background: var(--ink); color: #F1F0F2; font-size: 13px; font-weight: 700; font-stretch: 100%; }
+    .q__hint { margin: -6px 0 14px 38px; font-size: 15px; color: var(--ink-2); }
+    .q__note { margin: 12px 0 0 38px; font-size: 15px; color: var(--ink-2); }
+    .q__note[hidden] { display: none; }
+    .q__err { margin: 10px 0 0 38px; font-size: 15px; font-weight: 600; color: #B8321A; }
+    .q__err:empty { display: none; }
+    .q.is-bad .opts label, .q.is-bad .field { border-color: #B8321A; }
+
+    .opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 10px; margin-left: 38px; }
+    .opts input { position: absolute; opacity: 0; pointer-events: none; }
+    .opts label {
+      display: flex; align-items: center; justify-content: center; text-align: center; min-height: var(--cell); padding: 8px 12px;
+      border: 1.5px solid var(--ink); border-radius: var(--radius); cursor: pointer; user-select: none;
+      font-weight: 600; font-size: 16px; line-height: 1.15; font-stretch: 106%; transition: background-color .12s, color .12s;
+    }
+    .opts label:hover { background: var(--paper-hi); }
+    .opts input:checked + label { background: var(--ink); color: #F1F0F2; }
+    .opts input:focus-visible + label { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+    .field { display: flex; align-items: center; height: var(--cell); margin-left: 38px; border: 1.5px solid var(--ink); border-radius: var(--radius);
+             background: #fff; overflow: hidden; }
+    .field:focus-within { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .field span { padding: 0 2px 0 14px; font-weight: 700; color: var(--ink-2); }
+    .field input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: none; padding: 0 14px; font: 500 17px "Archivo", sans-serif; color: var(--ink); }
+    .field span + input { padding-left: 2px; }
+
+    @media (max-width: 480px) {
+      .opts, .field, .q__hint, .q__note, .q__err { margin-left: 0; }
+      .opts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .opts--3 label:last-of-type { grid-column: 1 / -1; }  /* no lone half-width tile */
+    }
+
+    .send { display: grid; gap: 14px; padding: 28px 0 8px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 24px; border-radius: var(--radius);
+      border: 1.5px solid var(--ink); background: var(--ink); color: #F1F0F2; cursor: pointer;
+      font: 700 18px/1 "Archivo", sans-serif; font-stretch: 112%; width: 100%;
+    }
+    .btn:hover { background: #000; }
+    .btn[disabled] { opacity: .6; cursor: progress; }
+    .fine { font-size: 14px; color: var(--ink-2); text-align: center; }
+    .send__err { font-size: 15px; font-weight: 600; color: #B8321A; text-align: center; }
+    .send__err:empty { display: none; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    .done { display: grid; gap: 14px; padding: 36px 28px; }
+    .done[hidden] { display: none; }
+    .done p { font-size: 18px; color: var(--ink-2); }
+    .done .sig { color: var(--ink); font-weight: 700; }
+
+    .foot { padding: 56px 0 40px; font-size: 14px; color: var(--ink-2); }
+    .foot .wrap { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
+    .foot nav { display: flex; gap: 20px; }
+  </style>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','912683378281121');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=912683378281121&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="g-mark" viewBox="0 0 1000 1000"><path fill="currentColor" d="M0 213A13 13 0 0 1 13 200L115 200A85 85 0 0 0 200 115L200 13A13 13 0 0 1 213 0L787 0A13 13 0 0 1 800 13L800 187A13 13 0 0 1 787 200L285 200A85 85 0 0 0 200 285L200 715A85 85 0 0 0 285 800L715 800A85 85 0 0 0 800 715L800 660A60 60 0 0 0 740 600L613 600A13 13 0 0 1 600 587L600 413A13 13 0 0 1 613 400L987 400A13 13 0 0 1 1000 413L1000 787A13 13 0 0 1 987 800L885 800A85 85 0 0 0 800 885L800 987A13 13 0 0 1 787 1000L213 1000A13 13 0 0 1 200 987L200 885A85 85 0 0 0 115 800L13 800A13 13 0 0 1 0 787Z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/griddy/" aria-label="Griddy home">
+      <svg aria-hidden="true"><use href="#g-mark"/></svg>
+      <b>Griddy</b>
+    </a>
+    <a class="top__by" href="https://artzenmedia.com">by Artzen Media</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <span class="chip">Windows beta</span>
+    <h1>Test Griddy on Windows</h1>
+    <p class="lede">Griddy is my grid transition for Premiere Pro. Before it launches I need a few editors on Windows to try it on a real edit. <b>Testers get Griddy Pro free.</b></p>
+  </div>
+
+  <form class="card" id="sign" novalidate>
+    <fieldset class="q" data-q="instagram">
+      <legend class="q__label"><span class="q__n">1</span>Your Instagram</legend>
+      <label class="field"><span aria-hidden="true">@</span>
+        <input name="instagram" type="text" inputmode="text" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false"
+               maxlength="60" placeholder="yourhandle" aria-label="Instagram handle">
+      </label>
+      <p class="q__err" aria-live="polite"></p>
+    </fieldset>
+
+    <fieldset class="q" data-q="email">
+      <legend class="q__label"><span class="q__n">2</span>Your email</legend>
+      <p class="q__hint">If you're picked, the download goes here.</p>
+      <label class="field">
+        <input name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false"
+               maxlength="254" placeholder="you@email.com" aria-label="Email">
+      </label>
+      <p class="q__err" aria-live="polite"></p>
+    </fieldset>
+
+    <fieldset class="q" data-q="app">
+      <legend class="q__label"><span class="q__n">3</span>What do you edit in?</legend>
+      <div class="opts opts--3">
+        <input type="radio" name="app" id="app-pr" value="premiere"><label for="app-pr">Premiere Pro</label>
+        <input type="radio" name="app" id="app-dr" value="resolve"><label for="app-dr">DaVinci Resolve</label>
+        <input type="radio" name="app" id="app-both" value="both"><label for="app-both">Both</label>
+      </div>
+      <p class="q__note" id="note-resolve" hidden>Griddy is Premiere only for now. Sign up anyway and you'll hear first if a Resolve version comes.</p>
+      <p class="q__err" aria-live="polite"></p>
+    </fieldset>
+
+    <fieldset class="q" data-q="os">
+      <legend class="q__label"><span class="q__n">4</span>Your computer</legend>
+      <div class="opts opts--3">
+        <input type="radio" name="os" id="os-11" value="win11"><label for="os-11">Windows 11</label>
+        <input type="radio" name="os" id="os-10" value="win10"><label for="os-10">Windows 10</label>
+        <input type="radio" name="os" id="os-mac" value="mac"><label for="os-mac">Mac</label>
+      </div>
+      <p class="q__note" id="note-mac" hidden>This round is Windows only, but sign up anyway and you'll hear first when Griddy launches.</p>
+      <p class="q__err" aria-live="polite"></p>
+    </fieldset>
+
+    <fieldset class="q" data-q="premiere" id="q-premiere">
+      <legend class="q__label"><span class="q__n">5</span>Premiere Pro version</legend>
+      <p class="q__hint">Not sure? It's under Help › About Premiere Pro.</p>
+      <div class="opts">
+        <input type="radio" name="premiere" id="pr-26" value="2026"><label for="pr-26">2026</label>
+        <input type="radio" name="premiere" id="pr-25" value="2025"><label for="pr-25">2025</label>
+        <input type="radio" name="premiere" id="pr-old" value="older"><label for="pr-old">Older</label>
+        <input type="radio" name="premiere" id="pr-ns" value="unsure"><label for="pr-ns">Not sure</label>
+      </div>
+      <p class="q__err" aria-live="polite"></p>
+    </fieldset>
+
+    <fieldset class="q" data-q="gpu">
+      <legend class="q__label"><span class="q__n" data-n>6</span>Graphics card</legend>
+      <div class="opts">
+        <input type="radio" name="gpu" id="gpu-nv" value="nvidia"><label for="gpu-nv">NVIDIA</label>
+        <input type="radio" name="gpu" id="gpu-amd" value="amd"><label for="gpu-amd">AMD</label>
+        <input type="radio" name="gpu" id="gpu-intel" value="intel"><label for="gpu-intel">Intel</label>
+        <input type="radio" name="gpu" id="gpu-ns" value="unsure"><label for="gpu-ns">Not sure</label>
+      </div>
+      <p class="q__err" aria-live="polite"></p>
+    </fieldset>
+
+    <fieldset class="q" data-q="often">
+      <legend class="q__label"><span class="q__n" data-n>7</span>How often do you edit?</legend>
+      <div class="opts opts--3">
+        <input type="radio" name="often" id="of-d" value="daily"><label for="of-d">Every day</label>
+        <input type="radio" name="often" id="of-w" value="weekly"><label for="of-w">Every week</label>
+        <input type="radio" name="often" id="of-s" value="sometimes"><label for="of-s">Now and then</label>
+      </div>
+      <p class="q__err" aria-live="polite"></p>
+    </fieldset>
+
+    <div class="hp" aria-hidden="true"><label>Website <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+
+    <div class="send">
+      <button class="btn" type="submit">Sign me up</button>
+      <p class="send__err" aria-live="polite"></p>
+      <p class="fine">I'll only email you about the Griddy beta and launch. <a href="/privacy">Privacy Policy</a></p>
+    </div>
+  </form>
+
+  <section class="card done" id="done" hidden tabindex="-1">
+    <h2>You're on the list</h2>
+    <p>I'm picking 5 to 10 testers this week, and you'll hear from me either way. Thanks for putting your hand up!</p>
+    <p id="done-extra" hidden></p>
+    <p class="sig">Ben</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <nav><a href="/tac">Terms and Conditions</a><a href="/privacy">Privacy Policy</a></nav>
+    <p>©2026 <a href="https://artzenmedia.com">Artzen Media</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var API = 'https://griddy-license.artzenmedia.workers.dev/sign';
+  var form = document.getElementById('sign');
+  var qPremiere = document.getElementById('q-premiere');
+  var sendErr = form.querySelector('.send__err');
+  var btn = form.querySelector('.btn');
+  var source = (new URLSearchParams(location.search).get('s') || '').replace(/[^a-z0-9_-]/gi, '').slice(0, 32);
+
+  function val(name) {
+    var el = form.elements[name];
+    return el ? String(el.value || '').trim() : '';
+  }
+  function setErr(name, msg) {
+    var q = form.querySelector('[data-q="' + name + '"]');
+    if (!q) return;
+    q.classList.toggle('is-bad', !!msg);
+    q.querySelector('.q__err').textContent = msg || '';
+  }
+  function cleanHandle(s) {
+    return s.replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/^@+/, '').replace(/[/?].*$/, '').trim();
+  }
+
+  // Resolve-only editors skip the Premiere question; numbers after it shift up.
+  function sync() {
+    var app = val('app'), os = val('os');
+    var skipPr = app === 'resolve';
+    qPremiere.hidden = skipPr;
+    form.querySelectorAll('[data-n]').forEach(function (n, i) { n.textContent = (skipPr ? 5 : 6) + i; });
+    document.getElementById('note-resolve').hidden = app !== 'resolve';
+    document.getElementById('note-mac').hidden = os !== 'mac';
+  }
+  form.addEventListener('change', function (e) {
+    sync();
+    if (e.target.name) setErr(e.target.name, '');
+  });
+  form.addEventListener('input', function (e) {
+    var t = e.target;
+    if (t.name === 'instagram' && /^@/.test(t.value)) t.value = t.value.replace(/^@+/, ''); // the field already shows the @
+    if (t.name) setErr(t.name, '');
+  });
+
+  function check() {
+    var bad = [];
+    var handle = cleanHandle(val('instagram'));
+    if (!/^[A-Za-z0-9._]{1,30}$/.test(handle)) bad.push(['instagram', handle ? 'Just the handle, like yourhandle.' : 'Add your Instagram handle.']);
+    var email = val('email');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) bad.push(['email', email ? "That email doesn't look right." : 'Add your email.']);
+    ['app', 'os', 'premiere', 'gpu', 'often'].forEach(function (k) {
+      if (k === 'premiere' && qPremiere.hidden) return;
+      if (!val(k)) bad.push([k, 'Pick one.']);
+    });
+    bad.forEach(function (b) { setErr(b[0], b[1]); });
+    return bad;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    sendErr.textContent = '';
+    var bad = check();
+    if (bad.length) {
+      var q = form.querySelector('[data-q="' + bad[0][0] + '"]');
+      q.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var first = q.querySelector('input');
+      if (first && first.type !== 'radio') first.focus({ preventScroll: true });
+      return;
+    }
+    var app = val('app'), os = val('os');
+    var body = {
+      instagram: cleanHandle(val('instagram')),
+      email: val('email'),
+      app: app, os: os,
+      premiere: app === 'resolve' ? null : val('premiere'),
+      gpu: val('gpu'), often: val('often'),
+      source: source, website: val('website')
+    };
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    fetch(API, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+      .then(function (res) {
+        if (!res.ok) {
+          if (res.field) { setErr(res.field, res.error); form.querySelector('[data-q="' + res.field + '"]').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+          else sendErr.textContent = "That didn't go through. Try again in a moment.";
+          return;
+        }
+        var extra = document.getElementById('done-extra');
+        if (os === 'mac' || app === 'resolve') {
+          extra.textContent = app === 'resolve'
+            ? "Griddy is Premiere only for now, so you won't be in this round. You'll hear first if a Resolve version comes."
+            : "This round is Windows only, so you won't be in it. You'll hear first when Griddy launches.";
+          extra.hidden = false;
+        }
+        form.hidden = true;
+        var done = document.getElementById('done');
+        done.hidden = false;
+        done.focus({ preventScroll: true });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Griddy Windows beta' }); } catch (_) {}
+      })
+      .catch(function () { sendErr.textContent = "Couldn't send. Check your connection and try again."; })
+      .finally(function () { btn.disabled = false; btn.textContent = 'Sign me up'; });
+  });
+
+  sync();
+})();
+</script>
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "177f251018f04c73b301940a5cd183dc"}'></script>
+</body>
+</html>
