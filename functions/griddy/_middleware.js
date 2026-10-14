@@ -1,10 +1,10 @@
 /* Password gate for the Griddy sales page (shop.artzenmedia.com/griddy/) while testers are on the beta.
 ** The password is the Pages secret GRIDDY_GATE_PASSWORD (never in this public repo):
 **   CLOUDFLARE_ACCOUNT_ID=9f8295586552d56e798cdc458690292f npx wrangler pages secret put GRIDDY_GATE_PASSWORD --project-name artzen-shop
-** Open without the password: /griddy/sign/ (tester sign-up) and /griddy/assets/ (logo and fonts used by other pages).
+** Open without the password: /griddy/sign/ (tester sign-up), /griddy/early/ (early access list) and /griddy/assets/ (logo and fonts used by other pages).
 ** To unlock the page for launch, delete this file and push. */
 const COOKIE = "griddy_gate";
-const OPEN = ["/griddy/sign", "/griddy/assets/"];
+const OPEN = ["/griddy/sign", "/griddy/early", "/griddy/assets/"];
 
 async function cookieValue(password) {
   const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("griddy-gate-v1:" + password));
