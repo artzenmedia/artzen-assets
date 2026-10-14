@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#C2C1C3">
+  <title>Griddy - Grid transition for Premiere Pro</title>
+  <meta name="description" content="Griddy is a grid transition for Premiere Pro. The frame splits into a grid and every cell cuts to the next clip in an order you pick.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icon-96.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="/assets/icon-192.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shop.artzenmedia.com/griddy/">
+  <meta property="og:title" content="Griddy - Grid transition for Premiere Pro">
+  <meta property="og:description" content="The frame splits into a grid and every cell cuts to the next clip. Drag it onto a cut, pick a preset.">
+  <meta property="og:image" content="https://shop.artzenmedia.com/griddy/assets/og-griddy.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://shop.artzenmedia.com/griddy/assets/og-griddy.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="preload" href="/griddy/assets/lake.mp4" as="video" type="video/mp4">
+
+  <style>
+    :root {
+      --paper: #C2C1C3;      /* logo background */
+      --paper-hi: #CECDCF;
+      --rule: #D3D2D4;       /* page grid lines */
+      --line: #DAD8D9;       /* logo grid lines */
+      --ink: #1E1E1E;        /* logo G */
+      --ink-2: #444346;
+      --dot: rgba(20, 20, 20, .5);
+      --signal: #E74A25;     /* backup logo orange, used only for Pro */
+      --pr-bg: #232323;      /* Premiere panels */
+      --pr-head: #1B1B1B;
+      --pr-row: #2A2A2A;
+      --pr-text: #C9C9C9;
+      --pr-dim: #8D8D8D;
+      --pr-blue: #4B9CF5;
+      --cell: 48px;
+      --radius: 8px;
+      --wrap: 1152px;
+      --gutter: 24px;
+      --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image:
+        radial-gradient(circle, var(--dot) 1px, transparent 1.6px),
+        linear-gradient(var(--rule) 1px, transparent 1px),
+        linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+      background-size: var(--cell) var(--cell);
+      background-position: calc(50% - var(--cell) / 2 + .5px) calc(var(--cell) / -2 + .5px), 50% 0, 50% 0;
+      font-family: "Archivo", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+      font-weight: 400;
+      font-stretch: 100%;
+      overflow-x: hidden;
+    }
+    img, video, canvas { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+    .wrap { width: 100%; max-width: calc(var(--wrap) + var(--gutter) * 2); margin: 0 auto; padding: 0 var(--gutter); }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -.02em; text-wrap: balance; }
+    h1 { font-size: clamp(46px, 7.4vw, 96px); line-height: .92; font-stretch: 122%; }
+    h2 { font-size: clamp(32px, 4.4vw, 54px); line-height: .98; font-stretch: 116%; max-width: 18ch; }
+    h3 { font-size: 20px; line-height: 1.2; font-stretch: 108%; letter-spacing: -.01em; }
+    p { margin: 0; text-wrap: pretty; }
+    .lede { font-size: 19px; line-height: 1.5; max-width: 34em; }
+    .muted { color: var(--ink-2); }
+
+    /* buttons: one grid cell tall */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: var(--cell); padding: 0 22px; border-radius: var(--radius);
+      font: 600 16px/1 "Archivo", sans-serif; font-stretch: 108%; text-decoration: none; white-space: nowrap;
+      cursor: pointer; border: 1.5px solid var(--ink); transition: background-color .15s, color .15s;
+    }
+    .btn--ink { background: var(--ink); color: #F1F0F2; }
+    .btn--ink:hover { background: #000; }
+    .btn--line { background: transparent; color: var(--ink); }
+    .btn--line:hover { background: var(--paper-hi); }
+    .btn--sm { height: 40px; padding: 0 16px; font-size: 15px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .tag { display: inline-block; padding: 2px 7px 3px; border-radius: 5px; font: 700 12px/1.2 "Archivo", sans-serif; font-stretch: 100%; vertical-align: 2px; }
+    .tag--pro { background: var(--signal); color: var(--ink); }
+    .tag--free { box-shadow: inset 0 0 0 1.25px var(--ink); }
+
+    /* ---------- header ---------- */
+    .top { position: relative; z-index: 2; }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; height: calc(var(--cell) * 2); }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand svg { width: 30px; height: 30px; }
+    .brand b { font-size: 24px; font-weight: 800; font-stretch: 122%; letter-spacing: -.02em; }
+    .top__right { display: flex; align-items: center; gap: 20px; }
+    .top__by { font-size: 15px; text-decoration: none; color: var(--ink-2); }
+    .top__by:hover { color: var(--ink); text-decoration: underline; }
+
+    /* ---------- hero ---------- */
+    .hero { padding-bottom: calc(var(--cell) * 2); }
+    .hero__head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px var(--cell); align-items: end; padding: var(--cell) 0; }
+    .hero__copy { display: grid; gap: 24px; }
+    .hero__fine { font-size: 14px; color: var(--ink-2); }
+
+    /* the fake Premiere workspace */
+    .studio {
+      display: grid; grid-template-columns: minmax(0, 1fr) 316px; gap: 2px;
+      background: #111; border-radius: 12px; padding: 2px; overflow: hidden;
+      font-family: var(--ui); font-size: 12px; color: var(--pr-text);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.25);
+    }
+    .pane { background: var(--pr-bg); border-radius: 10px; display: flex; flex-direction: column; min-width: 0; }
+    .studio > .pane:first-child { border-radius: 10px 4px 4px 10px; }
+    .studio > .pane:last-child { border-radius: 4px 10px 10px 4px; }
+    .pane__tabs { display: flex; gap: 18px; align-items: center; height: 34px; padding: 0 14px; border-bottom: 1px solid #191919; color: var(--pr-dim); white-space: nowrap; overflow: hidden; }
+    .pane__tabs .on { color: #E6E6E6; position: relative; }
+    .pane__tabs .on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -10px; height: 2px; background: var(--pr-blue); border-radius: 2px; }
+    .monitor { flex: 1; display: flex; flex-direction: column; }
+    .monitor__screen { position: relative; background: #000; width: min(100% - 28px, 64vh * 4 / 3); margin: 12px auto 0; aspect-ratio: 4 / 3; }
+    .monitor { background: var(--pr-bg); }
+    .monitor__screen canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .monitor__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 46px; padding: 0 14px; }
+    .tc { font-variant-numeric: tabular-nums; color: var(--pr-blue); font-size: 14px; letter-spacing: .02em; }
+    .tc-len { justify-self: end; color: var(--pr-dim); font-variant-numeric: tabular-nums; }
+    .play { width: 34px; height: 30px; border-radius: 6px; border: 0; background: transparent; color: #DADADA; display: grid; place-items: center; cursor: pointer; }
+    .play:hover { background: #333; }
+    .play svg { width: 14px; height: 14px; }
+
+    .fx { padding: 10px 0 14px; display: flex; flex-direction: column; }
+    .fx__clip { display: flex; justify-content: space-between; padding: 6px 14px 10px; color: var(--pr-dim); }
+    .fx__head { display: flex; align-items: center; gap: 8px; padding: 7px 14px; background: var(--pr-row); color: #E8E8E8; font-weight: 600; }
+    .fx__badge { font: italic 700 11px/1 var(--ui); color: #DADADA; border: 1px solid #5A5A5A; border-radius: 3px; padding: 2px 3px; }
+    .fx__row { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 10px; min-height: 36px; padding: 4px 14px 4px 28px; }
+    .fx__row label, .fx__row .k { color: var(--pr-text); }
+    .pr-select {
+      appearance: none; -webkit-appearance: none; width: 100%; height: 26px; padding: 0 26px 0 8px;
+      background: #1A1A1A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23BDBDBD' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 9px center;
+      border: 1px solid #3C3C3C; border-radius: 4px; color: #E9E9E9; font: 12px var(--ui); cursor: pointer;
+    }
+    .pr-select:hover { border-color: #555; }
+    .pr-btn { height: 26px; padding: 0 12px; justify-self: start; background: #3A3A3A; color: #F0F0F0; border: 1px solid #4A4A4A; border-radius: 4px; font: 12px var(--ui); cursor: pointer; }
+    .pr-btn:hover { background: #454545; }
+    .pr-btn:active { background: #2F2F2F; }
+    .swatch { position: relative; width: 44px; height: 20px; border-radius: 3px; border: 1px solid #555; overflow: hidden; cursor: pointer; }
+    .swatch:focus-within { outline: 2px solid var(--pr-blue); outline-offset: 2px; }
+    .swatch input { position: absolute; inset: -8px; width: 70px; height: 40px; border: 0; padding: 0; cursor: pointer; opacity: 0; }
+    .swatch span { position: absolute; inset: 0; }
+    .fx__topic { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 34px; padding: 4px 14px 4px 14px; background: none; border: 0; color: var(--pr-text); font: 12px var(--ui); text-align: left; cursor: pointer; }
+    .fx__topic:hover { color: #F2F2F2; }
+    .fx__topic svg { width: 10px; height: 10px; transition: transform .15s; }
+    .fx__topic[aria-expanded="true"] svg { transform: rotate(90deg); }
+    .fx__adv { padding: 0 0 4px; }
+    .fx__adv dl { margin: 0; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 0 10px; padding: 0 14px 0 42px; }
+    .fx__adv dt, .fx__adv dd { margin: 0; padding: 5px 0; border-top: 1px solid #2C2C2C; }
+    .fx__adv dt { color: var(--pr-dim); }
+    .fx__adv dd { color: var(--pr-blue); font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .fx__note { margin: auto 14px 0; padding-top: 14px; color: var(--pr-dim); line-height: 1.45; }
+    .studio__cap { margin-top: 16px; font-size: 15px; color: var(--ink-2); max-width: 46em; }
+
+    /* ---------- sections ---------- */
+    section.block { padding: calc(var(--cell) * 2) 0; border-top: 1.5px solid var(--ink); }
+    .block__head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px var(--cell); align-items: end; margin-bottom: calc(var(--cell) * 1); }
+
+    .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; counter-reset: s; }
+    .steps li { counter-increment: s; display: grid; gap: 10px; align-content: start; }
+    .steps li::before {
+      content: counter(s); display: grid; place-items: center; width: var(--cell); height: var(--cell); margin-bottom: 8px;
+      background: var(--ink); color: #F1F0F2; border-radius: var(--radius); font-weight: 800; font-size: 22px; font-stretch: 120%;
+    }
+    .steps p { color: var(--ink-2); max-width: 30em; }
+    kbd { font: inherit; font-weight: 600; color: var(--ink); }
+
+    .adv-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; margin-top: calc(var(--cell) * 1.5); }
+    .adv-list h3 { font-size: 17px; margin-bottom: 6px; }
+    .adv-list p { font-size: 15px; color: var(--ink-2); }
+
+    /* design presets: the reel's orders as step numbers */
+    .designs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; }
+    .design { display: grid; gap: 12px; align-content: start; }
+    .design__grid { display: grid; gap: 2px; padding: 2px; background: var(--ink); border-radius: 6px; aspect-ratio: 4 / 3; }
+    .design__grid i {
+      display: grid; place-items: center; border-radius: 2px; font: 600 11px/1 "Archivo", sans-serif; font-stretch: 90%;
+      font-variant-numeric: tabular-nums; font-style: normal;
+    }
+    .design__name { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .design p { font-size: 15px; color: var(--ink-2); }
+    .others { margin-top: calc(var(--cell) * 1.5); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--cell); }
+    .others h3 { margin-bottom: 8px; }
+    .others ul { list-style: none; margin: 0; padding: 0; }
+    .others li { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 12px 0; border-top: 1px solid rgba(30,30,30,.25); }
+    .others li b { font-weight: 700; }
+    .others li span { color: var(--ink-2); font-size: 15px; }
+
+    .lines-fig { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--cell); align-items: center; }
+    .lines-fig figure { margin: 0; position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 4 / 3; background: #000; }
+    .lines-fig figure img { width: 100%; height: 100%; object-fit: cover; }
+    .lines-fig figure::after {
+      content: ""; position: absolute; inset: 0;
+      background-image: linear-gradient(90deg, #000 1.5px, transparent 1.5px), linear-gradient(#000 1.5px, transparent 1.5px);
+      background-size: calc(100% / 7) 100%, 100% calc(100% / 5);
+      background-position: -.75px 0, 0 -.75px;
+    }
+    .lines-fig .copy { display: grid; gap: 20px; }
+
+    /* trial vs pro */
+    .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .plan { border: 1.5px solid var(--ink); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 22px; background: rgba(206, 205, 207, .55); }
+    .plan--pro { background: var(--ink); color: #EDECEE; }
+    .plan__top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+    .plan__price { font-size: 48px; font-weight: 800; font-stretch: 120%; letter-spacing: -.02em; line-height: 1; }
+    .plan__price small { font-size: 15px; font-weight: 500; font-stretch: 100%; letter-spacing: 0; opacity: .75; }
+    .plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .plan li { position: relative; padding-left: 26px; }
+    .plan li::before { content: ""; position: absolute; left: 0; top: .42em; width: 12px; height: 12px; border-radius: 3px; background: currentColor; }
+    .plan .actions { margin-top: auto; }
+    .plan--pro .btn--ink { background: #EDECEE; color: var(--ink); border-color: #EDECEE; }
+    .plan--pro .btn--ink:hover { background: #fff; }
+    .plan__fine { font-size: 14px; opacity: .75; }
+
+    .specs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .specs h3 { margin-bottom: 8px; }
+    .specs p { color: var(--ink-2); }
+
+    .faq { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--cell); }
+    .faq details { border-top: 1px solid rgba(30,30,30,.35); }
+    .faq details:last-child { border-bottom: 1px solid rgba(30,30,30,.35); }
+    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; padding: 18px 0; font-weight: 700; font-size: 18px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font-weight: 500; font-size: 24px; line-height: 1; }
+    .faq details[open] summary::after { content: "\2212"; }
+    .faq details p { padding: 0 0 20px; color: var(--ink-2); max-width: 40em; }
+
+    .final { text-align: left; }
+    .final .wrap { display: grid; gap: 28px; justify-items: start; }
+    .final h2 { font-size: clamp(40px, 6.2vw, 80px); max-width: 14ch; font-stretch: 122%; }
+
+    .foot { border-top: 1.5px solid var(--ink); padding: 32px 0 calc(var(--cell) * 2); font-size: 14px; color: var(--ink-2); }
+    .foot .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
+    .foot nav { display: flex; gap: 20px; }
+
+    /* sticky buy bar */
+    .bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+      background: var(--ink); color: #EDECEE; transform: translateY(110%); transition: transform .25s ease;
+      padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+    }
+    .bar.show { transform: none; }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .bar__name { display: flex; align-items: center; gap: 10px; font-weight: 700; font-stretch: 112%; }
+    .bar__name svg { width: 22px; height: 22px; }
+    .bar__name small { font-weight: 400; font-stretch: 100%; opacity: .7; }
+    .bar .btn { height: 42px; background: #EDECEE; color: var(--ink); border-color: #EDECEE; }
+    @media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
+
+    @media (max-width: 1080px) {
+      .studio { grid-template-columns: minmax(0, 1fr); }
+      .studio > .pane:first-child { border-radius: 10px 10px 4px 4px; }
+      .studio > .pane:last-child { border-radius: 4px 4px 10px 10px; }
+      .designs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .adv-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 820px) {
+      :root { --gutter: 16px; }
+      body { font-size: 16px; }
+      .hero__head, .block__head, .lines-fig, .faq, .plans, .others, .specs { grid-template-columns: minmax(0, 1fr); }
+      .steps { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+      .designs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+      .adv-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      section.block { padding: calc(var(--cell) * 1.5) 0; }
+      .others li { grid-template-columns: minmax(0, 1fr) auto; }
+      .others li span { grid-column: 1 / -1; grid-row: 2; }
+      .plan { padding: 24px; }
+      .top__by { display: none; }
+      .fx__row { grid-template-columns: 86px minmax(0, 1fr); padding-left: 20px; }
+      .fx__adv dl { padding-left: 34px; grid-template-columns: 100px minmax(0, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .designs { grid-template-columns: minmax(0, 1fr); }
+      .design__grid i { font-size: 12px; }
+      .actions .btn { flex: 1 1 100%; }
+      .monitor__screen { width: calc(100% - 20px); margin: 10px auto 0; }
+      .bar__name small { display: none; }
+    }
+  </style>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','912683378281121');
+    fbq('track','PageView');
+    fbq('track','ViewContent',{content_name:'Griddy Pro',content_ids:['griddy-pro'],content_type:'product',value:29.00,currency:'USD'});
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=912683378281121&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+  <script>
+    window.amTrackCheckout = function (link) {
+      try {
+        if (typeof fbq !== 'function' || !link) return;
+        var v = parseFloat(link.getAttribute('data-value'));
+        fbq('track', 'InitiateCheckout', {
+          content_name: link.getAttribute('data-product') || 'unknown',
+          content_ids: [link.getAttribute('data-product-id') || 'unknown'],
+          content_type: 'product',
+          value: isNaN(v) ? 0 : v,
+          currency: 'USD',
+          cta: link.getAttribute('data-cta') || 'unknown'
+        });
+      } catch (e) {}
+    };
+  </script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="g-mark" viewBox="0 0 1000 1000"><path fill="currentColor" d="M0 213A13 13 0 0 1 13 200L115 200A85 85 0 0 0 200 115L200 13A13 13 0 0 1 213 0L787 0A13 13 0 0 1 800 13L800 187A13 13 0 0 1 787 200L285 200A85 85 0 0 0 200 285L200 715A85 85 0 0 0 285 800L715 800A85 85 0 0 0 800 715L800 660A60 60 0 0 0 740 600L613 600A13 13 0 0 1 600 587L600 413A13 13 0 0 1 613 400L987 400A13 13 0 0 1 1000 413L1000 787A13 13 0 0 1 987 800L885 800A85 85 0 0 0 800 885L800 987A13 13 0 0 1 787 1000L213 1000A13 13 0 0 1 200 987L200 885A85 85 0 0 0 115 800L13 800A13 13 0 0 1 0 787Z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/griddy/" aria-label="Griddy home">
+      <svg aria-hidden="true"><use href="#g-mark"/></svg>
+      <b>Griddy</b>
+    </a>
+    <div class="top__right">
+      <a class="top__by" href="https://artzenmedia.com">by Artzen Media</a>
+      <a class="btn btn--ink btn--sm" data-cta="header" data-product="Griddy Pro" data-product-id="griddy-pro" data-value="29"
+         href="https://buy.polar.sh/polar_cl_aMY2DPsWXAG4ztczQwY71smMqdz9ILAFY2oxr4CnT1y">Buy for $29</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero__head">
+        <h1 id="hero-title">Every cut, one cell at a time.</h1>
+        <div class="hero__copy">
+          <p class="lede">Griddy is a grid transition for Premiere Pro. The frame splits into a grid and every cell cuts to the next clip, in the order you pick. Drag it onto a cut and pick a preset.</p>
+          <div class="actions" id="heroActions">
+            <a class="btn btn--ink" data-cta="hero" data-product="Griddy Pro" data-product-id="griddy-pro" data-value="29"
+               href="https://buy.polar.sh/polar_cl_aMY2DPsWXAG4ztczQwY71smMqdz9ILAFY2oxr4CnT1y">Buy Griddy Pro for $29</a>
+            <a class="btn btn--line" href="#pricing">Try it free</a>
+          </div>
+          <p class="hero__fine">One payment, no subscription. Mac and Windows.</p>
+        </div>
+      </div>
+
+      <div class="studio" id="studio">
+        <div class="pane monitor">
+          <div class="pane__tabs"><span class="on">Program: Griddy demo</span><span>Source</span></div>
+          <div class="monitor__screen">
+            <canvas id="screen" role="img" aria-label="Griddy transition preview: the frame splits into a grid and each cell cuts to the next clip."></canvas>
+          </div>
+          <div class="monitor__bar">
+            <span class="tc" id="tc">00:00:00:00</span>
+            <button class="play" id="play" type="button" aria-label="Pause preview">
+              <svg viewBox="0 0 14 14" aria-hidden="true"><path id="playIcon" fill="currentColor" d="M2 1h3.5v12H2zM8.5 1H12v12H8.5z"/></svg>
+            </button>
+            <span class="tc-len" id="tcLen">Transition 2.4 s</span>
+          </div>
+        </div>
+
+        <div class="pane fx">
+          <div class="pane__tabs"><span class="on">Effect Controls</span><span>Lumetri Color</span></div>
+          <div class="fx__clip"><span>Sequence 01 * Griddy</span></div>
+          <div class="fx__head"><span class="fx__badge">fx</span> Griddy</div>
+          <div class="fx__row">
+            <label for="preset">Preset</label>
+            <select class="pr-select" id="preset"></select>
+          </div>
+          <div class="fx__row">
+            <span></span>
+            <button class="pr-btn" id="surprise" type="button">Surprise Me</button>
+          </div>
+          <div class="fx__row">
+            <label for="gridColour">Grid Colour</label>
+            <span class="swatch"><span id="swatchFill"></span><input type="color" id="gridColour" value="#000000" aria-label="Grid colour"></span>
+          </div>
+          <button class="fx__topic" id="advToggle" type="button" aria-expanded="false" aria-controls="adv">
+            <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Advanced
+          </button>
+          <div class="fx__adv" id="adv" hidden><dl id="advList"></dl></div>
+          <p class="fx__note">This is the real panel layout. Everything past these three controls stays folded inside Advanced.</p>
+        </div>
+      </div>
+      <p class="studio__cap">This preview runs in your browser on my footage, using the same cell orders as the plugin. Pick a preset or hit Surprise Me.</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="block__head">
+        <h2 id="how-title">On your timeline in three steps.</h2>
+        <p class="muted">Griddy works like any built-in transition, so there's nothing new to learn.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Install it</h3><p>Run the installer and restart Premiere. On a Mac it doesn't even ask for your password.</p></li>
+        <li><h3>Drag it onto a cut</h3><p>It's in <kbd>Video Transitions › Artzen Media</kbd>. It also works on the start or end of a single clip.</p></li>
+        <li><h3>Pick a preset</h3><p>Choose one of 13, or hit Surprise Me for a new look on every click. Drag the transition's edges to change its length.</p></li>
+      </ol>
+
+      <div class="adv-list" aria-label="What's inside Advanced">
+        <div><h3>Grid</h3><p>Columns, rows, square cells, the order the cells cut in, and timing.</p></div>
+        <div><h3>Tiles <span class="tag tag--pro">Pro</span></h3><p>Gaps between cells, rounded corners and the colour behind them.</p></div>
+        <div><h3>Lines</h3><p>Colour, thickness, opacity, softness and glow. Thickness scales with the frame.</p></div>
+        <div><h3>Grid animation</h3><p>11 ways for the lines to come in and go out, like a fade, a draw-on or lines growing out of their crossings.</p></div>
+        <div><h3>Flash <span class="tag tag--pro">Pro</span></h3><p>A flat colour hold before each cell cuts, or a quick flash as it does.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="presets-title">
+    <div class="wrap">
+      <div class="block__head">
+        <h2 id="presets-title">Five presets copy the viral grid reel, cell for cell.</h2>
+        <p class="muted">I went through the viral grid reel frame by frame. It's a 7 by 5 grid where every cell is a hard cut and every step takes the same time. These are its five orders. The numbers show when each cell cuts.</p>
+      </div>
+      <div class="designs" id="designs"></div>
+
+      <div class="others">
+        <div>
+          <h3>The other eight</h3>
+          <p class="muted">Fast starting points. Change anything and the preset switches to Custom.</p>
+        </div>
+        <ul>
+          <li><b>Viral Original</b><span>4 by 4, random order, white lines. The look everyone copies.</span><em class="tag tag--free">Free</em></li>
+          <li><b>Clean Black</b><span>The same with black lines that fade in and out.</span><em class="tag tag--free">Free</em></li>
+          <li><b>Draw On</b><span>Black lines draw on from the top and the cells follow.</span><em class="tag tag--free">Free</em></li>
+          <li><b>Tiles</b><span>Gaps and rounded corners, no lines, and the grid grows in.</span><em class="tag tag--pro">Pro</em></li>
+          <li><b>Neon Glow</b><span>Glowing cyan lines that draw out from the centre.</span><em class="tag tag--pro">Pro</em></li>
+          <li><b>Sweep Lines</b><span>Cells cut left to right while the lines sweep across.</span><em class="tag tag--pro">Pro</em></li>
+          <li><b>Colour Flash</b><span>A fine grid where each cell holds red or beige before it cuts.</span><em class="tag tag--pro">Pro</em></li>
+          <li><b>Crossings</b><span>Lines grow out of their crossings and each cell flashes as it cuts.</span><em class="tag tag--pro">Pro</em></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="lines-title">
+    <div class="wrap lines-fig">
+      <figure>
+        <img src="/griddy/assets/tree.jpg" alt="A clip with a black 7 by 5 grid drawn over it by Griddy Lines" width="1280" height="960" loading="lazy">
+      </figure>
+      <div class="copy">
+        <h2 id="lines-title">Keep the grid up between cuts.</h2>
+        <p>Griddy comes with Griddy Lines, the same grid as an effect. Put it on an adjustment layer over a whole section and the lines stay on screen while the cells cut underneath. That's how the reel does it.</p>
+        <p class="muted">Use the same grid size on both and the lines sit exactly on top of each other.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap">
+      <div class="block__head">
+        <h2 id="pricing-title">Try all of it free. Pay when you want the Pro looks.</h2>
+        <p class="muted">The trial is the full plugin. Pro settings just show a watermark until you activate.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <div class="plan__top"><h3>Free trial</h3><span class="plan__price">$0</span></div>
+          <ul>
+            <li>Griddy and Griddy Lines, the full plugin</li>
+            <li>Viral Original, Clean Black and Draw On</li>
+            <li>Random and directional orders</li>
+            <li>Fade and Draw line animations</li>
+            <li>Pro settings render with a watermark</li>
+          </ul>
+          <!-- TODO: trial download links. No public build is hosted yet (Mac pkg waits on Apple signing). -->
+          <div class="actions">
+            <a class="btn btn--line" href="#download-mac" data-todo="trial-mac">Download for Mac</a>
+            <a class="btn btn--line" href="#download-windows" data-todo="trial-windows">Download for Windows</a>
+          </div>
+        </div>
+        <div class="plan plan--pro">
+          <div class="plan__top"><h3>Griddy Pro</h3><span class="plan__price">$29 <small>once</small></span></div>
+          <ul>
+            <li>Everything in the trial, no watermark</li>
+            <li>All 13 presets, including the five Design presets</li>
+            <li>Snake, Spiral, Arrow, Diamond and Spread orders</li>
+            <li>Tiles, glow, colour flash and every line animation</li>
+            <li>Surprise Me pulls from all of it</li>
+            <li>One key for 3 computers</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn--ink" data-cta="pricing" data-product="Griddy Pro" data-product-id="griddy-pro" data-value="29"
+               href="https://buy.polar.sh/polar_cl_aMY2DPsWXAG4ztczQwY71smMqdz9ILAFY2oxr4CnT1y">Buy Griddy Pro for $29</a>
+          </div>
+          <p class="plan__fine">Already on the trial? Paste your key into the Griddy app and the watermark is gone in a few seconds. You don't need to reinstall or restart anything.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="specs-title">
+    <div class="wrap">
+      <div class="block__head"><h2 id="specs-title">What you need.</h2></div>
+      <div class="specs">
+        <div><h3>Mac</h3><p>Premiere Pro 25.2 or newer on macOS 14 or newer. Apple Silicon and Intel.</p></div>
+        <div><h3>Windows</h3><p>Premiere Pro 2024 or newer on 64-bit Windows 10 or 11.</p></div>
+        <div><h3>Speed</h3><p>Griddy renders on every CPU core. A 4K frame takes about 11 ms on an M4 Pro.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="faq-title">
+    <div class="wrap faq">
+      <h2 id="faq-title">Questions.</h2>
+      <div>
+        <details>
+          <summary>Does it work in Final Cut or DaVinci Resolve?</summary>
+          <p>Not yet. Griddy is a Premiere Pro plugin for now.</p>
+        </details>
+        <details>
+          <summary>How do I activate Pro?</summary>
+          <p>Open the Griddy app that installs with the plugin, paste the key from your purchase email and click Activate. Scrub your timeline and the watermark is gone. You only need to be online for that one step.</p>
+        </details>
+        <details>
+          <summary>Can I use it on more than one computer?</summary>
+          <p>Yes. One key works on 3 computers. If you switch machines, you can free one up yourself from the link in your receipt.</p>
+        </details>
+        <details>
+          <summary>Premiere says "Insufficient media". Is that Griddy?</summary>
+          <p>No. Premiere shows that for any transition on a cut where the clips have no spare frames. Trim a few frames off each side of the cut and it goes away.</p>
+        </details>
+        <details>
+          <summary>Is it a subscription?</summary>
+          <p>No. You pay $29 once.</p>
+        </details>
+        <details>
+          <summary>Something not working?</summary>
+          <p>Email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a> and I'll sort it out.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="block final" aria-labelledby="final-title">
+    <div class="wrap">
+      <h2 id="final-title">Make your next cut a grid.</h2>
+      <div class="actions" id="finalActions">
+        <a class="btn btn--ink" data-cta="final" data-product="Griddy Pro" data-product-id="griddy-pro" data-value="29"
+           href="https://buy.polar.sh/polar_cl_aMY2DPsWXAG4ztczQwY71smMqdz9ILAFY2oxr4CnT1y">Buy Griddy Pro for $29</a>
+        <a class="btn btn--line" href="#pricing">Try it free</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <nav><a href="/tac">Terms and Conditions</a><a href="/privacy">Privacy Policy</a></nav>
+    <p>©2026 <a href="https://artzenmedia.com">Artzen Media</a></p>
+  </div>
+</footer>
+
+<div class="bar" id="bar" aria-hidden="true">
+  <div class="wrap">
+    <span class="bar__name"><svg aria-hidden="true"><use href="#g-mark"/></svg>Griddy Pro <small>$29, one payment</small></span>
+    <a class="btn" tabindex="-1" data-cta="stickybar" data-product="Griddy Pro" data-product-id="griddy-pro" data-value="29"
+       href="https://buy.polar.sh/polar_cl_aMY2DPsWXAG4ztczQwY71smMqdz9ILAFY2oxr4CnT1y">Buy for $29</a>
+  </div>
+</div>
+
+<div hidden>
+  <video id="v0" src="/griddy/assets/lake.mp4"  poster="/griddy/assets/lake.jpg"  muted playsinline loop preload="auto"></video>
+  <video id="v1" src="/griddy/assets/barn.mp4"  poster="/griddy/assets/barn.jpg"  muted playsinline loop preload="auto"></video>
+  <video id="v2" src="/griddy/assets/river.mp4" poster="/griddy/assets/river.jpg" muted playsinline loop preload="none"></video>
+  <video id="v3" src="/griddy/assets/tree.mp4"  poster="/griddy/assets/tree.jpg"  muted playsinline loop preload="none"></video>
+</div>
+
+<!-- Griddy preview engine. The orders, timing curves and preset values are ported from the plugin
+     (src/GridFlowKernel.h and the kPresets table in src/GridFlow.cpp). Lines and flashes are drawn
+     the same way in spirit, simplified for canvas. -->
+<script>
+(function () {
+  'use strict';
+  var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var clamp01 = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+
+  // ids match the plugin's popups
+  var DIR_NAMES = ['', 'Random', 'Left to Right', 'Right to Left', 'Top to Bottom', 'Bottom to Top', 'Top-Left to Bottom-Right',
+    'Top-Right to Bottom-Left', 'Bottom-Left to Top-Right', 'Bottom-Right to Top-Left', 'Centre Out', 'Edges In', 'Spread',
+    'Spread from Centre', 'Snake from Centre', 'Spiral from Centre', 'Arrow from Left', 'Arrow from Right', 'Diamond from Bottom', 'Diamond from Top'];
+  var TIMING_NAMES = ['', 'Standard', 'Linear', 'Ease In-Out', 'Fast Ends', 'Ease In', 'Ease Out'];
+  var LINES_NAMES = ['', 'Full Grid', 'Revealed Cells', 'None'];
+  var ANIM_NAMES = ['', 'Cut', 'Fade', 'Draw', 'Grow', 'Draw from Centre', 'Draw Random', 'Sweep', 'Crossings', 'Segments', 'Zoom', 'Slide'];
+  var FLASH_NAMES = ['', 'Off', 'Colour Hold Before Change', 'On Cell Change'];
+
+  function P(name, pro, len, o) { o.name = name; o.pro = pro; o.len = len; return o; }
+  function base(o) {
+    var d = { cols: 4, rows: 4, square: 0, dir: 1, stagger: 50, timing: 1, gutter: 0, corner: 0, bgA: 0, lines: 1,
+      color: [0, 0, 0], thick: .15, opacity: 100, glow: 0, glowSize: 1, gin: 1, tin: 15, gout: 1, tout: 15,
+      flash: 1, fAmt: 100, fDur: 25, fVar: 50, fN: 1, fCols: [[255, 255, 255], [184, 64, 46], [229, 211, 176]] };
+    for (var k in o) d[k] = o[k];
+    return d;
+  }
+  var design = function (dir) { return base({ cols: 5, rows: 5, square: 1, dir: dir, stagger: 0, timing: 2, thick: .12 }); };
+  // len = transition length in seconds for the preview (Design presets use the reel's pace from docs/PRESETS.md)
+  var PRESETS = [
+    P('Viral Original', 0, 1.1, base({ color: [255, 255, 255] })),
+    P('Clean Black', 0, 1.1, base({ gin: 2, gout: 2 })),
+    P('Draw On', 0, 1.2, base({ dir: 4, stagger: 40, gin: 3, tin: 20, gout: 3, tout: 20 })),
+    P('Tiles', 1, 1.2, base({ gutter: 1, corner: .6, bgA: 100, lines: 3, gin: 4, tin: 20, gout: 4, tout: 20 })),
+    P('Neon Glow', 1, 1.2, base({ color: [0, 255, 255], thick: .12, glow: 80, glowSize: 1.2, gin: 5, tin: 20, gout: 2, tout: 15 })),
+    P('Sweep Lines', 1, 1.2, base({ dir: 2, stagger: 30, color: [255, 255, 255], gin: 7, tin: 25, gout: 7, tout: 25 })),
+    P('Colour Flash', 1, 1.6, base({ cols: 8, rows: 6, square: 1, dir: 12, timing: 2, color: [30, 30, 30], thick: .10, gin: 2, tin: 10, gout: 2, tout: 10,
+      flash: 2, fDur: 35, fVar: 60, fN: 2, fCols: [[184, 64, 46], [229, 211, 176], [229, 211, 176]] })),
+    P('Crossings', 1, 1.4, base({ cols: 6, rows: 4, dir: 13, color: [255, 255, 255], gin: 8, tin: 25, gout: 8, tout: 25, flash: 3, fAmt: 70, fDur: 15 })),
+    P('Design Snake', 1, 2.4, design(14)),
+    P('Design Diagonal', 1, 1.47, design(7)),
+    P('Design Spiral', 1, 3.5, design(15)),
+    P('Design Arrow', 1, 1.0, design(16)),
+    P('Design Diamond', 1, 1.03, design(18))
+  ];
+  var byName = {};
+  PRESETS.forEach(function (p) { byName[p.name] = p; });
+
+  function rng(seed) {
+    var a = (seed >>> 0) || 1;
+    return function () {
+      a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function ease(timing, p) {
+    p = clamp01(p);
+    switch (timing) {
+      case 2: return p;
+      case 3: return p * p * (3 - 2 * p);
+      case 4: var x = 2 * p - 1; return .5 + .5 * x * x * x;
+      case 5: return p * p;
+      case 6: return 1 - (1 - p) * (1 - p);
+      default: return clamp01((p - .2) / .6);
+    }
+  }
+  function dirVec(d) {
+    switch (d) {
+      case 2: case 16: return [1, 0];
+      case 3: case 17: return [-1, 0];
+      case 4: case 19: return [0, 1];
+      case 5: case 18: return [0, -1];
+      case 6: return [1, 1];
+      case 7: return [-1, 1];
+      case 8: return [1, -1];
+      case 9: return [-1, -1];
+      default: return [0, 1];
+    }
+  }
+
+  // Cell order and switch times, as GridFlowKernel.h builds them. W x H only matters for Square Cells.
+  function makePlan(L, W, H, seed) {
+    var C = L.cols, R = L.rows;
+    if (L.square) {
+      var target = Math.max(Math.min(W / C, H / R), 1);
+      C = Math.max(1, Math.floor(W / target + .5)); R = Math.max(1, Math.floor(H / target + .5));
+    }
+    var N = C * R, r = rng(seed * 7919 + C * 131 + R), score = new Float32Array(N);
+    var cx0 = (C - 1) / 2, cy0 = (R - 1) / 2, jitter = .49 * clamp01(L.stagger / 100), d = L.dir, i, cx, cy;
+    var fixed = null;
+    if (d === 14) {          // snake from centre
+      fixed = new Int32Array(N);
+      var mid = R >> 1, cxc = C >> 1, step = 0, reach = Math.max(cxc, C - 1 - cxc);
+      for (var k = 0; k <= reach; k++, step++) {
+        if (cxc - k >= 0) fixed[mid * C + cxc - k] = step;
+        if (cxc + k < C) fixed[mid * C + cxc + k] = step;
+      }
+      var maxD = Math.max(mid, R - 1 - mid);
+      for (var dd = 1; dd <= maxD; dd++, step += C) {
+        var above = mid - dd, below = mid + dd, odd = (dd & 1) !== 0;
+        for (var j = 0; j < C; j++) {
+          if (above >= 0) fixed[above * C + (odd ? j : C - 1 - j)] = step + j;
+          if (below < R) fixed[below * C + (odd ? C - 1 - j : j)] = step + j;
+        }
+      }
+    } else if (d === 15) {   // spiral from centre: right, up, left, down
+      fixed = new Int32Array(N);
+      var ddx = [1, 0, -1, 0], ddy = [0, -1, 0, 1], x = C >> 1, y = R >> 1, count = 0, len = 1, dir = 0, guard = 0;
+      fixed[y * C + x] = count++;
+      while (count < N && guard++ < 4 * (C + R + 2) * (C + R + 2)) {
+        for (var rep = 0; rep < 2 && count < N; rep++, dir = (dir + 1) & 3)
+          for (var st = 0; st < len && count < N; st++) {
+            x += ddx[dir]; y += ddy[dir];
+            if (x >= 0 && x < C && y >= 0 && y < R) fixed[y * C + x] = count++;
+          }
+        len++;
+      }
+    }
+    for (cy = 0; cy < R; cy++) for (cx = 0; cx < C; cx++) {
+      i = cy * C + cx;
+      var s;
+      switch (d) {
+        case 14: case 15: s = fixed[i]; break;
+        case 16: s = cx + cy0 - Math.abs(cy - cy0); break;
+        case 17: s = (C - 1 - cx) + cy0 - Math.abs(cy - cy0); break;
+        case 18: s = Math.abs(cx - cx0) + (R - 1 - cy); break;
+        case 19: s = Math.abs(cx - cx0) + cy; break;
+        case 2: s = cx; break;
+        case 3: s = C - 1 - cx; break;
+        case 4: s = cy; break;
+        case 5: s = R - 1 - cy; break;
+        case 6: s = cx + cy; break;
+        case 7: s = (C - 1 - cx) + cy; break;
+        case 8: s = cx + (R - 1 - cy); break;
+        case 9: s = (C - 1 - cx) + (R - 1 - cy); break;
+        case 10: s = Math.max(Math.abs(cx - cx0), Math.abs(cy - cy0)); break;
+        case 11: s = Math.max(cx0, cy0) - Math.max(Math.abs(cx - cx0), Math.abs(cy - cy0)); break;   // edges in, same as the plugin
+        default: s = -1;
+      }
+      var rnd = r();
+      score[i] = s < 0 ? rnd : s + jitter * rnd;
+    }
+    if (d === 12 || d === 13) {   // spread: flood fill in horizontal runs
+      var state = new Uint8Array(N), fh = [], fv = [], pos = new Int32Array(N), rank = 0;
+      var drop = function (list, cell) { var p = pos[cell], last = list.pop(); if (last !== cell) { list[p] = last; pos[last] = p; } };
+      var reachCell = function (cell, along) {
+        if (cell < 0 || state[cell] === 3) return;
+        if (along) { if (state[cell] === 2) return; if (state[cell] === 1) drop(fv, cell); state[cell] = 2; pos[cell] = fh.length; fh.push(cell); }
+        else if (state[cell] === 0) { state[cell] = 1; pos[cell] = fv.length; fv.push(cell); }
+      };
+      var sw = function (cell) {
+        state[cell] = 3; score[cell] = rank++ / N;
+        var x2 = cell % C, y2 = (cell / C) | 0;
+        reachCell(x2 > 0 ? cell - 1 : -1, true); reachCell(x2 < C - 1 ? cell + 1 : -1, true);
+        reachCell(y2 > 0 ? cell - C : -1, false); reachCell(y2 < R - 1 ? cell + C : -1, false);
+      };
+      sw(d === 13 ? (R >> 1) * C + (C >> 1) : Math.floor(r() * N) % N);
+      while (fh.length + fv.length > 0) {
+        var along = fh.length > 0 && (fv.length === 0 || r() < .88), list = along ? fh : fv;
+        var cell = list[Math.floor(r() * list.length) % list.length];
+        drop(list, cell); sw(cell);
+      }
+    }
+    var order = []; for (i = 0; i < N; i++) order.push(i);
+    order.sort(function (a, b) { return score[a] - score[b]; });
+    var stepOf = new Int32Array(N), numSteps = 0;
+    for (k = 0; k < N; k++) { if (k === 0 || score[order[k]] > score[order[k - 1]]) numSteps++; stepOf[order[k]] = numSteps - 1; }
+    var fDur = new Float32Array(N), fCol = new Uint8Array(N), start = new Float32Array(N), fStart = new Float32Array(N);
+    var vr = clamp01(L.fVar / 100), nc = Math.min(Math.max(L.fN, 1), 3);
+    for (i = 0; i < N; i++) { fCol[i] = Math.floor(r() * nc) % nc; fDur[i] = clamp01(L.fDur / 100) * (1 - vr + 2 * vr * r()); }
+    var flashMax = L.flash === 2 ? clamp01(L.fDur / 100) * (1 + vr) : 0, span = Math.max(1 - flashMax, .05);
+    for (i = 0; i < N; i++) {
+      var t0 = stepOf[i] / numSteps * span;
+      fStart[i] = t0; start[i] = L.flash === 2 ? t0 + fDur[i] : t0;
+    }
+    var mv = dirVec(d), drawMode = (d === 1 || d === 10 || d === 12 || d === 13 || d === 14 || d === 15) ? 1 : 0;
+    var lov = [], loh = [], lrv = [], lrh = [];
+    for (k = 0; k <= C; k++) { var f = k / C; f = d === 1 ? r() : drawMode ? Math.abs(f - .5) * 2 : mv[0] < 0 ? 1 - f : mv[0] === 0 ? Math.abs(f - .5) * 2 : f; lov.push(f); lrv.push(r()); }
+    for (k = 0; k <= R; k++) { var g = k / R; g = d === 1 ? r() : drawMode ? Math.abs(g - .5) * 2 : mv[1] < 0 ? 1 - g : mv[1] === 0 ? Math.abs(g - .5) * 2 : g; loh.push(g); lrh.push(r()); }
+    return { C: C, R: R, N: N, start: start, fStart: fStart, fDur: fDur, fCol: fCol, stepOf: stepOf, numSteps: numSteps,
+      mdx: mv[0], mdy: mv[1], drawMode: drawMode, lov: lov, loh: loh, lrv: lrv, lrh: lrh };
+  }
+
+  function srcW(s) { return s.videoWidth || s.naturalWidth || 1280; }
+  function srcH(s) { return s.videoHeight || s.naturalHeight || 960; }
+  function drawPart(ctx, s, x0, y0, x1, y1, W, H) {
+    var sw = srcW(s) / W, sh = srcH(s) / H;
+    try { ctx.drawImage(s, x0 * sw, y0 * sh, (x1 - x0) * sw, (y1 - y0) * sh, x0, y0, x1 - x0, y1 - y0); } catch (e) {}
+  }
+  function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+  function roundRect(ctx, x, y, w, h, r) {
+    r = Math.max(0, Math.min(r, w / 2, h / 2));
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+
+  // One frame of the transition at progress p (0..1) from clip A to clip B.
+  function render(ctx, W, H, A, B, L, PL, p) {
+    var t = ease(L.timing, p), u = 1, anim = 1, tin = L.tin / 100, tout = L.tout / 100;
+    if (L.gin !== 1 && tin > 0 && p < tin) { anim = L.gin; u = p / tin; }
+    else if (L.gout !== 1 && tout > 0 && p > 1 - tout) { anim = L.gout; u = (1 - p) / tout; }
+    u = clamp01(u); u = u * u * (3 - 2 * u);
+    var C = PL.C, R = PL.R, cw = W / C, ch = H / R, i, cx, cy;
+    var tiles = L.gutter > 0 || L.corner > 0, gut = L.gutter / 100 * W, cor = L.corner / 100 * W;
+    if (anim !== 1) { gut *= u; cor *= u; }
+    if (tiles) { ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H); } else drawPart(ctx, A, 0, 0, W, H, W, H);
+    for (cy = 0; cy < R; cy++) for (cx = 0; cx < C; cx++) {
+      i = cy * C + cx;
+      var x0 = Math.round(cx * cw), x1 = Math.round((cx + 1) * cw), y0 = Math.round(cy * ch), y1 = Math.round((cy + 1) * ch);
+      var on = t >= PL.start[i];
+      if (tiles) {
+        ctx.save(); roundRect(ctx, x0 + gut / 2, y0 + gut / 2, x1 - x0 - gut, y1 - y0 - gut, cor); ctx.clip();
+        drawPart(ctx, on ? B : A, x0, y0, x1, y1, W, H); ctx.restore();
+      } else if (on) drawPart(ctx, B, x0, y0, x1, y1, W, H);
+      if (L.flash === 2) {
+        var fs = PL.fStart[i], fd = PL.fDur[i];
+        if (fd > 0 && t >= fs && t < fs + fd) { ctx.fillStyle = rgba(L.fCols[PL.fCol[i]], L.fAmt / 100); ctx.fillRect(x0, y0, x1 - x0, y1 - y0); }
+      } else if (L.flash === 3) {
+        var fs2 = PL.start[i], fd2 = PL.fDur[i];
+        if (fd2 > 0 && t >= fs2 && t < fs2 + fd2) { ctx.fillStyle = rgba(L.fCols[PL.fCol[i]], L.fAmt / 100 * (1 - (t - fs2) / fd2)); ctx.fillRect(x0, y0, x1 - x0, y1 - y0); }
+      }
+    }
+    if (L.lines === 3 || L.opacity <= 0) return;
+    var th = Math.max(L.thick / 100 * W, 1), alpha = L.opacity / 100;
+    if (anim === 2) alpha *= u;
+    if (anim === 4) th *= u;
+    if (th <= 0 || alpha <= 0) return;
+    ctx.save();
+    ctx.globalAlpha = alpha; ctx.fillStyle = rgba(L.color, 1);
+    if (L.glow > 0) { ctx.shadowColor = rgba(L.color, 1); ctx.shadowBlur = Math.max(L.glowSize / 100 * W, 1) * 2.2 * (L.glow / 100); }
+    if (anim === 10) { ctx.translate(W / 2, H / 2); ctx.scale(Math.max(u, .001), Math.max(u, .001)); ctx.translate(-W / 2, -H / 2); }
+    if (anim === 11) ctx.translate(-(1 - u) * W * PL.mdx, -(1 - u) * H * PL.mdy);
+    var centre = PL.drawMode === 1 || anim === 5;
+    // a line of full length S at position pos; segs = visible spans along it
+    function spans(S, k, vertical, cell) {
+      if (anim === 1 || anim === 2 || anim === 4 || anim === 10 || anim === 11) return [[0, S]];
+      var ord = vertical ? PL.lov[k] : PL.loh[k], rnd = vertical ? PL.lrv[k] : PL.lrh[k];
+      if (anim === 3 || anim === 5 || anim === 6) {
+        var f = anim === 5 ? u : anim === 6 ? clamp01(u * 1.6 - rnd * .6) : clamp01(u * 1.5 - ord * .5);
+        if (centre && anim !== 6) return [[S / 2 - f * S / 2, S / 2 + f * S / 2]];
+        var back = vertical ? PL.mdy < 0 : PL.mdx < 0;
+        return back ? [[S - f * S, S]] : [[0, f * S]];
+      }
+      if (anim === 7) return u >= ord * .96 ? [[0, S]] : [];
+      // crossings and segments: grow out of every crossing
+      var out = [], n = Math.round(S / cell), half = u * cell / 2;
+      for (var c = 0; c <= n; c++) out.push([c * cell - half, c * cell + half]);
+      return out;
+    }
+    var k, sp, q;
+    for (k = 1; k < C; k++) {
+      var lx = k * cw - th / 2; sp = spans(H, k, true, ch);
+      for (q = 0; q < sp.length; q++) { var a0 = Math.max(0, sp[q][0]), a1 = Math.min(H, sp[q][1]); if (a1 > a0) ctx.fillRect(lx, a0, th, a1 - a0); }
+    }
+    for (k = 1; k < R; k++) {
+      var ly = k * ch - th / 2; sp = spans(W, k, false, cw);
+      for (q = 0; q < sp.length; q++) { var b0 = Math.max(0, sp[q][0]), b1 = Math.min(W, sp[q][1]); if (b1 > b0) ctx.fillRect(b0, ly, b1 - b0, th); }
+    }
+    ctx.restore();
+  }
+
+  window.Griddy = { PRESETS: PRESETS, makePlan: makePlan };
+
+  /* ---------------- the hero preview ---------------- */
+  var canvas = document.getElementById('screen');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var vids = [0, 1, 2, 3].map(function (n) { return document.getElementById('v' + n); });
+  var posters = vids.map(function (v) { var im = new Image(); im.src = v.getAttribute('poster'); return im; });
+  var selectEl = document.getElementById('preset');
+  var colourEl = document.getElementById('gridColour');
+  var swatchEl = document.getElementById('swatchFill');
+  var advList = document.getElementById('advList');
+  var tcEl = document.getElementById('tc'), lenEl = document.getElementById('tcLen');
+  var playBtn = document.getElementById('play'), playIcon = document.getElementById('playIcon');
+
+  var SHOWCASE = ['Design Snake', 'Viral Original', 'Design Diagonal', 'Neon Glow', 'Design Spiral', 'Tiles', 'Design Arrow',
+    'Colour Flash', 'Design Diamond', 'Crossings', 'Clean Black', 'Sweep Lines', 'Draw On'];
+  var HOLD = 1.4;
+
+  var custom = document.createElement('option');
+  custom.value = 'Custom'; custom.textContent = 'Custom'; selectEl.appendChild(custom);
+  PRESETS.forEach(function (p) {
+    var o = document.createElement('option'); o.value = p.name; o.textContent = p.name + (p.pro ? ' (Pro)' : ''); selectEl.appendChild(o);
+  });
+
+  var clone = function (L) { var c = JSON.parse(JSON.stringify(L)); return c; };
+  var look = clone(byName[SHOWCASE[0]]), plan = null, seed = 7;
+  var cur = 0, next = 1, phase = 'hold', phaseStart = 0, hold = HOLD, pending = false, touched = false, showIdx = 0;
+  var running = !REDUCE, visible = true, oneShot = false, raf = 0, last = 0, seqTime = 0;
+
+  function hex(c) { return '#' + c.map(function (v) { return ('0' + v.toString(16)).slice(-2); }).join(''); }
+  function syncPanel() {
+    selectEl.value = look.custom ? 'Custom' : look.name;
+    colourEl.value = hex(look.color); swatchEl.style.background = hex(look.color);
+    lenEl.textContent = 'Transition ' + (Math.round(look.len * 10) / 10) + ' s';
+    var rows = [
+      ['Columns', look.cols], ['Rows', look.rows], ['Square Cells', look.square ? 'On' : 'Off'],
+      ['Direction', DIR_NAMES[look.dir]], ['Stagger', look.stagger + '%'], ['Timing', TIMING_NAMES[look.timing]],
+      ['Gutter', look.gutter + '%'], ['Corner Radius', look.corner + '%'],
+      ['Lines', LINES_NAMES[look.lines]], ['Thickness', look.thick + '%'], ['Glow', look.glow + '%'],
+      ['Grid In', ANIM_NAMES[look.gin] + (look.gin > 1 ? ', ' + look.tin + '%' : '')],
+      ['Grid Out', ANIM_NAMES[look.gout] + (look.gout > 1 ? ', ' + look.tout + '%' : '')],
+      ['Flash', FLASH_NAMES[look.flash]]
+    ];
+    advList.innerHTML = rows.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('');
+  }
+
+  function size() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = Math.min(Math.round(canvas.clientWidth * dpr), 1600);
+    if (!w) return;
+    if (canvas.width !== w) { canvas.width = w; canvas.height = Math.round(w * 3 / 4); }
+  }
+  function src(n) { var v = vids[n]; return v.readyState >= 2 ? v : posters[n]; }
+  function play(n) { var v = vids[n]; if (v.preload === 'none') v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+
+  function startTransition(now) {
+    if (!touched) { look = clone(byName[SHOWCASE[showIdx % SHOWCASE.length]]); showIdx++; syncPanel(); }
+    plan = makePlan(look, 1280, 960, seed++);
+    try { vids[next].currentTime = 0; } catch (e) {}
+    play(next);
+    phase = 'trans'; phaseStart = now;
+  }
+  function endTransition(now) {
+    vids[cur].pause();
+    cur = next; next = (next + 1) % vids.length;
+    // warm up the clip after next
+    var after = vids[next]; if (after.preload === 'none') { after.preload = 'auto'; after.load(); }
+    phase = 'hold'; phaseStart = now; hold = pending ? .35 : HOLD; pending = false;
+    if (oneShot) { oneShot = false; running = false; setPlayIcon(); vids[cur].pause(); }
+  }
+  function draw(now) {
+    size();
+    var W = canvas.width, H = canvas.height;
+    if (phase === 'trans') render(ctx, W, H, src(cur), src(next), look, plan, (now - phaseStart) / 1000 / look.len);
+    else drawPart(ctx, src(cur), 0, 0, W, H, W, H);
+  }
+  function tick(now) {
+    raf = 0;
+    if (!running || !visible) return;
+    var dt = last ? Math.min((now - last) / 1000, .1) : 0; last = now; seqTime += dt;
+    var el = (now - phaseStart) / 1000;
+    if (phase === 'hold' && el >= hold) startTransition(now);
+    else if (phase === 'trans' && el >= look.len) endTransition(now);
+    draw(now);
+    var f = Math.floor(seqTime * 30), s = Math.floor(f / 30);
+    tcEl.textContent = '00:' + ('0' + Math.floor(s / 60) % 60).slice(-2) + ':' + ('0' + s % 60).slice(-2) + ':' + ('0' + f % 30).slice(-2);
+    if (running) raf = requestAnimationFrame(tick);
+  }
+  function resume() {
+    if (raf || !running || !visible) return;
+    var now = performance.now();
+    phaseStart = now - pausedAt; last = 0;
+    play(cur); if (phase === 'trans') play(next);
+    raf = requestAnimationFrame(tick);
+  }
+  var pausedAt = 0;
+  function suspend() {
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    pausedAt = performance.now() - phaseStart;
+    vids.forEach(function (v) { v.pause(); });
+  }
+  function setPlayIcon() {
+    playIcon.setAttribute('d', running ? 'M2 1h3.5v12H2zM8.5 1H12v12H8.5z' : 'M3 1l10 6-10 6z');
+    playBtn.setAttribute('aria-label', running ? 'Pause preview' : 'Play preview');
+  }
+
+  // run the chosen look on the next cut, straight away if we're between cuts
+  function runNow() {
+    touched = true; syncPanel();
+    if (!running) { running = true; oneShot = REDUCE; setPlayIcon(); pausedAt = phase === 'hold' ? hold * 1000 : pausedAt; resume(); return; }
+    if (phase === 'hold') phaseStart = performance.now() - hold * 1000; else pending = true;
+  }
+
+  selectEl.addEventListener('change', function () {
+    if (selectEl.value === 'Custom') return;
+    look = clone(byName[selectEl.value]); runNow();
+  });
+  document.getElementById('surprise').addEventListener('click', function () {
+    look = surprise(); runNow();
+  });
+  colourEl.addEventListener('input', function () {
+    var v = colourEl.value;
+    look.color = [parseInt(v.substr(1, 2), 16), parseInt(v.substr(3, 2), 16), parseInt(v.substr(5, 2), 16)];
+    if (look.lines === 3) look.lines = 1;
+    look.custom = true; touched = true; swatchEl.style.background = v; selectEl.value = 'Custom';
+    if (!running) draw(performance.now());
+  });
+  colourEl.addEventListener('change', function () { if (!running || phase === 'hold') runNow(); });
+  playBtn.addEventListener('click', function () {
+    running = !running; oneShot = false; setPlayIcon();
+    if (running) resume(); else suspend();
+  });
+  var advBtn = document.getElementById('advToggle'), adv = document.getElementById('adv');
+  advBtn.addEventListener('click', function () {
+    var open = advBtn.getAttribute('aria-expanded') !== 'true';
+    advBtn.setAttribute('aria-expanded', String(open)); adv.hidden = !open;
+  });
+
+  // Surprise Me, after applySurprise() in GridFlow.cpp (Pro ingredients included, Edges In left out)
+  function surprise() {
+    var r = Math.random, ri = function (lo, hi) { return lo + Math.floor(r() * (hi - lo + 1)); };
+    var pick = function (a) { return a[ri(0, a.length - 1)]; };
+    var grids = [[4, 4, 0], [5, 5, 1], [6, 4, 0], [8, 6, 0], [3, 3, 0], [6, 6, 1], [9, 5, 0], [4, 3, 1], [5, 3, 0], [7, 4, 0]];
+    var g = pick(grids), u = r(), dir;
+    if (u < .4) dir = pick([14, 15, 16, 17, 18, 19, 12, 13]); else if (u < .65) dir = 1; else dir = pick([2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    var fixedOrder = dir >= 14, stagger = fixedOrder ? 0 : dir === 1 ? 50 : ri(0, 60);
+    var timing = fixedOrder ? 2 : dir === 1 ? (r() < .6 ? 1 : 2) : pick([2, 2, 3, 5, 6]);
+    var cu = r(), color = cu < .55 ? [0, 0, 0] : cu < .9 ? [255, 255, 255] : pick([[0, 255, 255], [255, 80, 80], [255, 220, 0], [120, 255, 120], [255, 120, 255], [90, 140, 255]]);
+    var L = base({ cols: g[0], rows: g[1], square: g[2], dir: dir, stagger: stagger, timing: timing, color: color,
+      thick: pick([8, 10, 12, 15, 20, 30]) / 100, opacity: r() < .8 ? 100 : ri(60, 90) });
+    if (r() < .12) { L.glow = ri(60, 95); L.glowSize = Math.round((.8 + r() * 1.2) * 10) / 10; if (!color[0] && !color[1] && !color[2]) L.color = [0, 255, 255]; }
+    if (r() < .2) { L.gutter = Math.round((.5 + r() * 1.2) * 10) / 10; L.corner = r() < .5 ? 0 : Math.round((.3 + r() * .5) * 10) / 10; L.bgA = 100; }
+    if (r() < .6) { L.gin = pick([2, 3, 4, 5, 6, 7, 8, 9, 10, 11]); L.gout = pick([2, 3, 4, 10, 11, L.gin]); }
+    else { L.gin = pick([1, 2, 3]); L.gout = pick([1, 2, 3]); }
+    L.tin = ri(10, 25); L.tout = ri(10, 25);
+    if (r() < .15) {
+      L.flash = r() < .7 ? 3 : 2; L.fAmt = ri(60, 100); L.fDur = ri(10, 35); L.fVar = ri(20, 70); L.fN = L.flash === 2 ? 2 : 1;
+      if (L.flash === 2) L.fCols = [[184, 64, 46], [229, 211, 176], [229, 211, 176]];
+    }
+    L.name = 'Custom'; L.custom = true; L.pro = 1;
+    L.len = fixedOrder ? 1.8 : 1.2;
+    return L;
+  }
+
+  // pause when the preview is off screen or the tab is hidden
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      visible = es[0].isIntersecting;
+      if (visible) resume(); else suspend();
+    }, { threshold: .05 }).observe(canvas);
+  }
+  document.addEventListener('visibilitychange', function () {
+    visible = !document.hidden; if (visible) resume(); else suspend();
+  });
+  window.addEventListener('resize', function () { if (!running) draw(performance.now()); });
+
+  syncPanel(); setPlayIcon();
+  phaseStart = performance.now(); pausedAt = 0;
+  // first frame as soon as the poster is in, even when motion is reduced
+  posters[0].onload = function () { draw(performance.now()); };
+  if (posters[0].complete) draw(performance.now());
+  vids[0].addEventListener('loadeddata', function () { if (!running) draw(performance.now()); });
+  if (running) { play(0); raf = requestAnimationFrame(tick); }
+})();
+</script>
+
+<!-- Design presets as step numbers -->
+<script>
+(function () {
+  var host = document.getElementById('designs');
+  if (!host || !window.Griddy) return;
+  var INFO = {
+    'Design Snake': 'The middle row opens from its centre, then the rows above and below fill as a snake. 18 steps.',
+    'Design Diagonal': 'Top right to bottom left, one diagonal per step. 11 steps.',
+    'Design Spiral': 'Out from the centre cell, one cell at a time. 35 steps.',
+    'Design Arrow': 'Two fronts from the left corners meet on the middle row. 9 steps.',
+    'Design Diamond': 'Rings around the bottom centre cell. 8 steps.'
+  };
+  window.Griddy.PRESETS.filter(function (p) { return INFO[p.name]; }).forEach(function (p) {
+    var plan = window.Griddy.makePlan(p, 1280, 960, 1), n = plan.numSteps;
+    var card = document.createElement('div'); card.className = 'design';
+    var grid = document.createElement('div'); grid.className = 'design__grid';
+    grid.style.gridTemplateColumns = 'repeat(' + plan.C + ', 1fr)';
+    grid.setAttribute('role', 'img');
+    grid.setAttribute('aria-label', p.name + ': ' + INFO[p.name]);
+    for (var i = 0; i < plan.N; i++) {
+      var s = plan.stepOf[i], k = n > 1 ? s / (n - 1) : 0;
+      // early cells light, late cells dark, between the logo grey and the G
+      var a = Math.round(206 - k * 150);
+      var cell = document.createElement('i');
+      cell.textContent = s + 1;
+      cell.style.background = 'rgb(' + a + ',' + (a - 1) + ',' + (a + 1) + ')';
+      cell.style.color = a < 130 ? '#E9E8EA' : '#1E1E1E';
+      grid.appendChild(cell);
+    }
+    var name = document.createElement('div'); name.className = 'design__name';
+    name.innerHTML = '<h3>' + p.name.replace('Design ', '') + '</h3><span class="tag tag--pro">Pro</span>';
+    var txt = document.createElement('p'); txt.textContent = INFO[p.name];
+    card.appendChild(grid); card.appendChild(name); card.appendChild(txt);
+    host.appendChild(card);
+  });
+})();
+</script>
+
+<!-- Sticky buy bar: shows once the hero buttons scroll away, hides at the closing call to action -->
+<script>
+(function () {
+  var bar = document.getElementById('bar'), hero = document.getElementById('heroActions'), fin = document.getElementById('finalActions');
+  if (!bar || !hero || !('IntersectionObserver' in window)) return;
+  var heroGone = false, finalOn = false;
+  function set() { var on = heroGone && !finalOn; bar.classList.toggle('show', on); bar.setAttribute('aria-hidden', String(!on)); bar.querySelector('a').tabIndex = on ? 0 : -1; }
+  new IntersectionObserver(function (es) { heroGone = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; set(); }).observe(hero);
+  new IntersectionObserver(function (es) { finalOn = es[0].isIntersecting; set(); }).observe(fin);
+})();
+</script>
+
+<!-- Polar checkout modal (same as the other shop pages) -->
+<script>
+(function () {
+  var modal = document.createElement('div');
+  modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.25s ease;';
+  var box = document.createElement('div');
+  box.style.cssText = 'position:relative;width:92%;max-width:480px;height:85vh;background:#111;border-radius:16px;overflow:hidden;';
+  var close = document.createElement('button');
+  close.innerHTML = '✕'; close.setAttribute('aria-label', 'Close checkout');
+  close.style.cssText = 'position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;z-index:10;';
+  var spinner = document.createElement('div');
+  spinner.style.cssText = 'position:absolute;top:50%;left:50%;width:36px;height:36px;margin:-18px 0 0 -18px;border:3px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:polarspin 0.7s linear infinite;z-index:5;';
+  var style = document.createElement('style');
+  style.textContent = '@keyframes polarspin{to{transform:rotate(360deg)}}@keyframes polarin{0%{transform:scale(0.85);opacity:0}60%{transform:scale(1.03);opacity:1}100%{transform:scale(1)}}';
+  document.head.appendChild(style);
+  var frame = document.createElement('iframe');
+  frame.allow = 'payment *'; frame.title = 'Checkout';
+  frame.style.cssText = 'width:100%;height:100%;border:none;position:relative;z-index:6;';
+  frame.onload = function () { if (frame.src) spinner.style.display = 'none'; };
+  box.appendChild(spinner); box.appendChild(close); box.appendChild(frame); modal.appendChild(box); document.body.appendChild(modal);
+  function open(url) {
+    spinner.style.display = 'block'; frame.src = url; modal.style.display = 'flex';
+    box.style.animation = 'polarin 0.45s cubic-bezier(0.34,1.56,0.64,1) both';
+    requestAnimationFrame(function () { modal.style.opacity = '1'; });
+  }
+  function hide() {
+    modal.style.opacity = '0'; box.style.transition = 'transform 0.25s ease, opacity 0.25s ease'; box.style.transform = 'scale(0.92)'; box.style.opacity = '0';
+    setTimeout(function () { modal.style.display = 'none'; frame.src = ''; box.style.animation = ''; box.style.transition = ''; box.style.transform = ''; box.style.opacity = ''; }, 250);
+  }
+  close.onclick = hide;
+  modal.addEventListener('click', function (e) { if (e.target === modal) hide(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.style.display === 'flex') hide(); });
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (link && link.href && link.href.indexOf('buy.polar.sh') !== -1) { window.amTrackCheckout(link); e.preventDefault(); open(link.href); }
+  }, true);
+})();
+</script>
+
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "177f251018f04c73b301940a5cd183dc"}'></script>
+</body>
+</html>
