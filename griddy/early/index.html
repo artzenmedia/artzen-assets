@@ -202,12 +202,13 @@
 
     <fieldset class="q" data-q="app">
       <legend class="q__label"><span class="q__n">3</span>What do you edit in?</legend>
+      <p class="q__hint">Tick all you use.</p>
       <div class="opts opts--3">
-        <input type="radio" name="app" id="app-pr" value="premiere"><label for="app-pr">Premiere Pro</label>
-        <input type="radio" name="app" id="app-dr" value="resolve"><label for="app-dr">DaVinci Resolve</label>
-        <input type="radio" name="app" id="app-both" value="both"><label for="app-both">Both</label>
+        <input type="checkbox" name="app" id="app-pr" value="premiere"><label for="app-pr">Premiere Pro</label>
+        <input type="checkbox" name="app" id="app-dr" value="resolve"><label for="app-dr">DaVinci Resolve</label>
+        <input type="checkbox" name="app" id="app-ae" value="aftereffects"><label for="app-ae">After Effects</label>
       </div>
-      <p class="q__note" id="note-resolve" hidden>Premiere comes first. A DaVinci Resolve version follows after launch, and you'll hear first.</p>
+      <p class="q__note" id="note-later" hidden></p>
       <p class="q__err" aria-live="polite"></p>
     </fieldset>
 
@@ -266,8 +267,20 @@
     return s.replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/^@+/, '').replace(/[/?].*$/, '').trim();
   }
 
+  function apps() {
+    return [].map.call(form.querySelectorAll('input[name="app"]:checked'), function (i) { return i.value; });
+  }
+
+  // Resolve and After Effects versions come after the Premiere launch; say so when someone picks them.
   form.addEventListener('change', function (e) {
-    document.getElementById('note-resolve').hidden = val('app') !== 'resolve';
+    var a = apps(), later = [];
+    if (a.indexOf('resolve') >= 0) later.push('DaVinci Resolve');
+    if (a.indexOf('aftereffects') >= 0) later.push('After Effects');
+    var note = document.getElementById('note-later');
+    note.hidden = !later.length;
+    note.textContent = later.length
+      ? 'Premiere comes first. ' + later.join(' and ') + (later.length > 1 ? ' versions are' : ' version is') + " planned after launch, and you'll hear first."
+      : '';
     if (e.target.name) setErr(e.target.name, '');
   });
   form.addEventListener('input', function (e) {
@@ -282,7 +295,8 @@
     if (!/^[A-Za-z0-9._]{1,30}$/.test(handle)) bad.push(['instagram', handle ? 'Just the handle, like yourhandle.' : 'Add your Instagram handle.']);
     var email = val('email');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) bad.push(['email', email ? "That email doesn't look right." : 'Add your email.']);
-    ['app', 'os'].forEach(function (k) { if (!val(k)) bad.push([k, 'Pick one.']); });
+    if (!apps().length) bad.push(['app', 'Pick at least one.']);
+    if (!val('os')) bad.push(['os', 'Pick one.']);
     bad.forEach(function (b) { setErr(b[0], b[1]); });
     return bad;
   }
@@ -300,7 +314,7 @@
     }
     var body = {
       instagram: cleanHandle(val('instagram')), email: val('email'),
-      app: val('app'), os: val('os'), source: source, website: val('website')
+      app: apps(), os: val('os'), source: source, website: val('website')
     };
     btn.disabled = true;
     btn.textContent = 'Sending...';
