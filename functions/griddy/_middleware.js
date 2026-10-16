@@ -7,7 +7,7 @@ const COOKIE = "griddy_gate";
 const OPEN = ["/griddy/sign", "/griddy/early", "/griddy/assets/"];
 
 async function cookieValue(password) {
-  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("griddy-gate-v1:" + password));
+  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("griddy-gate-v2:" + password));
   return [...new Uint8Array(d)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
