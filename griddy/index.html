@@ -169,6 +169,8 @@
 
     /* ---------- sections ---------- */
     section.block { padding: calc(var(--cell) * 2) 0; border-top: 1.5px solid var(--ink); }
+    /* "Made with Griddy": Ben's demo cut (4:3, black film-gate edge, so the outer corners are rounded) */
+    .reel { display: block; width: 100%; max-width: 880px; height: auto; aspect-ratio: 4 / 3; margin: 0 auto; border-radius: 14px; background: #111; }
     .block__head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px var(--cell); align-items: end; margin-bottom: calc(var(--cell) * 1); }
 
     .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; counter-reset: s; }
@@ -400,6 +402,17 @@
         </div>
       </div>
       <p class="studio__cap">This preview runs in your browser on my footage, using the same cell orders as the plugin. Pick a preset or hit Surprise Me.</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="reel-title">
+    <div class="wrap">
+      <div class="block__head">
+        <h2 id="reel-title">Made with Griddy.</h2>
+        <p class="muted">My own footage from New Zealand, cut with Griddy in Premiere Pro.</p>
+      </div>
+      <video class="reel" src="/griddy/assets/griddy-demo.mp4" poster="/griddy/assets/griddy-demo.jpg" width="1080" height="810"
+             autoplay muted loop playsinline preload="metadata" aria-label="Griddy on real footage: the frame splits into a grid and each cell cuts to the next clip"></video>
     </div>
   </section>
 

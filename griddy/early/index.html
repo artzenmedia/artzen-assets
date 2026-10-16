@@ -71,6 +71,9 @@
     .top__by:hover { color: var(--ink); text-decoration: underline; }
 
     .intro { display: grid; gap: 16px; padding: 24px 0 40px; }
+    /* the demo: Ben's own footage through Griddy (4:3, black film-gate edge, so round the outer corners) */
+    .demo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; margin: 0 0 32px; border-radius: 14px; background: #111;
+            box-shadow: 0 1px 0 rgba(0,0,0,.06); }
     .lede { font-size: 19px; line-height: 1.5; color: var(--ink-2); max-width: 32em; }
     .lede b { color: var(--ink); font-weight: 700; }
     .chip { justify-self: start; display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 6px; border-radius: 999px;
@@ -180,6 +183,9 @@
     <p class="lede">Griddy is my grid transition for Premiere Pro (DaVinci Resolve and After Effects coming soon!). Drop it on a cut and the frame splits into a grid, then every cell cuts to the next clip. <b>Join the list and you'll get it before anyone else.</b></p>
   </div>
 
+  <video class="demo" src="/griddy/assets/griddy-demo.mp4" poster="/griddy/assets/griddy-demo.jpg" width="1080" height="810"
+         autoplay muted loop playsinline preload="auto" aria-label="Griddy on a cut: the frame splits into a grid and each cell cuts to the next clip"></video>
+
   <form class="card" id="sign" novalidate>
     <fieldset class="q" data-q="instagram">
       <legend class="q__label"><span class="q__n">1</span>Your Instagram</legend>
@@ -248,6 +254,8 @@
 <script>
 (function () {
   var API = 'https://griddy-license.artzenmedia.workers.dev/early';
+  var demo = document.querySelector('.demo');
+  if (demo && window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { demo.removeAttribute('autoplay'); demo.pause(); demo.controls = true; }
   var form = document.getElementById('sign');
   var sendErr = form.querySelector('.send__err');
   var btn = form.querySelector('.btn');
