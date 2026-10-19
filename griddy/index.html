@@ -241,6 +241,9 @@
     .faq summary::after { content: "+"; font-weight: 500; font-size: 24px; line-height: 1; }
     .faq details[open] summary::after { content: "\2212"; }
     .faq details p { padding: 0 0 20px; color: var(--ink-2); max-width: 40em; }
+    .gx { margin: 4px 0 18px; }
+    .gx__svg { display: block; width: 100%; height: auto; }
+    .gx__cap { margin: 10px 2px 0; font-weight: 700; font-size: 16px; line-height: 1.35; min-height: 2.7em; }
 
     .final { text-align: left; }
     .final .wrap { display: grid; gap: 28px; justify-items: start; }
@@ -548,8 +551,101 @@
           <p>One computer at a time. To switch, open the Griddy app on the old computer and click Deactivate, then activate on the new one.</p>
         </details>
         <details>
-          <summary>Premiere says "Insufficient media". Is that Griddy?</summary>
-          <p>No. Premiere shows that for any transition on a cut where the clips have no spare frames. Trim a few frames off each side of the cut and it goes away.</p>
+          <summary>Why isn't Griddy in the middle of my cut? (Or why the stripes?)</summary>
+          <figure class="gx" id="gx">
+            <svg class="gx__svg" viewBox="0 0 800 244" role="img" aria-label="A Premiere timeline: Griddy sits in the middle of a cut when both clips have spare footage, slides to one side when a clip has none, shows stripes when forced into the middle, and fits again after trimming half a second off the clip.">
+              <defs>
+                <pattern id="gxStripes" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <rect width="10" height="10" fill="#BDBDBD"/><rect width="4.5" height="10" fill="#6E6E6E"/>
+                </pattern>
+                <linearGradient id="gxBoxFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F2F2"/><stop offset="1" stop-color="#A9A9A9"/></linearGradient>
+                <clipPath id="gxBoxClip"><rect id="gxBoxClipR" x="340" y="108" width="160" height="34" rx="3"/></clipPath>
+              </defs>
+              <rect width="800" height="244" rx="14" fill="#232323"/>
+              <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-weight="600">
+                <rect x="18" y="74" width="50" height="72" rx="7" fill="#1B1B1B"/>
+                <rect x="25" y="98" width="36" height="25" rx="6" fill="#4B9CF5"/>
+                <text x="43" y="116" fill="#fff" font-size="15" font-weight="700" text-anchor="middle">V1</text>
+                <text x="43" y="194" fill="#8D8D8D" font-size="16" font-weight="500" text-anchor="middle">spare</text>
+                <!-- spare footage lane -->
+                <rect id="gxSpare1" x="420" y="172" width="140" height="32" rx="6" fill="#2E86AB" fill-opacity=".3" stroke="#2E86AB" stroke-width="2" stroke-dasharray="6 4"/>
+                <rect id="gxSpare2" x="280" y="172" width="140" height="32" rx="6" fill="#8C6AD8" fill-opacity=".3" stroke="#8C6AD8" stroke-width="2" stroke-dasharray="6 4"/>
+                <!-- clips -->
+                <rect x="80" y="74" width="340" height="72" rx="6" fill="#2E86AB"/>
+                <rect x="80" y="74" width="340" height="26" rx="6" fill="#4FA3C7"/>
+                <text x="93" y="93" fill="#08202B" font-size="18">Clip 1</text>
+                <rect id="gxClip2" x="420" y="74" width="356" height="72" rx="6" fill="#8C6AD8"/>
+                <rect id="gxClip2Top" x="420" y="74" width="356" height="26" rx="6" fill="#A88BEA"/>
+                <text x="433" y="93" fill="#1E1236" font-size="18">Clip 2</text>
+                <!-- the transition -->
+                <rect id="gxBox" x="340" y="108" width="160" height="34" rx="3" fill="url(#gxBoxFill)" stroke="#111" stroke-opacity=".5"/>
+                <rect id="gxStripesR" x="340" y="108" width="80" height="34" fill="url(#gxStripes)" clip-path="url(#gxBoxClip)" opacity="0"/>
+                <text id="gxBoxLabel" x="428" y="131" fill="#1E1E1E" font-size="18" font-weight="700">Griddy</text>
+                <!-- the cut -->
+                <line x1="420" y1="66" x2="420" y2="212" stroke="#F0F0F0" stroke-width="2" stroke-dasharray="4 4" opacity=".85"/>
+                <text x="420" y="58" fill="#E6E6E6" text-anchor="middle" font-size="18">cut</text>
+                <text id="gxTrim" x="380" y="232" fill="#B79CF0" text-anchor="middle" font-size="16" opacity="0">trimmed ½ second</text>
+                <text id="gxNone" x="350" y="232" fill="#A0A0A0" text-anchor="middle" font-size="16" font-weight="500" opacity="0">nothing spare</text>
+                <g id="gxBadge">
+                  <rect id="gxBadgeR" x="540" y="16" width="244" height="38" rx="19" fill="#2F6B3B"/>
+                  <text id="gxBadgeT" x="662" y="41" fill="#E9FFE9" text-anchor="middle" font-size="18">✓ In the middle</text>
+                </g>
+              </g>
+            </svg>
+            <figcaption class="gx__cap" id="gxCap">Griddy borrows a little spare footage from both clips: the bits you trimmed off.</figcaption>
+          </figure>
+          <script>
+          (() => {
+            const L = 16, $ = id => document.getElementById(id);
+            const caps = [
+              "Griddy borrows a little spare footage from both clips: the bits you trimmed off.",
+              "This clip starts on its very first frame. Nothing spare, so Premiere slides Griddy over.",
+              "Forced into the middle, Premiere freezes a frame to fill the gap. That's the stripes.",
+              "Fix: trim half a second off the start of Clip 2. Now Griddy fits in the middle."
+            ];
+            const badges = [["✓ In the middle", "#2F6B3B", "#E9FFE9"], ["Moved to the side", "#5A4A1E", "#FFF3D6"],
+                            ["Stripes = frozen frame", "#6B2A22", "#FFE5E0"], ["✓ In the middle", "#2F6B3B", "#E9FFE9"]];
+            const ease = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
+            const seg = (t, a, b) => ease((t - a) / (b - a));
+            const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+            function render(t) {
+              t = ((t % L) + L) % L;
+              const scene = t < 4 ? 0 : t < 8 ? 1 : t < 12 ? 2 : 3;
+              // spare footage of clip 2 (left of the cut): gone in scene 2-3, comes back by trimming in scene 4
+              const gone = seg(t, 4.2, 5.0), back = seg(t, 12.6, 13.6), reset = seg(t, 15.6, 16);
+              const spare2W = t < 12 ? 140 * (1 - gone) : 80 * back + 60 * reset;
+              const s2 = $("gxSpare2"); s2.setAttribute("x", 420 - spare2W); s2.setAttribute("width", Math.max(0.001, spare2W));
+              s2.setAttribute("opacity", t >= 12 ? 1 : 1 - gone);
+              // the box: centre -> start at cut (scene 2) -> centre (scene 3) -> centre (scene 4)
+              const slideOut = seg(t, 5.4, 6.6), slideBack = seg(t, 8.6, 9.8);
+              const x = 340 + 80 * slideOut * (1 - slideBack);
+              ["gxBox", "gxBoxClipR"].forEach(id => $(id).setAttribute("x", x));
+              $("gxStripesR").setAttribute("x", x);
+              $("gxBoxLabel").setAttribute("x", x + 88);
+              $("gxStripesR").setAttribute("opacity", seg(t, 10.0, 10.6) * (1 - seg(t, 13.2, 13.8)));
+              // clip 2 gets half a second shorter when trimmed (ripple)
+              const short = 80 * seg(t, 12.6, 13.6) * (1 - reset);
+              ["gxClip2", "gxClip2Top"].forEach(id => $(id).setAttribute("width", 356 - short));
+              $("gxTrim").setAttribute("opacity", seg(t, 13.0, 13.4) * (1 - seg(t, 15.4, 15.8)));
+              $("gxNone").setAttribute("opacity", seg(t, 4.6, 5.2) * (1 - seg(t, 12.4, 12.8)));
+              const b = badges[scene];
+              $("gxBadgeT").textContent = b[0]; $("gxBadgeR").setAttribute("fill", b[1]); $("gxBadgeT").setAttribute("fill", b[2]);
+              $("gxCap").textContent = caps[scene];
+            }
+            const q = new URLSearchParams(location.search);
+            if (q.has("t")) { render(parseFloat(q.get("t"))); window.gxRender = render; return; }
+            let on = false, t = 0, last = 0, timer = 0;
+            const tick = now => { if (!on) return; t += Math.min(0.1, (now - last) / 1000); last = now; render(t); requestAnimationFrame(tick); };
+            const step = () => { const ends = [3.9, 7.9, 11.9, 15.0]; render(ends[Math.floor(t / 4) % 4]); t += 4; };
+            const start = () => { if (on) return; on = true; if (reduce) { step(); timer = setInterval(step, 4000); } else { last = performance.now(); requestAnimationFrame(tick); } };
+            const stop = () => { on = false; clearInterval(timer); };
+            render(0);
+            if ("IntersectionObserver" in window) new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop())).observe(document.getElementById("gx"));
+            else start();
+          })();
+          </script>
+          <p>A transition borrows a little spare footage from both clips: the bits you trimmed off. If a clip starts on its very first frame (or ends on its last), there's nothing spare on that side, so Premiere slides Griddy over. Every Premiere transition does this.</p>
+          <p>Want it in the middle? Trim about half a second off that clip and drop Griddy on again. If you force it into the middle anyway, Premiere freezes a frame there and shows stripes ("Insufficient media").</p>
         </details>
         <details>
           <summary>Is it a subscription?</summary>
