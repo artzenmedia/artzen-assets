@@ -145,7 +145,7 @@
     (more.closest('.reviews__more') || more).remove();
   });
 
-  /* ---- floating buy bar: on whenever neither the hero nor the closing buy button is on screen ---- */
+  /* ---- floating buy bar: on once the hero buy button has scrolled past, off again at the closing buy button ---- */
   var bar = document.getElementById('bar'), heroA = document.getElementById('heroActions'), finA = document.getElementById('finalActions');
   if (bar && heroA && finA && 'IntersectionObserver' in window) {
     var heroIn = true, finIn = false;
@@ -154,7 +154,8 @@
       bar.classList.toggle('show', on); bar.setAttribute('aria-hidden', String(!on));
       bar.querySelector('a').tabIndex = on ? 0 : -1;
     };
-    new IntersectionObserver(function (es) { heroIn = es[0].isIntersecting; set(); }).observe(heroA);
+    // the hero buttons count as 'in' until they scroll off the top, so the bar never sits over the hero video
+    new IntersectionObserver(function (es) { heroIn = es[0].isIntersecting || es[0].boundingClientRect.top > 0; set(); }).observe(heroA);
     new IntersectionObserver(function (es) { finIn = es[0].isIntersecting; set(); }).observe(finA);
   }
 

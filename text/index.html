@@ -18,7 +18,7 @@
   <meta name="twitter:description" content="Pro-level text animations for Premiere Pro. One pack, drag and drop.">
   <meta name="twitter:image" content="https://shop.artzenmedia.com/assets/og-text.jpg">
   <title>Creator Text Animations - Artzen Media</title>
-  <link rel="stylesheet" href="/assets/am-shop.css?v=8">
+  <link rel="stylesheet" href="/assets/am-shop.css?v=9">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <!-- Meta Pixel -->
@@ -69,58 +69,52 @@
 </header>
 
 <main>
-  <!-- HERO: studio tile with the pack video left, buy box right (phones: title, video, buy box) -->
+  <!-- HERO (Huella): the pack video full-bleed, edge to edge. Wide cut on screens over 560px, vertical cut on phones.
+       Nothing sits on top of the video; the title and buy box come right under it. -->
+  <section class="hero" aria-label="The pack in Premiere Pro">
+    <video class="hero__v hero__v--wide" data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover.jpg" width="1920" height="1080" aria-label="The pack in Premiere Pro">
+      <source src="/assets/hero-cover.webm" type="video/webm">
+    </video>
+    <video class="hero__v hero__v--tall" data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover-mobile.jpg" width="1080" height="1920" aria-label="The pack in Premiere Pro">
+      <source src="/assets/hero-cover-mobile.webm" type="video/webm">
+    </video>
+  </section>
+
   <section class="buy" aria-labelledby="hero-title">
     <div class="wrap buy__grid">
-      <div class="gallery">
-        <div class="tile">
-          <div class="slide is-on" id="cutTall">
-            <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover-mobile.jpg" width="1080" height="1920" aria-label="The pack in Premiere Pro, vertical cut">
-              <source src="/assets/hero-cover-mobile.webm" type="video/webm">
-            </video>
-          </div>
-          <div class="slide" id="cutWide">
-            <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover.jpg" width="1920" height="1080" aria-label="The pack in Premiere Pro, wide cut">
-              <source src="/assets/hero-cover.webm" type="video/webm">
-            </video>
-          </div>
-        </div>
-        <div class="thumbs" role="group" aria-label="Pick a cut">
-          <button class="thumb" type="button" data-slide="cutTall" aria-pressed="true" aria-label="Vertical cut"><img src="/assets/posters/hero-cover-mobile.jpg" alt="" width="58" height="58" loading="lazy"></button>
-          <button class="thumb" type="button" data-slide="cutWide" aria-pressed="false" aria-label="Wide cut"><img src="/assets/posters/hero-cover.jpg" alt="" width="58" height="58" loading="lazy"></button>
-        </div>
-      </div>
-
-      <div class="buy__head">
+      <div class="buy__labels">
         <span class="label"><span class="dot"></span>Premiere Pro &middot; .MOGRT pack</span>
-        <h1 id="hero-title">Creator Text Animations</h1>
-        <p class="ver">41 animations &middot; 52 controls &middot; no keyframes</p>
+        <span class="label label--muted"><span class="dot dot--w"></span>New: light sweep, gradient and texture</span>
       </div>
 
-      <div class="buy__body">
-        <div class="price"><b>$47 USD</b><s>$60</s><span class="badge">Save $13</span></div>
-        <p class="status"><span class="dot dot--w"></span>New: light sweep, gradient and texture</p>
-        <p class="note">Price in US dollars.</p>
-        <hr class="rule">
+      <h1 id="hero-title">Creator Text Animations</h1>
+
+      <div class="buy__info">
         <p class="desc">Pick how the text comes in and how it leaves. 41 entrances, 41 exits, 1,681 combinations before you touch a single slider. No keyframing, no plugins, no After Effects.</p>
+        <div class="spec">
+          <div><img class="host" src="/assets/hosts/pr.png" alt="" width="20" height="20">For Premiere Pro 2019 or newer</div>
+          <div><span class="os" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M11.2 8.5c0-1.5 1.2-2.2 1.3-2.3-.7-1-1.8-1.2-2.2-1.2-.9-.1-1.8.6-2.3.6s-1.2-.5-2-.5C4.9 5.1 3.9 5.7 3.4 6.7c-1.1 1.9-.3 4.7.8 6.2.5.7 1.1 1.6 1.9 1.5.8 0 1-.5 2-.5s1.2.5 2 .5 1.3-.8 1.8-1.5c.6-.8.8-1.6.8-1.7 0 0-1.5-.6-1.5-2.2ZM9.7 4c.4-.5.7-1.2.6-1.9-.6 0-1.4.4-1.8.9-.4.4-.7 1.1-.6 1.8.7.1 1.4-.3 1.8-.8Z"/></svg><svg viewBox="0 0 16 16"><path fill="currentColor" d="M1.5 3.2 6.8 2.5v5H1.5Zm6.2-.8 6.8-.9v6H7.7ZM1.5 8.4h5.3v5.1l-5.3-.7Zm6.2 0h6.8v6l-6.8-.9Z"/></svg></span>Mac and Windows</div>
+        </div>
+      </div>
+
+      <div class="buy__box">
+        <div class="price"><b>$47 USD</b><s>$60</s><span class="badge">Save $13</span></div>
+        <p class="note">41 animations &middot; 52 controls &middot; price in US dollars</p>
         <div class="cta" id="heroActions">
           <a data-cta="hero" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="heroBuy" class="btn btn--light btn--block" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now &middot; $47</a>
           <a class="btn btn--line btn--block" href="#watch">Watch it work</a>
         </div>
         <p class="secure"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="5.2" width="8" height="5.8" rx="1.2" fill="currentColor"/><path d="M3.8 5.2V3.8a2.2 2.2 0 0 1 4.4 0v1.4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>Secure checkout &middot; Instant download by email</p>
-        <div class="spec">
-          <div><img class="host" src="/assets/hosts/pr.png" alt="" width="20" height="20">For Premiere Pro 2019 or newer</div>
-          <div><span class="os" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M11.2 8.5c0-1.5 1.2-2.2 1.3-2.3-.7-1-1.8-1.2-2.2-1.2-.9-.1-1.8.6-2.3.6s-1.2-.5-2-.5C4.9 5.1 3.9 5.7 3.4 6.7c-1.1 1.9-.3 4.7.8 6.2.5.7 1.1 1.6 1.9 1.5.8 0 1-.5 2-.5s1.2.5 2 .5 1.3-.8 1.8-1.5c.6-.8.8-1.6.8-1.7 0 0-1.5-.6-1.5-2.2ZM9.7 4c.4-.5.7-1.2.6-1.9-.6 0-1.4.4-1.8.9-.4.4-.7 1.1-.6 1.8.7.1 1.4-.3 1.8-.8Z"/></svg><svg viewBox="0 0 16 16"><path fill="currentColor" d="M1.5 3.2 6.8 2.5v5H1.5Zm6.2-.8 6.8-.9v6H7.7ZM1.5 8.4h5.3v5.1l-5.3-.7Zm6.2 0h6.8v6l-6.8-.9Z"/></svg></span>Mac and Windows</div>
-        </div>
-        <div class="incl">
-          <h2>What's included</h2>
-          <ul>
-            <li>41 animations <small>&middot; drag and drop .MOGRT</small></li>
-            <li>Commercial use <small>&middot; use it on client work</small></li>
-            <li>Lifetime access <small>&middot; free updates forever</small></li>
-            <li>Free bonuses <small>&middot; call-outs and a free font list</small></li>
-          </ul>
-        </div>
+      </div>
+
+      <div class="incl">
+        <h2>What's included</h2>
+        <ul>
+          <li>41 animations <small>drag and drop .MOGRT</small></li>
+          <li>Commercial use <small>use it on client work</small></li>
+          <li>Lifetime access <small>free updates forever</small></li>
+          <li>Free bonuses <small>call-outs and a free font list</small></li>
+        </ul>
       </div>
     </div>
   </section>
@@ -548,7 +542,7 @@
   <a data-cta="stickybar" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" class="btn btn--light btn--sm" tabindex="-1" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now<span class="sbar__btnprice">&nbsp;&middot; $47</span></a>
 </div>
 
-<script src="/assets/am-shop.js?v=8" defer></script>
+<script src="/assets/am-shop.js?v=9" defer></script>
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ddc7e1d7ce974a1397478c75c100833b"}'></script>
 <!-- End Cloudflare Web Analytics -->
