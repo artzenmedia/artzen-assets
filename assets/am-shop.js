@@ -44,6 +44,14 @@
   }
   ['touchstart', 'click', 'scroll'].forEach(function (ev) { addEventListener(ev, kick, { once: true, passive: true }); });
 
+  /* ---- Ben's glass cards: the rim swipes on as each card scrolls in (CSS .is-in) ---- */
+  if ('IntersectionObserver' in window) {
+    var rimIO = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { rimIO.unobserve(e.target); e.target.classList.add('is-in'); } });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.glass:not(.glass--live), .rim').forEach(function (el) { rimIO.observe(el); });
+  }
+
   /* ---- sales video: the poster swaps for the YouTube player on click (nothing from YouTube loads before) ---- */
   var vsl = document.getElementById('vslFrame');
   if (vsl) {
@@ -145,8 +153,8 @@
     (more.closest('.reviews__more') || more).remove();
   });
 
-  /* ---- floating buy bar: on once the hero buy button has scrolled past, off again at the closing buy button ---- */
-  var bar = document.getElementById('bar'), heroA = document.getElementById('heroActions'), finA = document.getElementById('finalActions');
+  /* ---- floating buy bar: on once the hero video has scrolled past (it never sits on the video), off again at the closing buy button ---- */
+  var bar = document.getElementById('bar'), heroA = document.querySelector('.hero__media') || document.getElementById('heroActions'), finA = document.getElementById('finalActions');
   if (bar && heroA && finA && 'IntersectionObserver' in window) {
     var heroIn = true, finIn = false;
     var set = function () {
@@ -154,7 +162,7 @@
       bar.classList.toggle('show', on); bar.setAttribute('aria-hidden', String(!on));
       bar.querySelector('a').tabIndex = on ? 0 : -1;
     };
-    // the hero buttons count as 'in' until they scroll off the top, so the bar never sits over the hero video
+    // the hero counts as 'in' until its video has scrolled off the top
     new IntersectionObserver(function (es) { heroIn = es[0].isIntersecting || es[0].boundingClientRect.top > 0; set(); }).observe(heroA);
     new IntersectionObserver(function (es) { finIn = es[0].isIntersecting; set(); }).observe(finA);
   }
