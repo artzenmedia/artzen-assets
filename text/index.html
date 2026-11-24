@@ -18,8 +18,7 @@
   <meta name="twitter:description" content="Pro-level text animations for Premiere Pro. One pack, drag and drop.">
   <meta name="twitter:image" content="https://shop.artzenmedia.com/assets/og-text.jpg">
   <title>Creator Text Animations - Artzen Media</title>
-  <link rel="stylesheet" href="/assets/am-shop.css?v=12">
-  <script>/[?&]hero=over(&|$)/.test(location.search) && document.documentElement.classList.add("hero-over");</script>
+  <link rel="stylesheet" href="/assets/am-shop.css?v=13">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <!-- Meta Pixel -->
@@ -70,33 +69,10 @@
 </header>
 
 <main>
-  <!-- HERO (Apple order): the title and the $47 card first, then the pack video full-bleed on deep black.
-       Wide cut on screens over 560px, vertical cut on phones. ?hero=over puts the title and card on the video (over 1080px). -->
+  <!-- HERO (Huella): the pack video fills the first screen, darkened to deep black, and the words sit on it.
+       Landscape screens: wide cut, labels on top, the title and the buy row at the bottom.
+       Portrait screens (phones): vertical cut, the words on top, the video's own payoff left clear at the bottom. -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="wrap hero__intro">
-      <div class="hero__copy">
-        <p class="hero__new"><span class="hero__tag">New</span>Light sweep, gradient and texture</p>
-        <h1 id="hero-title">Creator Text Animations</h1>
-        <p class="hero__line">Animated text. Zero keyframes.</p>
-        <p class="hero__sub">Drop it on your timeline and pick how the text comes in and how it leaves.</p>
-      </div>
-
-      <div class="glass glass--footage glass--live hero__card" style="--glass-img: url(/assets/glass/text.jpg)">
-        <div class="price"><b>$47</b><small>USD</small><s>$60</s><span class="badge">Save $13</span></div>
-        <ul class="ticks">
-          <li><img class="host" src="/assets/hosts/pr.png" alt="" width="18" height="18">Premiere Pro 2019+ on Mac or Windows</li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9.4 7.4 12.6 14 5.6"/></svg>Commercial use</li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9.4 7.4 12.6 14 5.6"/></svg>Free updates for life</li>
-          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9.4 7.4 12.6 14 5.6"/></svg>Bonus call-outs and a free font list</li>
-        </ul>
-        <div class="cta" id="heroActions">
-          <a data-cta="hero" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="heroBuy" class="btn btn--light btn--block" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now &middot; $47</a>
-          <a class="btn btn--line btn--block" href="#watch">Watch it work</a>
-        </div>
-        <p class="secure"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="5.2" width="8" height="5.8" rx="1.2" fill="currentColor"/><path d="M3.8 5.2V3.8a2.2 2.2 0 0 1 4.4 0v1.4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>Secure checkout &middot; Instant download by email</p>
-      </div>
-    </div>
-
     <div class="hero__media">
       <video class="hero__v hero__v--wide" data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover.jpg" width="1920" height="1080" aria-label="The pack in Premiere Pro">
         <source src="/assets/hero-cover.webm" type="video/webm">
@@ -104,6 +80,25 @@
       <video class="hero__v hero__v--tall" data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover-mobile.jpg" width="1080" height="1920" aria-label="The pack in Premiere Pro">
         <source src="/assets/hero-cover-mobile.webm" type="video/webm">
       </video>
+    </div>
+
+    <div class="wrap hero__in">
+      <div class="hero__labels">
+        <span class="hero__brand">Artzen Media</span>
+        <span class="hero__new"><span class="hero__tag">New</span>Light sweep, gradient and texture</span>
+      </div>
+
+      <div class="hero__foot">
+        <h1 id="hero-title">Creator Text Animations</h1>
+        <div class="hero__row">
+          <p class="hero__hosts"><img class="host" src="/assets/hosts/pr.png" alt="" width="22" height="22"><span>Premiere Pro 2019+<br>Mac and Windows</span></p>
+          <p class="hero__sub"><b>Animated text. Zero keyframes.</b> Drop it on your timeline and pick how the text comes in and how it leaves.</p>
+          <div class="glass glass--live hero__buy" id="heroActions">
+            <p class="hero__price"><b>$47</b><s>$60</s><span class="badge">Save $13</span></p>
+            <a data-cta="hero" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="heroBuy" class="btn btn--light" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -270,7 +265,11 @@
   <!-- REVIEWS -->
   <section class="section" aria-labelledby="reviews-title">
     <div class="wrap">
-      <div class="head"><span class="label label--muted">Reviews</span><h2 id="reviews-title">700+ editors use it.</h2></div>
+      <div class="rpanel">
+      <div class="rpanel__head">
+        <div><span class="label label--muted">Reviews</span><h2 id="reviews-title" class="rpanel__big"><b>700+</b><span>editors use it.</span></h2></div>
+        <button class="btn btn--line btn--sm" id="moreReviews" type="button">Show all 17 reviews</button>
+      </div>
       <div class="rvs">
           <figure class="glass rv"><p>&ldquo;A game changer, saving me hours of back-and-forth with After Effects and allowing me to deliver high-quality edits just as quickly. This new version seems even better than the first.&rdquo;</p><figcaption><img src="/assets/reviews/federico.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Federico</b><i>@marzustudio</i></span></figcaption></figure>
           <figure class="glass rv"><p>&ldquo;Can't believe I found this while doomscrolling on IG. All of my favorite text effects in 1 pack, easy to follow, and free updates for life.&rdquo;</p><figcaption><img src="/assets/reviews/mickey.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Mickey</b><i>@itchyeyephotos</i></span></figcaption></figure>
@@ -290,7 +289,7 @@
           <figure class="glass rv" hidden><p>&ldquo;The text animation pack has been very helpful. Really glad I picked it up.&rdquo;</p><figcaption><img src="/assets/reviews/lourdes.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Lourdes</b><i>@iapulse</i></span></figcaption></figure>
           <figure class="glass rv" hidden><p>&ldquo;Dude, these are awesome. Thank you so much.&rdquo;</p><figcaption><span class="ava" aria-hidden="true">F</span><span><b>fljay23</b><i>@fljay23</i></span></figcaption></figure>
       </div>
-      <div class="reviews__more"><button class="btn btn--line btn--sm" id="moreReviews" type="button">Show all 17 reviews</button></div>
+      </div>
     </div>
   </section>
 
@@ -359,10 +358,19 @@
   <section class="final" aria-labelledby="final-title">
     <div class="wrap">
       <h2 id="final-title">Make every word move.</h2>
-      <div class="actions" id="finalActions">
-        <a data-cta="final" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="finalBuy" class="btn btn--light" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now &middot; $47</a>
+      <div class="glass glass--footage glass--live final__card" style="--glass-img: url(/assets/glass/text.jpg)">
+        <div class="price"><b>$47</b><small>USD</small><s>$60</s><span class="badge">Save $13</span></div>
+        <ul class="ticks">
+          <li><img class="host" src="/assets/hosts/pr.png" alt="" width="18" height="18">Premiere Pro 2019+ on Mac or Windows</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9.4 7.4 12.6 14 5.6"/></svg>Commercial use</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9.4 7.4 12.6 14 5.6"/></svg>Free updates for life</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9.4 7.4 12.6 14 5.6"/></svg>Bonus call-outs and a free font list</li>
+        </ul>
+        <div class="cta" id="finalActions">
+          <a data-cta="final" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="finalBuy" class="btn btn--light btn--block" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now &middot; $47</a>
+        </div>
+        <p class="secure"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="5.2" width="8" height="5.8" rx="1.2" fill="currentColor"/><path d="M3.8 5.2V3.8a2.2 2.2 0 0 1 4.4 0v1.4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>Secure checkout &middot; Instant download by email</p>
       </div>
-      <p class="final__was"><s>$60</s><span class="badge">Save $13</span><span>Instant download</span></p>
     </div>
   </section>
 
@@ -483,15 +491,15 @@
   <div class="foot__base"><span>&copy; 2026 Artzen Media</span><span>Made by an editor</span></div>
 </footer>
 
-<!-- Floating buy bar: shows once the hero video has scrolled past, hides at the closing buy button -->
+<!-- Floating buy bar: shows once the hero has scrolled past, hides at the closing buy card -->
 <div class="sbar rim" id="bar" aria-hidden="true">
   <img class="sbar__thumb" src="/assets/posters/text-vsl.jpg" alt="" width="46" height="46">
   <span class="sbar__name">Creator Text Animations</span>
-  <span class="sbar__price">$47 <s>$60</s></span>
+  <span class="sbar__price">$47 <s>$60</s><span class="badge">Save $13</span></span>
   <a data-cta="stickybar" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" class="btn btn--light btn--sm" tabindex="-1" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now<span class="sbar__btnprice">&nbsp;&middot; $47</span></a>
 </div>
 
-<script src="/assets/am-shop.js?v=12" defer></script>
+<script src="/assets/am-shop.js?v=13" defer></script>
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ddc7e1d7ce974a1397478c75c100833b"}'></script>
 <!-- End Cloudflare Web Analytics -->

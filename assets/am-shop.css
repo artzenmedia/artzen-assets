@@ -1,10 +1,10 @@
-/* Artzen Media shop — v4 (pilot on /text, 24 Nov 2026).
-   Deep black and Apple-style restraint: the title and the $47 card come first, then the pack video full-bleed.
+/* Artzen Media shop — v5 (pilot on /text, 24 Nov 2026), Huella's layout on deep black.
+   Hero: the pack video fills the first screen, darkened, with the labels, the giant title, a hairline and the buy row on it.
    Every card is Ben's AM Motion black liquid glass (am-motion styles/talk-2027 glass(): radial black .46 -> .24,
    a top sheen, his 1.2 px white rim lit on two diagonal corners that swings between them on a sharp ease in-out,
    one swipe every 2.4 s). The buy cards carry his footage, blurred, under the black (2027.md "Glass cards").
-   The hero video keeps its own frame (no crop, no filter, no mask) in the default layout; only ?hero=over fits it to the
-   screen and dims it so the title reads on top. */
+   The hero video is never blurred or masked: only a black scrim sits on it (landscape fills the screen; portrait shows
+   the vertical cut at its own size). */
 :root {
   --bg: #000;
   --tile: #141414;
@@ -127,46 +127,64 @@ p { margin: 0; text-wrap: pretty; }
 .nav a { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; color: var(--muted); transition: color .2s; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--text); }
 
-/* ---------- hero: title and the $47 card first, then the pack video full-bleed (Apple order) ---------- */
-.hero { padding-top: clamp(40px, 5.5vw, 84px); }
-.hero__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 380px); align-items: end; gap: 36px clamp(40px, 6vw, 96px); padding-bottom: clamp(48px, 6vw, 88px); }
-.hero__new { display: flex; align-items: center; gap: 10px; margin-bottom: clamp(22px, 2.4vw, 32px); font-size: 12px; line-height: 1.2; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+/* ---------- hero (Huella): the pack video fills the first screen, darkened to deep black, and the words sit on it ---------- */
+.hero { position: relative; isolation: isolate; display: flex; min-height: 560px; height: calc(100svh - 72px - var(--ruler)); overflow: hidden; background: #000; }
+.hero__media { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.hero__v { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
+.hero__v--wide { object-position: 50% 100%; } /* crop from the top, so the video's own big text stays clear of the title */
+.hero__v--tall { display: none; }
+/* deep black: the whole frame dimmed, the labels' strip a touch more, near-black under the title and the buy row */
+.hero__media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, .75) 0%, rgba(0, 0, 0, 0) 24%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, .86) 66%, rgba(0, 0, 0, .97) 100%),
+    rgba(0, 0, 0, .52); }
+.hero__in { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; padding-top: 26px; padding-bottom: clamp(28px, 3.2vw, 48px); }
+.hero__labels { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; font-size: 12px; line-height: 1.2; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.hero__new { display: inline-flex; align-items: center; gap: 10px; color: var(--soft); }
 .hero__tag { display: inline-flex; align-items: center; height: 20px; padding: 0 7px; border-radius: 5px; background: var(--blue); color: #fff; font-size: 10.5px; }
-.hero h1 { font-size: clamp(48px, 8vw, 124px); line-height: .9; letter-spacing: -.055em; }
-.hero__line { margin-top: clamp(18px, 2vw, 26px); font-size: clamp(24px, 2.7vw, 40px); line-height: 1.05; font-weight: 700; letter-spacing: -.035em; color: var(--soft); }
-.hero__sub { margin-top: 14px; max-width: 27em; font-size: clamp(15px, 1.2vw, 17px); line-height: 1.5; color: var(--muted); }
+.hero h1 { font-size: clamp(44px, 6.3vw, 120px); line-height: .9; letter-spacing: -.055em; white-space: nowrap; }
+.hero__row { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr) auto; align-items: center; gap: 20px clamp(24px, 3vw, 48px);
+  margin-top: clamp(22px, 2.2vw, 32px); padding-top: clamp(20px, 2vw, 28px); border-top: 1px solid rgba(242, 241, 237, .24); }
+.hero__hosts { display: flex; align-items: center; gap: 12px; font-size: 14px; line-height: 1.35; font-weight: 700; }
+.hero__hosts .host { width: 22px; height: 22px; }
+.hero__sub { max-width: 29em; font-size: clamp(15px, 1.15vw, 17px); line-height: 1.45; color: var(--muted); }
+.hero__sub b { color: var(--text); font-weight: 700; }
+/* the buy row is his black glass: real glass over the playing video, rim swinging */
+.hero__buy { --gr: 999px; display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 8px 8px 8px 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .075) 0%, rgba(255, 255, 255, 0) 45%), radial-gradient(75% 75% at 55% 55%, rgba(0, 0, 0, .46), rgba(0, 0, 0, .24)), rgba(0, 0, 0, .3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3); backdrop-filter: blur(24px) saturate(1.3); }
+.hero__price { display: flex; align-items: baseline; gap: 10px; white-space: nowrap; }
+.hero__price b { font-size: 30px; line-height: 1; font-weight: 700; letter-spacing: -.045em; }
+.hero__price s { font-size: 15px; font-weight: 700; color: var(--muted); }
+.hero__price .badge { align-self: center; }
 
-.hero__card { padding: 28px; --glass-pos: 22% 50%; --glass-dim: .45; }
-.price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 10px; }
-.price b { font-size: 46px; line-height: .9; font-weight: 700; letter-spacing: -.05em; }
-.price small { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
-.price s { font-size: 18px; font-weight: 700; color: var(--muted); }
-.price .badge { align-self: center; margin-left: auto; }
-.ticks { list-style: none; margin: 24px 0 26px; padding: 0; display: grid; gap: 12px; }
-.ticks li { display: flex; align-items: center; gap: 11px; font-size: 14.5px; line-height: 1.35; font-weight: 500; color: var(--soft); }
-.ticks svg, .ticks .host { width: 18px; height: 18px; flex: none; }
-.ticks svg { fill: none; stroke: var(--text); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.cta { display: grid; gap: 10px; }
-.secure { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 16px; font-size: 12.5px; color: var(--muted); }
-.secure svg { width: 12px; height: 12px; }
-
-.hero__media { position: relative; background: #000; }
-.hero__v { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; } /* its own frame: no crop, no filter, no mask */
-.hero__v--tall { display: none; aspect-ratio: 9 / 16; }
-
-/* ?hero=over (screens over 1080px): the title and card sit on the video, Huella style, the card is real glass
-   over the playing video. Off by default. */
-@media (min-width: 1081px) {
-  .hero-over .hero { display: grid; padding-top: 0; }
-  .hero-over .hero__intro, .hero-over .hero__media { grid-area: 1 / 1; }
-  .hero-over .hero__media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(180deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .72) 40%, rgba(0, 0, 0, .94) 100%); }
-  .hero-over .hero__v--wide { aspect-ratio: auto; height: calc(100svh - 72px - var(--ruler)); object-fit: cover; }
-  .hero-over .hero__intro { position: relative; z-index: 2; align-self: end; padding-bottom: 48px; }
-  .hero-over .hero__card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, .075) 0%, rgba(255, 255, 255, 0) 45%),
-      radial-gradient(75% 75% at 55% 55%, rgba(0, 0, 0, .46), rgba(0, 0, 0, .24)), rgba(0, 0, 0, .28);
-    -webkit-backdrop-filter: blur(24px) saturate(1.3); backdrop-filter: blur(24px) saturate(1.3); }
+/* landscape under 1080 px: the buy row moves beside the two text lines */
+@media (max-width: 1080px) {
+  .hero__row { grid-template-columns: minmax(0, 1fr) auto; }
+  .hero__hosts, .hero__sub { grid-column: 1; }
+  .hero__buy { grid-column: 2; grid-row: 1 / span 2; }
+}
+/* portrait screens (phones, tablets upright): the vertical cut at its own size, the words over its top,
+   its payoff (the pack card, "41 ANIMATIONS", "DRAG & DROP") left clear in the bottom 40 % */
+@media (orientation: portrait) {
+  .hero { display: grid; grid-template-rows: auto minmax(71vw, auto); height: auto; min-height: 0; }
+  .hero__media { position: relative; inset: auto; grid-row: 1 / span 2; grid-column: 1; align-self: end; aspect-ratio: 9 / 16; }
+  .hero__v--wide { display: none; }
+  .hero__v--tall { display: block; }
+  .hero__media::after { background: linear-gradient(180deg, rgba(0, 0, 0, .92) 0%, rgba(0, 0, 0, .86) 52%, rgba(0, 0, 0, .3) 62%, rgba(0, 0, 0, 0) 70%); }
+  .hero__in { grid-row: 1; grid-column: 1; z-index: 1; justify-content: flex-start; gap: 30px; padding-top: 22px; padding-bottom: 0; }
+  .hero h1 { white-space: normal; font-size: clamp(44px, 13.4vw, 104px); }
+  .hero__row { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 22px; padding-top: 18px; }
+  .hero__buy { grid-column: auto; grid-row: auto; margin-top: 6px; }
+}
+/* upright tablets: the vertical cut fills the screen height instead of its full 9:16 (cropped from the top),
+   the buy pill keeps its own width */
+@media (orientation: portrait) and (min-width: 600px) {
+  .hero { grid-template-rows: auto minmax(calc((100svh - 72px - var(--ruler)) * .44), auto); }
+  .hero__media { aspect-ratio: auto; height: calc(100svh - 72px - var(--ruler)); }
+  .hero__v--tall { object-position: 50% 100%; }
+  .hero__buy { justify-self: start; }
 }
 
 /* ---------- the pack in numbers ---------- */
@@ -249,7 +267,12 @@ p { margin: 0; text-wrap: pretty; }
 .egp-check.is-on { background: var(--inv); border-color: var(--inv); }
 .egp-check.is-on svg { opacity: 1; }
 
-/* reviews: his glass cards on black */
+/* reviews (Huella): one big panel, a giant number in its head, his glass cards inside */
+.rpanel { border-radius: 32px; background: #101010; border: 1px solid var(--line); padding: clamp(24px, 4.4vw, 56px); }
+.rpanel__head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px 32px; margin-bottom: clamp(28px, 3.4vw, 44px); padding-bottom: clamp(24px, 3vw, 36px); border-bottom: 1px solid var(--line); }
+.rpanel__big { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 16px; margin-top: 18px; }
+.rpanel__big b { font-size: clamp(72px, 9vw, 132px); line-height: .82; font-weight: 700; letter-spacing: -.06em; }
+.rpanel__big span { font-size: clamp(20px, 2vw, 28px); line-height: 1.1; font-weight: 700; letter-spacing: -.03em; color: var(--muted); }
 .rvs { columns: 3; column-gap: 16px; }
 .rv { --gr: 22px; break-inside: avoid; margin: 0 0 16px; padding: 24px; display: grid; gap: 18px; }
 .rv[hidden] { display: none; }
@@ -258,7 +281,6 @@ p { margin: 0; text-wrap: pretty; }
 .rv figcaption img, .rv figcaption .ava { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex: none; background: var(--tile-3); display: grid; place-items: center; font-size: 11px; font-weight: 700; }
 .rv figcaption b { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; line-height: 1.2; }
 .rv figcaption i { display: block; font-style: normal; font-size: 12.5px; color: var(--muted); line-height: 1.3; }
-.reviews__more { display: flex; justify-content: center; margin-top: 22px; }
 
 /* the bundle: one glass card over the SFX cover, blurred */
 .kit { padding: clamp(24px, 4.5vw, 56px); --glass-dim: .58; }
@@ -286,12 +308,22 @@ p { margin: 0; text-wrap: pretty; }
 .faq details p { padding: 0 0 24px; color: var(--muted); max-width: 46em; font-size: 15.5px; }
 .faq a { color: var(--text); }
 
-/* closing call to action */
+/* closing buy card: the $47 card in his glass */
 .final { text-align: center; padding: clamp(110px, 12vw, 170px) 0; }
-.final h2 { font-size: clamp(52px, 7.8vw, 120px); letter-spacing: -.055em; line-height: .92; max-width: 10ch; margin: 0 auto 40px; }
-.final .actions { justify-content: center; }
-.final__was { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; font-size: 13px; color: var(--muted); }
-.final__was s { font-weight: 700; }
+.final h2 { font-size: clamp(52px, 7.8vw, 120px); letter-spacing: -.055em; line-height: .92; max-width: 10ch; margin: 0 auto clamp(40px, 4.4vw, 60px); }
+.final__card { max-width: 420px; margin: 0 auto; padding: 28px; text-align: left; --glass-pos: 22% 50%; --glass-dim: .45; }
+.price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 10px; }
+.price b { font-size: 46px; line-height: .9; font-weight: 700; letter-spacing: -.05em; }
+.price small { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
+.price s { font-size: 18px; font-weight: 700; color: var(--muted); }
+.price .badge { align-self: center; margin-left: auto; }
+.ticks { list-style: none; margin: 24px 0 26px; padding: 0; display: grid; gap: 12px; }
+.ticks li { display: flex; align-items: center; gap: 11px; font-size: 14.5px; line-height: 1.35; font-weight: 500; color: var(--soft); }
+.ticks svg, .ticks .host { width: 18px; height: 18px; flex: none; }
+.ticks svg { fill: none; stroke: var(--text); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.cta { display: grid; gap: 10px; }
+.secure { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 16px; font-size: 12.5px; color: var(--muted); }
+.secure svg { width: 12px; height: 12px; }
 
 /* footer (Huella) */
 .foot { border-top: 1px solid var(--line); padding: 56px 0 0; overflow: hidden; }
@@ -314,16 +346,14 @@ p { margin: 0; text-wrap: pretty; }
 .sbar__name { font-size: 14px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .sbar__price { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; white-space: nowrap; }
 .sbar__price s { color: var(--muted); font-size: 13px; }
+.sbar__price .badge { height: 20px; font-size: 10px; }
 .sbar .btn { height: 44px; flex: none; gap: 0; }
 .sbar__btnprice { display: none; }
 
 @media (max-width: 1080px) {
-  .hero__intro { grid-template-columns: minmax(0, 1fr) minmax(300px, 340px); }
   .rvs { columns: 2; }
 }
 @media (max-width: 860px) {
-  .hero__intro { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-  .hero__card { max-width: 480px; }
   .section { padding-bottom: 100px; }
   .kit__items { grid-template-columns: minmax(0, 1fr); }
   .feats { grid-template-columns: minmax(0, 1fr); gap: 22px; }
@@ -332,15 +362,13 @@ p { margin: 0; text-wrap: pretty; }
 @media (max-width: 560px) {
   .top { grid-template-columns: auto 1fr 40px; gap: 10px; }
   .nav { gap: 18px; justify-self: center; }
-  .hero { padding-top: 34px; }
-  .hero__card { max-width: none; padding: 22px; }
   .price b { font-size: 40px; }
-  /* phones: the vertical cut, full width, uncropped */
-  .hero__v--wide { display: none; }
-  .hero__v--tall { display: block; }
   .stats div { padding: 0 6px; gap: 10px; }
   .stats span { font-size: 12px; }
   .rvs { columns: 1; }
+  .rpanel { border-radius: 24px; padding: 22px 16px; }
+  .rpanel__head .btn { width: 100%; }
+  .final__card { padding: 22px; }
   .egp-row { padding-left: 26px; padding-right: 12px; }
   .egp-head { padding: 11px 12px; }
   .egp-lab { flex-basis: 48%; font-size: 11.5px; }
