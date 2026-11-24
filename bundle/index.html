@@ -1607,6 +1607,36 @@
     } catch (e) {}
   })();
   </script>
+  <!-- Black Friday 2026, story DM only: ?s=bf swaps the buttons to the $59 story link
+       (Polar discount "Black Friday Bundle (story)", metadata source=story campaign=bf2026)
+       and the prices on the page. Ends 30 Nov 22:00 UTC (1 Dec 00:00 Israel); after that
+       ?s=bf falls back to the normal $73.60 story link, so old DMs keep working. -->
+  <script>
+  (function () {
+    try {
+      if (new URLSearchParams(location.search).get('s') !== 'bf') return;
+      var live = Date.now() < Date.parse('2026-11-30T22:00:00Z');
+      var BF = 'https://buy.polar.sh/polar_cl_02Xy9Krta2bxZqe4Sl02rANk35DzSD4WPBWeT1i2VqM';
+      var STORY = 'https://buy.polar.sh/polar_cl_xt2AKiW4WDtjDIYlFOHtss9cIUQceVFqdei8540ijLL';
+      document.querySelectorAll('a[href*="buy.polar.sh"][data-product-id="text-sfx-bundle"]').forEach(function (a) {
+        a.href = live ? BF : STORY;
+        if (!live) return;
+        a.setAttribute('data-value', '59');
+        var c = a.getAttribute('data-cta');
+        if (c === 'hero') a.innerHTML = 'Get The Kit &middot; $59 USD';
+        else if (c === 'stickybar') a.innerHTML = 'Get The Kit &middot; $59';
+        else if (c === 'final') a.innerHTML = '$59 &middot; Save $56';
+      });
+      if (!live) return;
+      var lp = document.querySelector('.hero .launch-price');
+      if (lp) lp.innerHTML = '<span class="lp-was">$115</span> Black Friday: save $56, ends Monday';
+      var fs = document.querySelector('.final-cta__sub');
+      if (fs) fs.innerHTML = '$55 for the sounds. $60 for the animations.<br>$59 for both this Black Friday, yours forever.';
+      var an = document.querySelector('.final-cta__anchor');
+      if (an) an.innerHTML = 'That&rsquo;s 196 assets for about 30&cent; each.';
+    } catch (e) {}
+  })();
+  </script>
   <!-- Notify bell (join.artzenmedia.com/bell.js): signups are tagged "Bell: Shop" in Kit -->
   <script src="https://join.artzenmedia.com/bell.js" data-source="shop" defer></script>
 </body>
