@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0C0C0C">
   <meta name="description" content="Pro-level text animations for Premiere Pro. One pack, drag and drop.">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/icon-96.png">
@@ -17,1736 +18,9 @@
   <meta name="twitter:description" content="Pro-level text animations for Premiere Pro. One pack, drag and drop.">
   <meta name="twitter:image" content="https://shop.artzenmedia.com/assets/og-text.jpg">
   <title>Creator Text Animations - Artzen Media</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="/assets/am-shop.css?v=5">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Caveat:wght@400..700&family=Indie+Flower&family=Nothing+You+Could+Do&family=Reenie+Beanie&family=Shadows+Into+Light&display=swap" rel="stylesheet">
-  <!-- Inter Display isn't a Google Fonts family name, so headlines were falling back to
-       Helvetica/Arial. These are Google's own Inter files at the display optical size. -->
-  <link rel="preload" href="/assets/fonts/inter-display-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <style>
-    @font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/assets/fonts/inter-display-cyrillic-ext.woff2) format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
-    @font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/assets/fonts/inter-display-cyrillic.woff2) format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
-    @font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/assets/fonts/inter-display-greek-ext.woff2) format('woff2'); unicode-range: U+1F00-1FFF; }
-    @font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/assets/fonts/inter-display-greek.woff2) format('woff2'); unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
-    @font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/assets/fonts/inter-display-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
-    @font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/assets/fonts/inter-display-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-    @font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/assets/fonts/inter-display-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  </style>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0C0C0C;
-      --container: #161616;
-      --container-hover: #1e1e1e;
-      --primary: #FFFFFF;
-      --secondary: #8C8C8C;
-      --tertiary: #555;
-      --border: #242424;
-      --accent: #5BD3FE;
-      --yellow: #FFEA00;
-      --ig-blue: #0095F6;
-      --max-w: 800px;
-    }
-
-    /* accent word treatment, matching /sfx */
-    em {
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.12em;
-      letter-spacing: 0;
-      color: var(--accent);
-      text-shadow: 0 0 24px rgba(91,211,254,0.28);
-    }
-    html { scroll-behavior: smooth; background: var(--bg); }
-    body {
-      background: transparent;
-      color: var(--primary);
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    /* very soft grid background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.008) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.008) 1px, transparent 1px);
-      background-size: 18px 18px;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-      padding: 22px 24px;
-    }
-    .nav-profile {
-      position: relative;
-      width: 64px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .nav-profile__glow {
-      position: absolute;
-      inset: -28px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(30,100,255,0.22) 0%, rgba(91,211,254,0.08) 48%, transparent 70%);
-      pointer-events: none;
-      filter: blur(12px);
-    }
-    .nav-profile__circle {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #0a0a20, #101030);
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Inter Display', sans-serif;
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--primary);
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
-    .nav-profile__circle img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-    .nav-profile__badge {
-      position: absolute;
-      bottom: 1px;
-      right: 1px;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      z-index: 2;
-      overflow: hidden;
-    }
-    .nav-profile__badge img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: contain;
-    }
-    .nav-handle {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--secondary);
-      letter-spacing: 0.01em;
-    }
-
-    /* ── SHARED ── */
-    .section {
-      width: 100%;
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: 600px;
-      display: flex;
-      align-items: center;
-      padding: 80px 0;
-      overflow: hidden;
-    }
-    .hero__text {
-      position: relative;
-      z-index: 2;
-      max-width: 460px;
-      margin: 0 auto 0 max(20px, calc(50% - 540px));
-      padding: 0 20px;
-    }
-    .hero__eyebrow {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .hero__title {
-      font-family: 'Inter Display', sans-serif;
-      font-size: 3.8rem;
-      font-weight: 700;
-      line-height: 0.82;
-      letter-spacing: -0.05em;
-      color: var(--primary);
-      margin-bottom: 12px;
-      overflow: visible;
-    }
-    .hero__line { display: block; }
-    .hero__line--top { white-space: nowrap; overflow: visible; }
-
-    /* ── Glowing shimmer sweep (Creator / Animations) ── */
-    .shimmer-text {
-      display: inline-block;
-      color: rgba(255,255,255,0.86);
-      -webkit-text-fill-color: transparent;
-      background-color: rgba(255,255,255,0.86);
-      background-image: linear-gradient(110deg,
-        transparent 30%,
-        #ffffff 48%,
-        #ffffff 52%,
-        transparent 70%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      background-repeat: no-repeat;
-      background-size: 220% 100%;
-      filter: drop-shadow(0 0 16px rgba(255,255,255,0.15));
-      animation: shimmerSweep 3.8s linear infinite;
-    }
-    @keyframes shimmerSweep {
-      0%   { background-position: 160% 0; }
-      60%  { background-position: -60% 0; }
-      100% { background-position: -60% 0; }
-    }
-
-    /* ── Animated effect word (Text) - real per-char motion ── */
-    .hero__text-fx {
-      display: inline-block;
-      font-family: 'Caveat', cursive;
-      font-weight: 700;
-      font-size: 2.3em;
-      line-height: 0.5;
-      vertical-align: middle;
-      letter-spacing: normal;
-      color: var(--accent);
-      white-space: nowrap;
-      text-align: center;
-      overflow: visible;
-      margin: 0 -0.03em;
-      text-shadow: 0 0 22px rgba(91,211,254,0.3);
-    }
-    .fx-char {
-      display: inline-block;
-      white-space: pre;
-      will-change: transform, filter, opacity;
-    }
-    /* inner ink layer: static tilt + constant subtle wiggle (hand-drawn feel) */
-    .fx-ink {
-      display: inline-block;
-      rotate: var(--rot, 0deg);
-      animation: inkWiggle 2.6s ease-in-out infinite;
-      animation-delay: var(--wd, 0s);
-      will-change: transform;
-    }
-    @keyframes inkWiggle {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(0.4px, -0.7px) rotate(1.1deg); }
-      50% { transform: translate(-0.6px, 0.5px) rotate(-1.1deg); }
-      75% { transform: translate(0.5px, 0.6px) rotate(0.7deg); }
-    }
-    @keyframes charBlur { from { opacity: 0; filter: blur(12px); } to { opacity: 1; filter: blur(0); } }
-    .fx-char.blur { animation: charBlur 0.5s ease forwards; }
-    @keyframes charSlide { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-    .fx-char.slide { animation: charSlide 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-    @keyframes charScale { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
-    .fx-char.scale { animation: charScale 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-    @keyframes charDrop { from { opacity: 0; transform: translateY(-28px) rotate(-8deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
-    .fx-char.drop { animation: charDrop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-    @keyframes charShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
-    .fx-char.shake { animation: charShake 0.55s ease forwards; }
-
-    .hero__title .accent-yellow { color: var(--yellow); }
-    .hero__subtitle {
-      font-size: 14px;
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 24px;
-      line-height: 1.5;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
-    }
-    /* struck-through anchor under the buy buttons, same treatment as /sfx */
-    .launch-price {
-      font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 400;
-      display: flex; align-items: center; justify-content: center; gap: 7px; flex-wrap: wrap;
-      color: var(--tertiary); letter-spacing: 0.01em;
-      margin-top: 10px;
-    }
-    .launch-price .lp-was { text-decoration: line-through; }
-    .final-cta__no-sub { font-size: 12px; color: var(--tertiary); line-height: 1.6; margin-top: 12px; }
-    .final-cta__no-sub a { color: var(--secondary); text-decoration: none; border-bottom: 1px solid var(--border); }
-    .final-cta__no-sub a:hover { color: var(--accent); }
-    .hero__cta { display: inline-flex; flex-direction: column; align-items: center; margin-top: 22px; }
-    .hero__pp { margin-top: 10px; display: flex; justify-content: center; }
-    .pp-icon.pp-icon--lg {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      font-size: 16px;
-      box-shadow: none;
-    }
-    .hero__price {
-      font-family: 'Inter Display', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      color: var(--primary);
-      margin-bottom: 16px;
-    }
-
-    /* ── BUTTONS (premium glow) ── */
-    @keyframes btnSpin {
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    .btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 18px 44px;
-      border-radius: 14px;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      white-space: nowrap;
-      overflow: hidden;
-      isolation: isolate;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    /* large spinning conic-gradient square, clipped to the rounded button */
-    .btn::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 250%;
-      aspect-ratio: 1;
-      transform: translate(-50%, -50%);
-      background: conic-gradient(from 0deg, transparent 0%, var(--accent) 20%, transparent 50%);
-      z-index: -2;
-      animation: btnSpin 3s linear infinite;
-    }
-    /* core that masks the centre, leaving a glowing ring */
-    .btn::after {
-      content: '';
-      position: absolute;
-      inset: 1.5px;
-      border-radius: 13px;
-      z-index: -1;
-    }
-    .btn:hover {
-      transform: scale(1.02);
-    }
-    .btn:active {
-      transform: scale(0.98);
-    }
-    .btn-center {
-      display: flex;
-      width: max-content;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    @keyframes btnPulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 14px 32px 0 rgba(91,211,254,0.22); }
-      50% { transform: scale(1.035); box-shadow: 0 20px 46px 0 rgba(91,211,254,0.42); }
-    }
-    .btn-primary {
-      color: #fff;
-      box-shadow: 0 15px 35px 0 rgba(91,211,254,0.25);
-      animation: btnPulse 2.6s ease-in-out infinite;
-    }
-    .btn-primary::after {
-      background: #0D0D0D;
-    }
-    .btn-primary:hover {
-      filter: brightness(1.08);
-      box-shadow: 0 18px 42px 0 rgba(91,211,254,0.35);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .btn-primary { animation: none; }
-    }
-    .btn-outline {
-      color: #fff;
-      box-shadow: 0 12px 30px 0 rgba(91,211,254,0.15);
-    }
-    .btn-outline::after {
-      background: rgba(13,13,13,0.55);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-    }
-    .btn-outline:hover {
-      box-shadow: 0 16px 38px 0 rgba(91,211,254,0.25);
-    }
-
-    /* ── HERO VIDEO (full-bleed background layer) ── */
-    .hero__media {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 62%;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .hero__media video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .hero__media .hero__video--mobile { display: none; }
-    /* left fade so video blends into the bg behind the text */
-    .hero__media::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(to right, var(--bg) 0%, rgba(12,12,12,0.55) 28%, transparent 65%),
-        linear-gradient(to bottom, transparent 50%, var(--bg) 95%);
-    }
-    .media-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      padding: 20px;
-    }
-    .media-placeholder__icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .media-placeholder__icon svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--secondary);
-      margin-left: 3px;
-    }
-    .media-placeholder__label {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      color: var(--tertiary);
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    /* ── TRUST BAR ── */
-    .trust-bar {
-      max-width: var(--max-w);
-      margin: 0 auto 48px;
-      padding: 0 20px;
-    }
-    .trust-bar__inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .trust-bar__item {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 13px 22px;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.03);
-      transition: background 0.2s, border-color 0.2s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-      cursor: pointer;
-    }
-    .trust-bar__item:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.1);
-      transform: scale(1.06);
-    }
-    .trust-bar__item:active { transform: scale(1.02); }
-    .trust-bar__item::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--yellow);
-      box-shadow: 0 0 6px rgba(255,234,0,0.6);
-      flex-shrink: 0;
-    }
-    .trust-bar__number {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--primary);
-      opacity: 0.85;
-      letter-spacing: -0.01em;
-    }
-    .trust-bar__label {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-    }
-
-    /* ── FEATURES ── */
-    .features {
-      max-width: 760px;
-      margin: 0 auto 44px;
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .features__content { text-align: center; width: 100%; }
-    .features__h2 {
-      font-family: 'Inter Display', sans-serif;
-      font-size: 1.95rem;
-      font-weight: 600;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-    /* one line from the width where the column is wide enough to hold it */
-    @media (min-width: 760px) {
-      .features__h2 { white-space: nowrap; }
-    }
-    .features__subh {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      color: var(--tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 18px;
-    }
-    .features__desc {
-      font-size: 14px;
-      color: var(--secondary);
-      line-height: 23px;
-      margin-bottom: 8px;
-      max-width: 540px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    /* the in + out pitch, the single strongest reason to buy */
-    .features__combos {
-      font-size: 14px;
-      line-height: 23px;
-      color: var(--primary);
-      max-width: 540px;
-      margin: 14px auto 18px;
-      padding: 14px 18px;
-      background: rgba(91,211,254,0.04);
-      border: 1px solid rgba(91,211,254,0.16);
-      border-left: 2px solid var(--accent);
-      border-radius: 12px;
-      text-align: left;
-    }
-    .features__combos strong { font-weight: 600; color: var(--accent); }
-    .features__tagline {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      color: var(--tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 32px;
-    }
-    .features__includes-title {
-      font-family: 'Inter Display', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--primary);
-      margin-bottom: 20px;
-    }
-    /* icon cards grid */
-    .included-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 30px;
-    }
-    .included-card {
-      background: var(--container);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 22px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 16px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .included-card:hover { border-color: #333; transform: translateY(-3px); }
-    .included-card__text { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; }
-    .included-card__title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--primary);
-      line-height: 1.3;
-      width: 100%;
-    }
-    .included-card__icon {
-      width: 42px;
-      height: 42px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin: auto auto 0;
-    }
-    .included-card__icon svg {
-      width: 19px;
-      height: 19px;
-      fill: none;
-      stroke: var(--secondary);
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .included-card--bonus .included-card__icon svg { stroke: var(--yellow); }
-    .included-card__sub {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      line-height: 1.4;
-      width: 100%;
-    }
-
-    /* ── IMPACT (IG embeds) ── */
-    .impact {
-      max-width: 100%;
-      margin: 0 auto 56px;
-      overflow: hidden;
-    }
-    .impact-wrapper {
-      position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .impact-viewport {
-      position: relative;
-      overflow: hidden;
-    }
-    /* side fades */
-    .impact-viewport::before,
-    .impact-viewport::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 230px;
-      z-index: 3;
-      pointer-events: none;
-    }
-    .impact-viewport::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
-    .impact-viewport::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
-    .impact-track {
-      display: flex;
-      gap: 16px;
-      justify-content: safe center;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      scroll-behavior: auto;
-      padding: 8px 0;
-    }
-    .impact-track::-webkit-scrollbar { display: none; }
-    .impact-item {
-      flex-shrink: 0;
-      width: 300px;
-      aspect-ratio: 9 / 16;
-      border-radius: 18px;
-      overflow: hidden;
-      background: var(--container);
-      border: 1px solid var(--border);
-      position: relative;
-    }
-    .impact-item video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      position: relative;
-      z-index: 1;
-    }
-    /* legibility gradient at the bottom */
-    .impact-item__grad {
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 90px;
-      background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
-      pointer-events: none;
-      z-index: 1;
-    }
-    .impact-views {
-      position: absolute;
-      left: 14px;
-      bottom: 13px;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: -0.01em;
-    }
-    .impact-views .impact-stat { display: inline-flex; align-items: center; gap: 6px; }
-    .impact-views svg { width: 16px; height: 16px; fill: #fff; opacity: 0.92; }
-    /* tap-to-unmute speaker */
-    .impact-sound {
-      position: absolute;
-      bottom: 11px;
-      right: 14px;
-      z-index: 3;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .impact-sound:hover { background: rgba(0,0,0,0.7); transform: scale(1.08); }
-    .impact-sound svg { width: 15px; height: 15px; fill: #fff; }
-    .impact-sound .ico-on { display: none; }
-    .impact-sound[data-muted="false"] .ico-on { display: block; }
-    .impact-sound[data-muted="false"] .ico-muted { display: none; }
-    /* placeholder look (until WebM files are added) */
-    .impact-item__placeholder {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .impact-item__placeholder svg { width: 30px; height: 30px; fill: var(--tertiary); }
-    .impact-item__placeholder span {
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      color: var(--tertiary);
-      text-align: center;
-    }
-    .impact-label {
-      text-align: center;
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 20px;
-    }
-
-    /* ── TESTIMONIALS ── */
-    .testimonials {
-      max-width: 100%;
-      margin: 0 auto 56px;
-      overflow: hidden;
-    }
-    .testimonials__header {
-      max-width: var(--max-w);
-      margin: 0 auto 28px;
-      padding: 0 20px;
-      text-align: center;
-    }
-    .section-label {
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      text-align: center;
-      margin-bottom: 6px;
-    }
-    .section-title {
-      font-family: 'Inter Display', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-align: center;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 6px;
-    }
-    .section-sub {
-      font-size: 13px;
-      color: var(--secondary);
-      text-align: center;
-      margin-bottom: 0;
-    }
-    /* ══ CONTROLS: a replica of the Properties panel ══
-       Every label and count below is read from definition.json in the .mogrt,
-       so what a buyer sees here is what they get after installing. */
-    .controls { max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
-    .controls__intro {
-      font-size: 14px; line-height: 23px; color: var(--secondary);
-      max-width: 560px; margin: 12px auto 30px; text-align: center;
-    }
-    .controls__intro strong { color: var(--primary); font-weight: 600; }
-    .egp {
-      max-width: 520px; margin: 0 auto;
-      background: var(--container); border: 1px solid var(--border);
-      border-radius: 14px; overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
-    }
-    .egp-bar {
-      display: flex; align-items: center; gap: 9px;
-      padding: 11px 14px; border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-    }
-    .egp-bar__t {
-      font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: 0.07em;
-      text-transform: uppercase; color: var(--secondary);
-    }
-    .egp-bar .pp-icon { margin-left: auto; }
-    .egp-body { padding: 6px 0; }
-    .egp-body--fold { display: none; background: rgba(255,255,255,0.012); }
-    .egp-sec.open .egp-body--fold { display: block; }
-    .egp-sec { border-top: 1px solid var(--border); }
-    .egp-head {
-      width: 100%; display: flex; align-items: center; gap: 8px;
-      padding: 10px 14px; background: none; border: 0; cursor: pointer;
-      font-family: inherit; text-align: left; color: var(--primary);
-      transition: background 0.15s;
-    }
-    .egp-head:hover { background: rgba(255,255,255,0.03); }
-    .egp-chev {
-      width: 13px; height: 13px; flex-shrink: 0; fill: none;
-      stroke: var(--tertiary); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
-      transition: transform 0.18s;
-    }
-    .egp-sec.open .egp-chev { transform: rotate(90deg); stroke: var(--accent); }
-    .egp-name { font-size: 12.5px; font-weight: 600; }
-    .egp-new {
-      font-family: 'Geist Mono', monospace; font-size: 8.5px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent);
-      background: rgba(91,211,254,0.1); border: 1px solid rgba(91,211,254,0.25);
-      border-radius: 4px; padding: 2px 4px; line-height: 1.3;
-    }
-    .egp-count {
-      margin-left: auto; font-family: 'Geist Mono', monospace;
-      font-size: 10.5px; color: var(--tertiary);
-    }
-    .egp-row {
-      display: flex; align-items: center; gap: 10px;
-      padding: 5px 14px 5px 35px; min-height: 27px;
-    }
-    .egp-lab {
-      font-size: 11.5px; color: var(--secondary);
-      flex: 0 0 44%; min-width: 0;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    }
-    .egp-field {
-      flex: 1; display: flex; align-items: center; gap: 6px;
-      font-family: 'Geist Mono', monospace; font-size: 10.5px; color: var(--primary);
-      background: rgba(0,0,0,0.35); border: 1px solid var(--border);
-      border-radius: 5px; padding: 3px 7px; min-width: 0;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    }
-    .egp-field svg { margin-left: auto; width: 11px; height: 11px; flex-shrink: 0;
-      fill: none; stroke: var(--tertiary); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-    .egp-field--text { color: var(--accent); }
-    .egp-field--col i { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0;
-      border: 1px solid rgba(255,255,255,0.22); }
-    .egp-drop { position: relative; flex: 1; min-width: 0; display: flex; }
-    .egp-drop .egp-field { width: 100%; cursor: pointer; text-align: left; font-family: 'Geist Mono', monospace; }
-    .egp-drop .egp-field:hover { border-color: rgba(91,211,254,0.4); }
-    .egp-cur { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .egp-drop.open .egp-field svg { transform: rotate(180deg); }
-    .egp-field svg { transition: transform 0.16s; }
-    .egp-menu {
-      display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 5;
-      max-height: 178px; overflow-y: auto; margin: 0; padding: 4px; list-style: none;
-      background: #0c0c0c; border: 1px solid rgba(91,211,254,0.3); border-radius: 7px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.7);
-      font-family: 'Geist Mono', monospace; font-size: 10.5px;
-      scrollbar-width: thin; scrollbar-color: #333 transparent;
-    }
-    .egp-drop.open .egp-menu { display: block; }
-    .egp-menu::-webkit-scrollbar { width: 6px; }
-    .egp-menu::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-    .egp-menu li { padding: 5px 8px; border-radius: 4px; color: var(--secondary); cursor: pointer; }
-    .egp-menu li:hover { background: rgba(91,211,254,0.1); color: var(--primary); }
-    .egp-menu li.is-sel { color: var(--accent); background: rgba(91,211,254,0.07); }
-    .egp-slider { flex: 1; display: flex; align-items: center; gap: 9px; min-width: 0; }
-    .egp-track { position: relative; flex: 1; height: 3px; border-radius: 2px;
-      background: rgba(255,255,255,0.1); min-width: 0; }
-    .egp-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: var(--accent); }
-    .egp-knob { position: absolute; top: 50%; width: 9px; height: 9px; border-radius: 50%;
-      background: #fff; transform: translate(-50%,-50%); box-shadow: 0 1px 4px rgba(0,0,0,0.6); }
-    .egp-val { font-family: 'Geist Mono', monospace; font-size: 10.5px; color: var(--tertiary);
-      flex: 0 0 auto; min-width: 30px; text-align: right; }
-    .egp-check { width: 13px; height: 13px; border-radius: 3px; border: 1px solid var(--border);
-      background: rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center; }
-    .egp-check svg { width: 9px; height: 9px; fill: none; stroke: var(--bg); stroke-width: 3.4;
-      stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
-    .egp-check.is-on { background: var(--accent); border-color: var(--accent); }
-    .egp-check.is-on svg { opacity: 1; }
-    .egp-hint {
-      text-align: center; font-family: 'Geist Mono', monospace; font-size: 10.5px;
-      color: var(--tertiary); margin-top: 14px; letter-spacing: 0.03em;
-    }
-    /* the two proof notes under the panel */
-    .controls__notes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 30px; }
-    .controls__note {
-      background: linear-gradient(160deg, rgba(91,211,254,0.05), var(--container) 65%);
-      border: 1px solid var(--border); border-radius: 14px; padding: 18px; text-align: left;
-      display: flex; align-items: flex-start; gap: 14px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .controls__note:hover { border-color: rgba(91,211,254,0.32); transform: translateY(-3px); }
-    .controls__note-icon {
-      width: 38px; height: 38px; flex-shrink: 0;
-      background: rgba(91,211,254,0.08); border: 1px solid rgba(91,211,254,0.18);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-    }
-    .controls__note-icon svg {
-      width: 18px; height: 18px; fill: none; stroke: var(--accent);
-      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
-    }
-    .controls__note-title { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 5px; }
-    .controls__note-body { font-size: 12.5px; line-height: 1.65; color: var(--secondary); }
-    @media (max-width: 560px) {
-      .controls__notes { grid-template-columns: 1fr; }
-      .egp-row { padding-left: 26px; }
-      .egp-lab { flex-basis: 50%; font-size: 11px; }
-    }
-    /* ══ VSL: horizontal sales video ══ */
-    .vsl { max-width: var(--max-w); margin: 0 auto 56px; padding: 0 20px; }
-    .vsl__frame {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: linear-gradient(150deg, #17242b, var(--container) 62%);
-      cursor: pointer;
-    }
-    .vsl__poster { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .vsl__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .vsl__play {
-      position: absolute; inset: 0; margin: auto;
-      width: 68px; height: 68px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(12,12,12,0.55);
-      border: 1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      cursor: pointer;
-      transition: transform 0.2s, background 0.2s, opacity 0.25s;
-    }
-    .vsl__play svg { width: 28px; height: 28px; fill: #fff; margin-left: 3px; }
-    .vsl__play:hover { transform: scale(1.07); background: rgba(91,211,254,0.32); }
-    .vsl__frame.playing .vsl__play { opacity: 0; pointer-events: none; }
-    @media (max-width: 520px) {
-      .vsl__frame { border-radius: 12px; }
-      .vsl__play { width: 56px; height: 56px; }
-      .vsl__play svg { width: 23px; height: 23px; }
-    }
-    /* marquee keyframes */
-    @keyframes marqueeLeft {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    @keyframes marqueeRight {
-      0%   { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
-    }
-
-    /* marquee wrapper */
-    .reviews-marquee {
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 4px 0;
-    }
-    .reviews-marquee::before,
-    .reviews-marquee::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 100px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .reviews-marquee::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
-    .reviews-marquee::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
-
-    .reviews-row {
-      display: flex;
-      gap: 10px;
-      width: max-content;
-      animation: marqueeLeft 35s linear infinite;
-    }
-    .reviews-row--reverse {
-      animation: marqueeRight 35s linear infinite;
-    }
-    .reviews-marquee:hover .reviews-row { animation-play-state: paused; }
-
-    /* individual card */
-    .review-card {
-      flex-shrink: 0;
-      width: 260px;
-      background: var(--container);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .review-card:hover { border-color: #333; transform: translateY(-3px); }
-
-    .review-card__top {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .review-card__avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      background: #1a1a1a;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--secondary);
-      overflow: hidden;
-    }
-    .review-card__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .review-card__info { flex: 1; }
-    .review-card__name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--primary);
-      line-height: 1.3;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .review-card__handle {
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      color: var(--tertiary);
-    }
-    img.review-card__badge {
-      width: 14px;
-      height: 14px;
-      flex-shrink: 0;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .stars {
-      display: flex;
-      gap: 2px;
-    }
-    .stars svg {
-      width: 13px;
-      height: 13px;
-      fill: var(--yellow);
-    }
-    .review-card__quote {
-      font-size: 13px;
-      color: var(--secondary);
-      line-height: 21px;
-      flex: 1;
-    }
-    .t-meta {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-top: auto;
-    }
-    .t-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: #222;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--secondary);
-      flex-shrink: 0;
-    }
-    .t-name {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--primary);
-    }
-    .t-handle {
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      color: var(--tertiary);
-    }
-
-    /* ── BUNDLE ── */
-    .bundle {
-      max-width: 600px;
-      margin: 0 auto 90px;
-      padding: 0 20px;
-      position: relative;
-    }
-    @keyframes bundleHue { to { filter: blur(26px) hue-rotate(360deg); } }
-    .bundle__glow {
-      position: absolute; inset: 16px; border-radius: 24px; z-index: 0; pointer-events: none;
-      background: conic-gradient(from 0deg, #5BD3FE, #a78bfa, #ff8fab, #ffd36e, #46d369, #5BD3FE);
-      filter: blur(26px); opacity: 0.45;
-      animation: bundleHue 8s linear infinite;
-    }
-    @media (prefers-reduced-motion: reduce) { .bundle__glow { animation: none; } }
-    .bundle__vid {
-      position: absolute; bottom: -30px; width: 47%; aspect-ratio: 16 / 10;
-      border-radius: 12px; overflow: hidden; z-index: 1;
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-    .bundle__vid video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .bundle__vid--left { left: -26px; transform: rotate(-6deg); }
-    .bundle__vid--right { right: -26px; transform: rotate(6deg); }
-    .bundle__card {
-      background: var(--container);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 20px;
-      padding: 34px 32px 118px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 0;
-      transition: border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-      z-index: 2;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
-    }
-    @keyframes bundleShine { 0% { background-position: 170% 0; } 65% { background-position: -70% 0; } 100% { background-position: -70% 0; } }
-    .bundle__card::after {
-      content: ''; position: absolute; inset: 0; border-radius: 20px; pointer-events: none; z-index: 4;
-      background: linear-gradient(115deg, transparent 34%, rgba(255,255,255,0.09) 48%, rgba(255,255,255,0.09) 52%, transparent 66%);
-      background-size: 250% 100%; background-repeat: no-repeat;
-      animation: bundleShine 6.5s linear infinite;
-    }
-    @media (prefers-reduced-motion: reduce) { .bundle__card::after { animation: none; } }
-    /* subtle top glow */
-    .bundle__card::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px;
-      height: 140px;
-      background: radial-gradient(ellipse, rgba(255,234,0,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .bundle__card:hover { border-color: #333; }
-    .bundle__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 14px;
-      background: rgba(255,234,0,0.1);
-      border: 1px solid rgba(255,234,0,0.25);
-      border-radius: 999px;
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      color: var(--yellow);
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-    .bundle__badge::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--yellow);
-      box-shadow: 0 0 6px var(--yellow);
-    }
-    .bundle__big-number {
-      font-family: 'Inter Display', sans-serif;
-      font-size: 4rem;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      color: var(--yellow);
-      opacity: 0.1;
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      pointer-events: none;
-      user-select: none;
-    }
-    .bundle__title {
-      font-family: 'Inter Display', sans-serif;
-      font-size: 1.7rem;
-      font-weight: 600;
-      color: var(--primary);
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 10px;
-    }
-    .bundle__desc {
-      font-size: 13px;
-      color: var(--secondary);
-      line-height: 20px;
-      max-width: 380px;
-      margin-bottom: 28px;
-    }
-    .bundle__products {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
-    }
-    .bundle__product-tag {
-      padding: 6px 12px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      color: var(--secondary);
-      letter-spacing: 0.04em;
-    }
-    .bundle__product-sep {
-      font-size: 11px;
-      color: var(--tertiary);
-    }
-    .bundle__btn { align-self: center; position: relative; z-index: 3; }
-    .bundle__strike { color: rgba(255,255,255,0.45); text-decoration: line-through; font-weight: 400; margin-left: 8px; }
-
-    /* ── CAROUSEL ── */
-    .carousel-section {
-      max-width: 100%;
-      margin: 0 auto 56px;
-      overflow: hidden;
-    }
-    .carousel-label {
-      text-align: center;
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 20px;
-      padding: 0 20px;
-    }
-    .carousel-wrapper {
-      position: relative;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .carousel-viewport {
-      position: relative;
-      overflow: hidden;
-    }
-    /* side fades */
-    .carousel-viewport::before,
-    .carousel-viewport::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 110px;
-      z-index: 3;
-      pointer-events: none;
-    }
-    .carousel-viewport::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
-    .carousel-viewport::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
-    .carousel-track {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      scroll-behavior: auto;
-      padding: 8px 0;
-    }
-    .carousel-track::-webkit-scrollbar { display: none; }
-    .carousel-item {
-      flex-shrink: 0;
-      width: 300px;
-      aspect-ratio: 4/5;
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--container);
-      border: 1px solid var(--border);
-      scroll-snap-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .carousel-item video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .carousel-item__placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      padding: 16px;
-    }
-    .carousel-item__placeholder svg {
-      width: 28px;
-      height: 28px;
-      fill: var(--tertiary);
-    }
-    .carousel-item__placeholder span {
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      color: var(--tertiary);
-      text-align: center;
-    }
-    /* side arrows */
-    .carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 4;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(20,20,20,0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .carousel-arrow--left { left: 14px; }
-    .carousel-arrow--right { right: 14px; }
-    .carousel-arrow:hover {
-      background: rgba(40,40,40,0.85);
-      border-color: #333;
-    }
-    .carousel-arrow svg {
-      width: 16px;
-      height: 16px;
-      fill: var(--primary);
-    }
-    /* dots */
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 22px;
-    }
-    .carousel-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--border);
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: width 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
-    }
-    .carousel-dot.active {
-      width: 12px;
-      border-radius: 4px;
-      background: var(--accent);
-    }
-
-    /* ── FINAL CTA ── */
-    .final-cta {
-      max-width: var(--max-w);
-      margin: 0 auto 56px;
-      padding: 0 20px;
-      text-align: center;
-    }
-    .final-cta__title {
-      font-family: 'Inter Display', sans-serif;
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--primary);
-      letter-spacing: -0.025em;
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-    .final-cta__sub {
-      font-size: 13px;
-      color: var(--secondary);
-      margin-bottom: 24px;
-    }
-    .final-cta__platform {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 14px;
-    }
-    .pp-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 14px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-    }
-    .pp-icon {
-      position: relative;
-      overflow: hidden;
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-      background: #0d0d0d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      font-weight: 700;
-      color: #cfcfcf;
-      font-family: 'Inter', sans-serif;
-      flex-shrink: 0;
-      box-shadow: 0 0 7px rgba(255,255,255,0.18);
-    }
-    .pp-icon::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(120deg, transparent 44%, rgba(255,255,255,0.32) 50%, transparent 56%);
-      background-size: 250% 100%;
-      background-repeat: no-repeat;
-      animation: ppShine 3.2s linear infinite;
-    }
-    @keyframes ppShine {
-      0% { background-position: 160% 0; }
-      55%, 100% { background-position: -60% 0; }
-    }
-    .pp-badge span {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      color: var(--secondary);
-    }
-
-    /* ── FAQ ── */
-    .faq {
-      max-width: var(--max-w);
-      margin: 0 auto 56px;
-      padding: 0 20px;
-    }
-    .faq__list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-    .faq__item {
-      border-bottom: 1px solid var(--border);
-    }
-    .faq__item:last-child { border-bottom: none; }
-    .faq__question {
-      width: 100%;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 16px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      text-align: left;
-      color: var(--primary);
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 1.4;
-      transition: background 0.15s, color 0.25s ease;
-    }
-    .faq__question:hover { background: rgba(255,255,255,0.02); }
-    .faq__item.open .faq__question { color: var(--accent); }
-    .faq__icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s, border-color 0.25s;
-    }
-    .faq__icon svg {
-      width: 11px;
-      height: 11px;
-      stroke: var(--secondary);
-      stroke-width: 2;
-      fill: none;
-      stroke-linecap: round;
-      display: block;
-      transition: stroke 0.25s ease;
-    }
-    .faq__item.open .faq__icon {
-      transform: rotate(45deg);
-      background: rgba(91,211,254,0.08);
-      border-color: rgba(91,211,254,0.4);
-    }
-    .faq__item.open .faq__icon svg { stroke: var(--accent); }
-    .faq__answer {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(-6px);
-      padding: 0 18px;
-      font-size: 13px;
-      color: var(--secondary);
-      line-height: 21px;
-      transition: max-height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  padding 0.3s ease,
-                  opacity 0.3s ease,
-                  transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .faq__item.open .faq__answer {
-      max-height: 220px;
-      opacity: 1;
-      transform: translateY(0);
-      padding: 0 18px 16px;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 24px 36px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-    .footer-copy {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      color: var(--tertiary);
-    }
-    .footer-links a {
-      font-size: 12px;
-      color: var(--secondary);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .footer-links a:hover { color: var(--primary); }
-
-    /* ── DIVIDER ── */
-    .divider {
-      max-width: var(--max-w);
-      margin: 0 auto 48px;
-      padding: 0 20px;
-    }
-    .divider hr {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 680px) {
-      .hero {
-        min-height: 82vh;
-        justify-content: center;
-        text-align: center;
-        padding: 90px 0;
-      }
-      .hero__text {
-        max-width: 100%;
-        margin: 0 auto;
-        text-align: center;
-      }
-      .hero__media {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-      }
-      .hero__media::after {
-        background: linear-gradient(to bottom, rgba(12,12,12,0.65) 0%, rgba(12,12,12,0.45) 45%, rgba(12,12,12,0.9) 100%);
-      }
-      .hero__media .hero__video--desktop { display: none; }
-      .hero__media .hero__video--mobile { display: block; }
-      .hero__title { font-size: 2.7rem; }
-      .hero__line--top { white-space: normal; }
-      .hero__text-fx { font-size: 1.85em; line-height: 0.6; }
-      .hero__subtitle { font-size: 15px; }
-
-      .trust-bar__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-      .trust-bar__item { padding: 11px 14px; justify-content: center; }
-
-      .features {
-        grid-template-columns: 1fr;
-        gap: 0;
-        padding: 0;
-        overflow: visible;
-      }
-      .features__content {
-        order: 1;
-        position: relative;
-        z-index: 2;
-        padding: 0 20px 64px;
-        background: linear-gradient(to bottom, var(--bg) 70%, transparent 100%);
-      }
-      .features__media {
-        order: 2;
-        aspect-ratio: 9/16;
-        max-height: 500px;
-        max-width: 260px;
-        width: 70%;
-        margin: -52px auto 0;
-        position: relative;
-        z-index: 1;
-        border-radius: 20px;
-        box-shadow: 0 -20px 60px rgba(0,0,0,0.6);
-      }
-
-      .bundle { margin-bottom: 80px; }
-      .bundle__card { padding: 28px 20px 110px; }
-      .bundle__big-number { font-size: 4rem; top: 14px; right: 16px; }
-      .bundle__vid { width: 50%; bottom: -22px; }
-      .bundle__vid--left { left: -16px; }
-      .bundle__vid--right { right: -16px; }
-
-      .section-title { font-size: 1.4rem; }
-      .features__h2 { font-size: 1.65rem; }
-      .final-cta__title { font-size: 1.6rem; }
-      .impact-viewport::before, .impact-viewport::after { width: 40px; }
-      .impact-item { width: 66vw; }
-
-      .carousel-track { gap: 12px; padding: 8px 11vw; }
-      .carousel-item { width: 78vw; }
-      .carousel-viewport::before, .carousel-viewport::after { width: 13vw; }
-      .carousel-arrow { width: 38px; height: 38px; }
-      .carousel-arrow--left { left: 6px; }
-      .carousel-arrow--right { right: 6px; }
-      nav { padding-top: 28px; }
-    }
-
-    /* sticky CTA bar - mobile + web, shows only between hero & final CTA */
-    .sticky-cta {
-      display: flex;
-      justify-content: center;
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      z-index: 90;
-      padding: 14px 16px calc(16px + env(safe-area-inset-bottom));
-      background: linear-gradient(to top, rgba(12,12,12,0.96) 55%, rgba(12,12,12,0));
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(110%);
-      transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34,1.4,0.64,1);
-    }
-    .sticky-cta.show { opacity: 1; transform: translateY(0); }
-    .sticky-cta .btn {
-      pointer-events: none;
-      width: 100%;
-      max-width: 440px;
-      margin: 0;
-      box-shadow: 0 8px 34px rgba(91,211,254,0.32);
-    }
-    .sticky-cta.show .btn { pointer-events: auto; }
-
-    /* ── site header (profile) overlaid on hero + footer ── */
-    .site-header {
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      z-index: 50; padding-top: 26px;
-    }
-    .site-avatar {
-      display: block;
-      position: relative; width: 62px; height: 62px; border-radius: 50%;
-      box-shadow: 0 0 30px rgba(91,211,254,0.45);
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .site-avatar:hover { transform: scale(1.07); }
-    .site-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
-    .site-verified { position: absolute; right: 0; bottom: 0; width: 19px; height: 19px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.45)); }
-    .site-footer {
-      margin-top: 44px; padding: 30px 20px calc(34px + env(safe-area-inset-bottom));
-      border-top: 1px solid var(--border); text-align: center;
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-    }
-    .site-footer__link { color: var(--secondary); font-size: 14px; text-decoration: none; transition: color 0.2s ease; }
-    .site-footer__link:hover { color: var(--primary); }
-    .site-footer__links { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
-    .site-footer__copy { color: var(--secondary); font-size: 14px; }
-    .site-footer__copy a { color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.2s ease; }
-    .site-footer__copy a:hover { color: var(--accent); }
-  
-    /* preview mode: buy buttons visible but inactive */
-    .is-disabled {
-      pointer-events: none !important;
-      cursor: not-allowed !important;
-      opacity: 0.4 !important;
-      filter: grayscale(1) !important;
-      animation: none !important;
-      box-shadow: none !important;
-    }
-    .is-disabled::before, .is-disabled::after { animation: none !important; }
-  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <!-- Meta Pixel -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -1781,289 +55,352 @@
   <!-- End checkout click tracking -->
 </head>
 <body>
+
+<div class="ruler" aria-hidden="true"><div class="ruler__track"><div class="ruler__head"><svg viewBox="0 0 11 11" preserveAspectRatio="none"><path fill="#0099FE" d="M0 0H11V5.5L6 9.2V11H5V9.2L0 5.5Z"/></svg></div></div></div>
+
 <!-- Home pill: back to artzenmedia.com (same as guides.artzenmedia.com) -->
-<style>
-.am-home{position:absolute;top:16px;left:16px;z-index:60;display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 15px 0 12px;box-sizing:border-box;border:1px solid #292929;border-radius:999px;background:#171717;font-family:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;font-weight:500;line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:#8C8C8C;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .15s,border-color .15s,color .15s}
-.am-home:hover{background:#1f1f1f;border-color:#494949;color:#fff}
-.am-home:focus-visible{outline:2px solid #1E64FF;outline-offset:2px}
-.am-home svg{width:14px;height:14px;flex:none}
-</style>
 <a class="am-home" href="https://artzenmedia.com" aria-label="Back to artzenmedia.com"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H5.5A1.5 1.5 0 0 1 4 19z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Home</a>
+<div class="mast"><a href="https://artzenmedia.com">Artzen Media</a></div>
 
-
-  <!-- SITE HEADER (profile → home) -->
-  <a class="site-header" href="https://artzenmedia.com" aria-label="Artzen Media - home">
-    <span class="site-avatar">
-      <img src="/assets/profile-avatar.webp" alt="Artzen Media">
-      <svg class="site-verified" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#1D9BF0" d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34z"/><path fill="#fff" d="M9.71 16.29l-3.71-3.71 1.41-1.41 2.3 2.29 5.29-5.29 1.41 1.41z"/></svg>
-    </span>
-  </a>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero__text">
-      <h1 class="hero__title"><span class="hero__line hero__line--top"><span class="shimmer-text">Creator</span> <span class="hero__text-fx" id="heroFx">Text</span></span><span class="shimmer-text hero__line">Animations</span></h1>
-      <p class="hero__subtitle">41 animations. ♾️ creative combinations.</p>
-      <div class="hero__cta">
-        <a data-cta="hero" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="heroBuy" class="btn btn-primary" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now - $47</a>
-        <p class="launch-price"><span class="lp-was">$60</span> Save $13</p>
-        <div class="hero__pp">
-          <div class="pp-icon pp-icon--lg" title="Premiere Pro only">Pr</div>
+<main>
+  <!-- HERO: the pack video left, the buy box right (phones: title, video, buy box) -->
+  <section class="buy" aria-labelledby="hero-title">
+    <div class="wrap buy__grid">
+      <div class="buy__media">
+        <div class="stage stage--wide">
+          <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover.jpg" width="1920" height="1080" aria-label="The pack in Premiere Pro">
+            <source src="/assets/hero-cover.webm" type="video/webm">
+          </video>
         </div>
+        <div class="stage stage--tall">
+          <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover-mobile.jpg" width="1080" height="1920" aria-label="The pack in Premiere Pro">
+            <source src="/assets/hero-cover-mobile.webm" type="video/webm">
+          </video>
+        </div>
+        <p class="stage__cap">All 41 animations live in one template, inside Premiere Pro.</p>
       </div>
-    </div>
-    <div class="hero__media">
-      <video class="hero__video hero__video--desktop" data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover.jpg">
-        <source src="/assets/hero-cover.webm" type="video/webm">
-      </video>
-      <video class="hero__video hero__video--mobile" data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover-mobile.jpg">
-        <source src="/assets/hero-cover-mobile.webm" type="video/webm">
-      </video>
-    </div>
-  </section>
 
-  <!-- TRUST BAR -->
-  <div class="trust-bar">
-    <div class="trust-bar__inner">
-      <div class="trust-bar__item">
-        <div class="trust-bar__number">41</div>
-        <div class="trust-bar__label">Animations</div>
+      <div class="buy__head">
+        <span class="label"><span class="dot"></span>Premiere Pro &middot; .MOGRT pack</span>
+        <h1 id="hero-title">Creator Text Animations</h1>
+        <p class="buy__sub">41 animations. Endless combinations.</p>
       </div>
-      <div class="trust-bar__item">
-        <div class="trust-bar__number">700+</div>
-        <div class="trust-bar__label">Editors</div>
-      </div>
-      <div class="trust-bar__item">
-        <div class="trust-bar__number">1,681</div>
-        <div class="trust-bar__label">Combinations</div>
-      </div>
-      <div class="trust-bar__item">
-        <div class="trust-bar__number">Lifetime</div>
-        <div class="trust-bar__label">Access</div>
-      </div>
-    </div>
-  </div>
 
-  <div style="height:16px"></div>
-
-  <!-- ══ VSL (YouTube) ══
-       Poster is the video's own maxres thumbnail, served from our own assets
-       rather than hotlinked off img.youtube.com.
-
-       This is a facade, not a raw iframe. A bare YouTube embed pulls roughly a
-       megabyte of their JS into every single page load even for people who
-       never press play. Here nothing YouTube-related loads until the click,
-       then the iframe is injected with autoplay. Uses youtube-nocookie.com so
-       no tracking cookie is set before the visitor asks for the video. -->
-  <section class="vsl">
-    <p class="section-label">Watch it work</p>
-    <h2 class="section-title" style="margin-bottom:20px">See it <em>in action.</em></h2>
-    <div class="vsl__frame" id="vslFrame" data-yt="vFC6-0ikGV0" role="button" tabindex="0" aria-label="Play the video">
-      <img class="vsl__poster" id="vslPoster" src="/assets/posters/text-vsl.jpg" alt="" aria-hidden="true">
-      <button class="vsl__play" id="vslPlay" aria-label="Play the video">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-    </div>
-  </section>
-
-  <div class="divider"><hr></div>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="features__content">
-      <h2 class="features__h2">People <em>read</em> your videos before they watch them.</h2>
-      <p class="features__subh">So make the text count.</p>
-      <p class="features__desc">I know you're tired of Premiere's built-in text animations. They're limited, overused, and after a while every edit starts to look the same. So I built 41 hand-crafted, fully customizable animations that drop straight onto your timeline. No keyframing, no plugins, no After Effects.</p>
-      <p class="features__combos">Pick how the text comes in and how it leaves, independently. 41 entrances, 41 exits, <strong>1,681 combinations</strong> before you touch a single slider.</p>
-      <p class="features__tagline">Made by an editor who got sick of wasting hours on text.</p>
-      <p class="features__includes-title">What's Included</p>
-      <div class="included-grid">
-        <div class="included-card">
-          <div class="included-card__text"><div class="included-card__title">41 Animations</div><div class="included-card__sub">Drag &amp; drop .MOGRT</div></div>
-          <div class="included-card__icon">
-            <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
-          </div>
+      <div class="buy__body">
+        <div class="hostline">
+          <span><img class="host" src="/assets/hosts/pr.png" alt="" width="18" height="18">Premiere Pro 2019 or newer</span>
+          <span>Mac and Windows</span>
         </div>
-        <div class="included-card">
-          <div class="included-card__text"><div class="included-card__title">Premiere Pro 2019+</div><div class="included-card__sub">Fully compatible</div></div>
-          <div class="included-card__icon">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
+        <div class="price"><b>$47</b><s>$60</s><span class="tag tag--line">Save $13</span></div>
+        <p class="price__note">One payment. Lifetime access and free updates.</p>
+        <p class="buy__desc"><b>Pick how the text comes in and how it leaves.</b> 41 entrances, 41 exits, 1,681 combinations before you touch a single slider. No keyframing, no plugins, no After Effects.</p>
+        <div class="buy__cta" id="heroActions">
+          <a data-cta="hero" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="heroBuy" class="btn btn--light btn--block" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now &middot; $47</a>
+          <a class="btn btn--line btn--block" href="#watch">Watch it work</a>
         </div>
-        <div class="included-card">
-          <div class="included-card__text"><div class="included-card__title">Instant Download</div><div class="included-card__sub">Yours immediately</div></div>
-          <div class="included-card__icon">
-            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          </div>
-        </div>
-        <div class="included-card">
-          <div class="included-card__text"><div class="included-card__title">Commercial Use</div><div class="included-card__sub">Use on client work</div></div>
-          <div class="included-card__icon">
-            <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          </div>
-        </div>
-        <div class="included-card">
-          <div class="included-card__text"><div class="included-card__title">Lifetime Access</div><div class="included-card__sub">Free updates forever</div></div>
-          <div class="included-card__icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-        </div>
-        <div class="included-card included-card--bonus">
-          <div class="included-card__text"><div class="included-card__title">Free Bonuses</div><div class="included-card__sub">Call-outs</div></div>
-          <div class="included-card__icon">
-            <svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-          </div>
+        <p class="secure"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="5.2" width="8" height="5.8" rx="1.2" fill="currentColor"/><path d="M3.8 5.2V3.8a2.2 2.2 0 0 1 4.4 0v1.4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>Secure checkout &middot; Instant download</p>
+        <div class="incl">
+          <h2>What's included</h2>
+          <ul>
+            <li>41 animations <small>&middot; drag and drop .MOGRT</small></li>
+            <li>Premiere Pro 2019 or newer <small>&middot; fully compatible</small></li>
+            <li>Commercial use <small>&middot; use it on client work</small></li>
+            <li>Lifetime access <small>&middot; free updates forever</small></li>
+            <li>Free bonuses <small>&middot; call-outs and a free font list</small></li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- 01 WATCH (YouTube facade: nothing from YouTube loads until the click; youtube-nocookie.com) -->
+  <section class="section section--line" id="watch" aria-labelledby="watch-title">
+    <div class="wrap">
+      <div class="section__head section__head--solo">
+        <span class="kicker"><b>01</b>&mdash; Watch it work</span>
+        <h2 id="watch-title">See it in action.</h2>
+      </div>
+      <div class="vsl" id="vslFrame" data-yt="vFC6-0ikGV0" data-title="Creator Text Animations" role="button" tabindex="0" aria-label="Play the video">
+        <img class="vsl__poster" id="vslPoster" src="/assets/posters/text-vsl.jpg" alt="" aria-hidden="true" loading="lazy">
+        <button class="vsl__play" id="vslPlay" type="button" aria-label="Play the video"><svg viewBox="0 0 24 24"><path d="M6 4v16l14-8z"/></svg></button>
+        <span class="vsl__cap livepill"><span class="dot"></span>Creator Text Animations</span>
+      </div>
+    </div>
+  </section>
 
-  <div class="divider"><hr></div>
+  <!-- 02 WHY -->
+  <section class="section section--line" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="kicker"><b>02</b>&mdash; Why</span>
+        <h2 id="why-title">People read your videos before they watch them.</h2>
+        <div class="copy">
+          <p class="lede">So make the text count.</p>
+          <p>Premiere's built-in text animations are limited and overused. After a while every edit starts to look the same. These 41 drop straight onto your timeline, and every one is fully customizable.</p>
+          <p class="sign">Made by an editor who got sick of wasting hours on text.</p>
+        </div>
+      </div>
+      <div class="stats">
+        <div><b>41</b><span>Animations</span></div>
+        <div><b>1,681</b><span>Combinations</span></div>
+        <div><b>700+</b><span>Editors</span></div>
+        <div><b>Lifetime</b><span>Access</span></div>
+      </div>
+    </div>
+  </section>
 
-  <!-- CONTROLS: replica of the Properties panel -->
-  <section class="controls">
-    <p class="section-label">Inside the panel</p>
-    <h2 class="section-title">One panel. 52 controls. <em>No keyframes.</em></h2>
-    <p class="controls__intro">Every look is built into the same template. <strong>52 controls across 11 sections</strong>, and every one of them is a slider or a dropdown. Gradients, animated light sweep, film grain and rough edges are all in there, so there is nothing to stack and nothing third-party to buy.</p>
-    <div class="egp">
+  <!-- 03 INSIDE THE PANEL: replica of the Properties panel -->
+  <section class="section section--line" aria-labelledby="panel-title">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="kicker"><b>03</b>&mdash; Inside the panel</span>
+        <h2 id="panel-title">One panel. 52 controls. No keyframes.</h2>
+        <p>Every look is built into the same template: 52 controls across 11 sections, each one a slider or a dropdown. Gradients, light sweep, film grain and rough edges are all in there, so there is nothing to stack and nothing third-party to buy.</p>
+      </div>
+      <div class="panel">
+        <div>
+      <div class="egp">
       <div class="egp-bar">
-        <span class="egp-bar__t">Properties</span>
-        <div class="pp-icon" title="Premiere Pro">Pr</div>
+      <span class="egp-bar__t">Properties</span>
+      <img class="host" src="/assets/hosts/pr.png" alt="Premiere Pro" width="16" height="16">
       </div>
-        <div class="egp-body">
-          <div class="egp-row"><span class="egp-lab">Your Text</span><span class="egp-field egp-field--text">Artzen Media</span></div>
-          <div class="egp-row"><span class="egp-lab">Text Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:62%"></span><span class="egp-knob" style="left:62%"></span></span><span class="egp-val">100</span></span></div>
-          <div class="egp-row"><span class="egp-lab">Text Position</span><span class="egp-field">960 · 540</span></div>
-          <div class="egp-row"><span class="egp-lab">Color</span><span class="egp-field egp-field--col"><i style="background:#FFFFFF"></i>#FFFFFF</span></div>
-          <div class="egp-row"><span class="egp-lab">Start Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Fade</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li class="is-sel">Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li>Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
-          <div class="egp-row"><span class="egp-lab">End Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Glitch</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li>Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li class="is-sel">Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
+      <div class="egp-body">
+      <div class="egp-row"><span class="egp-lab">Your Text</span><span class="egp-field egp-field--text">Artzen Media</span></div>
+      <div class="egp-row"><span class="egp-lab">Text Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:62%"></span><span class="egp-knob" style="left:62%"></span></span><span class="egp-val">100</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Text Position</span><span class="egp-field">960 · 540</span></div>
+      <div class="egp-row"><span class="egp-lab">Color</span><span class="egp-field egp-field--col"><i style="background:#FFFFFF"></i>#FFFFFF</span></div>
+      <div class="egp-row"><span class="egp-lab">Start Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Fade</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li class="is-sel">Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li>Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
+      <div class="egp-row"><span class="egp-lab">End Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Glitch</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li>Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li class="is-sel">Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Animation Controls</span><span class="egp-count">6</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Start Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
+      <div class="egp-row"><span class="egp-lab">End Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
+      <div class="egp-row"><span class="egp-lab">Animate By</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Character</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Line</li><li>Word</li><li>Characters</li><li>Random</li></ul></span></div>
+      <div class="egp-row"><span class="egp-lab">Enter From</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Up</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Up</li><li>Down</li><li>Left</li><li>Right</li></ul></span></div>
+      <div class="egp-row"><span class="egp-lab">Reveal Order</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Forward</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Forward</li><li>Reverse</li></ul></span></div>
+      <div class="egp-row"><span class="egp-lab">Frame Rate Look</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">60fps smooth</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Smooth (60FPS)</li><li>Middle (24FPS)</li><li>Laggy (12FPS)</li></ul></span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Finetune Animation</span><span class="egp-count">2</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Travel Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">240</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Stagger</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:22%"></span><span class="egp-knob" style="left:22%"></span></span><span class="egp-val">0.04</span></span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Text Spacing</span><span class="egp-count">4</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Letter Tracking</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Word Spacing</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Line Leading</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Text Alignment</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Center</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Left</li><li class="is-sel">Center</li><li>Right</li></ul></span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Wiggle</span><span class="egp-count">6</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Character Wiggle On</span><span class="egp-check is-on"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+      <div class="egp-row"><span class="egp-lab">Character Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">12</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Character Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:40%"></span><span class="egp-knob" style="left:40%"></span></span><span class="egp-val">2.0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Text Wiggle On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+      <div class="egp-row"><span class="egp-lab">Text Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Text Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Drop Shadow</span><span class="egp-count">5</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Shadow Color</span><span class="egp-field egp-field--col"><i style="background:#000000"></i>#000000</span></div>
+      <div class="egp-row"><span class="egp-lab">Shadow Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">55</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Shadow Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:28%"></span><span class="egp-knob" style="left:28%"></span></span><span class="egp-val">14</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Shadow Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:16%"></span><span class="egp-knob" style="left:16%"></span></span><span class="egp-val">8</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Shadow Angle</span><span class="egp-field">135°</span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Curve</span><span class="egp-count">3</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Curve Style</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Arc</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Arc</li><li>Bulge</li><li>Arch</li></ul></span></div>
+      <div class="egp-row"><span class="egp-lab">Text Curve</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Curve Offset Y</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Stroke</span><span class="egp-count">3</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Stroke Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Text Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:100%"></span><span class="egp-knob" style="left:100%"></span></span><span class="egp-val">100</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Stroke Color</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Blur &amp; Glow</span><span class="egp-count">3</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Blur</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Glow Radius</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Glow Intensity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Light Sweep</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Shine Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">1.0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Shine</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Shine Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:20%"></span><span class="egp-knob" style="left:20%"></span></span><span class="egp-val">20</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Shine Angle</span><span class="egp-field">45°</span></div>
+      <div class="egp-row"><span class="egp-lab">Shine Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">30</span></span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Gradient</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Gradient On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+      <div class="egp-row"><span class="egp-lab">Gradient Color 1</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
+      <div class="egp-row"><span class="egp-lab">Gradient Color 2</span><span class="egp-field egp-field--col"><i style="background:#FFEA00"></i>#FFEA00</span></div>
+      <div class="egp-row"><span class="egp-lab">Gradient Angle</span><span class="egp-field">90°</span></div>
+      <div class="egp-row"><span class="egp-lab">Gradient Motion Rate</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+      </div>
+      </div>
+      <div class="egp-sec">
+      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Texture</span><span class="egp-new">New</span><span class="egp-count">4</span></button>
+      <div class="egp-body egp-body--fold">
+      <div class="egp-row"><span class="egp-lab">Grain</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Edge Roughness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Roughness Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
+      <div class="egp-row"><span class="egp-lab">Roughness Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">100</span></span></div>
+      </div>
+      </div>
+      </div>
+          <p class="panel__hint">Open a section, then open a dropdown. All 41 are in there.</p>
         </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Animation Controls</span><span class="egp-count">6</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Start Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
-            <div class="egp-row"><span class="egp-lab">End Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
-            <div class="egp-row"><span class="egp-lab">Animate By</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Character</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Line</li><li>Word</li><li>Characters</li><li>Random</li></ul></span></div>
-            <div class="egp-row"><span class="egp-lab">Enter From</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Up</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Up</li><li>Down</li><li>Left</li><li>Right</li></ul></span></div>
-            <div class="egp-row"><span class="egp-lab">Reveal Order</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Forward</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Forward</li><li>Reverse</li></ul></span></div>
-            <div class="egp-row"><span class="egp-lab">Frame Rate Look</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">60fps smooth</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Smooth (60FPS)</li><li>Middle (24FPS)</li><li>Laggy (12FPS)</li></ul></span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Finetune Animation</span><span class="egp-count">2</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Travel Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">240</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Stagger</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:22%"></span><span class="egp-knob" style="left:22%"></span></span><span class="egp-val">0.04</span></span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Text Spacing</span><span class="egp-count">4</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Letter Tracking</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Word Spacing</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Line Leading</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Text Alignment</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Center</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Left</li><li class="is-sel">Center</li><li>Right</li></ul></span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Wiggle</span><span class="egp-count">6</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Character Wiggle On</span><span class="egp-check is-on"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-            <div class="egp-row"><span class="egp-lab">Character Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">12</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Character Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:40%"></span><span class="egp-knob" style="left:40%"></span></span><span class="egp-val">2.0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Text Wiggle On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-            <div class="egp-row"><span class="egp-lab">Text Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Text Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Drop Shadow</span><span class="egp-count">5</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Shadow Color</span><span class="egp-field egp-field--col"><i style="background:#000000"></i>#000000</span></div>
-            <div class="egp-row"><span class="egp-lab">Shadow Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">55</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Shadow Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:28%"></span><span class="egp-knob" style="left:28%"></span></span><span class="egp-val">14</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Shadow Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:16%"></span><span class="egp-knob" style="left:16%"></span></span><span class="egp-val">8</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Shadow Angle</span><span class="egp-field">135°</span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Curve</span><span class="egp-count">3</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Curve Style</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Arc</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Arc</li><li>Bulge</li><li>Arch</li></ul></span></div>
-            <div class="egp-row"><span class="egp-lab">Text Curve</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Curve Offset Y</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Stroke</span><span class="egp-count">3</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Stroke Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Text Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:100%"></span><span class="egp-knob" style="left:100%"></span></span><span class="egp-val">100</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Stroke Color</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Blur &amp; Glow</span><span class="egp-count">3</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Blur</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Glow Radius</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Glow Intensity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Light Sweep</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Shine Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">1.0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Shine</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Shine Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:20%"></span><span class="egp-knob" style="left:20%"></span></span><span class="egp-val">20</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Shine Angle</span><span class="egp-field">45°</span></div>
-            <div class="egp-row"><span class="egp-lab">Shine Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">30</span></span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Gradient</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Gradient On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-            <div class="egp-row"><span class="egp-lab">Gradient Color 1</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
-            <div class="egp-row"><span class="egp-lab">Gradient Color 2</span><span class="egp-field egp-field--col"><i style="background:#FFEA00"></i>#FFEA00</span></div>
-            <div class="egp-row"><span class="egp-lab">Gradient Angle</span><span class="egp-field">90°</span></div>
-            <div class="egp-row"><span class="egp-lab">Gradient Motion Rate</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-          </div>
-        </div>
-        <div class="egp-sec">
-          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Texture</span><span class="egp-new">New</span><span class="egp-count">4</span></button>
-          <div class="egp-body egp-body--fold">
-            <div class="egp-row"><span class="egp-lab">Grain</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Edge Roughness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Roughness Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
-            <div class="egp-row"><span class="egp-lab">Roughness Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">100</span></span></div>
-          </div>
-        </div>
+        <ol class="rows">
+          <li><small>01</small><div><b>In and out, separately</b><span>41 entrances and 41 exits. 1,681 combinations before you touch a slider.</span></div></li>
+          <li><small>02</small><div><b>Any length</b><span>Drag it to any length. The in and out hold their timing, the middle stretches to fit.</span></div></li>
+          <li><small>03</small><div><b>Free font list</b><span>Free fonts that pair well with the pack, with links to grab them. Pick one and it applies to all 41 animations at once.</span></div></li>
+          <li><small>04</small><div><b>Just Premiere Pro</b><span>No plugins, no After Effects. Everything runs on stock Adobe effects.</span></div></li>
+        </ol>
+      </div>
     </div>
-    <p class="egp-hint">Open a section, then open a dropdown. All 41 are in there.</p>
-    <div class="controls__notes">
-      <div class="controls__note">
-        <div class="controls__note-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M6 9l-3 3 3 3"/><path d="M18 9l3 3-3 3"/><path d="M9 5v14"/><path d="M15 5v14"/></svg>
-        </div>
-        <div>
-          <div class="controls__note-title">Any length</div>
-          <div class="controls__note-body">Drag it to any length. The in and out hold their timing, the middle stretches to fit.</div>
-        </div>
+  </section>
+
+  <!-- 04 REVIEWS -->
+  <section class="section section--line" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="kicker"><b>04</b>&mdash; Reviews</span>
+        <h2 id="reviews-title">Trusted by 700+ editors worldwide.</h2>
+        <p>Real reviews from real creators.</p>
       </div>
-      <div class="controls__note">
-        <div class="controls__note-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 7V5h16v2"/><path d="M9 19h6"/><path d="M12 5v14"/></svg>
+      <div class="quotes">
+        <figure class="quote"><p>&ldquo;A game changer, saving me hours of back-and-forth with After Effects and allowing me to deliver high-quality edits just as quickly. This new version seems even better than the first.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/federico.jpg" alt="" width="30" height="30" loading="lazy"><b>Federico</b><span>@marzustudio</span></figcaption></figure>
+        <figure class="quote"><p>&ldquo;Can't believe I found this while doomscrolling on IG. All of my favorite text effects in 1 pack, easy to follow, and free updates for life.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/mickey.jpg" alt="" width="30" height="30" loading="lazy"><b>Mickey</b><span>@itchyeyephotos</span></figcaption></figure>
+        <figure class="quote"><p>&ldquo;The variety and ease of use is top tier. You get so much from this pack - it's 10x'd my workflow and made editing fun again.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/christopher.jpg" alt="" width="30" height="30" loading="lazy"><b>Christopher</b><span>@chrissjeske</span></figcaption></figure>
+        <figure class="quote"><p>&ldquo;Super easy to use and really helps add that extra touch to make my videos that much better. 10/10 recommend to any creative.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/3kingkeen.jpg" alt="" width="30" height="30" loading="lazy"><b>3KINGKEEN</b><span>@3kingkeen</span></figcaption></figure>
+        <figure class="quote"><p>&ldquo;Easy to use, full of text animations, and it definitely elevated my captions game. Highly recommend for anyone who wants a better workflow.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/swtos.jpg" alt="" width="30" height="30" loading="lazy"><b>Swtos</b><span>@soter.pap</span></figcaption></figure>
+        <figure class="quote"><p>&ldquo;Makes editing so much quicker and elevates my video quality by a ton. Highly recommend, 10/10 product.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/hugo.jpg" alt="" width="30" height="30" loading="lazy"><b>Hugo</b><span>@hugolminetti</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;Having all the text effects inside Premiere Pro makes editing so much less stressful. Love it.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/blake.jpg" alt="" width="30" height="30" loading="lazy"><b>Blake</b><span>@blakejstaff</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;Love having everything in one place. Hard to find tools that actually work, but this pack delivers.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/patrik.jpg" alt="" width="30" height="30" loading="lazy"><b>Patrik</b><span>@patriksoldan</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;This pack has been my go-to lately. Been using it for over 50% of my text edits.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/coachdon.jpg" alt="" width="30" height="30" loading="lazy"><b>Coach Don</b><span>@coachdonmrremote</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;Been wanting this for so long - finally got it and it's amazing. Well done on creating this.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/randall.jpg" alt="" width="30" height="30" loading="lazy"><b>Randall</b><span>@iamrandallyutatco</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;The animation pack is SOLID. Already using it across my content.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/steproc.jpg" alt="" width="30" height="30" loading="lazy"><b>StepRoc PLUS</b><span>@steprocplus</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;Been using it and it's killer. Does exactly what it says.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/alexei.jpg" alt="" width="30" height="30" loading="lazy"><b>Alexei</b><span>@alexeidelacuesta</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;Amazing text animation pack. Appreciate you putting this together.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/kalo.jpg" alt="" width="30" height="30" loading="lazy"><b>Kalo</b><span>@kalokachar</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;Bought literally everything. Absolutely worth it.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/garden.jpg" alt="" width="30" height="30" loading="lazy"><b>From the Garden</b><span>@directedbygarden</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;Just got it and love it. Exactly what I was looking for.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/josiah.jpg" alt="" width="30" height="30" loading="lazy"><b>Josiah</b><span>@josiah_lebante</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;The text animation pack has been very helpful. Really glad I picked it up.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/lourdes.jpg" alt="" width="30" height="30" loading="lazy"><b>Lourdes</b><span>@iapulse</span></figcaption></figure>
+        <figure class="quote" hidden><p>&ldquo;Dude, these are awesome. Thank you so much.&rdquo;</p><figcaption class="quote__by"><span class="ava" aria-hidden="true">F</span><b>fljay23</b><span>@fljay23</span></figcaption></figure>
+      </div>
+      <button class="btn btn--line quotes__more" id="moreReviews" type="button">Show all 17 reviews</button>
+    </div>
+  </section>
+
+  <!-- 05 THE FULL KIT (bundle upsell) -->
+  <section class="section section--line" aria-labelledby="kit-title">
+    <div class="wrap">
+      <div class="feat">
+        <div class="feat__copy">
+          <span class="kicker"><b>05</b>&mdash; The full kit</span>
+          <h2 id="kit-title">Text + SFX.</h2>
+          <p>Get the Text Animations and the SFX Collection together and save $41.40. Everything you need to make your edits look and sound better.</p>
+          <ol class="rows">
+            <li><small>01</small><div><b>Creator Text Animations</b><span>41 animations for Premiere Pro</span></div></li>
+            <li><small>02</small><div><b>Creator SFX Collection</b><span>155 hand-crafted sound effects</span></div></li>
+          </ol>
+          <div class="feat__buy">
+            <div class="bigprice"><b>$73.60</b><s>$115</s><small>Save 36%</small></div>
+            <div class="actions">
+              <a class="btn btn--line" href="/sfx/">See the SFX</a>
+              <a data-cta="bundle" data-product="Text + SFX Bundle" data-product-id="text-sfx-bundle" data-value="73.60" class="btn btn--light" href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk">Get the bundle</a>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="controls__note-title">Free font list</div>
-          <div class="controls__note-body">A list of free fonts that pair well with the pack, with links to grab them. Whichever one you pick applies to all 41 animations at once.</div>
+        <div class="feat__media">
+          <div class="clip">
+            <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/bundle-text.jpg" width="720" height="406"><source src="/assets/bundle-text.webm" type="video/webm"></video>
+            <span class="livepill">Text Animations</span>
+          </div>
+          <div class="clip">
+            <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-sfx.jpg" width="1280" height="720"><source src="/assets/hero-sfx.webm" type="video/webm"></video>
+            <span class="livepill">SFX Collection</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- 06 FAQ -->
+  <section class="section section--line" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq">
+      <div><span class="kicker"><b>06</b>&mdash; FAQ</span><h2 id="faq-title" style="margin-top:18px">Good to know.</h2></div>
+      <div>
+        <details open>
+          <summary>How do I receive future updates?</summary>
+          <p>After purchase, every future update is delivered free to your purchase email. No extra cost.</p>
+        </details>
+        <details>
+          <summary>How do I access the pack after purchase?</summary>
+          <p>Once purchased, you'll get an instant download link in your email, no waiting required.</p>
+        </details>
+        <details>
+          <summary>Can I use these in monetized videos?</summary>
+          <p>Yes, all animations can be used in personal or commercial projects.</p>
+        </details>
+        <details>
+          <summary>Will this work with my editing software?</summary>
+          <p>Built specifically for Premiere Pro 2019 or newer. No plugins, no After Effects. Everything runs on stock Adobe effects.</p>
+        </details>
+        <details>
+          <summary>What can I customize?</summary>
+          <p>Everything. 52 controls across 11 sections, all inside Premiere's Properties panel. Font, size, colour, position, spacing, speed, direction, drop shadow, stroke, gradient, glow, blur, curve, light sweep, film grain and rough edges. No keyframing.</p>
+        </details>
+        <details>
+          <summary>Do I need any extra plugins?</summary>
+          <p>No - just Premiere Pro. Drag, drop, type. That's it. If you want to save your own looks as reusable presets, build them once in a sequence and import that sequence into your next project. Works on Windows and Mac. On Mac you can also use Clip Deck to do it in one click, though it isn't on Windows yet. The guide in your download covers both.</p>
+        </details>
+        <details>
+          <summary>Something wrong with your download?</summary>
+          <p>Email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final" aria-labelledby="final-title">
+    <div class="wrap">
+      <span class="label"><img class="host" src="/assets/hosts/pr.png" alt="" width="18" height="18">Premiere Pro only</span>
+      <h2 id="final-title">Buy now. Level up.</h2>
+      <p>Instant download, lifetime access and updates.</p>
+      <div class="actions" id="finalActions">
+        <a data-cta="final" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="finalBuy" class="btn btn--light" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now &middot; $47</a>
+      </div>
+      <p class="final__was"><s>$60</s>Save $13</p>
+      <p class="final__help">Any issue with your download, email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></p>
+    </div>
+  </section>
 
   <!-- Reel layout, parked. Bring it back lower down the page once there is
        fresh footage of the new pack. Nothing here is deleted. -->
@@ -2117,89 +454,6 @@
     </section>
   </template>
 
-
-  <div class="divider"><hr></div>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
-    <div class="testimonials__header">
-      <p class="section-label">What creators say</p>
-      <h2 class="section-title">Trusted by 700+ editors <em>worldwide.</em></h2>
-      <p class="section-sub">Real reviews from real creators.</p>
-    </div>
-    <div class="reviews-marquee">
-
-      <!-- ROW 1 (scrolls left) - 7 unique + 7 duplicate = seamless on any screen -->
-      <div class="reviews-row" id="row1">
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/mickey.jpg" alt="itchyeyephotos"></div><div class="review-card__info"><div class="review-card__name">Mickey<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@itchyeyephotos</div></div></div><p class="review-card__quote">"Can't believe I found this while doomscrolling on IG. All of my favorite text effects in 1 pack, easy to follow, and free updates for life."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/3kingkeen.jpg" alt="3kingkeen"></div><div class="review-card__info"><div class="review-card__name">3KINGKEEN<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@3kingkeen</div></div></div><p class="review-card__quote">"Super easy to use and really helps add that extra touch to make my videos that much better. 10/10 recommend to any creative."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/christopher.jpg" alt="chrissjeske"></div><div class="review-card__info"><div class="review-card__name">Christopher<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@chrissjeske</div></div></div><p class="review-card__quote">"The variety and ease of use is top tier. You get so much from this pack - it's 10x'd my workflow and made editing fun again."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/swtos.jpg" alt="soter.pap"></div><div class="review-card__info"><div class="review-card__name">Swtos<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@soter.pap</div></div></div><p class="review-card__quote">"Easy to use, full of text animations, and it definitely elevated my captions game. Highly recommend for anyone who wants a better workflow."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/hugo.jpg" alt="hugolminetti"></div><div class="review-card__info"><div class="review-card__name">Hugo<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@hugolminetti</div></div></div><p class="review-card__quote">"Makes editing so much quicker and elevates my video quality by a ton. Highly recommend, 10/10 product."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/blake.jpg" alt="blakejstaff"></div><div class="review-card__info"><div class="review-card__name">Blake<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@blakejstaff</div></div></div><p class="review-card__quote">"Having all the text effects inside Premiere Pro makes editing so much less stressful. Love it."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/patrik.jpg" alt="patriksoldan"></div><div class="review-card__info"><div class="review-card__name">Patrik<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@patriksoldan</div></div></div><p class="review-card__quote">"Love having everything in one place. Hard to find tools that actually work, but this pack delivers."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/coachdon.jpg" alt="coachdonmrremote"></div><div class="review-card__info"><div class="review-card__name">Coach Don<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@coachdonmrremote</div></div></div><p class="review-card__quote">"This pack has been my go-to lately. Been using it for over 50% of my text edits."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/federico.jpg" alt="marzustudio"></div><div class="review-card__info"><div class="review-card__name">Federico<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@marzustudio</div></div></div><p class="review-card__quote">"A game changer, saving me hours of back-and-forth with After Effects and allowing me to deliver high-quality edits just as quickly. This new version seems even better than the first."</p></div>
-        <!-- duplicate set for seamless loop -->
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/mickey.jpg" alt="itchyeyephotos"></div><div class="review-card__info"><div class="review-card__name">Mickey<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@itchyeyephotos</div></div></div><p class="review-card__quote">"Can't believe I found this while doomscrolling on IG. All of my favorite text effects in 1 pack, easy to follow, and free updates for life."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/3kingkeen.jpg" alt="3kingkeen"></div><div class="review-card__info"><div class="review-card__name">3KINGKEEN<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@3kingkeen</div></div></div><p class="review-card__quote">"Super easy to use and really helps add that extra touch to make my videos that much better. 10/10 recommend to any creative."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/christopher.jpg" alt="chrissjeske"></div><div class="review-card__info"><div class="review-card__name">Christopher<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@chrissjeske</div></div></div><p class="review-card__quote">"The variety and ease of use is top tier. You get so much from this pack - it's 10x'd my workflow and made editing fun again."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/swtos.jpg" alt="soter.pap"></div><div class="review-card__info"><div class="review-card__name">Swtos<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@soter.pap</div></div></div><p class="review-card__quote">"Easy to use, full of text animations, and it definitely elevated my captions game. Highly recommend for anyone who wants a better workflow."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/hugo.jpg" alt="hugolminetti"></div><div class="review-card__info"><div class="review-card__name">Hugo<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@hugolminetti</div></div></div><p class="review-card__quote">"Makes editing so much quicker and elevates my video quality by a ton. Highly recommend, 10/10 product."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/blake.jpg" alt="blakejstaff"></div><div class="review-card__info"><div class="review-card__name">Blake<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@blakejstaff</div></div></div><p class="review-card__quote">"Having all the text effects inside Premiere Pro makes editing so much less stressful. Love it."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/patrik.jpg" alt="patriksoldan"></div><div class="review-card__info"><div class="review-card__name">Patrik<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@patriksoldan</div></div></div><p class="review-card__quote">"Love having everything in one place. Hard to find tools that actually work, but this pack delivers."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/coachdon.jpg" alt="coachdonmrremote"></div><div class="review-card__info"><div class="review-card__name">Coach Don<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@coachdonmrremote</div></div></div><p class="review-card__quote">"This pack has been my go-to lately. Been using it for over 50% of my text edits."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/federico.jpg" alt="marzustudio"></div><div class="review-card__info"><div class="review-card__name">Federico<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@marzustudio</div></div></div><p class="review-card__quote">"A game changer, saving me hours of back-and-forth with After Effects and allowing me to deliver high-quality edits just as quickly. This new version seems even better than the first."</p></div>
-      </div>
-
-      <!-- ROW 2 (scrolls right) - 7 unique + 7 duplicate -->
-      <div class="reviews-row reviews-row--reverse" id="row2">
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/randall.jpg" alt="iamrandallyutatco"></div><div class="review-card__info"><div class="review-card__name">Randall<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@iamrandallyutatco</div></div></div><p class="review-card__quote">"Been wanting this for so long - finally got it and it's amazing. Well done on creating this."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/steproc.jpg" alt="steprocplus"></div><div class="review-card__info"><div class="review-card__name">StepRoc PLUS<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@steprocplus</div></div></div><p class="review-card__quote">"The animation pack is SOLID. Already using it across my content."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/alexei.jpg" alt="alexeidelacuesta"></div><div class="review-card__info"><div class="review-card__name">Alexei<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@alexeidelacuesta</div></div></div><p class="review-card__quote">"Been using it and it's killer. Does exactly what it says."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/kalo.jpg" alt="kalokachar"></div><div class="review-card__info"><div class="review-card__name">Kalo<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@kalokachar</div></div></div><p class="review-card__quote">"Amazing text animation pack. Appreciate you putting this together."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/garden.jpg" alt="directedbygarden"></div><div class="review-card__info"><div class="review-card__name">From the Garden<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@directedbygarden</div></div></div><p class="review-card__quote">"Bought literally everything. Absolutely worth it."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/josiah.jpg" alt="josiah_lebante"></div><div class="review-card__info"><div class="review-card__name">Josiah<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@josiah_lebante</div></div></div><p class="review-card__quote">"Just got it and love it. Exactly what I was looking for."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/lourdes.jpg" alt="iapulse"></div><div class="review-card__info"><div class="review-card__name">Lourdes<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@iapulse</div></div></div><p class="review-card__quote">"The text animation pack has been very helpful. Really glad I picked it up."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar">F</div><div class="review-card__info"><div class="review-card__name">fljay23<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@fljay23</div></div></div><p class="review-card__quote">"Dude, these are awesome. Thank you so much."</p></div>
-        <!-- duplicate set -->
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/randall.jpg" alt="iamrandallyutatco"></div><div class="review-card__info"><div class="review-card__name">Randall<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@iamrandallyutatco</div></div></div><p class="review-card__quote">"Been wanting this for so long - finally got it and it's amazing. Well done on creating this."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/steproc.jpg" alt="steprocplus"></div><div class="review-card__info"><div class="review-card__name">StepRoc PLUS<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@steprocplus</div></div></div><p class="review-card__quote">"The animation pack is SOLID. Already using it across my content."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/alexei.jpg" alt="alexeidelacuesta"></div><div class="review-card__info"><div class="review-card__name">Alexei<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@alexeidelacuesta</div></div></div><p class="review-card__quote">"Been using it and it's killer. Does exactly what it says."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/kalo.jpg" alt="kalokachar"></div><div class="review-card__info"><div class="review-card__name">Kalo<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@kalokachar</div></div></div><p class="review-card__quote">"Amazing text animation pack. Appreciate you putting this together."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/garden.jpg" alt="directedbygarden"></div><div class="review-card__info"><div class="review-card__name">From the Garden<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@directedbygarden</div></div></div><p class="review-card__quote">"Bought literally everything. Absolutely worth it."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/josiah.jpg" alt="josiah_lebante"></div><div class="review-card__info"><div class="review-card__name">Josiah<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@josiah_lebante</div></div></div><p class="review-card__quote">"Just got it and love it. Exactly what I was looking for."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar"><img src="/assets/reviews/lourdes.jpg" alt="iapulse"></div><div class="review-card__info"><div class="review-card__name">Lourdes<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@iapulse</div></div></div><p class="review-card__quote">"The text animation pack has been very helpful. Really glad I picked it up."</p></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar">F</div><div class="review-card__info"><div class="review-card__name">fljay23<img class="review-card__badge" src="/assets/blue-checkmark-validation-social.png" alt="verified"></div><div class="review-card__handle">@fljay23</div></div></div><p class="review-card__quote">"Dude, these are awesome. Thank you so much."</p></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- BUNDLE -->
-  <div class="divider"><hr></div>
-
-  <section class="bundle">
-    <div class="bundle__glow"></div>
-    <div class="bundle__card">
-      <div class="bundle__badge">Save 36%</div>
-      <h3 class="bundle__title">Get the <em>full kit.</em></h3>
-      <p class="bundle__desc">Grab the Text Animations and the SFX Collection together and save $41.40. Everything you need to make your edits look and sound better.</p>
-      <div class="bundle__products">
-        <div class="bundle__product-tag">Text Animations</div>
-        <div class="bundle__product-sep">+</div>
-        <div class="bundle__product-tag">SFX Collection</div>
-      </div>
-      <a data-cta="bundle" data-product="Text + SFX Bundle" data-product-id="text-sfx-bundle" data-value="73.60" class="btn btn-outline bundle__btn" href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk">Get the Bundle - $73.60 <span class="bundle__strike">$115</span></a>
-      <div class="bundle__vid bundle__vid--left">
-        <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/bundle-text.jpg"><source src="/assets/bundle-text.webm" type="video/webm"></video>
-      </div>
-      <div class="bundle__vid bundle__vid--right">
-        <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-sfx.jpg"><source src="/assets/hero-sfx.webm" type="video/webm"></video>
-      </div>
-    </div>
-  </section>
-
   <!-- How-it-works carousel, parked: hiw-1..6 show the old Properties
        panel, which no longer resembles the 52-control panel. The VSL covers
        this ground until new screen recordings exist. -->
@@ -2252,587 +506,32 @@
       </div>
     </section>
   </template>
+</main>
 
-
-  <div class="divider"><hr></div>
-
-  <!-- FINAL CTA -->
-  <section class="final-cta">
-    <div class="final-cta__platform" style="margin-top:0;margin-bottom:18px">
-      <div class="pp-badge">
-        <div class="pp-icon">Pr</div>
-        <span>PREMIERE PRO ONLY</span>
-      </div>
-    </div>
-    <h2 class="final-cta__title">Buy now. <em>Level up.</em></h2>
-    <p class="final-cta__sub">Instant Download, Lifetime Access &amp; Updates.</p>
-    <a data-cta="final" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="finalBuy" class="btn btn-primary" style="margin-top:8px" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now - $47</a>
-    <p class="launch-price"><span class="lp-was">$60</span> Save $13</p>
-    <p class="final-cta__no-sub">Any issue with your download, email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></p>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq">
-    <p class="section-label">FAQ</p>
-    <h2 class="section-title" style="margin-bottom:24px">Good to <em>know.</em></h2>
-    <div class="faq__list">
-      <div class="faq__item open">
-        <button class="faq__question" onclick="toggleFaq(this)">
-          How do I receive future updates?
-          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq__answer">After purchase, every future update is delivered free to your purchase email. No extra cost.</div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question" onclick="toggleFaq(this)">
-          How do I access the Pack after purchase?
-          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq__answer">Once purchased, you'll get an instant download link in your email, no waiting required.</div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question" onclick="toggleFaq(this)">
-          Can I use these in monetized videos?
-          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq__answer">Yes, all animations can be used in personal or commercial projects.</div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question" onclick="toggleFaq(this)">
-          Will this work with my editing software?
-          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq__answer">Built specifically for Premiere Pro 2019 or newer. No plugins, no After Effects. Everything runs on stock Adobe effects.</div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question" onclick="toggleFaq(this)">
-          What can I customize?
-          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq__answer">Everything. 52 controls across 11 sections, all inside Premiere's Properties panel. Font, size, colour, position, spacing, speed, direction, drop shadow, stroke, gradient, glow, blur, curve, light sweep, film grain and rough edges. No keyframing.</div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question" onclick="toggleFaq(this)">
-          Do I need any extra plugins?
-          <span class="faq__icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq__answer">No - just Premiere Pro. Drag, drop, type. That's it. If you want to save your own looks as reusable presets, build them once in a sequence and import that sequence into your next project. Works on Windows and Mac. On Mac you can also use Clip Deck to do it in one click, though it isn't on Windows yet. The guide in your download covers both.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SITE FOOTER -->
-  <footer class="site-footer">
-    <div class="site-footer__links"><a class="site-footer__link" href="/tac">Terms and Conditions</a><a class="site-footer__link" href="/privacy">Privacy Policy</a></div>
-    <p class="site-footer__copy">©2026 <a href="https://artzenmedia.com">Artzen Media</a></p>
-  </footer>
-
-  <script>
-    // ── IMPACT carousel (IG embeds, infinite loop) ──
-    const impTrack = document.getElementById('impactTrack');
-    if (impTrack) {
-      // Finite carousel: centered when the cards fit, scrolls when they overflow.
-      const impItems = Array.from(impTrack.children);
-      function impItemW() {
-        return impItems.length > 1
-          ? impItems[1].offsetLeft - impItems[0].offsetLeft
-          : impItems[0].offsetWidth + 16;
-      }
-      // hide the arrows when everything already fits (no scrolling needed)
-      function impSyncArrows() {
-        const fits = impTrack.scrollWidth <= impTrack.clientWidth + 2;
-        impTrack.parentElement.querySelectorAll('.carousel-arrow')
-          .forEach(a => a.style.display = fits ? 'none' : '');
-      }
-      impSyncArrows();
-      window.addEventListener('load', impSyncArrows);
-      window.addEventListener('resize', impSyncArrows);
-
-      window.scrollImpact = function (dir) {
-        impTrack.scrollBy({ left: dir * impItemW(), behavior: 'smooth' });
-      };
-
-      // tap-to-unmute (unmuting one mutes the others)
-      const impSoundBtns = Array.from(impTrack.querySelectorAll('.impact-sound'));
-      impSoundBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const item = btn.closest('.impact-item');
-          const vid = item.querySelector('video');
-          if (!vid) return;
-          const willUnmute = vid.muted;
-          if (willUnmute) {
-            // mute every other reel first
-            impSoundBtns.forEach(b => {
-              if (b === btn) return;
-              const v = b.closest('.impact-item').querySelector('video');
-              if (v) v.muted = true;
-              b.setAttribute('data-muted', 'true');
-            });
-          }
-          vid.muted = !vid.muted;
-          if (!vid.muted) vid.play().catch(() => {});
-          btn.setAttribute('data-muted', vid.muted ? 'true' : 'false');
-        });
-      });
-
-      // auto-mute a reel once it scrolls out of view (sound only while visible)
-      if ('IntersectionObserver' in window) {
-        const impMuteObs = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.intersectionRatio < 0.5) {
-              const vid = e.target.querySelector('video');
-              const btn = e.target.querySelector('.impact-sound');
-              if (vid && !vid.muted) {
-                vid.muted = true;
-                if (btn) btn.setAttribute('data-muted', 'true');
-              }
-            }
-          });
-        }, { threshold: [0, 0.5, 1] });
-        impTrack.querySelectorAll('.impact-item').forEach(it => impMuteObs.observe(it));
-      }
-    } else {
-      window.scrollImpact = function () {};
-    }
-
-    // ── HERO "Text" - real animated text effects (cycles) ──
-    (function () {
-      const fxWord = document.getElementById('heroFx');
-      if (!fxWord) return;
-      const TEXT = 'Text';
-      const SCRAMBLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
-
-      // Bad-handwriting effect: each letter gets a different handwriting font
-      const HAND_FONTS = ['Caveat', 'Indie Flower', 'Nothing You Could Do', 'Reenie Beanie', 'Shadows Into Light'];
-      function seededRandom(s) { const x = Math.sin(s) * 10000; return x - Math.floor(x); }
-      const SEED = 1 + Math.floor(Math.random() * 9999);
-      const assigned = [];
-      (function assignFonts() {
-        let prev = null;
-        for (let i = 0; i < TEXT.length; i++) {
-          let avail = HAND_FONTS.filter(f => f !== prev);
-          const f = avail[Math.floor(seededRandom(SEED + i) * avail.length)] || HAND_FONTS[0];
-          assigned.push(f);
-          prev = f;
-        }
-      })();
-
-      function buildSpans() {
-        fxWord.innerHTML = '';
-        return TEXT.split('').map((ch, i) => {
-          const outer = document.createElement('span');
-          outer.className = 'fx-char';
-          outer.style.animationDelay = (i * 0.07) + 's';
-          const ink = document.createElement('span');
-          ink.className = 'fx-ink';
-          ink.style.fontFamily = '"' + assigned[i] + '", cursive';
-          // per-letter imperfection: random tilt + desynced wiggle
-          const rot = (seededRandom(SEED + i * 3) * 11 - 5.5).toFixed(2);
-          ink.style.setProperty('--rot', rot + 'deg');
-          ink.style.setProperty('--wd', (seededRandom(SEED + i * 7) * -2.6).toFixed(2) + 's');
-          ink.textContent = ch;
-          outer.appendChild(ink);
-          fxWord.appendChild(outer);
-          return { outer, ink };
-        });
-      }
-
-      // Lock the word width (in its handwriting fonts) so scramble glyphs never reflow the line
-      function lockWidth() {
-        fxWord.style.width = 'auto';
-        buildSpans();
-        const w = Math.ceil(fxWord.getBoundingClientRect().width) + 6;
-        fxWord.style.width = w + 'px';
-      }
-      lockWidth();
-      window.addEventListener('resize', lockWidth);
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(lockWidth);
-
-      function runPreset(name, done) {
-        const spans = buildSpans();
-        void fxWord.offsetWidth; // force reflow so animation restarts
-        spans.forEach(s => s.outer.classList.add(name));
-        setTimeout(done, (TEXT.length * 0.07 * 1000) + 700);
-      }
-
-      function runScramble(done) {
-        const spans = buildSpans();
-        const steps = 20;
-        let step = 0;
-        const iv = setInterval(() => {
-          const progress = step / steps;
-          spans.forEach((s, i) => {
-            s.ink.textContent = (progress * TEXT.length > i)
-              ? TEXT[i]
-              : SCRAMBLE[Math.floor(Math.random() * SCRAMBLE.length)];
-          });
-          step++;
-          if (step > steps) {
-            clearInterval(iv);
-            spans.forEach((s, i) => s.ink.textContent = TEXT[i]);
-            done();
-          }
-        }, 45);
-      }
-
-      const cycle = [
-        d => runScramble(d),
-        d => runPreset('blur', d),
-        d => runPreset('slide', d),
-        d => runPreset('scale', d),
-        d => runPreset('drop', d),
-        d => runPreset('shake', d),
-      ];
-      let ci = 0;
-      function loop() {
-        const fn = cycle[ci];
-        ci = (ci + 1) % cycle.length;
-        fn(() => setTimeout(loop, 1500)); // hold word, then next effect
-      }
-      loop();
-    })();
-
-    // ── FAQ ──
-    function toggleFaq(btn) {
-      const item = btn.closest('.faq__item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq__item.open').forEach(el => el.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    }
-
-    // ── CAROUSEL (infinite loop) ──
-    // Guarded: the how-it-works carousel is currently parked inside
-    // the parked how-it-works block, so #carousel is not in the document.
-    (function () {
-      const carTrackProbe = document.getElementById('carousel');
-      if (!carTrackProbe) { window.scrollCarousel = function () {}; return; }
-        const carTrack = document.getElementById('carousel');
-      const carDots = document.getElementById('carouselDots');
-      const carOriginals = Array.from(carTrack.children);
-      const carRealCount = carOriginals.length;
-
-      // clone a full set before and after for seamless wrap
-      carOriginals.slice().reverse().forEach(n => carTrack.insertBefore(n.cloneNode(true), carTrack.firstChild));
-      carOriginals.forEach(n => carTrack.appendChild(n.cloneNode(true)));
-      const carAll = Array.from(carTrack.children);
-
-      let carOneSet = 0, carCenterPad = 0;
-      function carItemW() { return carAll[1].offsetLeft - carAll[0].offsetLeft; }
-      function carMeasure() {
-        carOneSet = carAll[carRealCount].offsetLeft - carAll[0].offsetLeft;
-        carCenterPad = (carTrack.clientWidth - carAll[0].offsetWidth) / 2;
-      }
-      function carBase() { return carOneSet - carCenterPad; } // scroll pos that centers the first real item
-      function carRecenter() {
-        carMeasure();
-        carTrack.scrollLeft = carBase(); // start with item 1 centered
-      }
-      carRecenter();
-      window.addEventListener('load', carRecenter);
-      window.addEventListener('resize', carRecenter);
-
-      function scrollCarousel(dir) {
-        carTrack.scrollBy({ left: dir * carItemW(), behavior: 'smooth' });
-      }
-
-      // dots (one per real item)
-      for (let i = 0; i < carRealCount; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        dot.addEventListener('click', () => {
-          carTrack.scrollTo({ left: carBase() + i * carItemW(), behavior: 'smooth' });
-        });
-        carDots.appendChild(dot);
-      }
-      const carDotEls = carDots.querySelectorAll('.carousel-dot');
-
-      function updateCarDots() {
-        const rel = carTrack.scrollLeft - carBase();
-        let idx = Math.round(rel / carItemW());
-        idx = ((idx % carRealCount) + carRealCount) % carRealCount;
-        carDotEls.forEach((d, i) => d.classList.toggle('active', i === idx));
-      }
-
-      let carTick = false;
-      carTrack.addEventListener('scroll', () => {
-        // seamless infinite wrap (keep within the middle set)
-        const wrapRel = carTrack.scrollLeft - carBase();
-        if (wrapRel < -carOneSet * 0.5) {
-          carTrack.scrollLeft += carOneSet;
-        } else if (wrapRel >= carOneSet * 0.5) {
-          carTrack.scrollLeft -= carOneSet;
-        }
-        if (!carTick) {
-          requestAnimationFrame(() => { updateCarDots(); carTick = false; });
-          carTick = true;
-        }
-      });
-      window.scrollCarousel = scrollCarousel;
-    })();
-
-    // ── Properties panel replica: open a section on click ──
-    (function () {
-      const heads = document.querySelectorAll('.egp-head');
-      if (!heads.length) return;
-      heads.forEach(function (h) {
-        h.addEventListener('click', function () {
-          const sec = h.closest('.egp-sec');
-          const open = sec.classList.toggle('open');
-          h.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-      });
-
-      // dropdowns open to show the real option lists, 41 animations included
-      document.querySelectorAll('.egp-drop').forEach(function (d) {
-        const btn = d.querySelector('.egp-field');
-        const cur = d.querySelector('.egp-cur');
-        btn.addEventListener('click', function (e) {
-          e.stopPropagation();
-          const wasOpen = d.classList.contains('open');
-          document.querySelectorAll('.egp-drop.open').forEach(function (o) {
-            o.classList.remove('open');
-            o.querySelector('.egp-field').setAttribute('aria-expanded', 'false');
-          });
-          if (!wasOpen) {
-            d.classList.add('open');
-            btn.setAttribute('aria-expanded', 'true');
-            const sel = d.querySelector('.egp-menu .is-sel');
-            if (sel) d.querySelector('.egp-menu').scrollTop = sel.offsetTop - 60;
-          }
-        });
-        d.querySelectorAll('.egp-menu li').forEach(function (li) {
-          li.addEventListener('click', function (e) {
-            e.stopPropagation();
-            d.querySelectorAll('.egp-menu li').forEach(function (x) { x.classList.remove('is-sel'); });
-            li.classList.add('is-sel');
-            cur.textContent = li.textContent;
-            d.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-          });
-        });
-      });
-      document.addEventListener('click', function () {
-        document.querySelectorAll('.egp-drop.open').forEach(function (o) {
-          o.classList.remove('open');
-          o.querySelector('.egp-field').setAttribute('aria-expanded', 'false');
-        });
-      });
-    })();
-
-    // ── VSL: swap the poster for the YouTube iframe on click ──
-    (function () {
-      const frame = document.getElementById('vslFrame');
-      if (!frame) return;
-      const poster = document.getElementById('vslPoster');
-      // a missing poster file would otherwise show a broken-image icon over the gradient
-      if (poster) poster.addEventListener('error', function () { poster.style.display = 'none'; });
-
-      let loaded = false;
-      function play() {
-        const id = frame.getAttribute('data-yt');
-        if (loaded || !id) return;
-        loaded = true;
-        frame.classList.add('playing');
-        const f = document.createElement('iframe');
-        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
-                '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-        f.title = 'Creator Text Animations';
-        f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
-        f.allowFullscreen = true;
-        frame.appendChild(f);
-        if (poster) poster.style.display = 'none';
-      }
-      frame.addEventListener('click', play);
-      frame.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
-      });
-    })();
-
-    // ── Sticky CTA: visible once the hero Buy leaves view, until the final Buy comes into view ──
-    window.addEventListener('DOMContentLoaded', function () {
-      const sticky = document.querySelector('.sticky-cta');
-      const heroBuy = document.getElementById('heroBuy');
-      const finalBuy = document.getElementById('finalBuy');
-      if (!sticky || !heroBuy || !finalBuy) return;
-      let ticking = false;
-      function evaluate() {
-        ticking = false;
-        const vh = window.innerHeight || document.documentElement.clientHeight;
-        const heroBottom = heroBuy.getBoundingClientRect().bottom;
-        const finalTop = finalBuy.getBoundingClientRect().top;
-        const heroOut = heroBottom < 8;            // hero button has scrolled above the top
-        const finalIn = finalTop < vh - 40;        // final button entering view from the bottom
-        sticky.classList.toggle('show', heroOut && !finalIn);
-      }
-      function onScroll() {
-        if (!ticking) { ticking = true; requestAnimationFrame(evaluate); }
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
-      evaluate();
-    });
-
-  </script>
-
-  <!-- Sticky CTA (shown between hero & final buttons) -->
-  <div class="sticky-cta">
-    <a data-cta="stickybar" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" class="btn btn-primary" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy Now - $47</a>
+<footer class="foot">
+  <div class="foot__cols">
+    <div><p class="fh">Shop</p><a href="/text/">Text Animations</a><a href="/sfx/">SFX Collection</a><a href="/bundle/">The bundle</a></div>
+    <div><p class="fh">Help</p><a href="#faq">Questions</a><a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></div>
+    <div><p class="fh">Artzen Media</p><a href="https://www.instagram.com/artzenmedia/">Instagram</a><a href="https://artzenmedia.com">artzenmedia.com</a></div>
+    <div><p class="fh">Legal</p><a href="/tac">Terms and Conditions</a><a href="/privacy">Privacy Policy</a></div>
   </div>
+  <div class="foot__mark" aria-hidden="true"><span>Artzen Media</span></div>
+  <div class="foot__base"><span>&copy;2026 Artzen Media</span><span>Made by an editor</span></div>
+</footer>
 
-  <!-- Best-effort autoplay kickstart for muted inline videos -->
-  <script>
-  (function(){
-    function kick(){
-      document.querySelectorAll('video[autoplay], video[data-inview]').forEach(function(v){
-        v.muted = true; v.playsInline = true;
-        var p = v.play();
-        if (p && p.catch) p.catch(function(){});
-      });
-    }
-    document.addEventListener('DOMContentLoaded', kick);
-    window.addEventListener('load', kick);
-    ['touchstart','click','scroll'].forEach(function(ev){
-      window.addEventListener(ev, kick, { once: true, passive: true });
-    });
-  })();
-  </script>
+<!-- Floating buy bar (shows while neither the hero nor the closing buy button is on screen) -->
+<div class="sbar" id="bar" aria-hidden="true">
+  <img class="sbar__thumb" src="/assets/posters/text-vsl.jpg" alt="" width="40" height="40">
+  <span class="sbar__name">Creator Text Animations</span>
+  <span class="sbar__price">$47 &middot; one-time</span>
+  <a data-cta="stickybar" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" class="btn btn--light btn--sm" tabindex="-1" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now<span class="sbar__btnprice">&nbsp;&middot; $47</span></a>
+</div>
 
-  <!-- Polar checkout modal -->
-  <script>
-  (function() {
-      var modal = document.createElement('div')
-      modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.25s ease;'
-
-      var box = document.createElement('div')
-      box.style.cssText = 'position:relative;width:92%;max-width:480px;height:85vh;background:#111;border-radius:16px;overflow:hidden;'
-
-      var close = document.createElement('button')
-      close.innerHTML = '✕'
-      close.style.cssText = 'position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;z-index:10;'
-
-      var spinner = document.createElement('div')
-      spinner.style.cssText = 'position:absolute;top:50%;left:50%;width:36px;height:36px;margin:-18px 0 0 -18px;border:3px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:polarspin 0.7s linear infinite;z-index:5;'
-
-      var style = document.createElement('style')
-      style.textContent = '@keyframes polarspin{to{transform:rotate(360deg)}}@keyframes polarin{0%{transform:scale(0.85);opacity:0}60%{transform:scale(1.03);opacity:1}100%{transform:scale(1)}}'
-      document.head.appendChild(style)
-
-      var frame = document.createElement('iframe')
-      frame.allow = 'payment *'
-      frame.style.cssText = 'width:100%;height:100%;border:none;position:relative;z-index:6;'
-      frame.onload = function() { if (frame.src) spinner.style.display = 'none' }
-
-      box.appendChild(spinner)
-      box.appendChild(close)
-      box.appendChild(frame)
-      modal.appendChild(box)
-      document.body.appendChild(modal)
-
-      function open(url) {
-          spinner.style.display = 'block'
-          frame.src = url
-          modal.style.display = 'flex'
-          box.style.animation = 'polarin 0.45s cubic-bezier(0.34,1.56,0.64,1) both'
-          requestAnimationFrame(function() { modal.style.opacity = '1' })
-      }
-
-      function hide() {
-          modal.style.opacity = '0'
-          box.style.transition = 'transform 0.25s ease, opacity 0.25s ease'
-          box.style.transform = 'scale(0.92)'
-          box.style.opacity = '0'
-          setTimeout(function() {
-              modal.style.display = 'none'
-              frame.src = ''
-              box.style.animation = ''
-              box.style.transition = ''
-              box.style.transform = ''
-              box.style.opacity = ''
-          }, 250)
-      }
-
-      close.onclick = hide
-
-      modal.addEventListener('click', function(e) {
-          if (e.target === modal) hide()
-      })
-
-      document.addEventListener('click', function(e) {
-          var link = e.target.closest('a')
-          if (link && link.href && link.href.includes('buy.polar.sh')) {
-              window.amTrackCheckout(link); e.preventDefault()
-              open(link.href)
-          }
-      }, true)
-  })()
-  </script>
-
-
-  <!-- Cloudflare Web Analytics -->
-  <!-- Lazy autoplay: loops marked data-autoplay only download once they're displayed and
-       near the screen, so below-the-fold loops and the hero a device doesn't show never load
-       up front. data-autoplay="section" starts every such video in its section together. -->
-  <script>
-  (function(){
-    var vids = [].slice.call(document.querySelectorAll('video[data-autoplay]'));
-    function start(v){
-      v.setAttribute('data-inview', '');
-      v.preload = 'auto';
-      v.muted = true; v.playsInline = true;
-      var p = v.play();
-      if (p && p.catch) p.catch(function(){});
-    }
-    if (!('IntersectionObserver' in window)) { vids.forEach(start); return; }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (!e.isIntersecting) return;
-        io.unobserve(e.target);
-        if (e.target.tagName === 'VIDEO') start(e.target);
-        else [].slice.call(e.target.querySelectorAll('video[data-autoplay="section"]')).forEach(start);
-      });
-    }, { rootMargin: '600px 0px' });
-    vids.forEach(function(v){
-      io.observe(v.getAttribute('data-autoplay') === 'section' ? (v.closest('section') || v) : v);
-    });
-  })();
-  </script>
-
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ddc7e1d7ce974a1397478c75c100833b"}'></script>
-  <!-- End Cloudflare Web Analytics -->
-  <!-- Channel tagging: ?s=story / ?s=ads / ?s=email swap each buy button to the
-       Polar checkout link tagged for that channel, matched per product so an
-       upsell never inherits another product's price. No param = site default. -->
-  <script>
-  (function () {
-    var LINKS = {
-      story: {
-        'sfx-collection':  'https://buy.polar.sh/polar_cl_EvTRzGNvWlZsVQvIh5w6lfqXsmY5SRFVB24oW4As7Cg',
-        'text-animations': 'https://buy.polar.sh/polar_cl_XGugAaoqfHYcabzIUGyyTFEaT1p9Jvj1pUG4j2OJlLj',
-        'text-sfx-bundle': 'https://buy.polar.sh/polar_cl_xt2AKiW4WDtjDIYlFOHtss9cIUQceVFqdei8540ijLL'
-      },
-      ads: {
-        'sfx-collection':  'https://buy.polar.sh/polar_cl_eb9Ys1fl191ews67dpVHdz0svKSHdHUU8ehZC0oWog4',
-        'text-animations': 'https://buy.polar.sh/polar_cl_5KdbIXLbRzUDVWUiAif1FdWRfg9uppDUoqrVH00y1Dt',
-        'text-sfx-bundle': 'https://buy.polar.sh/polar_cl_vKrjLcCn1VCRi0fZOT5uNoKEhQQih3byKWusN2wm8Cb'
-      },
-      email: {
-        'sfx-collection':  'https://buy.polar.sh/polar_cl_fJNOHKFjenbLuGV9uq60yPuThyrWx9vuq6AS93yvIzw',
-        'text-animations': 'https://buy.polar.sh/polar_cl_3UIa4rtE4c2LTW9isA2bWBmAPJiE40xSCUmDe1CIL5X',
-        'text-sfx-bundle': 'https://buy.polar.sh/polar_cl_1fknhbjKLHXIv2xXgjINwPtHBQ6COt2ozkmqk2Jrdh7'
-      }
-    };
-    try {
-      var map = LINKS[new URLSearchParams(location.search).get('s')];
-      if (!map) return;
-      document.querySelectorAll('a[href*="buy.polar.sh"][data-product-id]').forEach(function (a) {
-        var t = map[a.getAttribute('data-product-id')];
-        if (t) a.href = t;
-      });
-    } catch (e) {}
-  })();
-  </script>
-  <!-- Notify bell (join.artzenmedia.com/bell.js): signups are tagged "Bell: Shop" in Kit -->
-  <script src="https://join.artzenmedia.com/bell.js" data-source="shop" defer></script>
+<script src="/assets/am-shop.js?v=2" defer></script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ddc7e1d7ce974a1397478c75c100833b"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<!-- Notify bell (join.artzenmedia.com/bell.js): signups are tagged "Bell: Shop" in Kit -->
+<script src="https://join.artzenmedia.com/bell.js" data-source="shop" defer></script>
 </body>
 </html>
