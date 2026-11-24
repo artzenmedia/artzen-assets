@@ -3,7 +3,8 @@
    Every card is Ben's AM Motion black liquid glass (am-motion styles/talk-2027 glass(): radial black .46 -> .24,
    a top sheen, his 1.2 px white rim lit on two diagonal corners that swings between them on a sharp ease in-out,
    one swipe every 2.4 s). The buy cards carry his footage, blurred, under the black (2027.md "Glass cards").
-   Videos keep their own frame: no crop beyond the screen height, no filter. */
+   The hero video keeps its own frame (no crop, no filter, no mask) in the default layout; only ?hero=over fits it to the
+   screen and dims it so the title reads on top. */
 :root {
   --bg: #000;
   --tile: #141414;
@@ -87,7 +88,7 @@ p { margin: 0; text-wrap: pretty; }
 /* his rim: 1.2 px white, lit on two diagonal corners (top-left + bottom-right at rest), dark between */
 .glass::after, .rim::after {
   content: ""; position: absolute; inset: 0; z-index: 4; border-radius: inherit; padding: 1.2px; pointer-events: none;
-  background: conic-gradient(from var(--rim),
+  background: conic-gradient(from var(--rim, -60deg),
     rgba(255, 255, 255, .95) 0deg 34deg, rgba(255, 255, 255, 0) 62deg 118deg,
     rgba(255, 255, 255, .95) 146deg 214deg, rgba(255, 255, 255, 0) 242deg 298deg,
     rgba(255, 255, 255, .95) 326deg);
@@ -150,10 +151,8 @@ p { margin: 0; text-wrap: pretty; }
 .secure svg { width: 12px; height: 12px; }
 
 .hero__media { position: relative; background: #000; }
-.hero__v { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; max-height: calc(100svh - 72px - var(--ruler)); object-fit: cover; background: #000; }
-/* the video's own black is 6-9/255: feather its top and bottom edge into the page black (the frame itself is untouched) */
-.hero__v { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%); }
-.hero__v--tall { display: none; aspect-ratio: 9 / 16; max-height: none; }
+.hero__v { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; } /* its own frame: no crop, no filter, no mask */
+.hero__v--tall { display: none; aspect-ratio: 9 / 16; }
 
 /* ?hero=over (screens over 1080px): the title and card sit on the video, Huella style, the card is real glass
    over the playing video. Off by default. */
@@ -162,7 +161,7 @@ p { margin: 0; text-wrap: pretty; }
   .hero-over .hero__intro, .hero-over .hero__media { grid-area: 1 / 1; }
   .hero-over .hero__media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(180deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .72) 40%, rgba(0, 0, 0, .94) 100%); }
-  .hero-over .hero__v--wide { aspect-ratio: auto; height: calc(100svh - 72px - var(--ruler)); max-height: none; }
+  .hero-over .hero__v--wide { aspect-ratio: auto; height: calc(100svh - 72px - var(--ruler)); object-fit: cover; }
   .hero-over .hero__intro { position: relative; z-index: 2; align-self: end; padding-bottom: 48px; }
   .hero-over .hero__card {
     background: linear-gradient(180deg, rgba(255, 255, 255, .075) 0%, rgba(255, 255, 255, 0) 45%),
