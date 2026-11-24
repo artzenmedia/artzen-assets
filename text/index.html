@@ -18,7 +18,7 @@
   <meta name="twitter:description" content="Pro-level text animations for Premiere Pro. One pack, drag and drop.">
   <meta name="twitter:image" content="https://shop.artzenmedia.com/assets/og-text.jpg">
   <title>Creator Text Animations - Artzen Media</title>
-  <link rel="stylesheet" href="/assets/am-shop.css?v=5">
+  <link rel="stylesheet" href="/assets/am-shop.css?v=8">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <!-- Meta Pixel -->
@@ -58,52 +58,64 @@
 
 <div class="ruler" aria-hidden="true"><div class="ruler__track"><div class="ruler__head"><svg viewBox="0 0 11 11" preserveAspectRatio="none"><path fill="#0099FE" d="M0 0H11V5.5L6 9.2V11H5V9.2L0 5.5Z"/></svg></div></div></div>
 
-<!-- Home pill: back to artzenmedia.com (same as guides.artzenmedia.com) -->
-<a class="am-home" href="https://artzenmedia.com" aria-label="Back to artzenmedia.com"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H5.5A1.5 1.5 0 0 1 4 19z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Home</a>
-<div class="mast"><a href="https://artzenmedia.com">Artzen Media</a></div>
+<header class="top">
+  <!-- Home pill: back to artzenmedia.com (same as guides.artzenmedia.com) -->
+  <a class="am-home" href="https://artzenmedia.com" aria-label="Back to artzenmedia.com"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H5.5A1.5 1.5 0 0 1 4 19z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Home</a>
+  <nav class="nav" aria-label="Shop">
+    <a href="/text/" aria-current="page">Text</a>
+    <a href="/sfx/">SFX</a>
+    <a href="/bundle/">Bundle</a>
+  </nav>
+</header>
 
 <main>
-  <!-- HERO: the pack video left, the buy box right (phones: title, video, buy box) -->
+  <!-- HERO: studio tile with the pack video left, buy box right (phones: title, video, buy box) -->
   <section class="buy" aria-labelledby="hero-title">
     <div class="wrap buy__grid">
-      <div class="buy__media">
-        <div class="stage stage--wide">
-          <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover.jpg" width="1920" height="1080" aria-label="The pack in Premiere Pro">
-            <source src="/assets/hero-cover.webm" type="video/webm">
-          </video>
+      <div class="gallery">
+        <div class="tile">
+          <div class="slide is-on" id="cutTall">
+            <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover-mobile.jpg" width="1080" height="1920" aria-label="The pack in Premiere Pro, vertical cut">
+              <source src="/assets/hero-cover-mobile.webm" type="video/webm">
+            </video>
+          </div>
+          <div class="slide" id="cutWide">
+            <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover.jpg" width="1920" height="1080" aria-label="The pack in Premiere Pro, wide cut">
+              <source src="/assets/hero-cover.webm" type="video/webm">
+            </video>
+          </div>
         </div>
-        <div class="stage stage--tall">
-          <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-cover-mobile.jpg" width="1080" height="1920" aria-label="The pack in Premiere Pro">
-            <source src="/assets/hero-cover-mobile.webm" type="video/webm">
-          </video>
+        <div class="thumbs" role="group" aria-label="Pick a cut">
+          <button class="thumb" type="button" data-slide="cutTall" aria-pressed="true" aria-label="Vertical cut"><img src="/assets/posters/hero-cover-mobile.jpg" alt="" width="58" height="58" loading="lazy"></button>
+          <button class="thumb" type="button" data-slide="cutWide" aria-pressed="false" aria-label="Wide cut"><img src="/assets/posters/hero-cover.jpg" alt="" width="58" height="58" loading="lazy"></button>
         </div>
-        <p class="stage__cap">All 41 animations live in one template, inside Premiere Pro.</p>
       </div>
 
       <div class="buy__head">
         <span class="label"><span class="dot"></span>Premiere Pro &middot; .MOGRT pack</span>
         <h1 id="hero-title">Creator Text Animations</h1>
-        <p class="buy__sub">41 animations. Endless combinations.</p>
+        <p class="ver">41 animations &middot; 52 controls &middot; no keyframes</p>
       </div>
 
       <div class="buy__body">
-        <div class="hostline">
-          <span><img class="host" src="/assets/hosts/pr.png" alt="" width="18" height="18">Premiere Pro 2019 or newer</span>
-          <span>Mac and Windows</span>
-        </div>
-        <div class="price"><b>$47</b><s>$60</s><span class="tag tag--line">Save $13</span></div>
-        <p class="price__note">One payment. Lifetime access and free updates.</p>
-        <p class="buy__desc"><b>Pick how the text comes in and how it leaves.</b> 41 entrances, 41 exits, 1,681 combinations before you touch a single slider. No keyframing, no plugins, no After Effects.</p>
-        <div class="buy__cta" id="heroActions">
+        <div class="price"><b>$47 USD</b><s>$60</s><span class="badge">Save $13</span></div>
+        <p class="status"><span class="dot dot--w"></span>New: light sweep, gradient and texture</p>
+        <p class="note">Price in US dollars.</p>
+        <hr class="rule">
+        <p class="desc">Pick how the text comes in and how it leaves. 41 entrances, 41 exits, 1,681 combinations before you touch a single slider. No keyframing, no plugins, no After Effects.</p>
+        <div class="cta" id="heroActions">
           <a data-cta="hero" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="heroBuy" class="btn btn--light btn--block" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now &middot; $47</a>
           <a class="btn btn--line btn--block" href="#watch">Watch it work</a>
         </div>
-        <p class="secure"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="5.2" width="8" height="5.8" rx="1.2" fill="currentColor"/><path d="M3.8 5.2V3.8a2.2 2.2 0 0 1 4.4 0v1.4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>Secure checkout &middot; Instant download</p>
+        <p class="secure"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="5.2" width="8" height="5.8" rx="1.2" fill="currentColor"/><path d="M3.8 5.2V3.8a2.2 2.2 0 0 1 4.4 0v1.4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>Secure checkout &middot; Instant download by email</p>
+        <div class="spec">
+          <div><img class="host" src="/assets/hosts/pr.png" alt="" width="20" height="20">For Premiere Pro 2019 or newer</div>
+          <div><span class="os" aria-hidden="true"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M11.2 8.5c0-1.5 1.2-2.2 1.3-2.3-.7-1-1.8-1.2-2.2-1.2-.9-.1-1.8.6-2.3.6s-1.2-.5-2-.5C4.9 5.1 3.9 5.7 3.4 6.7c-1.1 1.9-.3 4.7.8 6.2.5.7 1.1 1.6 1.9 1.5.8 0 1-.5 2-.5s1.2.5 2 .5 1.3-.8 1.8-1.5c.6-.8.8-1.6.8-1.7 0 0-1.5-.6-1.5-2.2ZM9.7 4c.4-.5.7-1.2.6-1.9-.6 0-1.4.4-1.8.9-.4.4-.7 1.1-.6 1.8.7.1 1.4-.3 1.8-.8Z"/></svg><svg viewBox="0 0 16 16"><path fill="currentColor" d="M1.5 3.2 6.8 2.5v5H1.5Zm6.2-.8 6.8-.9v6H7.7ZM1.5 8.4h5.3v5.1l-5.3-.7Zm6.2 0h6.8v6l-6.8-.9Z"/></svg></span>Mac and Windows</div>
+        </div>
         <div class="incl">
           <h2>What's included</h2>
           <ul>
             <li>41 animations <small>&middot; drag and drop .MOGRT</small></li>
-            <li>Premiere Pro 2019 or newer <small>&middot; fully compatible</small></li>
             <li>Commercial use <small>&middot; use it on client work</small></li>
             <li>Lifetime access <small>&middot; free updates forever</small></li>
             <li>Free bonuses <small>&middot; call-outs and a free font list</small></li>
@@ -113,291 +125,300 @@
     </div>
   </section>
 
-  <!-- 01 WATCH (YouTube facade: nothing from YouTube loads until the click; youtube-nocookie.com) -->
-  <section class="section section--line" id="watch" aria-labelledby="watch-title">
+  <!-- PERKS -->
+  <section class="wrap perks" aria-label="Why it's fast">
+    <div class="perk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+      <h3>No keyframes</h3>
+      <p>Every look is a slider or a dropdown.</p>
+    </div>
+    <div class="perk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h4l10 10h4M3 17h4l3-3M14 10l3-3h4"/><path d="M19 5l2 2-2 2M19 15l2 2-2 2"/></svg>
+      <h3>1,681 combinations</h3>
+      <p>41 entrances and 41 exits. Pick each one on its own.</p>
+    </div>
+    <div class="perk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+      <h3>Instant download</h3>
+      <p>Sent to your email right after you pay.</p>
+    </div>
+  </section>
+
+  <!-- WATCH (YouTube facade: nothing from YouTube loads until the click; youtube-nocookie.com) -->
+  <section class="section" id="watch" aria-labelledby="watch-title">
     <div class="wrap">
-      <div class="section__head section__head--solo">
-        <span class="kicker"><b>01</b>&mdash; Watch it work</span>
-        <h2 id="watch-title">See it in action.</h2>
+      <div class="head">
+        <div><span class="label label--muted">Watch it work</span><h2 id="watch-title">See it in action.</h2></div>
       </div>
       <div class="vsl" id="vslFrame" data-yt="vFC6-0ikGV0" data-title="Creator Text Animations" role="button" tabindex="0" aria-label="Play the video">
         <img class="vsl__poster" id="vslPoster" src="/assets/posters/text-vsl.jpg" alt="" aria-hidden="true" loading="lazy">
         <button class="vsl__play" id="vslPlay" type="button" aria-label="Play the video"><svg viewBox="0 0 24 24"><path d="M6 4v16l14-8z"/></svg></button>
-        <span class="vsl__cap livepill"><span class="dot"></span>Creator Text Animations</span>
       </div>
     </div>
   </section>
 
-  <!-- 02 WHY -->
-  <section class="section section--line" aria-labelledby="why-title">
+  <!-- WHY (statement card) -->
+  <section class="section" aria-labelledby="why-title">
     <div class="wrap">
-      <div class="section__head">
-        <span class="kicker"><b>02</b>&mdash; Why</span>
+      <div class="statement">
+        <span class="label label--muted">Why</span>
         <h2 id="why-title">People read your videos before they watch them.</h2>
-        <div class="copy">
-          <p class="lede">So make the text count.</p>
-          <p>Premiere's built-in text animations are limited and overused. After a while every edit starts to look the same. These 41 drop straight onto your timeline, and every one is fully customizable.</p>
-          <p class="sign">Made by an editor who got sick of wasting hours on text.</p>
-        </div>
-      </div>
-      <div class="stats">
-        <div><b>41</b><span>Animations</span></div>
-        <div><b>1,681</b><span>Combinations</span></div>
-        <div><b>700+</b><span>Editors</span></div>
-        <div><b>Lifetime</b><span>Access</span></div>
+        <p class="lede">So make the text count.</p>
+        <p>Premiere's built-in text animations are limited and overused. After a while every edit starts to look the same. These 41 drop straight onto your timeline, and every one is fully customizable.</p>
+        <p class="sign">Made by an editor who got sick of wasting hours on text</p>
       </div>
     </div>
   </section>
 
-  <!-- 03 INSIDE THE PANEL: replica of the Properties panel -->
-  <section class="section section--line" aria-labelledby="panel-title">
+  <!-- INSIDE THE PANEL: replica of the Properties panel -->
+  <section class="section" aria-labelledby="panel-title">
     <div class="wrap">
-      <div class="section__head">
-        <span class="kicker"><b>03</b>&mdash; Inside the panel</span>
-        <h2 id="panel-title">One panel. 52 controls. No keyframes.</h2>
+      <div class="head">
+        <div><span class="label label--muted">Inside the panel</span><h2 id="panel-title">One panel. 52 controls.<br>No keyframes.</h2></div>
         <p>Every look is built into the same template: 52 controls across 11 sections, each one a slider or a dropdown. Gradients, light sweep, film grain and rough edges are all in there, so there is nothing to stack and nothing third-party to buy.</p>
       </div>
       <div class="panel">
         <div>
-      <div class="egp">
-      <div class="egp-bar">
-      <span class="egp-bar__t">Properties</span>
-      <img class="host" src="/assets/hosts/pr.png" alt="Premiere Pro" width="16" height="16">
-      </div>
-      <div class="egp-body">
-      <div class="egp-row"><span class="egp-lab">Your Text</span><span class="egp-field egp-field--text">Artzen Media</span></div>
-      <div class="egp-row"><span class="egp-lab">Text Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:62%"></span><span class="egp-knob" style="left:62%"></span></span><span class="egp-val">100</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Text Position</span><span class="egp-field">960 · 540</span></div>
-      <div class="egp-row"><span class="egp-lab">Color</span><span class="egp-field egp-field--col"><i style="background:#FFFFFF"></i>#FFFFFF</span></div>
-      <div class="egp-row"><span class="egp-lab">Start Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Fade</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li class="is-sel">Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li>Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
-      <div class="egp-row"><span class="egp-lab">End Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Glitch</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li>Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li class="is-sel">Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Animation Controls</span><span class="egp-count">6</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Start Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
-      <div class="egp-row"><span class="egp-lab">End Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
-      <div class="egp-row"><span class="egp-lab">Animate By</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Character</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Line</li><li>Word</li><li>Characters</li><li>Random</li></ul></span></div>
-      <div class="egp-row"><span class="egp-lab">Enter From</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Up</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Up</li><li>Down</li><li>Left</li><li>Right</li></ul></span></div>
-      <div class="egp-row"><span class="egp-lab">Reveal Order</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Forward</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Forward</li><li>Reverse</li></ul></span></div>
-      <div class="egp-row"><span class="egp-lab">Frame Rate Look</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">60fps smooth</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Smooth (60FPS)</li><li>Middle (24FPS)</li><li>Laggy (12FPS)</li></ul></span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Finetune Animation</span><span class="egp-count">2</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Travel Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">240</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Stagger</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:22%"></span><span class="egp-knob" style="left:22%"></span></span><span class="egp-val">0.04</span></span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Text Spacing</span><span class="egp-count">4</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Letter Tracking</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Word Spacing</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Line Leading</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Text Alignment</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Center</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Left</li><li class="is-sel">Center</li><li>Right</li></ul></span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Wiggle</span><span class="egp-count">6</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Character Wiggle On</span><span class="egp-check is-on"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-      <div class="egp-row"><span class="egp-lab">Character Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">12</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Character Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:40%"></span><span class="egp-knob" style="left:40%"></span></span><span class="egp-val">2.0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Text Wiggle On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-      <div class="egp-row"><span class="egp-lab">Text Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Text Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Drop Shadow</span><span class="egp-count">5</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Shadow Color</span><span class="egp-field egp-field--col"><i style="background:#000000"></i>#000000</span></div>
-      <div class="egp-row"><span class="egp-lab">Shadow Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">55</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Shadow Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:28%"></span><span class="egp-knob" style="left:28%"></span></span><span class="egp-val">14</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Shadow Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:16%"></span><span class="egp-knob" style="left:16%"></span></span><span class="egp-val">8</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Shadow Angle</span><span class="egp-field">135°</span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Curve</span><span class="egp-count">3</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Curve Style</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Arc</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Arc</li><li>Bulge</li><li>Arch</li></ul></span></div>
-      <div class="egp-row"><span class="egp-lab">Text Curve</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Curve Offset Y</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Stroke</span><span class="egp-count">3</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Stroke Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Text Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:100%"></span><span class="egp-knob" style="left:100%"></span></span><span class="egp-val">100</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Stroke Color</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Blur &amp; Glow</span><span class="egp-count">3</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Blur</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Glow Radius</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Glow Intensity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Light Sweep</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Shine Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">1.0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Shine</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Shine Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:20%"></span><span class="egp-knob" style="left:20%"></span></span><span class="egp-val">20</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Shine Angle</span><span class="egp-field">45°</span></div>
-      <div class="egp-row"><span class="egp-lab">Shine Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">30</span></span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Gradient</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Gradient On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-      <div class="egp-row"><span class="egp-lab">Gradient Color 1</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
-      <div class="egp-row"><span class="egp-lab">Gradient Color 2</span><span class="egp-field egp-field--col"><i style="background:#FFEA00"></i>#FFEA00</span></div>
-      <div class="egp-row"><span class="egp-lab">Gradient Angle</span><span class="egp-field">90°</span></div>
-      <div class="egp-row"><span class="egp-lab">Gradient Motion Rate</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-      </div>
-      </div>
-      <div class="egp-sec">
-      <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Texture</span><span class="egp-new">New</span><span class="egp-count">4</span></button>
-      <div class="egp-body egp-body--fold">
-      <div class="egp-row"><span class="egp-lab">Grain</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Edge Roughness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Roughness Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
-      <div class="egp-row"><span class="egp-lab">Roughness Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">100</span></span></div>
-      </div>
-      </div>
-      </div>
+          <div class="egp">
+          <div class="egp-bar">
+          <span class="egp-bar__t">Properties</span>
+          <img class="host" src="/assets/hosts/pr.png" alt="Premiere Pro" width="16" height="16">
+          </div>
+          <div class="egp-body">
+          <div class="egp-row"><span class="egp-lab">Your Text</span><span class="egp-field egp-field--text">Artzen Media</span></div>
+          <div class="egp-row"><span class="egp-lab">Text Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:62%"></span><span class="egp-knob" style="left:62%"></span></span><span class="egp-val">100</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Text Position</span><span class="egp-field">960 · 540</span></div>
+          <div class="egp-row"><span class="egp-lab">Color</span><span class="egp-field egp-field--col"><i style="background:#FFFFFF"></i>#FFFFFF</span></div>
+          <div class="egp-row"><span class="egp-lab">Start Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Fade</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li class="is-sel">Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li>Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
+          <div class="egp-row"><span class="egp-lab">End Animation</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Glitch</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>None</li><li>Fade</li><li>Slide</li><li>Typewriter</li><li>3D Rotate</li><li>Scale</li><li>Ink Bleed</li><li>Flicker</li><li>Hacked</li><li>Blur</li><li>Grow Rotate</li><li>Tracking</li><li>Skew</li><li>Bounce</li><li>Wave</li><li>Elastic</li><li>Swing</li><li>Fold</li><li>Spin</li><li>Squeeze</li><li>Jitter</li><li>Converge</li><li>Smear</li><li>Snap</li><li>Roll</li><li>Outline</li><li>Wipe</li><li>Ghost</li><li>Cascade</li><li>Fly In</li><li>Orbit</li><li>Scatter</li><li>Dissolve</li><li>Ripple</li><li class="is-sel">Glitch</li><li>Zoom Blur</li><li>Baseline</li><li>Zigzag</li><li>Squash</li><li>Blinds</li><li>Unstack</li><li>Drift</li></ul></span></div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Animation Controls</span><span class="egp-count">6</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Start Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
+          <div class="egp-row"><span class="egp-lab">End Speed</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Normal</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Fast</li><li class="is-sel">Normal</li><li>Slow</li></ul></span></div>
+          <div class="egp-row"><span class="egp-lab">Animate By</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Character</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Line</li><li>Word</li><li>Characters</li><li>Random</li></ul></span></div>
+          <div class="egp-row"><span class="egp-lab">Enter From</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Up</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Up</li><li>Down</li><li>Left</li><li>Right</li></ul></span></div>
+          <div class="egp-row"><span class="egp-lab">Reveal Order</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Forward</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Forward</li><li>Reverse</li></ul></span></div>
+          <div class="egp-row"><span class="egp-lab">Frame Rate Look</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">60fps smooth</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Smooth (60FPS)</li><li>Middle (24FPS)</li><li>Laggy (12FPS)</li></ul></span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Finetune Animation</span><span class="egp-count">2</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Travel Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">240</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Stagger</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:22%"></span><span class="egp-knob" style="left:22%"></span></span><span class="egp-val">0.04</span></span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Text Spacing</span><span class="egp-count">4</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Letter Tracking</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Word Spacing</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Line Leading</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Text Alignment</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Center</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li>Left</li><li class="is-sel">Center</li><li>Right</li></ul></span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Wiggle</span><span class="egp-count">6</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Character Wiggle On</span><span class="egp-check is-on"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+          <div class="egp-row"><span class="egp-lab">Character Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">12</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Character Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:40%"></span><span class="egp-knob" style="left:40%"></span></span><span class="egp-val">2.0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Text Wiggle On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+          <div class="egp-row"><span class="egp-lab">Text Wiggle Amount</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Text Wiggle Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Drop Shadow</span><span class="egp-count">5</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Shadow Color</span><span class="egp-field egp-field--col"><i style="background:#000000"></i>#000000</span></div>
+          <div class="egp-row"><span class="egp-lab">Shadow Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:55%"></span><span class="egp-knob" style="left:55%"></span></span><span class="egp-val">55</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Shadow Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:28%"></span><span class="egp-knob" style="left:28%"></span></span><span class="egp-val">14</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Shadow Distance</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:16%"></span><span class="egp-knob" style="left:16%"></span></span><span class="egp-val">8</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Shadow Angle</span><span class="egp-field">135°</span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Curve</span><span class="egp-count">3</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Curve Style</span><span class="egp-drop"><button class="egp-field egp-field--drop" type="button" aria-expanded="false"><span class="egp-cur">Arc</span><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></button><ul class="egp-menu" role="listbox"><li class="is-sel">Arc</li><li>Bulge</li><li>Arch</li></ul></span></div>
+          <div class="egp-row"><span class="egp-lab">Text Curve</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Curve Offset Y</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">0</span></span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Stroke</span><span class="egp-count">3</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Stroke Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Text Opacity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:100%"></span><span class="egp-knob" style="left:100%"></span></span><span class="egp-val">100</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Stroke Color</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Blur &amp; Glow</span><span class="egp-count">3</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Blur</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Glow Radius</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Glow Intensity</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Light Sweep</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Shine Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">1.0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Shine</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Shine Softness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:20%"></span><span class="egp-knob" style="left:20%"></span></span><span class="egp-val">20</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Shine Angle</span><span class="egp-field">45°</span></div>
+          <div class="egp-row"><span class="egp-lab">Shine Width</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:30%"></span><span class="egp-knob" style="left:30%"></span></span><span class="egp-val">30</span></span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Gradient</span><span class="egp-new">New</span><span class="egp-count">5</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Gradient On</span><span class="egp-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span></div>
+          <div class="egp-row"><span class="egp-lab">Gradient Color 1</span><span class="egp-field egp-field--col"><i style="background:#5BD3FE"></i>#5BD3FE</span></div>
+          <div class="egp-row"><span class="egp-lab">Gradient Color 2</span><span class="egp-field egp-field--col"><i style="background:#FFEA00"></i>#FFEA00</span></div>
+          <div class="egp-row"><span class="egp-lab">Gradient Angle</span><span class="egp-field">90°</span></div>
+          <div class="egp-row"><span class="egp-lab">Gradient Motion Rate</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          </div>
+          </div>
+          <div class="egp-sec">
+          <button class="egp-head" type="button" aria-expanded="false"><svg class="egp-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span class="egp-name">Texture</span><span class="egp-new">New</span><span class="egp-count">4</span></button>
+          <div class="egp-body egp-body--fold">
+          <div class="egp-row"><span class="egp-lab">Grain</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Edge Roughness</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:0%"></span><span class="egp-knob" style="left:0%"></span></span><span class="egp-val">0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Roughness Speed</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:25%"></span><span class="egp-knob" style="left:25%"></span></span><span class="egp-val">1.0</span></span></div>
+          <div class="egp-row"><span class="egp-lab">Roughness Scale</span><span class="egp-slider"><span class="egp-track"><span class="egp-fill" style="width:50%"></span><span class="egp-knob" style="left:50%"></span></span><span class="egp-val">100</span></span></div>
+          </div>
+          </div>
+          </div>
           <p class="panel__hint">Open a section, then open a dropdown. All 41 are in there.</p>
         </div>
-        <ol class="rows">
-          <li><small>01</small><div><b>In and out, separately</b><span>41 entrances and 41 exits. 1,681 combinations before you touch a slider.</span></div></li>
-          <li><small>02</small><div><b>Any length</b><span>Drag it to any length. The in and out hold their timing, the middle stretches to fit.</span></div></li>
-          <li><small>03</small><div><b>Free font list</b><span>Free fonts that pair well with the pack, with links to grab them. Pick one and it applies to all 41 animations at once.</span></div></li>
-          <li><small>04</small><div><b>Just Premiere Pro</b><span>No plugins, no After Effects. Everything runs on stock Adobe effects.</span></div></li>
-        </ol>
+        <ul class="rows">
+          <li><b>In and out, separately</b><span>41 entrances and 41 exits. 1,681 combinations before you touch a slider.</span></li>
+          <li><b>Any length</b><span>Drag it to any length. The in and out hold their timing, the middle stretches to fit.</span></li>
+          <li><b>Free font list</b><span>Free fonts that pair well with the pack, with links to grab them. Pick one and it applies to all 41 animations at once.</span></li>
+          <li><b>Just Premiere Pro</b><span>No plugins, no After Effects. Everything runs on stock Adobe effects.</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- 04 REVIEWS -->
-  <section class="section section--line" aria-labelledby="reviews-title">
+  <!-- REVIEWS panel -->
+  <section class="section" aria-labelledby="reviews-title">
     <div class="wrap">
-      <div class="section__head">
-        <span class="kicker"><b>04</b>&mdash; Reviews</span>
-        <h2 id="reviews-title">Trusted by 700+ editors worldwide.</h2>
-        <p>Real reviews from real creators.</p>
-      </div>
-      <div class="quotes">
-        <figure class="quote"><p>&ldquo;A game changer, saving me hours of back-and-forth with After Effects and allowing me to deliver high-quality edits just as quickly. This new version seems even better than the first.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/federico.jpg" alt="" width="30" height="30" loading="lazy"><b>Federico</b><span>@marzustudio</span></figcaption></figure>
-        <figure class="quote"><p>&ldquo;Can't believe I found this while doomscrolling on IG. All of my favorite text effects in 1 pack, easy to follow, and free updates for life.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/mickey.jpg" alt="" width="30" height="30" loading="lazy"><b>Mickey</b><span>@itchyeyephotos</span></figcaption></figure>
-        <figure class="quote"><p>&ldquo;The variety and ease of use is top tier. You get so much from this pack - it's 10x'd my workflow and made editing fun again.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/christopher.jpg" alt="" width="30" height="30" loading="lazy"><b>Christopher</b><span>@chrissjeske</span></figcaption></figure>
-        <figure class="quote"><p>&ldquo;Super easy to use and really helps add that extra touch to make my videos that much better. 10/10 recommend to any creative.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/3kingkeen.jpg" alt="" width="30" height="30" loading="lazy"><b>3KINGKEEN</b><span>@3kingkeen</span></figcaption></figure>
-        <figure class="quote"><p>&ldquo;Easy to use, full of text animations, and it definitely elevated my captions game. Highly recommend for anyone who wants a better workflow.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/swtos.jpg" alt="" width="30" height="30" loading="lazy"><b>Swtos</b><span>@soter.pap</span></figcaption></figure>
-        <figure class="quote"><p>&ldquo;Makes editing so much quicker and elevates my video quality by a ton. Highly recommend, 10/10 product.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/hugo.jpg" alt="" width="30" height="30" loading="lazy"><b>Hugo</b><span>@hugolminetti</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;Having all the text effects inside Premiere Pro makes editing so much less stressful. Love it.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/blake.jpg" alt="" width="30" height="30" loading="lazy"><b>Blake</b><span>@blakejstaff</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;Love having everything in one place. Hard to find tools that actually work, but this pack delivers.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/patrik.jpg" alt="" width="30" height="30" loading="lazy"><b>Patrik</b><span>@patriksoldan</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;This pack has been my go-to lately. Been using it for over 50% of my text edits.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/coachdon.jpg" alt="" width="30" height="30" loading="lazy"><b>Coach Don</b><span>@coachdonmrremote</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;Been wanting this for so long - finally got it and it's amazing. Well done on creating this.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/randall.jpg" alt="" width="30" height="30" loading="lazy"><b>Randall</b><span>@iamrandallyutatco</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;The animation pack is SOLID. Already using it across my content.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/steproc.jpg" alt="" width="30" height="30" loading="lazy"><b>StepRoc PLUS</b><span>@steprocplus</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;Been using it and it's killer. Does exactly what it says.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/alexei.jpg" alt="" width="30" height="30" loading="lazy"><b>Alexei</b><span>@alexeidelacuesta</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;Amazing text animation pack. Appreciate you putting this together.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/kalo.jpg" alt="" width="30" height="30" loading="lazy"><b>Kalo</b><span>@kalokachar</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;Bought literally everything. Absolutely worth it.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/garden.jpg" alt="" width="30" height="30" loading="lazy"><b>From the Garden</b><span>@directedbygarden</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;Just got it and love it. Exactly what I was looking for.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/josiah.jpg" alt="" width="30" height="30" loading="lazy"><b>Josiah</b><span>@josiah_lebante</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;The text animation pack has been very helpful. Really glad I picked it up.&rdquo;</p><figcaption class="quote__by"><img src="/assets/reviews/lourdes.jpg" alt="" width="30" height="30" loading="lazy"><b>Lourdes</b><span>@iapulse</span></figcaption></figure>
-        <figure class="quote" hidden><p>&ldquo;Dude, these are awesome. Thank you so much.&rdquo;</p><figcaption class="quote__by"><span class="ava" aria-hidden="true">F</span><b>fljay23</b><span>@fljay23</span></figcaption></figure>
-      </div>
-      <button class="btn btn--line quotes__more" id="moreReviews" type="button">Show all 17 reviews</button>
-    </div>
-  </section>
-
-  <!-- 05 THE FULL KIT (bundle upsell) -->
-  <section class="section section--line" aria-labelledby="kit-title">
-    <div class="wrap">
-      <div class="feat">
-        <div class="feat__copy">
-          <span class="kicker"><b>05</b>&mdash; The full kit</span>
-          <h2 id="kit-title">Text + SFX.</h2>
-          <p>Get the Text Animations and the SFX Collection together and save $41.40. Everything you need to make your edits look and sound better.</p>
-          <ol class="rows">
-            <li><small>01</small><div><b>Creator Text Animations</b><span>41 animations for Premiere Pro</span></div></li>
-            <li><small>02</small><div><b>Creator SFX Collection</b><span>155 hand-crafted sound effects</span></div></li>
-          </ol>
-          <div class="feat__buy">
-            <div class="bigprice"><b>$73.60</b><s>$115</s><small>Save 36%</small></div>
-            <div class="actions">
-              <a class="btn btn--line" href="/sfx/">See the SFX</a>
-              <a data-cta="bundle" data-product="Text + SFX Bundle" data-product-id="text-sfx-bundle" data-value="73.60" class="btn btn--light" href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk">Get the bundle</a>
-            </div>
+      <div class="reviews">
+        <div class="reviews__top">
+          <div>
+            <span class="label label--muted" id="reviews-title">Reviews</span>
+            <div class="score"><b>700+</b><span>editors use it</span></div>
+          </div>
+          <div class="facts">
+            <div><b>41</b><span>Animations</span></div>
+            <div><b>1,681</b><span>Combinations</span></div>
+            <div><b>Lifetime</b><span>Access</span></div>
           </div>
         </div>
-        <div class="feat__media">
-          <div class="clip">
-            <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/bundle-text.jpg" width="720" height="406"><source src="/assets/bundle-text.webm" type="video/webm"></video>
-            <span class="livepill">Text Animations</span>
+        <div class="rvs">
+          <figure class="rv"><p>&ldquo;A game changer, saving me hours of back-and-forth with After Effects and allowing me to deliver high-quality edits just as quickly. This new version seems even better than the first.&rdquo;</p><figcaption><img src="/assets/reviews/federico.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Federico</b><i>@marzustudio</i></span></figcaption></figure>
+          <figure class="rv"><p>&ldquo;Can't believe I found this while doomscrolling on IG. All of my favorite text effects in 1 pack, easy to follow, and free updates for life.&rdquo;</p><figcaption><img src="/assets/reviews/mickey.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Mickey</b><i>@itchyeyephotos</i></span></figcaption></figure>
+          <figure class="rv"><p>&ldquo;The variety and ease of use is top tier. You get so much from this pack - it's 10x'd my workflow and made editing fun again.&rdquo;</p><figcaption><img src="/assets/reviews/christopher.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Christopher</b><i>@chrissjeske</i></span></figcaption></figure>
+          <figure class="rv"><p>&ldquo;Super easy to use and really helps add that extra touch to make my videos that much better. 10/10 recommend to any creative.&rdquo;</p><figcaption><img src="/assets/reviews/3kingkeen.jpg" alt="" width="28" height="28" loading="lazy"><span><b>3KINGKEEN</b><i>@3kingkeen</i></span></figcaption></figure>
+          <figure class="rv"><p>&ldquo;Easy to use, full of text animations, and it definitely elevated my captions game. Highly recommend for anyone who wants a better workflow.&rdquo;</p><figcaption><img src="/assets/reviews/swtos.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Swtos</b><i>@soter.pap</i></span></figcaption></figure>
+          <figure class="rv"><p>&ldquo;Makes editing so much quicker and elevates my video quality by a ton. Highly recommend, 10/10 product.&rdquo;</p><figcaption><img src="/assets/reviews/hugo.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Hugo</b><i>@hugolminetti</i></span></figcaption></figure>
+          <figure class="rv"><p>&ldquo;Having all the text effects inside Premiere Pro makes editing so much less stressful. Love it.&rdquo;</p><figcaption><img src="/assets/reviews/blake.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Blake</b><i>@blakejstaff</i></span></figcaption></figure>
+          <figure class="rv"><p>&ldquo;Love having everything in one place. Hard to find tools that actually work, but this pack delivers.&rdquo;</p><figcaption><img src="/assets/reviews/patrik.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Patrik</b><i>@patriksoldan</i></span></figcaption></figure>
+          <figure class="rv"><p>&ldquo;This pack has been my go-to lately. Been using it for over 50% of my text edits.&rdquo;</p><figcaption><img src="/assets/reviews/coachdon.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Coach Don</b><i>@coachdonmrremote</i></span></figcaption></figure>
+          <figure class="rv" hidden><p>&ldquo;Been wanting this for so long - finally got it and it's amazing. Well done on creating this.&rdquo;</p><figcaption><img src="/assets/reviews/randall.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Randall</b><i>@iamrandallyutatco</i></span></figcaption></figure>
+          <figure class="rv" hidden><p>&ldquo;The animation pack is SOLID. Already using it across my content.&rdquo;</p><figcaption><img src="/assets/reviews/steproc.jpg" alt="" width="28" height="28" loading="lazy"><span><b>StepRoc PLUS</b><i>@steprocplus</i></span></figcaption></figure>
+          <figure class="rv" hidden><p>&ldquo;Been using it and it's killer. Does exactly what it says.&rdquo;</p><figcaption><img src="/assets/reviews/alexei.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Alexei</b><i>@alexeidelacuesta</i></span></figcaption></figure>
+          <figure class="rv" hidden><p>&ldquo;Amazing text animation pack. Appreciate you putting this together.&rdquo;</p><figcaption><img src="/assets/reviews/kalo.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Kalo</b><i>@kalokachar</i></span></figcaption></figure>
+          <figure class="rv" hidden><p>&ldquo;Bought literally everything. Absolutely worth it.&rdquo;</p><figcaption><img src="/assets/reviews/garden.jpg" alt="" width="28" height="28" loading="lazy"><span><b>From the Garden</b><i>@directedbygarden</i></span></figcaption></figure>
+          <figure class="rv" hidden><p>&ldquo;Just got it and love it. Exactly what I was looking for.&rdquo;</p><figcaption><img src="/assets/reviews/josiah.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Josiah</b><i>@josiah_lebante</i></span></figcaption></figure>
+          <figure class="rv" hidden><p>&ldquo;The text animation pack has been very helpful. Really glad I picked it up.&rdquo;</p><figcaption><img src="/assets/reviews/lourdes.jpg" alt="" width="28" height="28" loading="lazy"><span><b>Lourdes</b><i>@iapulse</i></span></figcaption></figure>
+          <figure class="rv" hidden><p>&ldquo;Dude, these are awesome. Thank you so much.&rdquo;</p><figcaption><span class="ava" aria-hidden="true">F</span><span><b>fljay23</b><i>@fljay23</i></span></figcaption></figure>
+        </div>
+        <div class="reviews__more"><button class="btn btn--line btn--sm" id="moreReviews" type="button">Show all 17 reviews</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FULL KIT (bundle upsell) -->
+  <section class="section" aria-labelledby="kit-title">
+    <div class="wrap">
+      <div class="kit">
+        <div class="kit__top">
+          <div><span class="label label--muted">The full kit</span><h2 id="kit-title">Text + SFX in one purchase.</h2></div>
+          <p class="kit__sep">Bought separately <b>$115</b></p>
+        </div>
+        <div class="kit__items">
+          <div class="kit__item">
+            <div class="clip"><video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/bundle-text.jpg" width="720" height="406"><source src="/assets/bundle-text.webm" type="video/webm"></video></div>
+            <div><b>Creator Text Animations</b><span>41 animations for Premiere Pro</span></div>
           </div>
-          <div class="clip">
-            <video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-sfx.jpg" width="1280" height="720"><source src="/assets/hero-sfx.webm" type="video/webm"></video>
-            <span class="livepill">SFX Collection</span>
+          <div class="kit__item">
+            <div class="clip"><video data-autoplay muted loop playsinline preload="none" poster="/assets/posters/hero-sfx.jpg" width="1280" height="720"><source src="/assets/hero-sfx.webm" type="video/webm"></video></div>
+            <div><b>Creator SFX Collection</b><span>155 hand-crafted sound effects</span></div>
+          </div>
+        </div>
+        <div class="kit__foot">
+          <div class="bigprice"><b>$73.60</b><s>$115</s><span class="badge">Save 36%</span></div>
+          <div class="actions">
+            <a class="btn btn--line" href="/sfx/">See the SFX</a>
+            <a data-cta="bundle" data-product="Text + SFX Bundle" data-product-id="text-sfx-bundle" data-value="73.60" class="btn btn--light" href="https://buy.polar.sh/polar_cl_Z2BF1STEmcIgn9vJ3JuNktHhITw71yAMGZrWC45Rzuk">Get the bundle</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 06 FAQ -->
-  <section class="section section--line" id="faq" aria-labelledby="faq-title">
-    <div class="wrap faq">
-      <div><span class="kicker"><b>06</b>&mdash; FAQ</span><h2 id="faq-title" style="margin-top:18px">Good to know.</h2></div>
-      <div>
-        <details open>
-          <summary>How do I receive future updates?</summary>
-          <p>After purchase, every future update is delivered free to your purchase email. No extra cost.</p>
-        </details>
-        <details>
-          <summary>How do I access the pack after purchase?</summary>
-          <p>Once purchased, you'll get an instant download link in your email, no waiting required.</p>
-        </details>
-        <details>
-          <summary>Can I use these in monetized videos?</summary>
-          <p>Yes, all animations can be used in personal or commercial projects.</p>
-        </details>
-        <details>
-          <summary>Will this work with my editing software?</summary>
-          <p>Built specifically for Premiere Pro 2019 or newer. No plugins, no After Effects. Everything runs on stock Adobe effects.</p>
-        </details>
-        <details>
-          <summary>What can I customize?</summary>
-          <p>Everything. 52 controls across 11 sections, all inside Premiere's Properties panel. Font, size, colour, position, spacing, speed, direction, drop shadow, stroke, gradient, glow, blur, curve, light sweep, film grain and rough edges. No keyframing.</p>
-        </details>
-        <details>
-          <summary>Do I need any extra plugins?</summary>
-          <p>No - just Premiere Pro. Drag, drop, type. That's it. If you want to save your own looks as reusable presets, build them once in a sequence and import that sequence into your next project. Works on Windows and Mac. On Mac you can also use Clip Deck to do it in one click, though it isn't on Windows yet. The guide in your download covers both.</p>
-        </details>
-        <details>
-          <summary>Something wrong with your download?</summary>
-          <p>Email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a>.</p>
-        </details>
-      </div>
+  <!-- FAQ -->
+  <section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <h2 id="faq-title">Frequently asked questions</h2>
+      <details open>
+        <summary>How do I receive future updates?<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.2 7 9l4-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>After purchase, every future update is delivered free to your purchase email. No extra cost.</p>
+      </details>
+      <details>
+        <summary>How do I access the pack after purchase?<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.2 7 9l4-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>Once purchased, you'll get an instant download link in your email, no waiting required.</p>
+      </details>
+      <details>
+        <summary>Can I use these in monetized videos?<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.2 7 9l4-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>Yes, all animations can be used in personal or commercial projects.</p>
+      </details>
+      <details>
+        <summary>Will this work with my editing software?<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.2 7 9l4-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>Built specifically for Premiere Pro 2019 or newer. No plugins, no After Effects. Everything runs on stock Adobe effects.</p>
+      </details>
+      <details>
+        <summary>What can I customize?<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.2 7 9l4-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>Everything. 52 controls across 11 sections, all inside Premiere's Properties panel. Font, size, colour, position, spacing, speed, direction, drop shadow, stroke, gradient, glow, blur, curve, light sweep, film grain and rough edges. No keyframing.</p>
+      </details>
+      <details>
+        <summary>Do I need any extra plugins?<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.2 7 9l4-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>No - just Premiere Pro. Drag, drop, type. That's it. If you want to save your own looks as reusable presets, build them once in a sequence and import that sequence into your next project. Works on Windows and Mac. On Mac you can also use Clip Deck to do it in one click, though it isn't on Windows yet. The guide in your download covers both.</p>
+      </details>
+      <details>
+        <summary>Something wrong with your download?<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.2 7 9l4-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <p>Email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a>.</p>
+      </details>
     </div>
   </section>
 
   <!-- FINAL CTA -->
   <section class="final" aria-labelledby="final-title">
     <div class="wrap">
-      <span class="label"><img class="host" src="/assets/hosts/pr.png" alt="" width="18" height="18">Premiere Pro only</span>
+      <span class="label"><img class="host" src="/assets/hosts/pr.png" alt="" width="20" height="20">Premiere Pro only</span>
       <h2 id="final-title">Buy now. Level up.</h2>
       <p>Instant download, lifetime access and updates.</p>
       <div class="actions" id="finalActions">
         <a data-cta="final" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" id="finalBuy" class="btn btn--light" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now &middot; $47</a>
       </div>
-      <p class="final__was"><s>$60</s>Save $13</p>
+      <p class="final__was"><s>$60</s><span class="badge">Save $13</span></p>
       <p class="final__help">Any issue with your download, email <a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></p>
     </div>
   </section>
@@ -511,23 +532,23 @@
 <footer class="foot">
   <div class="foot__cols">
     <div><p class="fh">Shop</p><a href="/text/">Text Animations</a><a href="/sfx/">SFX Collection</a><a href="/bundle/">The bundle</a></div>
-    <div><p class="fh">Help</p><a href="#faq">Questions</a><a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></div>
+    <div><p class="fh">Support</p><a href="#faq">Questions</a><a href="mailto:hello@artzenmedia.com">hello@artzenmedia.com</a></div>
     <div><p class="fh">Artzen Media</p><a href="https://www.instagram.com/artzenmedia/">Instagram</a><a href="https://artzenmedia.com">artzenmedia.com</a></div>
     <div><p class="fh">Legal</p><a href="/tac">Terms and Conditions</a><a href="/privacy">Privacy Policy</a></div>
   </div>
   <div class="foot__mark" aria-hidden="true"><span>Artzen Media</span></div>
-  <div class="foot__base"><span>&copy;2026 Artzen Media</span><span>Made by an editor</span></div>
+  <div class="foot__base"><span>&copy; 2026 Artzen Media</span><span>Made by an editor</span></div>
 </footer>
 
 <!-- Floating buy bar (shows while neither the hero nor the closing buy button is on screen) -->
 <div class="sbar" id="bar" aria-hidden="true">
-  <img class="sbar__thumb" src="/assets/posters/text-vsl.jpg" alt="" width="40" height="40">
+  <img class="sbar__thumb" src="/assets/posters/text-vsl.jpg" alt="" width="46" height="46">
   <span class="sbar__name">Creator Text Animations</span>
-  <span class="sbar__price">$47 &middot; one-time</span>
+  <span class="sbar__price">$47 USD <s>$60</s></span>
   <a data-cta="stickybar" data-product="Creator Text Animations Pack" data-product-id="text-animations" data-value="47" class="btn btn--light btn--sm" tabindex="-1" href="https://buy.polar.sh/polar_cl_AhadUPAdE3QPgjZdzswMJQKcmGugh8lGyGlMV2m4MAp">Buy now<span class="sbar__btnprice">&nbsp;&middot; $47</span></a>
 </div>
 
-<script src="/assets/am-shop.js?v=2" defer></script>
+<script src="/assets/am-shop.js?v=8" defer></script>
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ddc7e1d7ce974a1397478c75c100833b"}'></script>
 <!-- End Cloudflare Web Analytics -->

@@ -38,7 +38,7 @@
   /* best-effort kick for browsers that block muted autoplay until the first touch */
   function kick() {
     document.querySelectorAll('video[data-inview]').forEach(function (v) {
-      if (!v.paused) return;
+      if (!v.paused || !v.offsetParent) return; // skip hidden ones (the other gallery cut)
       v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {});
     });
   }
@@ -65,6 +65,31 @@
     vsl.addEventListener('click', play);
     vsl.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); } });
   }
+
+  /* ---- hero gallery: the thumbnails swap the cut shown in the studio tile; the hidden one pauses ---- */
+  var thumbs = [].slice.call(document.querySelectorAll('.thumb[data-slide]'));
+  thumbs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var id = t.getAttribute('data-slide');
+      thumbs.forEach(function (x) { x.setAttribute('aria-pressed', String(x === t)); });
+      document.querySelectorAll('.slide').forEach(function (s) {
+        var on = s.id === id, v = s.querySelector('video');
+        s.classList.toggle('is-on', on);
+        if (!v) return;
+        if (!on) v.pause();
+        else if (v.hasAttribute('data-inview')) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      });
+    });
+  });
+
+  /* ---- keep the channel tag (?s=story etc.) on links to the other shop pages ---- */
+  try {
+    var tag = new URLSearchParams(location.search).get('s');
+    if (tag) document.querySelectorAll('a[href^="/text"], a[href^="/sfx"], a[href^="/bundle"]').forEach(function (a) {
+      var u = new URL(a.getAttribute('href'), location.origin); u.searchParams.set('s', tag);
+      a.setAttribute('href', u.pathname + u.search + u.hash);
+    });
+  } catch (e) {}
 
   /* ---- Properties panel replica: sections open, dropdowns show the real option lists ---- */
   document.querySelectorAll('.egp-head').forEach(function (h) {
@@ -116,8 +141,8 @@
   /* ---- reviews: the rest show on click ---- */
   var more = document.getElementById('moreReviews');
   if (more) more.addEventListener('click', function () {
-    document.querySelectorAll('.quote[hidden]').forEach(function (q) { q.hidden = false; });
-    more.remove();
+    document.querySelectorAll('.rv[hidden]').forEach(function (q) { q.hidden = false; });
+    (more.closest('.reviews__more') || more).remove();
   });
 
   /* ---- floating buy bar: on whenever neither the hero nor the closing buy button is on screen ---- */
